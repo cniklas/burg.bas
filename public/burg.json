@@ -48,7 +48,8 @@
 		"commands": [
 			{ "key": "n", "text": "nimm Zettel", "action": "kerker_21a" },
 			{ "key": "l", "text": "links", "action": "kerker_30" },
-			{ "key": "w", "text": "weiter", "action": "kerker_tod" }
+			{ "key": "w", "text": "weiter", "action": "kerker_tod" },
+			{ "key": "z", "text": "zurück", "action": "turm_ug" }
 		],
 		"hint": "Ich erwarte eine vernünftige Entscheidung!"
 	},
@@ -60,7 +61,11 @@
 			"Du hebst also den Zettel auf, und darauf steht in bunten Buchstaben:\nLEST MICKY-MAUS!",
 			"Du wirfst den Wisch ärgerlich weg und beschließt zu gehen."
 		],
-		"continue": "kerker_20"
+		"commands": [
+			{ "key": "r", "text": "rechts", "action": "kerker_tod" },
+			{ "key": "l", "text": "links", "action": "turm_ug" },
+			{ "key": "w", "text": "weiter", "action": "kerker_30" }
+		]
 	},
 
 	{
@@ -70,7 +75,11 @@
 			"Du hebst also den Zettel auf, und darauf steht in bunten Buchstaben:\nLEST MICKY-MAUS!",
 			"Du wirfst den Wisch ärgerlich weg und beschließt zu gehen."
 		],
-		"continue": "kerker_20a"
+		"commands": [
+			{ "key": "l", "text": "links", "action": "kerker_30" },
+			{ "key": "w", "text": "weiter", "action": "kerker_tod" },
+			{ "key": "z", "text": "zurück", "action": "turm_ug" }
+		]
 	},
 
 	{
@@ -186,7 +195,8 @@
 		"id": "turm_ug",
 		"line": 123,
 		"story": [
-			"Du gehst nach links und kommst an eine Wendeltreppe. Sie wendelt aufwärts.\nWenn du meinst, daß sie aus dem Kerker führt, folge ihr. Oder geh zurück."
+			// "Du gehst nach links und kommst an eine Wendeltreppe. Sie wendelt aufwärts.\nWenn du meinst, daß sie aus dem Kerker führt, folge ihr. Oder geh zurück."
+			"Du kommst an eine Wendeltreppe. Sie wendelt aufwärts.\nWenn du meinst, daß sie aus dem Kerker führt, folge ihr. Oder geh zurück."
 		],
 		"commands": [
 			{ "key": "h", "text": "hoch", "action": "turm_eg" },
@@ -230,8 +240,8 @@
 			]
 		],
 		"commands": [
-			{ "condition": "has-sword", "key": "r", "text": "runter", "set-condition": "no-magic-wand", "action": "burghof-a" },
 			{ "condition": "has-sword", "key": "o", "text": "öffne Tür mit Schwert", "action": "turm_tod" },
+			{ "condition": "has-sword", "key": "r", "text": "runter", "set-condition": "no-magic-wand", "action": "burghof-a" },
 			{ "condition": "has-sword", "key": "k", "text": "klopfe an", "action": "turm_20" },
 			{ "condition": "no-weapons", "key": "r", "text": "runter", "set-condition": "no-magic-wand", "action": "lagerhaus-b" },
 			{ "condition": "no-weapons", "key": "k", "text": "klopfe an", "action": "turm_20" }
@@ -399,7 +409,8 @@
 			"Du stehst auf dem Burghof und überlegst, wo du jetzt hingehen könntest. Es bieten sich gleich mehrere Richtungen an:\nLinks sind die Stallungen, auf der anderen Seite des Hofes liegt der Palas und rechts von dir befindet sich das Lagerhaus. Außerdem könntest du auf den Wehrgang steigen und sehen, ob du da irgendwie weiterkommst.\nGib deine Richtungswahl ein. [Benutze >hoch<, wenn du auf den Wehrgang willst.]"
 		],
 		"commands": [
-			{ "key": "h", "text": "hoch", "action": "TODO" },
+			{ "condition": "has-sword", "key": "h", "text": "hoch", "action": "wehrgang" },
+			{ "condition": "has-keys", "key": "h", "text": "hoch", "action": "wehrgang-a" },
 			{ "key": "r", "text": "rechts", "action": "lagerhaus-a" },
 			{ "key": "l", "text": "links", "action": "stallungen" },
 			{ "key": "w", "text": "weiter", "action": "palas" }
@@ -473,6 +484,34 @@
 	},
 
 	{
+		"id": "burghof-f",
+		"line": 470,
+		"story": [
+			"Du läufst den ganzen Wehrgang wieder zurück, steigst die Stufen zum Burghof hinunter und mußt dich nun für eine neue Richtung entscheiden: Links sind die Stallungen, rechterhand befindet sich das Lagerhaus, und wenn du in den Palas möchtest, mußt du geradeaus [>weiter<] über den Burghof gehen."
+		],
+		"commands": [
+			{ "key": "r", "text": "rechts", "action": "TODO" },
+			{ "key": "l", "text": "links", "action": "TODO" },
+			{ "key": "w", "text": "weiter", "action": "palas" }
+		],
+		"hint": "Eine klare, vernünftige Entscheidung, bitte."
+	},
+
+	{
+		"id": "burghof-g",
+		"line": 597,
+		"story": [
+			"Du läufst den Wehrgang wieder zurück, vorbei an den ahnungslosen Wachen, steigst die Stufen zum Burghof hinunter und legst dort erst einmal deine Tarnung ab. Nun mußt du dich für eine neue Richtung entscheiden: Links sind die Stallungen, rechterhand befindet sich das Lagerhaus, und wenn du in den Palas möchtest, mußt du geradeaus [>weiter<] über den Burghof gehen."
+		],
+		"commands": [
+			{ "key": "r", "text": "rechts", "action": "TODO" },
+			{ "key": "l", "text": "links", "action": "TODO" },
+			{ "key": "w", "text": "weiter", "action": "palas" }
+		],
+		"hint": "Eine klare, vernünftige Entscheidung, bitte."
+	},
+
+	{
 		"id": "stallungen",
 		"line": 545,
 		"story": [
@@ -502,6 +541,69 @@
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "burghof-e" }
+		]
+	},
+
+	{
+		"id": "wehrgang",
+		"line": 439,
+		"story": [
+			"Du steigst die Stufen zum Wehrgang hinauf. Als du oben bist, bemerkst du, daß hier auch zahlreiche Wachenposten herumstehen. Aber du läßt dich deswegen nicht sehr aus der Ruhe bringen. Du packst Schwert und Schild fester und stürzt auf den ersten los.\nDa du noch nicht bemerkt worden warst, kannst du diesen Überraschungsangriff ohne Schwierigkeiten beginnen. Dann aber fassen sich deine Gegner schnell und gehen zum Gegenangriff über."
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "wehrgang_10" }
+		]
+	},
+
+	{
+		"id": "wehrgang-a",
+		"line": 571,
+		"story": [
+			"Du steigst die Stufen zum Wehrgang hinauf. Als du oben bist, bemerkst du, daß hier auch zahlreiche Wachenposten herumstehen. Noch haben sie dich nicht gesehen. Aber da fällt dir schon etwas ein, um ungeschoren an ihnen vorbeizukommen. Du holst Helm und Umhang hervor, die du aus dem Kerker mitgenommen hast, kleidest dich damit ein und siehst nun ebenso aus wie die Schergen UBOLZIOs. In dieser Tarnung betrittst du den Wehrgang und schreitest mutig an den Kerlen vorbei."
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "wehrgang_10a" }
+		]
+	},
+
+	{
+		"id": "wehrgang_10",
+		"line": 444,
+		"story": [
+			"Es kommt zu einem langen, harten Kampf, der dir viele Wunden einbringt, obschon du die meisten Hiebe deiner Gegner mit dem Schild auffangen kannst.\nIrgendwann endlich endet das blutige Gefecht. Du läßt das Schwert ermattet sinken und lehnst dich erschöpft gegen eine Zinne.",
+			"Nachdem du wieder zu Kräften gekommen bist, gehst du den Wehrgang entlang, bis du zu einem viereckigen Turm gelangst. Du trittst in das Innere des Turms und stehst vor einer Tür aus schwerem Holz, die in ein Turmgemach führen muß. Von außen ist ein eiserner Riegel davorgelegt. Eine Leiter führt außerdem in das Obergeschoß des Turms.\nWas tust du?"
+		],
+		"commands": [
+			{ "key": "h", "text": "hoch", "action": "wehrgang_turm" },
+			{ "key": "o", "text": "öffne Tür", "action": "TODO" },
+			{ "key": "z", "text": "zurück", "action": "TODO" }
+		]
+	},
+
+	{
+		"id": "wehrgang_10a",
+		"line": 578,
+		"story": [
+			"Und es klappt: Du wirst nicht erkannt! Innerlich frohlockend gehst du immer weiter, bis du zu einem viereckigen Turm gelangst. Du trittst in das Innere des Turms und stehst vor einer eisenbeschlagenen Tür, die in ein Turmgemach führen muß. Von außen ist ein schwerer Riegel mit Schloß davorgelegt. Eine Leiter führt außerdem in das Obergeschoß des Turms.\nWas tust du?"
+		],
+		"commands": [
+			{ "key": "h", "text": "hoch", "action": "wehrgang_turm" },
+			{ "key": "o", "text": "öffne Tür", "action": "TODO" },
+			{ "key": "z", "text": "zurück", "action": "TODO" }
+		]
+	},
+
+	{
+		"id": "wehrgang_turm",
+		"line": 461,
+		"story": [
+			"Du kletterst die Leiter hinauf. Hier oben ist nichts besonderes. Du entdeckst noch eine Leiter und steigst auch diese empor. Nun stehst du ganz oben auf der Turmplattform. Hier weht ein kräftiger Wind, der an deinen Kleidern zerrt und dir die Haare ins Gesicht bläst. Du bleibst für eine Weile dort oben und siehst dir die Landschaft an. Dann steigst du wieder hinunter.\nGehst du nun zum Burghof zurück oder versuchst du, die Tür zum Turmgemach zu öffnen?"
+		],
+		"commands": [
+			{ "condition": "has-sword", "key": "o", "text": "öffne Tür", "action": "TODO" },
+			{ "condition": "has-sword", "key": "z", "text": "zurück", "action": "burghof-f" },
+			{ "condition": "has-keys", "key": "o", "text": "öffne Tür", "action": "TODO" },
+			{ "condition": "has-keys", "key": "z", "text": "zurück", "action": "burghof-g" }
 		]
 	},
 
