@@ -89,7 +89,7 @@
 			"Du wendest dich nach rechts und latschst genau auf die dort verborgene Falltür!\nDu landest ganz schön schmerzhaft etliche Meter tiefer und stellst fest, daß es aus diesem Loch keinen Ausweg gibt …"
 		],
 		"commands": [
-			{ "key": "enter", "text": "", "action": "game_over_1" }
+			{ "key": "enter", "text": "", "action": "game_over" }
 		]
 	},
 
@@ -125,7 +125,7 @@
 			"Du hastest zurück – und rennst genau den Wächtern in die Arme. Jetzt ist alles zu spät …"
 		],
 		"commands": [
-			{ "key": "enter", "text": "", "action": "game_over_1" }
+			{ "key": "enter", "text": "", "action": "game_over" }
 		]
 	},
 
@@ -195,11 +195,10 @@
 		"id": "turm_ug",
 		"line": 123,
 		"story": [
-			// "Du gehst nach links und kommst an eine Wendeltreppe. Sie wendelt aufwärts.\nWenn du meinst, daß sie aus dem Kerker führt, folge ihr. Oder geh zurück."
 			"Du kommst an eine Wendeltreppe. Sie wendelt aufwärts.\nWenn du meinst, daß sie aus dem Kerker führt, folge ihr. Oder geh zurück."
 		],
 		"commands": [
-			{ "key": "h", "text": "hoch", "action": "turm_eg" },
+			{ "key": "h", "text": "hoch", "set-condition": "no-weapons", "action": "turm_eg" },
 			{ "key": "z", "text": "zurück", "action": "kerker_20a" }
 		]
 	},
@@ -211,7 +210,7 @@
 			"Du hast dich entschlossen, die steile Wendeltreppe hinaufzugehen. Es ist ziemlich mühsam; du erreichst keuchend und schnaufend einen Ausgang.\nUnd jetzt? Willst du noch weiter hinaufsteigen oder lieber sehen, welche Räumlichkeit sich dir hier auftut? [Benutze >hoch< bzw. >links<.]"
 		],
 		"commands": [
-			{ "key": "h", "text": "hoch", "set-condition": "no-weapons", "action": "turm_og" },
+			{ "key": "h", "text": "hoch", "action": "turm_og" },
 			{ "key": "l", "text": "links", "action": "lagerhaus" }
 		],
 		"hint": "Kannst du nicht lesen? >Hoch< bzw. >links<!"
@@ -241,10 +240,8 @@
 		],
 		"commands": [
 			{ "condition": "has-sword", "key": "o", "text": "öffne Tür mit Schwert", "action": "turm_tod" },
-			{ "condition": "has-sword", "key": "r", "text": "runter", "set-condition": "no-magic-wand", "action": "burghof-a" },
-			{ "condition": "has-sword", "key": "k", "text": "klopfe an", "action": "turm_20" },
-			{ "condition": "no-weapons", "key": "r", "text": "runter", "set-condition": "no-magic-wand", "action": "lagerhaus-b" },
-			{ "condition": "no-weapons", "key": "k", "text": "klopfe an", "action": "turm_20" }
+			{ "key": "k", "text": "klopfe an", "action": "turm_20" },
+			{ "key": "r", "text": "runter", "set-condition": "no-magic-wand", "action": "burghof-switch" }
 		]
 	},
 
@@ -255,7 +252,7 @@
 			"Du schlägst mit deinem Stahl ein paar mal auf das Türholz ein, doch auf einmal öffnet sich die Tür, und ein Zauberer steht vor dir! Daß es ein Zauberer ist, bemerkst du erst, als er dich schon in eine kleine Maus verwandelt hat zur Strafe dafür, daß du ihm seine Tür beschädigt hast …"
 		],
 		"commands": [
-			{ "key": "enter", "text": "", "action": "game_over_1" }
+			{ "key": "enter", "text": "", "action": "game_over" }
 		]
 	},
 
@@ -279,8 +276,7 @@
 			"Du faßt wieder Mut und bedankst dich sehr herzlich bei dem alten Mann. Er geleitet dich bis zur Treppe und wünscht dir viel Glück. Du verabschiedest dich von ihm und gehst nun die Wendeltreppe wieder hinab."
 		],
 		"commands": [
-			{ "condition": "has-sword", "key": "r", "text": "runter", "set-condition": "has-magic-wand", "action": "burghof-a" },
-			{ "condition": "no-weapons", "key": "r", "text": "runter", "set-condition": "has-magic-wand", "action": "lagerhaus-b" }
+			{ "key": "r", "text": "runter", "set-condition": "has-magic-wand", "action": "burghof-switch" }
 		],
 		"hint": "Geh hinunter."
 	},
@@ -319,25 +315,13 @@
 	},
 
 	{
-		"id": "lagerhaus-b",
-		"line": 529,
-		"story": [
-			"Du läufst die Wendeltreppe hinunter und betrittst eine große Halle. Du schaust dich um und entdeckst eine Vielzahl an Lebensmitteln, aber auch Boote, behauene Steine, Werkzeuge verschiedenster Art, aufgestapelte Holzbohlen, Stoffballen, Tierhäute und noch einige andere Sachen. Allem Anschein nach befindest du dich im Lagerhaus. Rechts ist ein großes Tor, was vermutlich auf den Burghof führt, und am anderen Ende der Halle siehst du eine breite Holztreppe zum Dachboden.\nDa dir von den vielen hier gelagerten Sachen jedoch keine als brauchbar erscheint, beschließt du, hier nicht länger zu verbleiben, und gehst hinaus auf den Burghof."
-		],
-		"commands": [
-			{ "condition": "has-magic-wand", "key": "enter", "text": "", "action": "burghof-b" },
-			{ "condition": "no-magic-wand", "key": "enter", "text": "", "action": "burghof-c" }
-		]
-	},
-
-	{
 		"id": "lagerhaus_tod",
 		"line": 301,
 		"story": [
 			"Du hetzt die Treppe zum Dachboden hinauf und versteckst dich so gut es geht zwischen Fässern mit Pökelfleisch und Mehlsäcken. Doch die Wachen sind nicht so leicht auszutricksen und suchen das ganze Lagerhaus ab nach dir. Es ist nur noch eine Frage der Zeit, bis sie dich gefunden haben …"
 		],
 		"commands": [
-			{ "key": "enter", "text": "", "action": "game_over_1" }
+			{ "key": "enter", "text": "", "action": "game_over" }
 		]
 	},
 
@@ -360,7 +344,7 @@
 			"Du hetzt die Treppe zum Dachboden hinauf und versteckst dich so gut es geht zwischen Fässern mit Pökelfleisch und Mehlsäcken. Doch die Wachen sind nicht so leicht auszutricksen und suchen das ganze Lagerhaus ab nach dir. Du sitzt in der Falle, und da wird dir auch dein Schwert nicht mehr viel nützen …"
 		],
 		"commands": [
-			{ "key": "enter", "text": "", "action": "game_over_1" }
+			{ "key": "enter", "text": "", "action": "game_over" }
 		]
 	},
 
@@ -385,7 +369,7 @@
 			"Das war leider ein großer Fehler, genauer gesagt sogar dein letzter! Du drehst dich um und versuchst zu entwischen, und so kannst du nicht sehen, wie einer der Schergen seine Armbrust anlegt, auf dich zielt und abdrückt …"
 		],
 		"commands": [
-			{ "key": "enter", "text": "", "action": "game_over_1" }
+			{ "key": "enter", "text": "", "action": "game_over" }
 		]
 	},
 
@@ -402,6 +386,21 @@
 	},
 
 	{
+		"id": "burghof-switch",
+		"line": 401,
+		"story": [
+			[
+				{ "condition": "has-sword", "story": "Du läufst die Wendeltreppe hinunter, gehst durch die große Halle des Lagerhauses und durch das Tor auf den Burghof." },
+				{ "condition": "no-weapons", "story": "Du läufst die Wendeltreppe hinunter und betrittst eine große Halle. Du schaust dich um und entdeckst eine Vielzahl an Lebensmitteln, aber auch Boote, behauene Steine, Werkzeuge verschiedenster Art, aufgestapelte Holzbohlen, Stoffballen, Tierhäute und noch einige andere Sachen. Allem Anschein nach befindest du dich im Lagerhaus. Rechts ist ein großes Tor, was vermutlich auf den Burghof führt, und am anderen Ende der Halle siehst du eine breite Holztreppe zum Dachboden.\nDa dir von den vielen hier gelagerten Sachen jedoch keine als brauchbar erscheint, beschließt du, hier nicht länger zu verbleiben, und gehst hinaus auf den Burghof." }
+			]
+		],
+		"commands": [
+			{ "condition": "has-magic-wand", "key": "enter", "text": "", "action": "burghof_magic-wand" },
+			{ "condition": "no-magic-wand", "key": "enter", "text": "", "action": "burghof_no-magic-wand" }
+		]
+	},
+
+	{
 		"id": "burghof",
 		"line": 188,
 		"story": [
@@ -409,29 +408,17 @@
 			"Du stehst auf dem Burghof und überlegst, wo du jetzt hingehen könntest. Es bieten sich gleich mehrere Richtungen an:\nLinks sind die Stallungen, auf der anderen Seite des Hofes liegt der Palas und rechts von dir befindet sich das Lagerhaus. Außerdem könntest du auf den Wehrgang steigen und sehen, ob du da irgendwie weiterkommst.\nGib deine Richtungswahl ein. [Benutze >hoch<, wenn du auf den Wehrgang willst.]"
 		],
 		"commands": [
-			{ "condition": "has-sword", "key": "h", "text": "hoch", "action": "wehrgang" },
-			{ "condition": "has-keys", "key": "h", "text": "hoch", "action": "wehrgang-a" },
-			{ "key": "r", "text": "rechts", "action": "lagerhaus-a" },
-			{ "key": "l", "text": "links", "action": "stallungen" },
+			{ "condition": "has-sword", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang" },
+			{ "condition": "has-keys", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang-a" },
+			{ "key": "r", "text": "rechts", "set-condition": "visited-lagerhaus", "action": "lagerhaus-a" },
+			{ "key": "l", "text": "links", "set-condition": "visited-stallungen", "action": "stallungen" },
 			{ "key": "w", "text": "weiter", "action": "palas" }
 		],
 		"hint": "Laß den Blödsinn! Entscheide dich für eine Richtung."
 	},
 
 	{
-		"id": "burghof-a",
-		"line": 401,
-		"story": [
-			"Du läufst die Wendeltreppe hinunter, gehst durch die große Halle des Lagerhauses und durch das Tor auf den Burghof."
-		],
-		"commands": [
-			{ "condition": "has-magic-wand", "key": "enter", "text": "", "action": "burghof-b" },
-			{ "condition": "no-magic-wand", "key": "enter", "text": "", "action": "burghof-c" }
-		]
-	},
-
-	{
-		"id": "burghof-b",
+		"id": "burghof_magic-wand",
 		"line": 411,
 		"story": [
 			"Du beschließt, so schnell wie möglich zum Thronsaal zu gelangen, um UBOLZIOs Herrschaft ein für alle mal zu beenden. Darum gehst du direkt aber dennoch vorsichtig zum Palas, der sich rechts von dir befindet."
@@ -443,21 +430,22 @@
 	},
 
 	{
-		"id": "burghof-c",
+		"id": "burghof_no-magic-wand",
 		"line": 418,
 		"story": [
 			"Nun entscheide, wohin du gehen willst: In den Palas, der rechts von dir steht, oder in die Stallungen, die sich auf der gegenüberliegenden Seite des Burghofes befinden? Wenn du lieber auf den Wehrgang steigen willst, gib >hoch< ein."
 		],
 		"commands": [
 			{ "key": "r", "text": "rechts", "action": "palas" },
-			{ "key": "w", "text": "weiter", "action": "TODO" },
-			{ "key": "h", "text": "hoch", "action": "TODO" }
+			{ "key": "w", "text": "weiter", "set-condition": "visited-stallungen", "action": "stallungen" },
+			{ "condition": "has-sword", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang" },
+			{ "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang_tod" }
 		],
 		"hint": "Häremm! Könntest du dich bitte für eine Richtung entscheiden?"
 	},
 
 	{
-		"id": "burghof-d",
+		"id": "burghof_aus-stallungen",
 		"line": 550,
 		"story": [
 			"Wohin treibt es dich jetzt? In den Palas, dann mußt du nach links gehen, ins Lagerhaus auf der anderen Seite des Burghofes, oder willst du dich erst auf dem Wehrgang umschauen?"
@@ -465,7 +453,7 @@
 		"commands": [
 			{ "key": "l", "text": "links", "action": "palas" },
 			{ "key": "w", "text": "weiter", "action": "TODO" },
-			{ "key": "h", "text": "hoch", "action": "TODO" }
+			{ "not-condition": "visited-wehrgang", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "TODO" }
 		],
 		"hint": "Wohin? [>links<, >weiter< bzw. >hoch<]"
 	},
@@ -478,7 +466,7 @@
 		],
 		"commands": [
 			{ "key": "l", "text": "links", "action": "palas" },
-			{ "key": "h", "text": "hoch", "action": "TODO" }
+			{ "not-condition": "visited-wehrgang", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "TODO" }
 		],
 		"hint": "Hast du denn immernoch nicht kapiert, wie’s geht?"
 	},
@@ -491,7 +479,7 @@
 		],
 		"commands": [
 			{ "key": "r", "text": "rechts", "action": "TODO" },
-			{ "key": "l", "text": "links", "action": "TODO" },
+			{ "not-condition": "visited-stallungen", "key": "l", "text": "links", "set-condition": "visited-stallungen", "action": "stallungen" },
 			{ "key": "w", "text": "weiter", "action": "palas" }
 		],
 		"hint": "Eine klare, vernünftige Entscheidung, bitte."
@@ -505,7 +493,7 @@
 		],
 		"commands": [
 			{ "key": "r", "text": "rechts", "action": "TODO" },
-			{ "key": "l", "text": "links", "action": "TODO" },
+			{ "not-condition": "visited-stallungen", "key": "l", "text": "links", "set-condition": "visited-stallungen", "action": "stallungen" },
 			{ "key": "w", "text": "weiter", "action": "palas" }
 		],
 		"hint": "Eine klare, vernünftige Entscheidung, bitte."
@@ -518,7 +506,7 @@
 			"Du läufst hinüber zu den Stallungen, um zu sehen, ob es da irgendetwas Interessantes zu entdecken gibt. Du öffnest das Tor und gehst hinein. Aber außer Pferdeboxen mit vielen Pferden drin und einem Berg von aufgehäuftem Heu kannst du hier nichts besonderes erblicken. Was sollte es in einem Pferdestall auch so Außergewöhnliches geben?\nDu kehrst dich um und gehst auf den Burghof zurück."
 		],
 		"commands": [
-			{ "key": "enter", "text": "", "action": "burghof-d" }
+			{ "key": "enter", "text": "", "action": "burghof_aus-stallungen" }
 		]
 	},
 
@@ -575,8 +563,8 @@
 		],
 		"commands": [
 			{ "key": "h", "text": "hoch", "action": "wehrgang_turm" },
-			{ "key": "o", "text": "öffne Tür", "action": "TODO" },
-			{ "key": "z", "text": "zurück", "action": "TODO" }
+			{ "key": "o", "text": "öffne Tür", "action": "wehrgang_verlies" },
+			{ "key": "z", "text": "zurück", "action": "burghof-f" }
 		]
 	},
 
@@ -588,8 +576,19 @@
 		],
 		"commands": [
 			{ "key": "h", "text": "hoch", "action": "wehrgang_turm" },
-			{ "key": "o", "text": "öffne Tür", "action": "TODO" },
-			{ "key": "z", "text": "zurück", "action": "TODO" }
+			{ "key": "o", "text": "öffne Tür", "action": "wehrgang_verlies" },
+			{ "key": "z", "text": "zurück", "action": "burghof-g" }
+		]
+	},
+
+	{
+		"id": "wehrgang_tod",
+		"line": 434,
+		"story": [
+			"Völlig unbewaffnet auf den Wehrgang zu steigen, war eine schlechte Idee! Hier oben laufen einige Wachposten herum, und als sie dich entdecken, legen sie sofort ihre Armbrüste an und schießen auf dich. Du wirst gleich mehrfach getroffen und stirbst …"
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "game_over" }
 		]
 	},
 
@@ -600,10 +599,93 @@
 			"Du kletterst die Leiter hinauf. Hier oben ist nichts besonderes. Du entdeckst noch eine Leiter und steigst auch diese empor. Nun stehst du ganz oben auf der Turmplattform. Hier weht ein kräftiger Wind, der an deinen Kleidern zerrt und dir die Haare ins Gesicht bläst. Du bleibst für eine Weile dort oben und siehst dir die Landschaft an. Dann steigst du wieder hinunter.\nGehst du nun zum Burghof zurück oder versuchst du, die Tür zum Turmgemach zu öffnen?"
 		],
 		"commands": [
-			{ "condition": "has-sword", "key": "o", "text": "öffne Tür", "action": "TODO" },
+			{ "condition": "has-sword", "key": "o", "text": "öffne Tür", "action": "wehrgang_verlies" },
 			{ "condition": "has-sword", "key": "z", "text": "zurück", "action": "burghof-f" },
-			{ "condition": "has-keys", "key": "o", "text": "öffne Tür", "action": "TODO" },
+			{ "condition": "has-keys", "key": "o", "text": "öffne Tür", "action": "wehrgang_verlies-a" },
 			{ "condition": "has-keys", "key": "z", "text": "zurück", "action": "burghof-g" }
+		]
+	},
+
+	{
+		"id": "wehrgang_verlies",
+		"line": 487,
+		"story": [
+			"Du hast dich entschlossen, die Tür zu öffnen, denn du willst wissen, was sich dahinter verbirgt. Schwert und Schild legst du beiseite, denn du brauchst beide Hände, um den schweren Riegel zu bewegen. Er sitzt verdammt fest, und du mußt erst eine Weile rucken und rütteln, bis du ihn endlich wegbekommst. Dementsprechend bist du gespannt auf das, was dich nun erwarten wird. Du ziehst die Tür auf und …",
+			"… vor dir steht eine wunderschöne, junge Maid!\nSie erschrickt zuerst, weil du ein sehr wildes Bild abgibst, was jedoch vom Kampfe herrührt. Dann aber faßt sie Vertrauen zu dir, weil du ihr freundlich und offen begegnest. Sie erzählt dir, daß sie von UBOLZIO geraubt wurde und er sie hier eingesperrt hat, weil sie sich geweigert hatte, seine Geliebte zu werden. Sie fleht dich an, sie aus der Gewalt UBOLZIOs zu befreien.\nHilfst du ihr?"
+		],
+		"commands": [
+			{ "key": "j", "text": "ja", "action": "wehrgang_verlies_10" },
+			{ "key": "n", "text": "nein", "action": "wehrgang_verlies-tod" }
+		],
+		"hint": "Ja oder nein?"
+	},
+
+	{
+		"id": "wehrgang_verlies-a",
+		"line": 603,
+		"story": [
+			"Du hast dich entschlossen, die Tür zu öffnen, denn du willst wissen, was sich dahinter verbirgt. Du holst den Schlüsselbund aus deiner Tasche und probierst damit solange herum, bis du das Schloß aufbekommen hast. Du schiebst den Riegel zur Seite und bist sehr gespannt auf das, was dich nun erwarten wird. Du ziehst die Tür auf und …",
+			"… vor dir steht eine wunderschöne, junge Maid!\nSie erschrickt zuerst, weil du die Kleidung der Burgwachen trägst. Dann aber faßt sie Vertrauen zu dir, weil du ihr freundlich und offen begegnest. Sie erzählt dir, daß sie von UBOLZIO geraubt wurde und er sie hier eingesperrt hat, weil sie sich geweigert hatte, seine Geliebte zu werden. Sie fleht dich an, sie aus der Gewalt UBOLZIOs zu befreien.\nHilfst du ihr?"
+		],
+		"commands": [
+			{ "key": "j", "text": "ja", "action": "wehrgang_verlies_10a" },
+			{ "key": "n", "text": "nein", "action": "wehrgang_verlies-tod" }
+		],
+		"hint": "Ja oder nein?"
+	},
+
+	{
+		"id": "wehrgang_verlies-tod",
+		"line": 518,
+		"story": [
+			"Ich habe keine Ahnung, welcher böse Geist in dich gefahren ist. Das Flehen des Mädchens läßt dich kalt, du kannst bei deiner Flucht keinen Menschen als Risiko an deiner Seite dulden. Erbarmungslos sperrst du sie wieder zurück in ihr Turmgemach und legst den Türriegel fest davor. Dann nimmst du deine Sachen, gehst hinaus aus dem Turm und willst dich davonmachen.\nDoch deine Unbarmherzigkeit bleibt nicht ungestraft: Vom obersten Rand des Turmes löst sich ein großer Stein, stürzt hinunter und erschlägt dich …"
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "game_over" }
+		]
+	},
+
+	{
+		"id": "wehrgang_verlies_10",
+		"line": 507,
+		"story": [
+			"Natürlich erklärst du dich bereit, mit ihr gemeinsam zu fliehen, denn auch dein Verlangen ist es, so rasch wie möglich diese Burg zu verlassen.\nDir ist klar, daß ihr es nicht schaffen könntet, durch das Burgtor zu entfliehen, ohne von den Wachen entdeckt und getötet zu werden. Darum mußt du über einen anderen Fluchtweg nachsinnen."
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "wehrgang_verlies-ende-1" }
+		]
+	},
+
+	{
+		"id": "wehrgang_verlies_10a",
+		"line": 621,
+		"story": [
+			"Natürlich erklärst du dich bereit, mit ihr gemeinsam zu fliehen, denn auch dein Verlangen ist es, so rasch wie möglich diese Burg zu verlassen.\nDir fällt auch sogleich ein Fluchtplan ein. Du gehst zum Eingang des Turmes und rufst den Wächter heran, der am nächsten am Turm steht. Dann stellst du dich schnell hinter den Eingang, und als der Wächter hereinkommt schlägst du ihm deine Keule über den Schädel. Er sackt zu Boden und ist für die nächsten paar Stunden ohnmächtig. Du zerrst ihn in das Turmgemach, nimmst ihm den Helm und den Umhang ab und gibst beides dem Mädchen. Sie zieht die Sachen zur Tarnung über, so, wie du es vorhin getan hast, und ihr verlaßt den Turm."
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "wehrgang_verlies-ende-2" }
+		]
+	},
+
+	{
+		"id": "wehrgang_verlies-ende-1",
+		"line": 511,
+		"story": [
+			"Dir fällt ein, daß du ja ein langes Seil bei dir hast. Und das ist die Rettung!\nZusammen mit dem Mädchen verläßt du den Turm und bindest das Seil draußen mit dem einen Ende fest um eine Zinne. Das andere Ende wirfst du die Schildmauer hinunter. Ihr steigt daran hinab und seid frei …"
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "congratulations" }
+		]
+	},
+
+	{
+		"id": "wehrgang_verlies-ende-2",
+		"line": 629,
+		"story": [
+			"Ohne verdächtige Hast aber mit ängstlich verkrampftem Herzen geht ihr an den Wachen auf dem Wehrgang vorbei. Ihr erreicht unerkannt den Burghof und geht von dort aus in die Stallungen, wo ihr zwei Pferde sattelt. Ihr führt sie hinaus auf den Hof, sitzt auf und reitet zum Burgtor. Barsch befiehlst du dem dort wachenden Mann, das Tor zu öffnen. Er schöpft keinen Argwohn und läßt euch sogleich hinaus.\nIhr treibt eure Pferde an und verschwindet für immer aus dieser dunklen Burg …"
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "congratulations" }
 		]
 	},
 
@@ -638,7 +720,7 @@
 	},
 
 	{
-		"id": "game_over_1",
+		"id": "game_over",
 		"line": 117,
 		"story": [
 			"DAS WAR’S FÜR DICH!"
@@ -650,6 +732,18 @@
 	},
 
 	{
+		"id": "congratulations",
+		"line": 837,
+		"story": [
+			"                                 GRATULATION!\n            DU HAST DICH WACKER DURCH DIESES ABENTEUER GESCHLAGEN!"
+		],
+		"music": "t130ms<<l8cl16ccl8cecegeg>l2c",
+		"commands": [
+			{ "key": "enter", "text": "", "action": "credits-b" }
+		]
+	},
+
+	{
 		"id": "restart_or_exit",
 		"line": 119,
 		"story": [
@@ -657,15 +751,24 @@
 		],
 		"commands": [
 			{ "key": "j", "text": "ja", "action": "start" },
-			{ "key": "n", "text": "nein", "action": "credits" }
+			{ "key": "n", "text": "nein", "action": "credits-a" }
 		]
 	},
 
 	{
-		"id": "credits",
+		"id": "credits-a",
 		"line": 200,
 		"story": [
 			"OK. Dann ist das Spiel zu …",
+			"----------------------------  E  N  D  E  !  !  !  ----------------------------",
+			"Ein Spiel von KRISCHAN\n\nIdee: KRISCHAN mit hilfreicher Unterstützung von DEWITT\n\nText: KRISCHAN\n\nMusik: KRISCHAN (bis auf wenige Raubkopien)\n\nProgrammed by KRISCHAN\n\nCopyrights by KRISCHAN MCMXCVI"
+		]
+	},
+
+	{
+		"id": "credits-b",
+		"line": 215,
+		"story": [
 			"----------------------------  E  N  D  E  !  !  !  ----------------------------",
 			"Ein Spiel von KRISCHAN\n\nIdee: KRISCHAN mit hilfreicher Unterstützung von DEWITT\n\nText: KRISCHAN\n\nMusik: KRISCHAN (bis auf wenige Raubkopien)\n\nProgrammed by KRISCHAN\n\nCopyrights by KRISCHAN MCMXCVI"
 		]
