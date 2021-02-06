@@ -178,7 +178,7 @@
 		"story": [
 			"Richtig. Du machst aus der Tür Kleinholz und verläßt diesen Raum."
 		],
-		"continue": "burghof"
+		"continue": "burghof_has-sword-or-keys"
 	},
 
 	{
@@ -187,7 +187,7 @@
 		"story": [
 			"Da du jetzt die Schlüssel besitzt, ist es für dich kein Problem, die Tür zu öffnen. Du verläßt den Raum."
 		],
-		"continue": "burghof"
+		"continue": "burghof_has-sword-or-keys"
 	},
 
 	{
@@ -288,7 +288,7 @@
 			"Als du gerade überlegst, ob du nicht erst etwas von den leckeren Sachen hier essen könntest, bevor du weitergehst, dringen plötzlich Gebrüll, schnelle Schritte und Waffengeklirr von unten aus der Wendeltreppe zu dir herauf! Man hat deine Flucht bemerkt!\nJetzt mußt du rasch entscheiden, wohin du fliehst!"
 		],
 		"commands": [
-			{ "key": "r", "text": "rechts", "action": "stallungen_flucht" },
+			{ "key": "r", "text": "rechts", "set-condition": "visited-lagerhaus", "action": "stallungen_flucht" },
 			{ "key": "h", "text": "hoch", "action": "lagerhaus_tod" }
 		],
 		"hint": "Keine Zeit für Scherze! Du mußt fliehen!"
@@ -376,7 +376,8 @@
 		"id": "lagerhaus_kampf-sieg",
 		"line": 341,
 		"story": [
-			"Du nimmst all deine Kräfte zusammen und kämpfst verbissen weiter. Und du schaffst es schließlich!\nDu wischt dir den Schweiß vom Gesicht und beschließt nach einer kurzen Ruhepause, die Wendeltreppe hinaufzusteigen, um zu sehen, was dort oben wohl ist."
+			"Du nimmst all deine Kräfte zusammen und kämpfst verbissen weiter. Und du schaffst es schließlich!",
+			"Du wischt dir den Schweiß vom Gesicht und beschließt nach einer kurzen Ruhepause, die Wendeltreppe hinaufzusteigen, um zu sehen, was dort oben wohl ist."
 		],
 		"commands": [
 			{ "key": "h", "text": "hoch", "action": "turm_og" }
@@ -394,13 +395,13 @@
 			]
 		],
 		"commands": [
-			{ "condition": "has-magic-wand", "key": "enter", "text": "", "action": "burghof_magic-wand" },
-			{ "condition": "no-magic-wand", "key": "enter", "text": "", "action": "burghof_no-magic-wand" }
+			{ "condition": "has-magic-wand", "key": "enter", "text": "", "action": "burghof_has-magic-wand" },
+			{ "condition": "no-magic-wand", "key": "enter", "text": "", "set-condition": "visited-lagerhaus", "action": "burghof_no-magic-wand" }
 		]
 	},
 
 	{
-		"id": "burghof",
+		"id": "burghof_has-sword-or-keys",
 		"line": 188,
 		"story": [
 			"Nun stehst du im Freien. Zum Glück ist niemand in der Nähe. Erstmal atmest du tief durch und genießt die frische Luft, die du während deines langen Kerkeraufenthaltes so vermißt hast.",
@@ -417,7 +418,7 @@
 	},
 
 	{
-		"id": "burghof_magic-wand",
+		"id": "burghof_has-magic-wand",
 		"line": 411,
 		"story": [
 			"Du beschließt, so schnell wie möglich zum Thronsaal zu gelangen, um UBOLZIOs Herrschaft ein für alle mal zu beenden. Darum gehst du direkt aber dennoch vorsichtig zum Palas, der sich rechts von dir befindet."
@@ -438,7 +439,7 @@
 			{ "key": "r", "text": "rechts", "action": "palas" },
 			{ "key": "w", "text": "weiter", "set-condition": "visited-stallungen", "action": "stallungen" },
 			{ "condition": "has-sword", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang_has-sword" },
-			{ "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang_tod" }
+			{ "condition": "no-weapons", "key": "h", "text": "hoch", "action": "wehrgang_tod" }
 		],
 		"hint": "Häremm! Könntest du dich bitte für eine Richtung entscheiden?"
 	},
@@ -451,8 +452,10 @@
 		],
 		"commands": [
 			{ "key": "l", "text": "links", "action": "palas" },
-			{ "key": "w", "text": "weiter", "action": "TODO" },
-			{ "not-condition": "visited-wehrgang", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "TODO" }
+			{ "not-condition": "visited-lagerhaus", "key": "w", "text": "weiter", "set-condition": "visited-lagerhaus", "action": "lagerhaus" },
+			{ "not-condition": "visited-wehrgang", "condition": "has-sword", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang_has-sword" },
+			{ "not-condition": "visited-wehrgang", "condition": "has-keys", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang_has-keys" },
+			{ "not-condition": "visited-wehrgang", "condition": "no-weapons", "key": "h", "text": "hoch", "action": "wehrgang_tod" }
 		],
 		"hint": "Wohin? [>links<, >weiter< bzw. >hoch<]"
 	},
@@ -465,7 +468,9 @@
 		],
 		"commands": [
 			{ "key": "l", "text": "links", "action": "palas" },
-			{ "not-condition": "visited-wehrgang", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "TODO" }
+			{ "not-condition": "visited-wehrgang", "condition": "has-sword", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang_has-sword" },
+			{ "not-condition": "visited-wehrgang", "condition": "has-keys", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang_has-keys" },
+			{ "not-condition": "visited-wehrgang", "condition": "no-weapons", "key": "h", "text": "hoch", "action": "wehrgang_tod" }
 		],
 		"hint": "Hast du denn immernoch nicht kapiert, wie’s geht?"
 	},
@@ -477,7 +482,7 @@
 			"Du läufst den ganzen Wehrgang wieder zurück, steigst die Stufen zum Burghof hinunter und mußt dich nun für eine neue Richtung entscheiden: Links sind die Stallungen, rechterhand befindet sich das Lagerhaus, und wenn du in den Palas möchtest, mußt du geradeaus [>weiter<] über den Burghof gehen."
 		],
 		"commands": [
-			{ "key": "r", "text": "rechts", "action": "TODO" },
+			{ "not-condition": "visited-lagerhaus", "key": "r", "text": "rechts", "set-condition": "visited-lagerhaus", "action": "lagerhaus" },
 			{ "not-condition": "visited-stallungen", "key": "l", "text": "links", "set-condition": "visited-stallungen", "action": "stallungen" },
 			{ "key": "w", "text": "weiter", "action": "palas" }
 		],
@@ -491,7 +496,7 @@
 			"Du läufst den Wehrgang wieder zurück, vorbei an den ahnungslosen Wachen, steigst die Stufen zum Burghof hinunter und legst dort erst einmal deine Tarnung ab. Nun mußt du dich für eine neue Richtung entscheiden: Links sind die Stallungen, rechterhand befindet sich das Lagerhaus, und wenn du in den Palas möchtest, mußt du geradeaus [>weiter<] über den Burghof gehen."
 		],
 		"commands": [
-			{ "key": "r", "text": "rechts", "action": "TODO" },
+			{ "not-condition": "visited-lagerhaus", "key": "r", "text": "rechts", "set-condition": "visited-lagerhaus", "action": "lagerhaus" },
 			{ "not-condition": "visited-stallungen", "key": "l", "text": "links", "set-condition": "visited-stallungen", "action": "stallungen" },
 			{ "key": "w", "text": "weiter", "action": "palas" }
 		],
