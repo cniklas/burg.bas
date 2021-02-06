@@ -135,7 +135,7 @@
 		"story": [
 			"So schnell du kannst, erklimmst du die Leiter und verschwindest durch das Schlupfloch in der Decke. Sicherheitshalber ziehst du auch noch die Leiter ein. Jetzt bist du erstmal außer Gefahr. Du schaust dich um: Du befindest dich anscheinend in der Kemenate der Burgwachen. Ihr ganzer Krempel liegt hier verstreut herum, unter anderem:",
 			[
-				{ "condition": "no-helmet", "story": "Ein Schwert, ein Schild und ein Seil.\nNimm die Sachen mit!"},
+				{ "condition": "no-helmet", "story": "Ein Schwert, ein Schild und ein Seil.\nNimm die Sachen mit!" },
 				{ "condition": "has-helmet", "story": "Ein Schlüsselbund und eine Keule.\nNimm die Sachen mit!" }
 			]
 		],
@@ -143,7 +143,6 @@
 			{ "condition": "no-helmet", "key": "n", "text": "nimm Schwert Schild Seil", "set-condition": "has-sword", "action": "wachraum_10" },
 			{ "condition": "has-helmet", "key": "n", "text": "nimm Schlüsselbund Keule", "set-condition": "has-keys", "action": "wachraum_10" }
 		],
-		// "hint": "Du sollst die Sachen mitnehmen! [Auf Kommata + >und< verzichten.]"
 		"hint": "Wenn du die Sachen nicht mitnimmst, geht das Spiel nicht weiter! [Auf Kommata + >und< verzichten.]"
 	},
 
@@ -154,14 +153,14 @@
 			"Nachdem du die Sachen genommen hast, suchst du nach einem Ausgang. Du entdeckst eine Tür, die allerdings verschlossen ist."
 		],
 		"commands": [
-			{ "condition": "has-sword", "key": "o", "text": "öffne Tür", "action": "wachraum_11" },
-			{ "condition": "has-keys", "key": "o", "text": "öffne Tür", "action": "wachraum_21" }
+			{ "condition": "has-sword", "key": "o", "text": "öffne Tür", "set-condition": "has-sword-or-keys", "action": "wachraum_has-sword" },
+			{ "condition": "has-keys", "key": "o", "text": "öffne Tür", "set-condition": "has-sword-or-keys", "action": "wachraum_has-keys" }
 		],
 		"hint": "Versuche, die Tür zu öffnen."
 	},
 
 	{
-		"id": "wachraum_11",
+		"id": "wachraum_has-sword",
 		"line": 163,
 		"story": [
 			"Womit?"
@@ -183,7 +182,7 @@
 	},
 
 	{
-		"id": "wachraum_21",
+		"id": "wachraum_has-keys",
 		"line": 186,
 		"story": [
 			"Da du jetzt die Schlüssel besitzt, ist es für dich kein Problem, die Tür zu öffnen. Du verläßt den Raum."
@@ -211,7 +210,7 @@
 		],
 		"commands": [
 			{ "key": "h", "text": "hoch", "action": "turm_og" },
-			{ "key": "l", "text": "links", "action": "lagerhaus" }
+			{ "key": "l", "text": "links", "action": "lagerhaus_aus-turm-ug" }
 		],
 		"hint": "Kannst du nicht lesen? >Hoch< bzw. >links<!"
 	},
@@ -223,24 +222,24 @@
 			"Du steigst die Wendeltreppe immer höher, bis sie plötzlich vor einer kleinen Tür endet."
 		],
 		"commands": [
-			{ "key": "o", "text": "öffne Tür", "action": "turm_10" }
+			{ "key": "o", "text": "öffne Tür", "action": "turm_og_10" }
 		],
 		"hint": "Mach etwas Sinnvolles!"
 	},
 
 	{
-		"id": "turm_10",
+		"id": "turm_og_10",
 		"line": 355,
 		"story": [
 			"Du versuchst, die Tür zu öffnen, aber sie ist verschlossen.\nFolgendes kannst du jetzt machen:",
 			[
 				{ "condition": "has-sword", "story": "1. Du gehst wieder.\n2. Du benutzt wiedermal dein Schwert. [>öffne Tür mit Schwert<]\n3. Du klopfst an und wartest, ob vielleicht jemand öffnet. [>klopfe an<]" },
-				{ "condition": "no-weapons", "story": "1. Du gehst wieder.\n2. Du klopfst an und wartest, ob vielleicht jemand öffnet. [>klopfe an<]"}
+				{ "condition": "no-weapons", "story": "1. Du gehst wieder.\n2. Du klopfst an und wartest, ob vielleicht jemand öffnet. [>klopfe an<]" }
 			]
 		],
 		"commands": [
 			{ "condition": "has-sword", "key": "o", "text": "öffne Tür mit Schwert", "action": "turm_tod" },
-			{ "key": "k", "text": "klopfe an", "action": "turm_20" },
+			{ "key": "k", "text": "klopfe an", "action": "turm_og_20" },
 			{ "key": "r", "text": "runter", "set-condition": "no-magic-wand", "action": "burghof-switch" }
 		]
 	},
@@ -257,19 +256,19 @@
 	},
 
 	{
-		"id": "turm_20",
+		"id": "turm_og_20",
 		"line": 371,
 		"story": [
 			"Du klopfst an und - siehe da - plötzlich geht die Tür auf, und ein alter Mann in einem wallenden Gewand und mit viel Bart steht vor dir. Er bittet dich freundlich herein, und du trittst erfreut ein. Es ist ein Turmzimmer direkt unter dem Dach, nicht besonders groß aber ausgefüllt mit dicken Bücherregalen, einem Bett, einem Schreibtisch, einer eisenbeschlagenen Truhe und noch einigen anderen Dingen. An den Wänden hängen seltsame Bilder und Karten.",
 			"Der Mann fragt dich: >>Warum bist du zu mir hinaufgestiegen?<<\nDu sagst: >>Ich bin aus dem Kerker entflohen und suche einen Ausweg aus dieser furchtbaren Burg.<<\n>>Niemand ist je aus der Burg UBOLZIOs entkommen.<<, sagt der Mann.\nDu bist sehr verzweifelt."
 		],
 		"commands": [
-			{ "key": "enter", "text": "", "action": "turm_21" }
+			{ "key": "enter", "text": "", "action": "turm_og_21" }
 		]
 	},
 
 	{
-		"id": "turm_21",
+		"id": "turm_og_21",
 		"line": 385,
 		"story": [
 			"Der Mann legt seine Hand auf deine Schulter, sieht dir fest in Augen und sagt zu dir: >>Wenn du diesem Hort des Verderbens entrinnen willst, mußt du zuerst UBOLZIOs Macht brechen und ihn töten.<<\n>>Wie kann ich das schaffen?<<, fragst du.\n>>Du mußt bis zum Thronsaal vordringen, denn darin sitzt UBOLZIO Tag für Tag und ergötzt sich an seiner Macht. Vor dem Thronsaal liegt ein dreiköpfiger Drache. Nicht Schwert noch Pfeil können ihm etwas anhaben. Doch rührst du ihn mit diesem Stab an (Bei diesen Worten reicht er dir einen kleinen, weißen Stab), muß er sogleich zu Staub zerfallen.<<",
@@ -282,35 +281,35 @@
 	},
 
 	{
-		"id": "lagerhaus",
+		"id": "lagerhaus_aus-turm-ug",
 		"line": 266,
 		"story": [
 			"Du betrittst eine große Halle. Du schaust dich um und entdeckst eine Vielzahl an Lebensmitteln aber auch Boote, behauene Steine, Werkzeuge verschiedenster Art, aufgestapelte Holzbohlen, Stoffballen, Tierhäute und noch einige andere Sachen. Allem Anschein nach befindest du dich im Lagerhaus.\nRechts ist ein großes Tor, was vermutlich auf den Burghof führt, und am anderen Ende der Halle siehst du eine breite Holztreppe zum Dachboden.",
 			"Als du gerade überlegst, ob du nicht erst etwas von den leckeren Sachen hier essen könntest, bevor du weitergehst, dringen plötzlich Gebrüll, schnelle Schritte und Waffengeklirr von unten aus der Wendeltreppe zu dir herauf! Man hat deine Flucht bemerkt!\nJetzt mußt du rasch entscheiden, wohin du fliehst!"
 		],
 		"commands": [
-			{ "key": "r", "text": "rechts", "action": "stallungen-a" },
+			{ "key": "r", "text": "rechts", "action": "stallungen_flucht" },
 			{ "key": "h", "text": "hoch", "action": "lagerhaus_tod" }
 		],
 		"hint": "Keine Zeit für Scherze! Du mußt fliehen!"
 	},
 
 	{
-		"id": "lagerhaus-a",
+		"id": "lagerhaus",
 		"line": 281,
 		"story": [
 			"Du läufst behende über den Burghof zum Lagerhaus, öffnest schnell das große Tor hindurch. Du betrittst eine große Halle. Du schaust dich um und entdeckst eine Vielzahl an Lebensmitteln aber auch Boote, behauene Steine, Werkzeuge verschiedenster Art, aufgestapelte Holzbohlen, Stoffballen, Tierhäute und noch einige andere Sachen.\nAn einem Ende der Halle - rechts von dir - steht eine breite Holztreppe, die zum Dachboden führt. Links, am anderen Ende, siehst du den Eingang zu einer Wendeltreppe, die man sowohl hinauf-, als auch hinabgehen kann.",
 			"Als du gerade überlegst, ob du nicht erst etwas von den leckeren Sachen hier essen könntest, bevor du weitergehst, dringen plötzlich Gebrüll, schnelle Schritte und Waffengeklirr von unten aus der Wendeltreppe zu dir herauf! Schon wieder bist du bemerkt worden!",
 			[
 				{ "condition": "has-sword", "story": "Was nun? Stellst du dich der bewaffneten Schar mutig entgegen und versuchst, sie zu erledigen, oder fliehst du lieber? [Gib >kämpfen< bzw. >fliehen< ein.]" },
-				{ "condition": "has-keys", "story": "Da du nicht ausreichend bewaffnet bist, um es mit einer Schar Wachen aufzunehmen, beschließt du zu fliehen. Läufst du zurück auf den Burghof oder versuchst du, dich auf dem Dachboden zu verstecken? [>zurück< bzw. >hoch<, das müßte langsam klar sein.]"}
+				{ "condition": "has-keys", "story": "Da du nicht ausreichend bewaffnet bist, um es mit einer Schar Wachen aufzunehmen, beschließt du zu fliehen. Läufst du zurück auf den Burghof oder versuchst du, dich auf dem Dachboden zu verstecken? [>zurück< bzw. >hoch<, das müßte langsam klar sein.]" }
 			]
 		],
 		"commands": [
 			{ "condition": "has-sword", "key": "k", "text": "kämpfen", "action": "lagerhaus_kampf" },
 			{ "condition": "has-sword", "key": "f", "text": "fliehen", "action": "lagerhaus_flucht" },
 			{ "condition": "has-keys", "key": "h", "text": "hoch", "action": "lagerhaus_tod" },
-			{ "condition": "has-keys", "key": "z", "text": "zurück", "action": "stallungen-b" }
+			{ "condition": "has-keys", "key": "z", "text": "zurück", "action": "stallungen_flucht" }
 		]
 	},
 
@@ -333,7 +332,7 @@
 		],
 		"commands": [
 			{ "key": "h", "text": "hoch", "action": "lagerhaus_flucht-tod" },
-			{ "key": "z", "text": "zurück", "action": "stallungen-b" }
+			{ "key": "z", "text": "zurück", "action": "stallungen_flucht" }
 		]
 	},
 
@@ -408,9 +407,9 @@
 			"Du stehst auf dem Burghof und überlegst, wo du jetzt hingehen könntest. Es bieten sich gleich mehrere Richtungen an:\nLinks sind die Stallungen, auf der anderen Seite des Hofes liegt der Palas und rechts von dir befindet sich das Lagerhaus. Außerdem könntest du auf den Wehrgang steigen und sehen, ob du da irgendwie weiterkommst.\nGib deine Richtungswahl ein. [Benutze >hoch<, wenn du auf den Wehrgang willst.]"
 		],
 		"commands": [
-			{ "condition": "has-sword", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang" },
-			{ "condition": "has-keys", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang-a" },
-			{ "key": "r", "text": "rechts", "set-condition": "visited-lagerhaus", "action": "lagerhaus-a" },
+			{ "condition": "has-sword", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang_has-sword" },
+			{ "condition": "has-keys", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang_has-keys" },
+			{ "key": "r", "text": "rechts", "set-condition": "visited-lagerhaus", "action": "lagerhaus" },
 			{ "key": "l", "text": "links", "set-condition": "visited-stallungen", "action": "stallungen" },
 			{ "key": "w", "text": "weiter", "action": "palas" }
 		],
@@ -438,7 +437,7 @@
 		"commands": [
 			{ "key": "r", "text": "rechts", "action": "palas" },
 			{ "key": "w", "text": "weiter", "set-condition": "visited-stallungen", "action": "stallungen" },
-			{ "condition": "has-sword", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang" },
+			{ "condition": "has-sword", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang_has-sword" },
 			{ "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang_tod" }
 		],
 		"hint": "Häremm! Könntest du dich bitte für eine Richtung entscheiden?"
@@ -459,7 +458,7 @@
 	},
 
 	{
-		"id": "burghof-e",
+		"id": "burghof_aus-stallungen-flucht",
 		"line": 659,
 		"story": [
 			"Dann stürzen sie weiter, weil sie dich im Palas wähnen. Du wartest noch eine Weile, dann kriechst du aus deinem Versteck und gehst auf den Burghof hinaus.\nNun entscheide, wo du als nächstes hingehen möchtest. Bist du mutig und erkundest den Palas, den Sitz UBOLZIOs? Oder willst du lieber hinauf auf den Wehrgang? Gib >links< bzw. >hoch< ein."
@@ -472,7 +471,7 @@
 	},
 
 	{
-		"id": "burghof-f",
+		"id": "burghof_vom-wehrgang_has-sword",
 		"line": 470,
 		"story": [
 			"Du läufst den ganzen Wehrgang wieder zurück, steigst die Stufen zum Burghof hinunter und mußt dich nun für eine neue Richtung entscheiden: Links sind die Stallungen, rechterhand befindet sich das Lagerhaus, und wenn du in den Palas möchtest, mußt du geradeaus [>weiter<] über den Burghof gehen."
@@ -486,7 +485,7 @@
 	},
 
 	{
-		"id": "burghof-g",
+		"id": "burghof_vom-wehrgang_has-keys",
 		"line": 597,
 		"story": [
 			"Du läufst den Wehrgang wieder zurück, vorbei an den ahnungslosen Wachen, steigst die Stufen zum Burghof hinunter und legst dort erst einmal deine Tarnung ab. Nun mußt du dich für eine neue Richtung entscheiden: Links sind die Stallungen, rechterhand befindet sich das Lagerhaus, und wenn du in den Palas möchtest, mußt du geradeaus [>weiter<] über den Burghof gehen."
@@ -511,73 +510,17 @@
 	},
 
 	{
-		"id": "stallungen-a",
+		"id": "stallungen_flucht",
 		"line": 653,
 		"story": [
-			"Schnell bist du beim Tor, welches zu deinem Glück nicht verschlossen ist, öffnest es geschwind und läufst hinaus auf den Burghof. Krampfhaft nach einem Versteck suchend, blickst du dich um. Da fallen dir die Stallungen ins Auge. Ohne noch länger zu zögern, flüchtest du hinein und kriechst in einen aufgetürmten Berg von Heu.\nWenige Augenblicke später hörst du, wie die Schar deiner Verfolger auf den Burghof stürmt und lautstark überlegt, wo du hingeflohen sein könntest."
+			[
+				{ "condition": "has-sword-or-keys", "story": "Der Dachboden erscheint dir nicht als sicher genug, darum läufst du schnell zurück auf den Burghof. Nun blickst du dich hastig um, nach einem geeigneten Versteck vor deinen Verfolgern suchend. Da erblickst du die Stallungen." },
+				{ "condition": "no-weapons", "story": "Schnell bist du beim Tor, welches zu deinem Glück nicht verschlossen ist, öffnest es geschwind und läufst hinaus auf den Burghof. Nach einem Versteck suchend, blickst du dich hastig um. Da fallen dir die Stallungen ins Auge." }
+			],
+			"Ohne noch länger zu zögern, flüchtest du hinein und kriechst in einen aufgetürmten Berg von Heu. Wenige Augenblicke später hörst du, wie die Schar deiner Verfolger auf den Burghof stürmt und lautstark überlegt, wo du hingeflohen sein könntest."
 		],
 		"commands": [
-			{ "key": "enter", "text": "", "action": "burghof-e" }
-		]
-	},
-
-	{
-		"id": "stallungen-b",
-		"line": 677,
-		"story": [
-			"Der Dachboden erscheint dir nicht als sicher genug, darum läufst du schnell zurück auf den Burghof. Nun blickst du dich hastig um, suchend nach einem geeigneten Versteck vor deinen Verfolgern. Da erblickst du die Stallungen. Ohne noch länger zu zögern, flüchtest du hinein und kriechst in einen aufgetürmten Berg von Heu.\nWenige Augenblicke später hörst du, wie die Schar deiner Verfolger auf den Burghof stürmt und lautstark überlegt, wo du hingeflohen sein könntest."
-		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "burghof-e" }
-		]
-	},
-
-	{
-		"id": "wehrgang",
-		"line": 439,
-		"story": [
-			"Du steigst die Stufen zum Wehrgang hinauf. Als du oben bist, bemerkst du, daß hier auch zahlreiche Wachenposten herumstehen. Aber du läßt dich deswegen nicht sehr aus der Ruhe bringen. Du packst Schwert und Schild fester und stürzt auf den ersten los.\nDa du noch nicht bemerkt worden warst, kannst du diesen Überraschungsangriff ohne Schwierigkeiten beginnen. Dann aber fassen sich deine Gegner schnell und gehen zum Gegenangriff über."
-		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "wehrgang_10" }
-		]
-	},
-
-	{
-		"id": "wehrgang-a",
-		"line": 571,
-		"story": [
-			"Du steigst die Stufen zum Wehrgang hinauf. Als du oben bist, bemerkst du, daß hier auch zahlreiche Wachenposten herumstehen. Noch haben sie dich nicht gesehen. Aber da fällt dir schon etwas ein, um ungeschoren an ihnen vorbeizukommen. Du holst Helm und Umhang hervor, die du aus dem Kerker mitgenommen hast, kleidest dich damit ein und siehst nun ebenso aus wie die Schergen UBOLZIOs. In dieser Tarnung betrittst du den Wehrgang und schreitest mutig an den Kerlen vorbei."
-		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "wehrgang_10a" }
-		]
-	},
-
-	{
-		"id": "wehrgang_10",
-		"line": 444,
-		"story": [
-			"Es kommt zu einem langen, harten Kampf, der dir viele Wunden einbringt, obschon du die meisten Hiebe deiner Gegner mit dem Schild auffangen kannst.\nIrgendwann endlich endet das blutige Gefecht. Du läßt das Schwert ermattet sinken und lehnst dich erschöpft gegen eine Zinne.",
-			"Nachdem du wieder zu Kräften gekommen bist, gehst du den Wehrgang entlang, bis du zu einem viereckigen Turm gelangst. Du trittst in das Innere des Turms und stehst vor einer Tür aus schwerem Holz, die in ein Turmgemach führen muß. Von außen ist ein eiserner Riegel davorgelegt. Eine Leiter führt außerdem in das Obergeschoß des Turms.\nWas tust du?"
-		],
-		"commands": [
-			{ "key": "h", "text": "hoch", "action": "wehrgang_turm" },
-			{ "key": "o", "text": "öffne Tür", "action": "wehrgang_verlies" },
-			{ "key": "z", "text": "zurück", "action": "burghof-f" }
-		]
-	},
-
-	{
-		"id": "wehrgang_10a",
-		"line": 578,
-		"story": [
-			"Und es klappt: Du wirst nicht erkannt! Innerlich frohlockend gehst du immer weiter, bis du zu einem viereckigen Turm gelangst. Du trittst in das Innere des Turms und stehst vor einer eisenbeschlagenen Tür, die in ein Turmgemach führen muß. Von außen ist ein schwerer Riegel mit Schloß davorgelegt. Eine Leiter führt außerdem in das Obergeschoß des Turms.\nWas tust du?"
-		],
-		"commands": [
-			{ "key": "h", "text": "hoch", "action": "wehrgang_turm" },
-			{ "key": "o", "text": "öffne Tür", "action": "wehrgang_verlies" },
-			{ "key": "z", "text": "zurück", "action": "burghof-g" }
+			{ "key": "enter", "text": "", "action": "burghof_aus-stallungen-flucht" }
 		]
 	},
 
@@ -593,82 +536,95 @@
 	},
 
 	{
+		"id": "wehrgang_has-sword",
+		"line": 439,
+		"story": [
+			"Du steigst die Stufen zum Wehrgang hinauf. Als du oben bist, bemerkst du, daß hier auch zahlreiche Wachenposten herumstehen. Aber du läßt dich deswegen nicht sehr aus der Ruhe bringen. Du packst Schwert und Schild fester und stürzt auf den ersten los.\nDa du noch nicht bemerkt worden warst, kannst du diesen Überraschungsangriff ohne Schwierigkeiten beginnen. Dann aber fassen sich deine Gegner schnell und gehen zum Gegenangriff über."
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "wehrgang_has-sword_10" }
+		]
+	},
+
+	{
+		"id": "wehrgang_has-sword_10",
+		"line": 444,
+		"story": [
+			"Es kommt zu einem langen, harten Kampf, der dir viele Wunden einbringt, obschon du die meisten Hiebe deiner Gegner mit dem Schild auffangen kannst.\nIrgendwann endlich endet das blutige Gefecht. Du läßt das Schwert ermattet sinken und lehnst dich erschöpft gegen eine Zinne.",
+			"Nachdem du wieder zu Kräften gekommen bist, gehst du den Wehrgang entlang, bis du zu einem viereckigen Turm gelangst. Du trittst in das Innere des Turms und stehst vor einer Tür aus schwerem Holz, die in ein Turmgemach führen muß. Von außen ist ein eiserner Riegel davorgelegt. Eine Leiter führt außerdem in das Obergeschoß des Turms.\nWas tust du?"
+		],
+		"commands": [
+			{ "key": "h", "text": "hoch", "action": "wehrgang_turm" },
+			{ "key": "o", "text": "öffne Tür", "action": "wehrgang_verlies_has-sword" },
+			{ "key": "z", "text": "zurück", "action": "burghof_vom-wehrgang_has-sword" }
+		]
+	},
+
+	{
+		"id": "wehrgang_has-keys",
+		"line": 571,
+		"story": [
+			"Du steigst die Stufen zum Wehrgang hinauf. Als du oben bist, bemerkst du, daß hier auch zahlreiche Wachenposten herumstehen. Noch haben sie dich nicht gesehen. Aber da fällt dir schon etwas ein, um ungeschoren an ihnen vorbeizukommen. Du holst Helm und Umhang hervor, die du aus dem Kerker mitgenommen hast, kleidest dich damit ein und siehst nun ebenso aus wie die Schergen UBOLZIOs. In dieser Tarnung betrittst du den Wehrgang und schreitest mutig an den Kerlen vorbei."
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "wehrgang_has-keys_10" }
+		]
+	},
+
+	{
+		"id": "wehrgang_has-keys_10",
+		"line": 578,
+		"story": [
+			"Und es klappt: Du wirst nicht erkannt! Innerlich frohlockend gehst du immer weiter, bis du zu einem viereckigen Turm gelangst. Du trittst in das Innere des Turms und stehst vor einer eisenbeschlagenen Tür, die in ein Turmgemach führen muß. Von außen ist ein schwerer Riegel mit Schloß davorgelegt. Eine Leiter führt außerdem in das Obergeschoß des Turms.\nWas tust du?"
+		],
+		"commands": [
+			{ "key": "h", "text": "hoch", "action": "wehrgang_turm" },
+			{ "key": "o", "text": "öffne Tür", "action": "wehrgang_verlies_has-keys" },
+			{ "key": "z", "text": "zurück", "action": "burghof_vom-wehrgang_has-keys" }
+		]
+	},
+
+	{
 		"id": "wehrgang_turm",
 		"line": 461,
 		"story": [
 			"Du kletterst die Leiter hinauf. Hier oben ist nichts besonderes. Du entdeckst noch eine Leiter und steigst auch diese empor. Nun stehst du ganz oben auf der Turmplattform. Hier weht ein kräftiger Wind, der an deinen Kleidern zerrt und dir die Haare ins Gesicht bläst. Du bleibst für eine Weile dort oben und siehst dir die Landschaft an. Dann steigst du wieder hinunter.\nGehst du nun zum Burghof zurück oder versuchst du, die Tür zum Turmgemach zu öffnen?"
 		],
 		"commands": [
-			{ "condition": "has-sword", "key": "o", "text": "öffne Tür", "action": "wehrgang_verlies" },
-			{ "condition": "has-sword", "key": "z", "text": "zurück", "action": "burghof-f" },
-			{ "condition": "has-keys", "key": "o", "text": "öffne Tür", "action": "wehrgang_verlies-a" },
-			{ "condition": "has-keys", "key": "z", "text": "zurück", "action": "burghof-g" }
+			{ "condition": "has-sword", "key": "o", "text": "öffne Tür", "action": "wehrgang_verlies_has-sword" },
+			{ "condition": "has-sword", "key": "z", "text": "zurück", "action": "burghof_vom-wehrgang_has-sword" },
+			{ "condition": "has-keys", "key": "o", "text": "öffne Tür", "action": "wehrgang_verlies_has-keys" },
+			{ "condition": "has-keys", "key": "z", "text": "zurück", "action": "burghof_vom-wehrgang_has-keys" }
 		]
 	},
 
 	{
-		"id": "wehrgang_verlies",
+		"id": "wehrgang_verlies_has-sword",
 		"line": 487,
 		"story": [
 			"Du hast dich entschlossen, die Tür zu öffnen, denn du willst wissen, was sich dahinter verbirgt. Schwert und Schild legst du beiseite, denn du brauchst beide Hände, um den schweren Riegel zu bewegen. Er sitzt verdammt fest, und du mußt erst eine Weile rucken und rütteln, bis du ihn endlich wegbekommst. Dementsprechend bist du gespannt auf das, was dich nun erwarten wird. Du ziehst die Tür auf und …",
 			"… vor dir steht eine wunderschöne, junge Maid!\nSie erschrickt zuerst, weil du ein sehr wildes Bild abgibst, was jedoch vom Kampfe herrührt. Dann aber faßt sie Vertrauen zu dir, weil du ihr freundlich und offen begegnest. Sie erzählt dir, daß sie von UBOLZIO geraubt wurde und er sie hier eingesperrt hat, weil sie sich geweigert hatte, seine Geliebte zu werden. Sie fleht dich an, sie aus der Gewalt UBOLZIOs zu befreien.\nHilfst du ihr?"
 		],
 		"commands": [
-			{ "key": "j", "text": "ja", "action": "wehrgang_verlies_10" },
+			{ "key": "j", "text": "ja", "action": "wehrgang_verlies_has-sword_10" },
 			{ "key": "n", "text": "nein", "action": "wehrgang_verlies-tod" }
 		],
 		"hint": "Ja oder nein?"
 	},
 
 	{
-		"id": "wehrgang_verlies-a",
-		"line": 603,
-		"story": [
-			"Du hast dich entschlossen, die Tür zu öffnen, denn du willst wissen, was sich dahinter verbirgt. Du holst den Schlüsselbund aus deiner Tasche und probierst damit solange herum, bis du das Schloß aufbekommen hast. Du schiebst den Riegel zur Seite und bist sehr gespannt auf das, was dich nun erwarten wird. Du ziehst die Tür auf und …",
-			"… vor dir steht eine wunderschöne, junge Maid!\nSie erschrickt zuerst, weil du die Kleidung der Burgwachen trägst. Dann aber faßt sie Vertrauen zu dir, weil du ihr freundlich und offen begegnest. Sie erzählt dir, daß sie von UBOLZIO geraubt wurde und er sie hier eingesperrt hat, weil sie sich geweigert hatte, seine Geliebte zu werden. Sie fleht dich an, sie aus der Gewalt UBOLZIOs zu befreien.\nHilfst du ihr?"
-		],
-		"commands": [
-			{ "key": "j", "text": "ja", "action": "wehrgang_verlies_10a" },
-			{ "key": "n", "text": "nein", "action": "wehrgang_verlies-tod" }
-		],
-		"hint": "Ja oder nein?"
-	},
-
-	{
-		"id": "wehrgang_verlies-tod",
-		"line": 518,
-		"story": [
-			"Ich habe keine Ahnung, welcher böse Geist in dich gefahren ist. Das Flehen des Mädchens läßt dich kalt, du kannst bei deiner Flucht keinen Menschen als Risiko an deiner Seite dulden. Erbarmungslos sperrst du sie wieder zurück in ihr Turmgemach und legst den Türriegel fest davor. Dann nimmst du deine Sachen, gehst hinaus aus dem Turm und willst dich davonmachen.\nDoch deine Unbarmherzigkeit bleibt nicht ungestraft: Vom obersten Rand des Turmes löst sich ein großer Stein, stürzt hinunter und erschlägt dich …"
-		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "game_over" }
-		]
-	},
-
-	{
-		"id": "wehrgang_verlies_10",
+		"id": "wehrgang_verlies_has-sword_10",
 		"line": 507,
 		"story": [
 			"Natürlich erklärst du dich bereit, mit ihr gemeinsam zu fliehen, denn auch dein Verlangen ist es, so rasch wie möglich diese Burg zu verlassen.\nDir ist klar, daß ihr es nicht schaffen könntet, durch das Burgtor zu entfliehen, ohne von den Wachen entdeckt und getötet zu werden. Darum mußt du über einen anderen Fluchtweg nachsinnen."
 		],
 		"commands": [
-			{ "key": "enter", "text": "", "action": "wehrgang_verlies-ende-1" }
+			{ "key": "enter", "text": "", "action": "wehrgang_verlies_has-sword_ende" }
 		]
 	},
 
 	{
-		"id": "wehrgang_verlies_10a",
-		"line": 621,
-		"story": [
-			"Natürlich erklärst du dich bereit, mit ihr gemeinsam zu fliehen, denn auch dein Verlangen ist es, so rasch wie möglich diese Burg zu verlassen.\nDir fällt auch sogleich ein Fluchtplan ein. Du gehst zum Eingang des Turmes und rufst den Wächter heran, der am nächsten am Turm steht. Dann stellst du dich schnell hinter den Eingang, und als der Wächter hereinkommt schlägst du ihm deine Keule über den Schädel. Er sackt zu Boden und ist für die nächsten paar Stunden ohnmächtig. Du zerrst ihn in das Turmgemach, nimmst ihm den Helm und den Umhang ab und gibst beides dem Mädchen. Sie zieht die Sachen zur Tarnung über, so, wie du es vorhin getan hast, und ihr verlaßt den Turm."
-		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "wehrgang_verlies-ende-2" }
-		]
-	},
-
-	{
-		"id": "wehrgang_verlies-ende-1",
+		"id": "wehrgang_verlies_has-sword_ende",
 		"line": 511,
 		"story": [
 			"Dir fällt ein, daß du ja ein langes Seil bei dir hast. Und das ist die Rettung!\nZusammen mit dem Mädchen verläßt du den Turm und bindest das Seil draußen mit dem einen Ende fest um eine Zinne. Das andere Ende wirfst du die Schildmauer hinunter. Ihr steigt daran hinab und seid frei …"
@@ -679,13 +635,49 @@
 	},
 
 	{
-		"id": "wehrgang_verlies-ende-2",
+		"id": "wehrgang_verlies_has-keys",
+		"line": 603,
+		"story": [
+			"Du hast dich entschlossen, die Tür zu öffnen, denn du willst wissen, was sich dahinter verbirgt. Du holst den Schlüsselbund aus deiner Tasche und probierst damit solange herum, bis du das Schloß aufbekommen hast. Du schiebst den Riegel zur Seite und bist sehr gespannt auf das, was dich nun erwarten wird. Du ziehst die Tür auf und …",
+			"… vor dir steht eine wunderschöne, junge Maid!\nSie erschrickt zuerst, weil du die Kleidung der Burgwachen trägst. Dann aber faßt sie Vertrauen zu dir, weil du ihr freundlich und offen begegnest. Sie erzählt dir, daß sie von UBOLZIO geraubt wurde und er sie hier eingesperrt hat, weil sie sich geweigert hatte, seine Geliebte zu werden. Sie fleht dich an, sie aus der Gewalt UBOLZIOs zu befreien.\nHilfst du ihr?"
+		],
+		"commands": [
+			{ "key": "j", "text": "ja", "action": "wehrgang_verlies_has-keys_10" },
+			{ "key": "n", "text": "nein", "action": "wehrgang_verlies-tod" }
+		],
+		"hint": "Ja oder nein?"
+	},
+
+	{
+		"id": "wehrgang_verlies_has-keys_10",
+		"line": 621,
+		"story": [
+			"Natürlich erklärst du dich bereit, mit ihr gemeinsam zu fliehen, denn auch dein Verlangen ist es, so rasch wie möglich diese Burg zu verlassen.\nDir fällt auch sogleich ein Fluchtplan ein. Du gehst zum Eingang des Turmes und rufst den Wächter heran, der am nächsten am Turm steht. Dann stellst du dich schnell hinter den Eingang, und als der Wächter hereinkommt schlägst du ihm deine Keule über den Schädel. Er sackt zu Boden und ist für die nächsten paar Stunden ohnmächtig. Du zerrst ihn in das Turmgemach, nimmst ihm den Helm und den Umhang ab und gibst beides dem Mädchen. Sie zieht die Sachen zur Tarnung über, so, wie du es vorhin getan hast, und ihr verlaßt den Turm."
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "wehrgang_verlies_has-keys_ende" }
+		]
+	},
+
+	{
+		"id": "wehrgang_verlies_has-keys_ende",
 		"line": 629,
 		"story": [
 			"Ohne verdächtige Hast aber mit ängstlich verkrampftem Herzen geht ihr an den Wachen auf dem Wehrgang vorbei. Ihr erreicht unerkannt den Burghof und geht von dort aus in die Stallungen, wo ihr zwei Pferde sattelt. Ihr führt sie hinaus auf den Hof, sitzt auf und reitet zum Burgtor. Barsch befiehlst du dem dort wachenden Mann, das Tor zu öffnen. Er schöpft keinen Argwohn und läßt euch sogleich hinaus.\nIhr treibt eure Pferde an und verschwindet für immer aus dieser dunklen Burg …"
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "congratulations" }
+		]
+	},
+
+	{
+		"id": "wehrgang_verlies-tod",
+		"line": 518,
+		"story": [
+			"Ich habe keine Ahnung, welcher böse Geist in dich gefahren ist. Das Flehen des Mädchens läßt dich kalt, du kannst bei deiner Flucht keinen Menschen als Risiko an deiner Seite dulden. Erbarmungslos sperrst du sie wieder zurück in ihr Turmgemach und legst den Türriegel fest davor. Dann nimmst du deine Sachen, gehst hinaus aus dem Turm und willst dich davonmachen.\nDoch deine Unbarmherzigkeit bleibt nicht ungestraft: Vom obersten Rand des Turmes löst sich ein großer Stein, stürzt hinunter und erschlägt dich …"
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "game_over" }
 		]
 	},
 
