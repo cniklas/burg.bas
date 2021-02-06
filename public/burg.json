@@ -89,7 +89,7 @@
 			"Du wendest dich nach rechts und latschst genau auf die dort verborgene Falltür!\nDu landest ganz schön schmerzhaft etliche Meter tiefer und stellst fest, daß es aus diesem Loch keinen Ausweg gibt …"
 		],
 		"commands": [
-			{ "key": "enter", "text": "", "action": "game_over_1" }
+			{ "key": "enter", "text": "", "action": "game_over" }
 		]
 	},
 
@@ -125,7 +125,7 @@
 			"Du hastest zurück – und rennst genau den Wächtern in die Arme. Jetzt ist alles zu spät …"
 		],
 		"commands": [
-			{ "key": "enter", "text": "", "action": "game_over_1" }
+			{ "key": "enter", "text": "", "action": "game_over" }
 		]
 	},
 
@@ -255,7 +255,7 @@
 			"Du schlägst mit deinem Stahl ein paar mal auf das Türholz ein, doch auf einmal öffnet sich die Tür, und ein Zauberer steht vor dir! Daß es ein Zauberer ist, bemerkst du erst, als er dich schon in eine kleine Maus verwandelt hat zur Strafe dafür, daß du ihm seine Tür beschädigt hast …"
 		],
 		"commands": [
-			{ "key": "enter", "text": "", "action": "game_over_1" }
+			{ "key": "enter", "text": "", "action": "game_over" }
 		]
 	},
 
@@ -337,7 +337,7 @@
 			"Du hetzt die Treppe zum Dachboden hinauf und versteckst dich so gut es geht zwischen Fässern mit Pökelfleisch und Mehlsäcken. Doch die Wachen sind nicht so leicht auszutricksen und suchen das ganze Lagerhaus ab nach dir. Es ist nur noch eine Frage der Zeit, bis sie dich gefunden haben …"
 		],
 		"commands": [
-			{ "key": "enter", "text": "", "action": "game_over_1" }
+			{ "key": "enter", "text": "", "action": "game_over" }
 		]
 	},
 
@@ -360,7 +360,7 @@
 			"Du hetzt die Treppe zum Dachboden hinauf und versteckst dich so gut es geht zwischen Fässern mit Pökelfleisch und Mehlsäcken. Doch die Wachen sind nicht so leicht auszutricksen und suchen das ganze Lagerhaus ab nach dir. Du sitzt in der Falle, und da wird dir auch dein Schwert nicht mehr viel nützen …"
 		],
 		"commands": [
-			{ "key": "enter", "text": "", "action": "game_over_1" }
+			{ "key": "enter", "text": "", "action": "game_over" }
 		]
 	},
 
@@ -385,7 +385,7 @@
 			"Das war leider ein großer Fehler, genauer gesagt sogar dein letzter! Du drehst dich um und versuchst zu entwischen, und so kannst du nicht sehen, wie einer der Schergen seine Armbrust anlegt, auf dich zielt und abdrückt …"
 		],
 		"commands": [
-			{ "key": "enter", "text": "", "action": "game_over_1" }
+			{ "key": "enter", "text": "", "action": "game_over" }
 		]
 	},
 
@@ -575,8 +575,8 @@
 		],
 		"commands": [
 			{ "key": "h", "text": "hoch", "action": "wehrgang_turm" },
-			{ "key": "o", "text": "öffne Tür", "action": "TODO" },
-			{ "key": "z", "text": "zurück", "action": "TODO" }
+			{ "key": "o", "text": "öffne Tür", "action": "wehrgang_verlies" },
+			{ "key": "z", "text": "zurück", "action": "burghof-f" }
 		]
 	},
 
@@ -588,8 +588,8 @@
 		],
 		"commands": [
 			{ "key": "h", "text": "hoch", "action": "wehrgang_turm" },
-			{ "key": "o", "text": "öffne Tür", "action": "TODO" },
-			{ "key": "z", "text": "zurück", "action": "TODO" }
+			{ "key": "o", "text": "öffne Tür", "action": "wehrgang_verlies" },
+			{ "key": "z", "text": "zurück", "action": "burghof-g" }
 		]
 	},
 
@@ -600,10 +600,93 @@
 			"Du kletterst die Leiter hinauf. Hier oben ist nichts besonderes. Du entdeckst noch eine Leiter und steigst auch diese empor. Nun stehst du ganz oben auf der Turmplattform. Hier weht ein kräftiger Wind, der an deinen Kleidern zerrt und dir die Haare ins Gesicht bläst. Du bleibst für eine Weile dort oben und siehst dir die Landschaft an. Dann steigst du wieder hinunter.\nGehst du nun zum Burghof zurück oder versuchst du, die Tür zum Turmgemach zu öffnen?"
 		],
 		"commands": [
-			{ "condition": "has-sword", "key": "o", "text": "öffne Tür", "action": "TODO" },
+			{ "condition": "has-sword", "key": "o", "text": "öffne Tür", "action": "wehrgang_verlies" },
 			{ "condition": "has-sword", "key": "z", "text": "zurück", "action": "burghof-f" },
-			{ "condition": "has-keys", "key": "o", "text": "öffne Tür", "action": "TODO" },
+			{ "condition": "has-keys", "key": "o", "text": "öffne Tür", "action": "wehrgang_verlies-a" },
 			{ "condition": "has-keys", "key": "z", "text": "zurück", "action": "burghof-g" }
+		]
+	},
+
+	{
+		"id": "wehrgang_verlies",
+		"line": 487,
+		"story": [
+			"Du hast dich entschlossen, die Tür zu öffnen, denn du willst wissen, was sich dahinter verbirgt. Schwert und Schild legst du beiseite, denn du brauchst beide Hände, um den schweren Riegel zu bewegen. Er sitzt verdammt fest, und du mußt erst eine Weile rucken und rütteln, bis du ihn endlich wegbekommst. Dementsprechend bist du gespannt auf das, was dich nun erwarten wird. Du ziehst die Tür auf und …",
+			"… vor dir steht eine wunderschöne, junge Maid!\nSie erschrickt zuerst, weil du ein sehr wildes Bild abgibst, was jedoch vom Kampfe herrührt. Dann aber faßt sie Vertrauen zu dir, weil du ihr freundlich und offen begegnest. Sie erzählt dir, daß sie von UBOLZIO geraubt wurde und er sie hier eingesperrt hat, weil sie sich geweigert hatte, seine Geliebte zu werden. Sie fleht dich an, sie aus der Gewalt UBOLZIOs zu befreien.\nHilfst du ihr?"
+		],
+		"commands": [
+			{ "key": "j", "text": "ja", "action": "wehrgang_verlies_10" },
+			{ "key": "n", "text": "nein", "action": "wehrgang_verlies-tod" }
+		],
+		"hint": "Ja oder nein?"
+	},
+
+	{
+		"id": "wehrgang_verlies-a",
+		"line": 603,
+		"story": [
+			"Du hast dich entschlossen, die Tür zu öffnen, denn du willst wissen, was sich dahinter verbirgt. Du holst den Schlüsselbund aus deiner Tasche und probierst damit solange herum, bis du das Schloß aufbekommen hast. Du schiebst den Riegel zur Seite und bist sehr gespannt auf das, was dich nun erwarten wird. Du ziehst die Tür auf und …",
+			"… vor dir steht eine wunderschöne, junge Maid!\nSie erschrickt zuerst, weil du die Kleidung der Burgwachen trägst. Dann aber faßt sie Vertrauen zu dir, weil du ihr freundlich und offen begegnest. Sie erzählt dir, daß sie von UBOLZIO geraubt wurde und er sie hier eingesperrt hat, weil sie sich geweigert hatte, seine Geliebte zu werden. Sie fleht dich an, sie aus der Gewalt UBOLZIOs zu befreien.\nHilfst du ihr?"
+		],
+		"commands": [
+			{ "key": "j", "text": "ja", "action": "wehrgang_verlies_10a" },
+			{ "key": "n", "text": "nein", "action": "wehrgang_verlies-tod" }
+		],
+		"hint": "Ja oder nein?"
+	},
+
+	{
+		"id": "wehrgang_verlies-tod",
+		"line": 518,
+		"story": [
+			"Ich habe keine Ahnung, welcher böse Geist in dich gefahren ist. Das Flehen des Mädchens läßt dich kalt, du kannst bei deiner Flucht keinen Menschen als Risiko an deiner Seite dulden. Erbarmungslos sperrst du sie wieder zurück in ihr Turmgemach und legst den Türriegel fest davor. Dann nimmst du deine Sachen, gehst hinaus aus dem Turm und willst dich davonmachen.\nDoch deine Unbarmherzigkeit bleibt nicht ungestraft: Vom obersten Rand des Turmes löst sich ein großer Stein, stürzt hinunter und erschlägt dich …"
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "game_over" }
+		]
+	},
+
+	{
+		"id": "wehrgang_verlies_10",
+		"line": 507,
+		"story": [
+			"Natürlich erklärst du dich bereit, mit ihr gemeinsam zu fliehen, denn auch dein Verlangen ist es, so rasch wie möglich diese Burg zu verlassen.\nDir ist klar, daß ihr es nicht schaffen könntet, durch das Burgtor zu entfliehen, ohne von den Wachen entdeckt und getötet zu werden. Darum mußt du über einen anderen Fluchtweg nachsinnen."
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "wehrgang_verlies-ende-1" }
+		]
+	},
+
+	{
+		"id": "wehrgang_verlies_10a",
+		"line": 621,
+		"story": [
+			"Natürlich erklärst du dich bereit, mit ihr gemeinsam zu fliehen, denn auch dein Verlangen ist es, so rasch wie möglich diese Burg zu verlassen.\nDir fällt auch sogleich ein Fluchtplan ein. Du gehst zum Eingang des Turmes und rufst den Wächter heran, der am nächsten am Turm steht. Dann stellst du dich schnell hinter den Eingang, und als der Wächter hereinkommt schlägst du ihm deine Keule über den Schädel. Er sackt zu Boden und ist für die nächsten paar Stunden ohnmächtig. Du zerrst ihn in das Turmgemach, nimmst ihm den Helm und den Umhang ab und gibst beides dem Mädchen. Sie zieht die Sachen zur Tarnung über, so, wie du es vorhin getan hast, und ihr verlaßt den Turm."
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "wehrgang_verlies-ende-2" }
+		]
+	},
+
+	{
+		"id": "wehrgang_verlies-ende-1",
+		"line": 511,
+		"story": [
+			"Dir fällt ein, daß du ja ein langes Seil bei dir hast. Und das ist die Rettung!\nZusammen mit dem Mädchen verläßt du den Turm und bindest das Seil draußen mit dem einen Ende fest um eine Zinne. Das andere Ende wirfst du die Schildmauer hinunter. Ihr steigt daran hinab und seid frei …"
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "congratulations" }
+		]
+	},
+
+	{
+		"id": "wehrgang_verlies-ende-2",
+		"line": 629,
+		"story": [
+			"Ohne verdächtige Hast aber mit ängstlich verkrampftem Herzen geht ihr an den Wachen auf dem Wehrgang vorbei. Ihr erreicht unerkannt den Burghof und geht von dort aus in die Stallungen, wo ihr zwei Pferde sattelt. Ihr führt sie hinaus auf den Hof, sitzt auf und reitet zum Burgtor. Barsch befiehlst du dem dort wachenden Mann, das Tor zu öffnen. Er schöpft keinen Argwohn und läßt euch sogleich hinaus.\nIhr treibt eure Pferde an und verschwindet für immer aus dieser dunklen Burg …"
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "congratulations" }
 		]
 	},
 
@@ -638,7 +721,7 @@
 	},
 
 	{
-		"id": "game_over_1",
+		"id": "game_over",
 		"line": 117,
 		"story": [
 			"DAS WAR’S FÜR DICH!"
@@ -650,6 +733,18 @@
 	},
 
 	{
+		"id": "congratulations",
+		"line": 837,
+		"story": [
+			"                                 GRATULATION!\n            DU HAST DICH WACKER DURCH DIESES ABENTEUER GESCHLAGEN!"
+		],
+		"music": "t130ms<<l8cl16ccl8cecegeg>l2c",
+		"commands": [
+			{ "key": "enter", "text": "", "action": "credits-b" }
+		]
+	},
+
+	{
 		"id": "restart_or_exit",
 		"line": 119,
 		"story": [
@@ -657,15 +752,24 @@
 		],
 		"commands": [
 			{ "key": "j", "text": "ja", "action": "start" },
-			{ "key": "n", "text": "nein", "action": "credits" }
+			{ "key": "n", "text": "nein", "action": "credits-a" }
 		]
 	},
 
 	{
-		"id": "credits",
+		"id": "credits-a",
 		"line": 200,
 		"story": [
 			"OK. Dann ist das Spiel zu …",
+			"----------------------------  E  N  D  E  !  !  !  ----------------------------",
+			"Ein Spiel von KRISCHAN\n\nIdee: KRISCHAN mit hilfreicher Unterstützung von DEWITT\n\nText: KRISCHAN\n\nMusik: KRISCHAN (bis auf wenige Raubkopien)\n\nProgrammed by KRISCHAN\n\nCopyrights by KRISCHAN MCMXCVI"
+		]
+	},
+
+	{
+		"id": "credits-b",
+		"line": 215,
+		"story": [
 			"----------------------------  E  N  D  E  !  !  !  ----------------------------",
 			"Ein Spiel von KRISCHAN\n\nIdee: KRISCHAN mit hilfreicher Unterstützung von DEWITT\n\nText: KRISCHAN\n\nMusik: KRISCHAN (bis auf wenige Raubkopien)\n\nProgrammed by KRISCHAN\n\nCopyrights by KRISCHAN MCMXCVI"
 		]
