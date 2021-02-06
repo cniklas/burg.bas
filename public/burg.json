@@ -195,11 +195,10 @@
 		"id": "turm_ug",
 		"line": 123,
 		"story": [
-			// "Du gehst nach links und kommst an eine Wendeltreppe. Sie wendelt aufwärts.\nWenn du meinst, daß sie aus dem Kerker führt, folge ihr. Oder geh zurück."
 			"Du kommst an eine Wendeltreppe. Sie wendelt aufwärts.\nWenn du meinst, daß sie aus dem Kerker führt, folge ihr. Oder geh zurück."
 		],
 		"commands": [
-			{ "key": "h", "text": "hoch", "action": "turm_eg" },
+			{ "key": "h", "text": "hoch", "set-condition": "no-weapons", "action": "turm_eg" },
 			{ "key": "z", "text": "zurück", "action": "kerker_20a" }
 		]
 	},
@@ -211,7 +210,7 @@
 			"Du hast dich entschlossen, die steile Wendeltreppe hinaufzugehen. Es ist ziemlich mühsam; du erreichst keuchend und schnaufend einen Ausgang.\nUnd jetzt? Willst du noch weiter hinaufsteigen oder lieber sehen, welche Räumlichkeit sich dir hier auftut? [Benutze >hoch< bzw. >links<.]"
 		],
 		"commands": [
-			{ "key": "h", "text": "hoch", "set-condition": "no-weapons", "action": "turm_og" },
+			{ "key": "h", "text": "hoch", "action": "turm_og" },
 			{ "key": "l", "text": "links", "action": "lagerhaus" }
 		],
 		"hint": "Kannst du nicht lesen? >Hoch< bzw. >links<!"
@@ -241,10 +240,8 @@
 		],
 		"commands": [
 			{ "condition": "has-sword", "key": "o", "text": "öffne Tür mit Schwert", "action": "turm_tod" },
-			{ "condition": "has-sword", "key": "r", "text": "runter", "set-condition": "no-magic-wand", "action": "burghof-a" },
-			{ "condition": "has-sword", "key": "k", "text": "klopfe an", "action": "turm_20" },
-			{ "condition": "no-weapons", "key": "r", "text": "runter", "set-condition": "no-magic-wand", "action": "lagerhaus-b" },
-			{ "condition": "no-weapons", "key": "k", "text": "klopfe an", "action": "turm_20" }
+			{ "key": "k", "text": "klopfe an", "action": "turm_20" },
+			{ "key": "r", "text": "runter", "set-condition": "no-magic-wand", "action": "burghof-switch" }
 		]
 	},
 
@@ -279,8 +276,7 @@
 			"Du faßt wieder Mut und bedankst dich sehr herzlich bei dem alten Mann. Er geleitet dich bis zur Treppe und wünscht dir viel Glück. Du verabschiedest dich von ihm und gehst nun die Wendeltreppe wieder hinab."
 		],
 		"commands": [
-			{ "condition": "has-sword", "key": "r", "text": "runter", "set-condition": "has-magic-wand", "action": "burghof-a" },
-			{ "condition": "no-weapons", "key": "r", "text": "runter", "set-condition": "has-magic-wand", "action": "lagerhaus-b" }
+			{ "key": "r", "text": "runter", "set-condition": "has-magic-wand", "action": "burghof-switch" }
 		],
 		"hint": "Geh hinunter."
 	},
@@ -315,18 +311,6 @@
 			{ "condition": "has-sword", "key": "f", "text": "fliehen", "action": "lagerhaus_flucht" },
 			{ "condition": "has-keys", "key": "h", "text": "hoch", "action": "lagerhaus_tod" },
 			{ "condition": "has-keys", "key": "z", "text": "zurück", "action": "stallungen-b" }
-		]
-	},
-
-	{
-		"id": "lagerhaus-b",
-		"line": 529,
-		"story": [
-			"Du läufst die Wendeltreppe hinunter und betrittst eine große Halle. Du schaust dich um und entdeckst eine Vielzahl an Lebensmitteln, aber auch Boote, behauene Steine, Werkzeuge verschiedenster Art, aufgestapelte Holzbohlen, Stoffballen, Tierhäute und noch einige andere Sachen. Allem Anschein nach befindest du dich im Lagerhaus. Rechts ist ein großes Tor, was vermutlich auf den Burghof führt, und am anderen Ende der Halle siehst du eine breite Holztreppe zum Dachboden.\nDa dir von den vielen hier gelagerten Sachen jedoch keine als brauchbar erscheint, beschließt du, hier nicht länger zu verbleiben, und gehst hinaus auf den Burghof."
-		],
-		"commands": [
-			{ "condition": "has-magic-wand", "key": "enter", "text": "", "action": "burghof-b" },
-			{ "condition": "no-magic-wand", "key": "enter", "text": "", "action": "burghof-c" }
 		]
 	},
 
@@ -402,6 +386,21 @@
 	},
 
 	{
+		"id": "burghof-switch",
+		"line": 401,
+		"story": [
+			[
+				{ "condition": "has-sword", "story": "Du läufst die Wendeltreppe hinunter, gehst durch die große Halle des Lagerhauses und durch das Tor auf den Burghof." },
+				{ "condition": "no-weapons", "story": "Du läufst die Wendeltreppe hinunter und betrittst eine große Halle. Du schaust dich um und entdeckst eine Vielzahl an Lebensmitteln, aber auch Boote, behauene Steine, Werkzeuge verschiedenster Art, aufgestapelte Holzbohlen, Stoffballen, Tierhäute und noch einige andere Sachen. Allem Anschein nach befindest du dich im Lagerhaus. Rechts ist ein großes Tor, was vermutlich auf den Burghof führt, und am anderen Ende der Halle siehst du eine breite Holztreppe zum Dachboden.\nDa dir von den vielen hier gelagerten Sachen jedoch keine als brauchbar erscheint, beschließt du, hier nicht länger zu verbleiben, und gehst hinaus auf den Burghof." }
+			]
+		],
+		"commands": [
+			{ "condition": "has-magic-wand", "key": "enter", "text": "", "action": "burghof_magic-wand" },
+			{ "condition": "no-magic-wand", "key": "enter", "text": "", "action": "burghof_no-magic-wand" }
+		]
+	},
+
+	{
 		"id": "burghof",
 		"line": 188,
 		"story": [
@@ -409,29 +408,17 @@
 			"Du stehst auf dem Burghof und überlegst, wo du jetzt hingehen könntest. Es bieten sich gleich mehrere Richtungen an:\nLinks sind die Stallungen, auf der anderen Seite des Hofes liegt der Palas und rechts von dir befindet sich das Lagerhaus. Außerdem könntest du auf den Wehrgang steigen und sehen, ob du da irgendwie weiterkommst.\nGib deine Richtungswahl ein. [Benutze >hoch<, wenn du auf den Wehrgang willst.]"
 		],
 		"commands": [
-			{ "condition": "has-sword", "key": "h", "text": "hoch", "action": "wehrgang" },
-			{ "condition": "has-keys", "key": "h", "text": "hoch", "action": "wehrgang-a" },
-			{ "key": "r", "text": "rechts", "action": "lagerhaus-a" },
-			{ "key": "l", "text": "links", "action": "stallungen" },
+			{ "condition": "has-sword", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang" },
+			{ "condition": "has-keys", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang-a" },
+			{ "key": "r", "text": "rechts", "set-condition": "visited-lagerhaus", "action": "lagerhaus-a" },
+			{ "key": "l", "text": "links", "set-condition": "visited-stallungen", "action": "stallungen" },
 			{ "key": "w", "text": "weiter", "action": "palas" }
 		],
 		"hint": "Laß den Blödsinn! Entscheide dich für eine Richtung."
 	},
 
 	{
-		"id": "burghof-a",
-		"line": 401,
-		"story": [
-			"Du läufst die Wendeltreppe hinunter, gehst durch die große Halle des Lagerhauses und durch das Tor auf den Burghof."
-		],
-		"commands": [
-			{ "condition": "has-magic-wand", "key": "enter", "text": "", "action": "burghof-b" },
-			{ "condition": "no-magic-wand", "key": "enter", "text": "", "action": "burghof-c" }
-		]
-	},
-
-	{
-		"id": "burghof-b",
+		"id": "burghof_magic-wand",
 		"line": 411,
 		"story": [
 			"Du beschließt, so schnell wie möglich zum Thronsaal zu gelangen, um UBOLZIOs Herrschaft ein für alle mal zu beenden. Darum gehst du direkt aber dennoch vorsichtig zum Palas, der sich rechts von dir befindet."
@@ -443,21 +430,22 @@
 	},
 
 	{
-		"id": "burghof-c",
+		"id": "burghof_no-magic-wand",
 		"line": 418,
 		"story": [
 			"Nun entscheide, wohin du gehen willst: In den Palas, der rechts von dir steht, oder in die Stallungen, die sich auf der gegenüberliegenden Seite des Burghofes befinden? Wenn du lieber auf den Wehrgang steigen willst, gib >hoch< ein."
 		],
 		"commands": [
 			{ "key": "r", "text": "rechts", "action": "palas" },
-			{ "key": "w", "text": "weiter", "action": "TODO" },
-			{ "key": "h", "text": "hoch", "action": "TODO" }
+			{ "key": "w", "text": "weiter", "set-condition": "visited-stallungen", "action": "stallungen" },
+			{ "condition": "has-sword", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang" },
+			{ "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang_tod" }
 		],
 		"hint": "Häremm! Könntest du dich bitte für eine Richtung entscheiden?"
 	},
 
 	{
-		"id": "burghof-d",
+		"id": "burghof_aus-stallungen",
 		"line": 550,
 		"story": [
 			"Wohin treibt es dich jetzt? In den Palas, dann mußt du nach links gehen, ins Lagerhaus auf der anderen Seite des Burghofes, oder willst du dich erst auf dem Wehrgang umschauen?"
@@ -465,7 +453,7 @@
 		"commands": [
 			{ "key": "l", "text": "links", "action": "palas" },
 			{ "key": "w", "text": "weiter", "action": "TODO" },
-			{ "key": "h", "text": "hoch", "action": "TODO" }
+			{ "not-condition": "visited-wehrgang", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "TODO" }
 		],
 		"hint": "Wohin? [>links<, >weiter< bzw. >hoch<]"
 	},
@@ -478,7 +466,7 @@
 		],
 		"commands": [
 			{ "key": "l", "text": "links", "action": "palas" },
-			{ "key": "h", "text": "hoch", "action": "TODO" }
+			{ "not-condition": "visited-wehrgang", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "TODO" }
 		],
 		"hint": "Hast du denn immernoch nicht kapiert, wie’s geht?"
 	},
@@ -491,7 +479,7 @@
 		],
 		"commands": [
 			{ "key": "r", "text": "rechts", "action": "TODO" },
-			{ "key": "l", "text": "links", "action": "TODO" },
+			{ "not-condition": "visited-stallungen", "key": "l", "text": "links", "set-condition": "visited-stallungen", "action": "stallungen" },
 			{ "key": "w", "text": "weiter", "action": "palas" }
 		],
 		"hint": "Eine klare, vernünftige Entscheidung, bitte."
@@ -505,7 +493,7 @@
 		],
 		"commands": [
 			{ "key": "r", "text": "rechts", "action": "TODO" },
-			{ "key": "l", "text": "links", "action": "TODO" },
+			{ "not-condition": "visited-stallungen", "key": "l", "text": "links", "set-condition": "visited-stallungen", "action": "stallungen" },
 			{ "key": "w", "text": "weiter", "action": "palas" }
 		],
 		"hint": "Eine klare, vernünftige Entscheidung, bitte."
@@ -518,7 +506,7 @@
 			"Du läufst hinüber zu den Stallungen, um zu sehen, ob es da irgendetwas Interessantes zu entdecken gibt. Du öffnest das Tor und gehst hinein. Aber außer Pferdeboxen mit vielen Pferden drin und einem Berg von aufgehäuftem Heu kannst du hier nichts besonderes erblicken. Was sollte es in einem Pferdestall auch so Außergewöhnliches geben?\nDu kehrst dich um und gehst auf den Burghof zurück."
 		],
 		"commands": [
-			{ "key": "enter", "text": "", "action": "burghof-d" }
+			{ "key": "enter", "text": "", "action": "burghof_aus-stallungen" }
 		]
 	},
 
@@ -590,6 +578,17 @@
 			{ "key": "h", "text": "hoch", "action": "wehrgang_turm" },
 			{ "key": "o", "text": "öffne Tür", "action": "wehrgang_verlies" },
 			{ "key": "z", "text": "zurück", "action": "burghof-g" }
+		]
+	},
+
+	{
+		"id": "wehrgang_tod",
+		"line": 434,
+		"story": [
+			"Völlig unbewaffnet auf den Wehrgang zu steigen, war eine schlechte Idee! Hier oben laufen einige Wachposten herum, und als sie dich entdecken, legen sie sofort ihre Armbrüste an und schießen auf dich. Du wirst gleich mehrfach getroffen und stirbst …"
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "game_over" }
 		]
 	},
 
