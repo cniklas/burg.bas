@@ -133,7 +133,7 @@
 		"id": "wachraum",
 		"line": 144,
 		"story": [
-			"So schnell du kannst, erklimmst du die Leiter und verschwindest durch das Schlupfloch in der Decke. Sicherheitshalber ziehst du auch noch die Leiter ein. Jetzt bist du erstmal außer Gefahr. Du schaust dich um: Du befindest dich anscheinend in der Kemenate der Burgwachen. Ihr ganzer Krempel liegt hier verstreut herum, unter anderem:",
+			"So schnell du kannst, erklimmst du die Leiter und verschwindest durch das Schlupfloch in der Decke. Sicherheitshalber ziehst du auch noch die Leiter ein. Jetzt bist du erstmal außer Gefahr. Du schaust dich um: Du befindest dich anscheinend im Raum der Burgwachen. Ihr ganzer Krempel liegt hier verstreut herum, unter anderem:",
 			[
 				{ "condition": "no-helmet", "story": "Ein Schwert, ein Schild und ein Seil.\nNimm die Sachen mit!" },
 				{ "condition": "has-helmet", "story": "Ein Schlüsselbund und eine Keule.\nNimm die Sachen mit!" }
@@ -635,7 +635,7 @@
 			"Dir fällt ein, daß du ja ein langes Seil bei dir hast. Und das ist die Rettung!\nZusammen mit dem Mädchen verläßt du den Turm und bindest das Seil draußen mit dem einen Ende fest um eine Zinne. Das andere Ende wirfst du die Schildmauer hinunter. Ihr steigt daran hinab und seid frei …"
 		],
 		"commands": [
-			{ "key": "enter", "text": "", "action": "congratulations" }
+			{ "key": "enter", "text": "", "action": "congratulations_mit-musik" }
 		]
 	},
 
@@ -671,7 +671,7 @@
 			"Ohne verdächtige Hast aber mit ängstlich verkrampftem Herzen geht ihr an den Wachen auf dem Wehrgang vorbei. Ihr erreicht unerkannt den Burghof und geht von dort aus in die Stallungen, wo ihr zwei Pferde sattelt. Ihr führt sie hinaus auf den Hof, sitzt auf und reitet zum Burgtor. Barsch befiehlst du dem dort wachenden Mann, das Tor zu öffnen. Er schöpft keinen Argwohn und läßt euch sogleich hinaus.\nIhr treibt eure Pferde an und verschwindet für immer aus dieser dunklen Burg …"
 		],
 		"commands": [
-			{ "key": "enter", "text": "", "action": "congratulations" }
+			{ "key": "enter", "text": "", "action": "congratulations_mit-musik" }
 		]
 	},
 
@@ -690,30 +690,251 @@
 		"id": "palas",
 		"line": 692,
 		"story": [
-			"Du gehst die breiten Stufen zum Palas hinauf und öffnest die mächtige Portaltür, in die eine dämonische Fratze hineingeschnitzt ist. Nun stehst du in einem breiten, gewölbten Gang, der sich bis zur anderen Seite des Gebäudes hinzieht und dort einen Knick nach rechts macht. Aus der Wand zu deiner Rechten ragen einige Eisenringe, worin Fackeln stecken. Eine Steintafel trägt die Inschrift: >>Diesen Palas errichtete der große Baumeister DEWITT auf Wunsch seiner Majestät König UBOLZIOs.<<\nZu deiner Linken befindet sich eine Tür, die mit festen Eisenbanden beschlagen ist. Dort hinten, wo der Gang nach rechts weiterführt, ist noch eine zweite Tür aus einfachem, dunklem Holz."
+			"Du gehst die breiten Stufen zum Palas hinauf und öffnest die mächtige Portaltür, in die eine dämonische Fratze hineingeschnitzt ist. Nun stehst du in einem breiten, gewölbten Gang, der sich bis zur anderen Seite des Gebäudes hinzieht und dort einen Knick nach rechts macht. Aus der Wand zu deiner Rechten ragen einige Eisenringe, worin Fackeln stecken. Eine Steintafel trägt die Inschrift: >>Diesen Palas errichtete der große Baumeister DEWITT auf Wunsch seiner Majestät König UBOLZIOs.<<\nZu deiner Linken befindet sich eine Tür, die mit festen Eisenbändern beschlagen ist. Dort hinten, wo der Gang nach rechts weiterführt, ist noch eine zweite Tür aus einfachem, dunklem Holz."
 		],
 		"commands": [
-			{ "key": "aaa", "text": "aaa", "action": "TODO" },
-			{ "key": "aaa", "text": "aaa", "action": "TODO" }
+			{ "key": "o", "text": "öffne Tür", "action": "waffenkammer" }
 		],
-		"hint": ""
+		"hint": "Versuche, die erste Tür zu öffnen."
 	},
 
 	{
-		"id": "aaa",
-		"line": 1,
+		"id": "waffenkammer",
+		"line": 710,
 		"story": [
-			"",
-			[
-				{ "condition": "foo", "story": "" },
-				{ "condition": "foo", "story": "" }
-			]
+			{ "condition": "has-sword", "story": "Sie ist mit einem schweren Schloß versehen, das du nicht aufbekommst.\nDu gehst hinter zur zweiten Tür." },
+			{ "condition": "has-keys", "story": "Sie ist mit einem schweren Schloß versehen, doch das stellt für dich kein Problem dar. Du nimmst den Schlüsselbund aus der Tasche und probierst damit solange, bis du das Schloß aufbekommen hast. Du öffnest die Tür und stellst erfreut fest, daß dies die Waffenkammer ist!\nDu denkst, daß es eigentlich besser wäre, mit einem scharfen Schwert bewaffnet zu sein als mit einer einfachen Keule, wie du sie besitzt. Darum suchst dir das beste Schwert und den härtesten Schild aus. Dann verläßt du die Waffenkammer, schließt sie wieder ab und gehst hinter zur zweiten Tür." },
+			{ "condition": "no-weapons", "story": "Zu deinem Glück (und UBOLZIOs Verhängnis) ist die Türe nicht verschlossen. Du ziehst sie auf und betrittst eine dunkle Kammer. Damit du mehr erkennen kannst, holst du dir aus dem Gewölbegang eine Fackel. Nun bemerkst du erfreut, daß dies die Waffenkammer ist! Um nicht weiterhin unbewaffnet im Palas herumzuschleichen, suchst dir das schärfste Schwert und den härtesten Schild aus. Dann verläßt du die Waffenkammer wieder und gehst hinter zur zweiten Tür." }
 		],
 		"commands": [
-			{ "condition": "foo", "key": "aaa", "text": "aaa", "set-condition": "baz", "action": "TODO" },
-			{ "condition": "foo", "key": "aaa", "text": "aaa", "set-condition": "baz", "action": "TODO" }
+			{ "key": "o", "text": "öffne Tür", "action": "gesinderaum" },
+			{ "key": "r", "text": "rechts", "action": "treppenhaus" }
 		],
-		"hint": ""
+		"hint": "Versuche, die zweite Tür zu öffnen, oder folge dem Gang nach rechts."
+	},
+
+	{
+		"id": "gesinderaum",
+		"line": 717,
+		"story": [
+			"Die Tür läßt sich öffnen, und du schaust in den Raum hinein. Es befinden sich ein Kamin darin, ein Tisch mit mehreren Schemeln drumherum, einige Kleidertruhen und ein eisernes Gestell mit einem Waschzuber darauf. Es gibt zwei Fenster, wovon eines geöffnet ist. An den Wänden stehen breite Holzbänke, darauf liegen Schlafdecken. Wahrscheinlich ist dies hier der Wohnraum des Burggesindes.\nDu klappst die Tür zu."
+		],
+		"commands": [
+			{ "key": "r", "text": "rechts", "action": "treppenhaus" }
+		],
+		"hint": "Folge dem Gang nach rechts."
+	},
+
+	{
+		"id": "treppenhaus",
+		"line": 727,
+		"story": [
+			"Schon nach wenigen Schritten stehst du vor einer großen Wendeltreppe, die ins Obergeschoß des Palas führt. In der Wand rechts von dir ist eine Tür, hinter der du Stimmen vernehmen kannst. Öffnest du die Tür oder gehst du gleich die Wendeltreppe hinauf?"
+		],
+		"commands": [
+			{ "key": "o", "text": "öffne Tür", "action": "kueche" },
+			{ "key": "h", "text": "hoch", "action": "palas_og" }
+		]
+	},
+
+	{
+		"id": "kueche",
+		"line": 740,
+		"story": [
+			"Die Neugier siegt über deinen Verstand: Du öffnest die Tür vorsichtig eine Hand breit und äugst in den Raum hinein. Es ist die Küche. Hier herrscht ein hektisches Treiben; wahrscheinlich hat UBOLZIO für heute ein großes Festgelage angesagt. Das gesamte Gesinde ist hier am Schuften und dabei so beschäftigt, daß du gar nicht bemerkt wirst.\nMänner stehen an dem gewaltigen Kamin und beaufsichtigen sämtliche Speisen, die dort vor sich hin kochen und braten. Andere sitzen um den Tisch herum und nehmen Fasane und Hasen aus, putzen und schneiden das Gemüse, wieder andere waschen Teller und Pokale, Messer, Löffel und Spieße ab. Frauen scheint es in dieser Burg überhaupt nicht zu geben.",
+			"Du schließt die Tür wieder und gehst die große Wendeltreppe hinauf."
+		],
+		"commands": [
+			{ "key": "h", "text": "hoch", "action": "palas_og" }
+		]
+	},
+
+	{
+		"id": "palas_og",
+		"line": 752,
+		"story": [
+			"Du gehst die breite Wendeltreppe hinauf und kommst nun in die königlichen Gefilde des Palas. Du stehst wieder in einem breiten, gewölbten Gang, der nach etlichen Metern nach links weiterverläuft. Im Gegensatz zu dem dunklen, schlichten Untergeschoß ist hier oben alles viel prächtiger und majestätischer. Große Fenster lassen viel Licht hinein, die Wände sind behängt mit großen Bannern, Wappen und Gemälden, auf denen UBOLZIO abgebildet ist.\nLinks von dir ist eine große Tür aus edelstem Holz mit einem güldenen Griff."
+		],
+		"commands": [
+			{ "condition": "has-keys", "key": "o", "text": "öffne Tür", "action": "schlafzimmer" },
+			{ "condition": "has-sword", "key": "o", "text": "öffne Tür", "action": null, "message": "Diese Tür ist verschlossen." },
+			{ "condition": "no-weapons", "key": "o", "text": "öffne Tür", "action": null, "message": "Diese Tür ist verschlossen." },
+			{ "condition": "has-magic-wand", "key": "w", "text": "weiter", "action": "vorzimmer_drache" },
+			{ "condition": "no-magic-wand", "key": "w", "text": "weiter", "set-condition": "not-visited-schlafzimmer", "action": "vorzimmer_kein-drache" }
+		]
+	},
+
+	{
+		"id": "schlafzimmer",
+		"line": 859,
+		"story": [
+			"Die Tür ist verschlossen, doch du öffnest auch diese mit den Schlüsseln. Der Raum, die du nun betrittst, ist das Privatgemach des Tyrannen UBOLZIO. Die Wände sind mit Samt und Seide überzogen, auf dem Boden liegt ein prächtiger Teppich und an der rechten Wand steht ein großes Himmelbett mit roten Vorhängen. In der linken Ecke des Raumes steht, abgeschirmt durch seidene Vorhänge, ein großer Badekufen, und in der rechten eine große Truhe für Gewänder und andere Bekleidungsstücke.\nNur wenige Schritte von dir entfernt befindet sich eine kleine, gut verborgene Tür in der Wand."
+		],
+		"commands": [
+			{ "key": "o", "text": "öffne Tür", "action": "schatzkammer" },
+			{ "key": "z", "text": "zurück", "set-condition": "visited-schlafzimmer", "action": "vorzimmer_kein-drache" }
+		],
+		"hint": "Versuche, die kleine Tür zu öffnen, oder geh wieder aus dem Raum hinaus."
+	},
+
+	{
+		"id": "schatzkammer",
+		"line": 872,
+		"story": [
+			"Auch diese Tür ist abgeschlossen, doch du findest schnell den passenden Schlüssel. Als du die Tür aufdrückst und siehst, was sich dahinter befindet, bist du für eine ganze Weile überwältigt!\nDu stehst in einer kleinen Kammer, die vollgestopft ist mit Reichtümern. Da sind große Truhen und Krüge, aus denen die Gold- und Silbermünzen hervorquellen. Mit Perlen und Edelsteinen besetzte Pokale türmen sich neben ungemein kostbaren Vasen, golddurchwirkte Stoffe häufen sich neben Kästen voller Schmuck und Geschmeide. Kunstvolle Gemälde und Figuren sind hier ebenso zu finden wie reich verzierte Waffen.",
+			"Dir gehen beinahe die Augen über, und du überlegst, wie du wenigstens mit einem kleinen Teil dieses Schatzes aus der Burg verschwinden könntest."
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "schatzkammer_ende" }
+		]
+	},
+
+	{
+		"id": "schatzkammer_ende",
+		"line": 881,
+		"story": [
+			"Schnell hast du einen Plan gefaßt. Du nimmst einen Sack, den größten, den du auftreiben kannst, und stopfst so viele Reichtümer hinein, wie nur geht. Dann hüllst du dich ins Helm und Umhang, die du aus dem Kerker mitgenommen hast, und hebst den Sack über die Schulter. Auf diese Weise getarnt verläßt du die Burg UBOLZIOs ohne größere Schwierigkeiten und feierst die wieder gewonnene Freiheit mit dem Kauf deines ersten Lamborghini …"
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "congratulations_mit-musik" }
+		]
+	},
+
+	{
+		"id": "vorzimmer_kein-drache",
+		"line": 773,
+		"story": [
+			[
+				{ "condition": "visited-schlafzimmer", "story": "Du bist nicht an weiteren Gemächern interessiert und verläßt deshalb diesen Raum. Nachdem du die Tür wieder verschlossen hast, folgst du dem Gang bis ans Ende und betrittst schließlich den Vorraum zum Thronsaal. Auch dieser Bereich ist prächtig ausgeschmückt. Alles dient nur dem Zweck, UBOLZIO und seine Herrschaft zu verherrlichen." },
+				{ "condition": "not-visited-schlafzimmer", "story": "Du folgst dem Gang bis ans Ende und betrittst schließlich den Vorraum zum Thronsaal. Auch dieser Bereich ist prächtig ausgeschmückt. Alles dient nur dem Zweck, UBOLZIO und seine Herrschaft zu verherrlichen." }
+			],
+			"Du gehst weiter, bis du zu der großen, teuren Tür gelangst, die in den THRONSAAL führt!"
+		],
+		"music": "<<<<t180mnl2cl4cdl6e-dc>l4c.<l8cl2c",
+		"music_delay": 123456,
+		"commands": [
+			{ "key": "o", "text": "öffne Tür", "action": "thronsaal" }
+		],
+		"hint": "Du zitterst wohl schon vor Angst!"
+	},
+
+	{
+		"id": "vorzimmer_drache",
+		"line": 900,
+		"story": [
+			"Du folgst dem Gang bis ans Ende und betrittst schließlich den Vorraum zum Thronsaal. Vor der großen Tür, die dort hineinführt, liegt – ein dreiköpfiger Drache! Genau so, wie es dir der alte Mann aus dem Turmzimmer gesagt hatte.",
+			"Der Drache bemerkt dich und richtet seine drei Hälse auf. Es ist ein ekelhaftes, schuppiges, schmutzigbraunes Untier mit vier großen Pranken. Über den gesamten Rücken zieht sich ein Kamm spitzer Stacheln, ebenso über den Schwanz. Seine Augen leuchten gierig, und aus seinen Mäulern trieft der Speichel, als er dich da so verzagt stehen sieht. Du fragst dich, wie du je dazu kommen sollst, ihn mit dem Stab anzurühren, ohne vorher von ihm verschlungen zu werden.\nDu gehst langsam auf ihn zu und hälst dabei den Schild schützend vor dich, mit der anderen Hand faßt du dein Schwert und den Stab."
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "vorzimmer_drache-kampf" }
+		]
+	},
+
+	{
+		"id": "vorzimmer_drache-kampf",
+		"line": 913,
+		"story": [
+			"Der Drache läßt dich noch ein Stück herankommen, dann springt er auf dich zu und brüllt dabei laut aus allen drei Schlünden. Du schreist auch, allerdings vor Entsetzen, und fuchtelst wild mit Schwert, obwohl du weißt, daß das nichts nützt …"
+		],
+		"music": "<<<t125msl16cccccccccd-cd-ee-d-e-l4c",
+		"commands": [
+			{ "key": "enter", "text": "", "action": "vorzimmer_drache-sieg" }
+		]
+	},
+
+	{
+		"id": "vorzimmer_drache-sieg",
+		"line": 920,
+		"story": [
+			"Ich weiß zwar nicht wie, aber du schaffst es doch noch, den furchtbaren Drachen mit dem Stab des alten Mannes anzurühren, und augenblicklich zerfällt das Ungetüm vor deinen Augen zu Staub.",
+			"Du wirfst den Stab fort, denn nun ist er für dich ja nutzlos, und schreitest vor bis zur Tür, die in den THRONSAAL führt."
+		],
+		"music": "<<<<t180mnl2cl4cdl6e-dc>l4c.<l8cl2c",
+		"music_delay": 123456,
+		"commands": [
+			{ "key": "o", "text": "öffne Tür", "action": "thronsaal" }
+		],
+		"hint": "Du zitterst wohl schon vor Angst!"
+	},
+
+	{
+		"id": "thronsaal",
+		"line": 784,
+		"story": [
+			"Du öffnest die Tür mit einem Ruck und stürmst hinein, Schwert und Schild fest umklammert. Drinnen umfängt dich sogleich ein ungemeiner Prunk und Reichtum. An den Wänden hängen kostbare Teppiche und goldbestickte Fahnen. Der Steinfußboden ist mit zahlreichen Mosaiken geziert. Öllampen auf goldenen Ständern und hohe Fenster mit buntem Glas tauchen den Raum in ein mystisches Licht. Hinter dem mächtigen Thron, der mit kunstvollen Schnitzereien versehen ist, erstreckt sich eine lange Reihe von prachtvollen Rüstungen. Im rechten Teil des Raumes steht eine lange Festtafel mit samtbezogenen Stühlen ringherum, wo UBOLZIO wohl immer seine gewaltigen Gelage abhält. In der Ecke befindet sich ein großer Kamin, und davor liegt ein Bärenfell."
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "thronsaal_kampf" }
+		]
+	},
+
+	{
+		"id": "thronsaal_kampf",
+		"line": 795,
+		"story": [
+			"UBOLZIO hat dich sofort bemerkt und springt von seinem Thron auf. Er sieht das Schwert in deiner Hand blitzen und zieht sofort aus einer reich verzierten Scheide seinen berüchtigten Zweihänder. Du stürzt dich auf ihn, und eure Schwerter treffen klirrend aufeinander. Es entspannt sich ein erbitterter Kampf …"
+		]
+	},
+
+	{
+		"id": "thronsaal_kampf-tod",
+		"line": 816,
+		"story": [
+			"Du dachtest wohl, UBOLZIO ließe sich so einfach töten?!? Das erweist sich als ein großer Irrtum! Du hast seine Fechtkünste gewaltig unterschätzt!\nEr zerschlägt dir den Schild, dein Schwert zerbricht schließlich auch, und dann versetzt dir UBOLZIO den tödlichen Stoß …"
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "game_over" }
+		]
+	},
+
+	{
+		"id": "thronsaal_kampf-sieg",
+		"line": 821,
+		"story": [
+			"UBOLZIO führt sein Schwert mit ungeheurer Stärke und zerschlägt deinen Schild. Doch nach und nach werden seine Hiebe kraftloser, sein Arm erlahmt unter dem großen Gewicht des Zweihänders. Du bringst ihn durch einen geschickten Schwertstreich zu Fall und stößt ihm das Schwert in die Brust. Da haucht UBOLZIO seine Seele aus …",
+			"DU HAST IHN BEZWUNGEN!"
+		],
+		"music": [
+			"t117ms <<l8f#f#f# mlf#l16edef# msl8ggg mlgl16f#ef#g",
+			"msl8aaa mlal16gf#ed mnl8edc#l4dp8 l8msdddd<ap8aaa> l4d"
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "thronsaal_ende" }
+		]
+	},
+
+	{
+		"id": "thronsaal_ende",
+		"line": 829,
+		"story": [
+			"Du hast UBOLZIO besiegt und das Land von der Tyrannenherrschaft befreit. Vor lauter Dankbarkeit ernennt dich das Volk zu seinem NEUEN KÖNIG!"
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "congratulations" }
+		]
+	},
+
+	{
+		"id": "congratulations",
+		"line": 837,
+		"story": [
+			"                                 GRATULATION!\n            DU HAST DICH WACKER DURCH DIESES ABENTEUER GESCHLAGEN!"
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "credits" }
+		]
+	},
+
+	{
+		"id": "congratulations_mit-musik",
+		"line": 685,
+		"story": [
+			"                                 GRATULATION!\n            DU HAST DICH WACKER DURCH DIESES ABENTEUER GESCHLAGEN!"
+		],
+		"music": "t130ms<<l8cl16ccl8cecegeg>l2c",
+		"commands": [
+			{ "key": "enter", "text": "", "action": "credits" }
+		]
 	},
 
 	{
@@ -729,18 +950,6 @@
 	},
 
 	{
-		"id": "congratulations",
-		"line": 837,
-		"story": [
-			"                                 GRATULATION!\n            DU HAST DICH WACKER DURCH DIESES ABENTEUER GESCHLAGEN!"
-		],
-		"music": "t130ms<<l8cl16ccl8cecegeg>l2c",
-		"commands": [
-			{ "key": "enter", "text": "", "action": "credits-b" }
-		]
-	},
-
-	{
 		"id": "restart_or_exit",
 		"line": 119,
 		"story": [
@@ -748,22 +957,12 @@
 		],
 		"commands": [
 			{ "key": "j", "text": "ja", "action": "start" },
-			{ "key": "n", "text": "nein", "action": "credits-a" }
+			{ "key": "n", "text": "nein", "action": "credits" }
 		]
 	},
 
 	{
-		"id": "credits-a",
-		"line": 200,
-		"story": [
-			"OK. Dann ist das Spiel zu …",
-			"----------------------------  E  N  D  E  !  !  !  ----------------------------",
-			"Ein Spiel von KRISCHAN\n\nIdee: KRISCHAN mit hilfreicher Unterstützung von DEWITT\n\nText: KRISCHAN\n\nMusik: KRISCHAN (bis auf wenige Raubkopien)\n\nProgrammed by KRISCHAN\n\nCopyrights by KRISCHAN MCMXCVI"
-		]
-	},
-
-	{
-		"id": "credits-b",
+		"id": "credits",
 		"line": 215,
 		"story": [
 			"----------------------------  E  N  D  E  !  !  !  ----------------------------",
