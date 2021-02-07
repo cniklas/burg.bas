@@ -894,10 +894,7 @@
 			"UBOLZIO führt sein Schwert mit ungeheurer Stärke und zerschlägt deinen Schild. Doch nach und nach werden seine Hiebe kraftloser, sein Arm erlahmt unter dem großen Gewicht des Zweihänders. Du bringst ihn durch einen geschickten Schwertstreich zu Fall und stößt ihm das Schwert in die Brust. Da haucht UBOLZIO seine Seele aus …",
 			"DU HAST IHN BEZWUNGEN!"
 		],
-		"music": [
-			"t117ms <<l8f#f#f# mlf#l16edef# msl8ggg mlgl16f#ef#g",
-			"msl8aaa mlal16gf#ed mnl8edc#l4dp8 l8msdddd<ap8aaa> l4d"
-		],
+		"music": "t117ms <<l8f#f#f# mlf#l16edef# msl8ggg mlgl16f#ef#g msl8aaa mlal16gf#ed mnl8edc#l4dp8 l8msdddd<ap8aaa> l4d",
 		"commands": [
 			{ "key": "enter", "text": "", "action": "thronsaal_ende" }
 		]
