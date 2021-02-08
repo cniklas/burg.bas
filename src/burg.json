@@ -178,7 +178,9 @@
 		"story": [
 			"Richtig. Du machst aus der Tür Kleinholz und verläßt diesen Raum."
 		],
-		"continue": "burghof_has-sword-or-keys"
+		"commands": [
+			{ "key": "enter", "text": "", "action": "burghof_has-sword-or-keys"}
+		]
 	},
 
 	{
@@ -187,7 +189,9 @@
 		"story": [
 			"Da du jetzt die Schlüssel besitzt, ist es für dich kein Problem, die Tür zu öffnen. Du verläßt den Raum."
 		],
-		"continue": "burghof_has-sword-or-keys"
+		"commands": [
+			{ "key": "enter", "text": "", "action": "burghof_has-sword-or-keys"}
+		]
 	},
 
 	{
@@ -260,7 +264,7 @@
 		"line": 371,
 		"story": [
 			"Du klopfst an und - siehe da - plötzlich geht die Tür auf, und ein alter Mann in einem wallenden Gewand und mit viel Bart steht vor dir. Er bittet dich freundlich herein, und du trittst erfreut ein. Es ist ein Turmzimmer direkt unter dem Dach, nicht besonders groß aber ausgefüllt mit dicken Bücherregalen, einem Bett, einem Schreibtisch, einer eisenbeschlagenen Truhe und noch einigen anderen Dingen. An den Wänden hängen seltsame Bilder und Karten.",
-			"Der Mann fragt dich: >>Warum bist du zu mir hinaufgestiegen?<<\nDu sagst: >>Ich bin aus dem Kerker entflohen und suche einen Ausweg aus dieser furchtbaren Burg.<<\n>>Niemand ist je aus der Burg UBOLZIOs entkommen.<<, sagt der Mann.\nDu bist sehr verzweifelt."
+			"Der Mann fragt dich: „Warum bist du zu mir hinaufgestiegen?“\nDu sagst: „Ich bin aus dem Kerker entflohen und suche einen Ausweg aus dieser furchtbaren Burg.“\n„Niemand ist je aus der Burg UBOLZIOs entkommen.“, sagt der Mann.\nDu bist sehr verzweifelt."
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "turm_og_21" }
@@ -271,7 +275,7 @@
 		"id": "turm_og_21",
 		"line": 385,
 		"story": [
-			"Der Mann legt seine Hand auf deine Schulter, sieht dir fest in Augen und sagt zu dir: >>Wenn du diesem Hort des Verderbens entrinnen willst, mußt du zuerst UBOLZIOs Macht brechen und ihn töten.<<\n>>Wie kann ich das schaffen?<<, fragst du.\n>>Du mußt bis zum Thronsaal vordringen, denn darin sitzt UBOLZIO Tag für Tag und ergötzt sich an seiner Macht. Vor dem Thronsaal liegt ein dreiköpfiger Drache. Nicht Schwert noch Pfeil können ihm etwas anhaben. Doch rührst du ihn mit diesem Stab an (Bei diesen Worten reicht er dir einen kleinen, weißen Stab), muß er sogleich zu Staub zerfallen.<<",
+			"Der Mann legt seine Hand auf deine Schulter, sieht dir fest in Augen und sagt zu dir: „Wenn du diesem Hort des Verderbens entrinnen willst, mußt du zuerst UBOLZIOs Macht brechen und ihn töten.“\n„Wie kann ich das schaffen?“, fragst du.\n„Du mußt bis zum Thronsaal vordringen, denn darin sitzt UBOLZIO Tag für Tag und ergötzt sich an seiner Macht. Vor dem Thronsaal liegt ein dreiköpfiger Drache. Nicht Schwert noch Pfeil können ihm etwas anhaben. Doch rührst du ihn mit diesem Stab an (Bei diesen Worten reicht er dir einen kleinen, weißen Stab), muß er sogleich zu Staub zerfallen.“",
 			"Du faßt wieder Mut und bedankst dich sehr herzlich bei dem alten Mann. Er geleitet dich bis zur Treppe und wünscht dir viel Glück. Du verabschiedest dich von ihm und gehst nun die Wendeltreppe wieder hinab."
 		],
 		"commands": [
@@ -690,7 +694,7 @@
 		"id": "palas",
 		"line": 692,
 		"story": [
-			"Du gehst die breiten Stufen zum Palas hinauf und öffnest die mächtige Portaltür, in die eine dämonische Fratze hineingeschnitzt ist. Nun stehst du in einem breiten, gewölbten Gang, der sich bis zur anderen Seite des Gebäudes hinzieht und dort einen Knick nach rechts macht. Aus der Wand zu deiner Rechten ragen einige Eisenringe, worin Fackeln stecken. Eine Steintafel trägt die Inschrift: >>Diesen Palas errichtete der große Baumeister DEWITT auf Wunsch seiner Majestät König UBOLZIOs.<<\nZu deiner Linken befindet sich eine Tür, die mit festen Eisenbändern beschlagen ist. Dort hinten, wo der Gang nach rechts weiterführt, ist noch eine zweite Tür aus einfachem, dunklem Holz."
+			"Du gehst die breiten Stufen zum Palas hinauf und öffnest die mächtige Portaltür, in die eine dämonische Fratze hineingeschnitzt ist. Nun stehst du in einem breiten, gewölbten Gang, der sich bis zur anderen Seite des Gebäudes hinzieht und dort einen Knick nach rechts macht. Aus der Wand zu deiner Rechten ragen einige Eisenringe, worin Fackeln stecken. Eine Steintafel trägt die Inschrift: „Diesen Palas errichtete der große Baumeister DEWITT auf Wunsch seiner Majestät König UBOLZIOs.“\nZu deiner Linken befindet sich eine Tür, die mit festen Eisenbändern beschlagen ist. Dort hinten, wo der Gang nach rechts weiterführt, ist noch eine zweite Tür aus einfachem, dunklem Holz."
 		],
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "waffenkammer" }
@@ -702,9 +706,11 @@
 		"id": "waffenkammer",
 		"line": 710,
 		"story": [
-			{ "condition": "has-sword", "story": "Sie ist mit einem schweren Schloß versehen, das du nicht aufbekommst.\nDu gehst hinter zur zweiten Tür." },
-			{ "condition": "has-keys", "story": "Sie ist mit einem schweren Schloß versehen, doch das stellt für dich kein Problem dar. Du nimmst den Schlüsselbund aus der Tasche und probierst damit solange, bis du das Schloß aufbekommen hast. Du öffnest die Tür und stellst erfreut fest, daß dies die Waffenkammer ist!\nDu denkst, daß es eigentlich besser wäre, mit einem scharfen Schwert bewaffnet zu sein als mit einer einfachen Keule, wie du sie besitzt. Darum suchst dir das beste Schwert und den härtesten Schild aus. Dann verläßt du die Waffenkammer, schließt sie wieder ab und gehst hinter zur zweiten Tür." },
-			{ "condition": "no-weapons", "story": "Zu deinem Glück (und UBOLZIOs Verhängnis) ist die Türe nicht verschlossen. Du ziehst sie auf und betrittst eine dunkle Kammer. Damit du mehr erkennen kannst, holst du dir aus dem Gewölbegang eine Fackel. Nun bemerkst du erfreut, daß dies die Waffenkammer ist! Um nicht weiterhin unbewaffnet im Palas herumzuschleichen, suchst dir das schärfste Schwert und den härtesten Schild aus. Dann verläßt du die Waffenkammer wieder und gehst hinter zur zweiten Tür." }
+			[
+				{ "condition": "has-sword", "story": "Sie ist mit einem schweren Schloß versehen, das du nicht aufbekommst.\nDu gehst hinter zur zweiten Tür." },
+				{ "condition": "has-keys", "story": "Sie ist mit einem schweren Schloß versehen, doch das stellt für dich kein Problem dar. Du nimmst den Schlüsselbund aus der Tasche und probierst damit solange, bis du das Schloß aufbekommen hast. Du öffnest die Tür und stellst erfreut fest, daß dies die Waffenkammer ist!\nDu denkst, daß es eigentlich besser wäre, mit einem scharfen Schwert bewaffnet zu sein als mit einer einfachen Keule, wie du sie besitzt. Darum suchst dir das beste Schwert und den härtesten Schild aus. Dann verläßt du die Waffenkammer, schließt sie wieder ab und gehst hinter zur zweiten Tür." },
+				{ "condition": "no-weapons", "story": "Zu deinem Glück (und UBOLZIOs Verhängnis) ist die Türe nicht verschlossen. Du ziehst sie auf und betrittst eine dunkle Kammer. Damit du mehr erkennen kannst, holst du dir aus dem Gewölbegang eine Fackel. Nun bemerkst du erfreut, daß dies die Waffenkammer ist! Um nicht weiterhin unbewaffnet im Palas herumzuschleichen, suchst dir das schärfste Schwert und den härtesten Schild aus. Dann verläßt du die Waffenkammer wieder und gehst hinter zur zweiten Tür." }
+			]
 		],
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "gesinderaum" },
@@ -915,7 +921,7 @@
 		"id": "congratulations",
 		"line": 837,
 		"story": [
-			"                                 GRATULATION!\n            DU HAST DICH WACKER DURCH DIESES ABENTEUER GESCHLAGEN!"
+			"GRATULATION!\nDU HAST DICH WACKER DURCH DIESES ABENTEUER GESCHLAGEN!"
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "credits" }
@@ -926,7 +932,7 @@
 		"id": "congratulations_mit-musik",
 		"line": 685,
 		"story": [
-			"                                 GRATULATION!\n            DU HAST DICH WACKER DURCH DIESES ABENTEUER GESCHLAGEN!"
+			"GRATULATION!\nDU HAST DICH WACKER DURCH DIESES ABENTEUER GESCHLAGEN!"
 		],
 		"music": "t130ms<<l8cl16ccl8cecegeg>l2c",
 		"commands": [
@@ -963,7 +969,7 @@
 		"line": 215,
 		"story": [
 			"----------------------------  E  N  D  E  !  !  !  ----------------------------",
-			"Ein Spiel von KRISCHAN\n\nIdee: KRISCHAN mit hilfreicher Unterstützung von DEWITT\n\nText: KRISCHAN\n\nMusik: KRISCHAN (bis auf wenige Raubkopien)\n\nProgrammed by KRISCHAN\n\nCopyrights by KRISCHAN MCMXCVI"
+			"Ein Spiel von KRISCHAN\nIdee: KRISCHAN mit hilfreicher Unterstützung von DEWITT\nText: KRISCHAN\nMusik: KRISCHAN (bis auf wenige Raubkopien)\nOriginally written in BASIC, rewritten in JS with Vue.js\n© Christian Niklas 1996 – 2021"
 		]
 	}
 ]
