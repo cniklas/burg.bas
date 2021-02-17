@@ -135,9 +135,10 @@
 		"story": [
 			"So schnell du kannst, erklimmst du die Leiter und verschwindest durch das Schlupfloch in der Decke. Sicherheitshalber ziehst du auch noch die Leiter ein. Jetzt bist du erstmal außer Gefahr. Du schaust dich um: Du befindest dich anscheinend im Raum der Burgwachen. Ihr ganzer Krempel liegt hier verstreut herum, unter anderem:",
 			[
-				{ "condition": "no-helmet", "story": "Ein Schwert, ein Schild und ein Seil.\nNimm die Sachen mit!" },
-				{ "condition": "has-helmet", "story": "Ein Schlüsselbund und eine Keule.\nNimm die Sachen mit!" }
-			]
+				{ "condition": "no-helmet", "story": "Ein Schwert, ein Schild und ein Seil." },
+				{ "condition": "has-helmet", "story": "Ein Schlüsselbund und eine Keule." }
+			],
+			"Nimm die Sachen mit!"
 		],
 		"commands": [
 			{ "condition": "no-helmet", "key": "n", "text": "nimm Schwert Schild Seil", "set-condition": "has-sword", "action": "wachraum_10" },
@@ -244,7 +245,7 @@
 		"commands": [
 			{ "condition": "has-sword", "key": "o", "text": "öffne Tür mit Schwert", "action": "turm_tod" },
 			{ "key": "k", "text": "klopfe an", "action": "turm_og_20" },
-			{ "key": "r", "text": "runter", "set-condition": "no-magic-wand", "action": "burghof-switch" }
+			{ "key": "r", "text": "runter", "action": "burghof-switch" }
 		]
 	},
 
@@ -400,7 +401,7 @@
 		],
 		"commands": [
 			{ "condition": "has-magic-wand", "key": "enter", "text": "", "action": "burghof_has-magic-wand" },
-			{ "condition": "no-magic-wand", "key": "enter", "text": "", "set-condition": "visited-lagerhaus", "action": "burghof_no-magic-wand" }
+			{ "not-condition": "has-magic-wand", "key": "enter", "text": "", "set-condition": "visited-lagerhaus", "action": "burghof_no-magic-wand" }
 		]
 	},
 
@@ -766,7 +767,7 @@
 			{ "condition": "has-sword", "key": "o", "text": "öffne Tür", "action": null, "message": "Diese Tür ist verschlossen." },
 			{ "condition": "no-weapons", "key": "o", "text": "öffne Tür", "action": null, "message": "Diese Tür ist verschlossen." },
 			{ "condition": "has-magic-wand", "key": "w", "text": "weiter", "action": "vorzimmer_drache" },
-			{ "condition": "no-magic-wand", "key": "w", "text": "weiter", "set-condition": "not-visited-schlafzimmer", "action": "vorzimmer_kein-drache" }
+			{ "not-condition": "has-magic-wand", "key": "w", "text": "weiter", "set-condition": "not-visited-schlafzimmer", "action": "vorzimmer_kein-drache" }
 		]
 	},
 
