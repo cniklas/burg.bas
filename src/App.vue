@@ -9,7 +9,7 @@
 				<div v-if="typeof paragraph === 'string'" class="text-preline">{{ paragraph }}</div>
 				<template v-else>
 					<template v-for="section in paragraph">
-						<div :class="{disabled: !conditions.find(cnd => cnd === section.condition)}" class="text-preline">{{ section.story }}</div>
+						<div :class="{disabled: isDisabled(section)}" class="text-preline">{{ section.story }}</div>
 					</template>
 				</template>
 			</template>
@@ -17,28 +17,27 @@
 
 		<div class="actions">
 			<!-- <button type="button" @click="next">weiter</button> -->
-			<button type="button" v-for="command in scene.commands" :disabled="isDisabled(command)" @click="nextStep(command)">
+			<button type="button" v-for="command in scene.commands" :disabled="isDisabled(command)" @click="handleCommand(command)">
 				{{ command.text || 'weiter' }}
 				{{ command.condition ? `[${command.condition}]` : null }}
-				{{ command['not-condition'] ? `[NOT ${command['not-condition']}]` : null }}
+				{{ command.notCondition ? `[NOT ${command.notCondition}]` : null }}
 			</button>
 		</div>
 
 		<div v-show="scene.hint" class="hint">{{ scene.hint }}</div>
 
 		<pre><code v-for="condition in conditions">{{ `${condition}\n` }}</code></pre>
-
 	</section>
 </template>
 
 <script setup>
 import burg from './burg.json'
-import { ref, reactive, computed } from 'vue'
+import { ref, computed } from 'vue'
 
-const _getSceneById = id => burg.find(scene => scene.id === id)
+const getSceneById = id => burg.find(scene => scene.id === id)
 
 let sceneId = ref('start')
-const scene = computed(() => _getSceneById(sceneId.value))
+const scene = computed(() => getSceneById(sceneId.value))
 const conditions = ref([])
 
 // const next = () => {
@@ -48,19 +47,41 @@ const conditions = ref([])
 // 	// sceneId.value = scene.value.commands?.filter(command => command.action !== null && !command.action.endsWith('_tod'))?.slice(-1)[0].action ?? 'start'
 // }
 
+// const findCondition = (term) => {
+// 	return conditions.value.find(c => c === term)
+// }
+
+const hasCondition = (term) => {
+	return conditions.value.includes(term)
+}
+
+const randomBattle = () => {
+	const rnd = Math.floor(Math.random() * Math.floor(3))
+	console.log(rnd)
+	const action = rnd > 0 ? 'thronsaal_kampf-sieg' : 'thronsaal_kampf-tod'
+
+	setTimeout(() => {
+		handleAction({ action })
+	}, 3000)
+}
+
 const resetGame = () => {
 	conditions.value = []
-	sceneId.value = 'start'
 }
 
 const handleAction = command => {
-	if (command.action === 'start') {
-		resetGame()
-		return
+	if (command.setCondition && !hasCondition(command.setCondition)) {
+		conditions.value.push(command.setCondition)
 	}
 
-	if (command['set-condition']) {
-		conditions.value.push(command['set-condition'])
+	// Endgegner
+	if (command.action === 'thronsaal_kampf') {
+		randomBattle()
+	}
+
+	// zurück auf Start
+	if (command.action === 'start') {
+		resetGame()
 	}
 
 	sceneId.value = command.action
@@ -70,7 +91,7 @@ const handleMessage = command => {
 	alert(command.message)
 }
 
-const nextStep = command => {
+const handleCommand = command => {
 	if (command.message) {
 		handleMessage(command)
 		return
@@ -79,18 +100,18 @@ const nextStep = command => {
 	handleAction(command)
 }
 
-const isDisabled = command => {
-	// console.log(command.action, !!(command.condition && !conditions.value.find(cnd => cnd === command.condition)) || !!(command['not-condition'] && conditions.value.find(cnd => cnd === command['not-condition'])))
-	return !!(command.condition && !conditions.value.find(cnd => cnd === command.condition)) || !!(command['not-condition'] && conditions.value.find(cnd => cnd === command['not-condition']))
+const isDisabled = ({ condition, notCondition }) => {
+	if (condition && notCondition) {
+		return !hasCondition(condition) || hasCondition(notCondition)
+	}
+	if (condition) {
+		return !hasCondition(condition)
+	}
+	if (notCondition) {
+		return hasCondition(notCondition)
+	}
 
-	// besser?
-	// if (command.condition) {
-	// 	return !conditions.value.find(cnd => cnd === command.condition)
-	// }
-	// if (command['not-condition']) {
-	// 	return conditions.value.find(cnd => cnd === command['not-condition'])
-	// }
-	// return false
+	return false
 }
 </script>
 
@@ -111,6 +132,7 @@ button {
 	border: 1px solid currentColor;
 	padding: .5rem 1rem;
 	cursor: pointer;
+	user-select: none;
 }
 
 /* button:focus, */

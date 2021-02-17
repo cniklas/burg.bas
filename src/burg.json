@@ -19,8 +19,8 @@
 			"Du öffnest, trittst aus dem Kerker und stehst jetzt in einem düsteren Gewölbekeller. Besonders viel kannst du nicht erkennen, doch du entdeckst schließlich eine Treppe, deren rutschige Stufen vermutlich hier heraus führen."
 		],
 		"commands": [
-			{ "key": "h", "text": "hoch", "action": "kerker_20" },
-			{ "key": "r", "text": "runter", "action": null, "message": "Die Treppe geht übrigens nach oben." }
+			{ "key": "r", "text": "runter", "action": null, "message": "Die Treppe geht übrigens nach oben." },
+			{ "key": "h", "text": "hoch", "action": "kerker_20" }
 		]
 	},
 
@@ -32,9 +32,9 @@
 		],
 		"commands": [
 			{ "key": "n", "text": "nimm Zettel", "action": "kerker_21" },
-			{ "key": "r", "text": "rechts", "action": "kerker_tod" },
 			{ "key": "l", "text": "links", "action": "turm_ug" },
-			{ "key": "w", "text": "weiter", "action": "kerker_30" }
+			{ "key": "w", "text": "weiter", "action": "kerker_30" },
+			{ "key": "r", "text": "rechts", "action": "kerker_tod" }
 		],
 		"hint": "Ich erwarte eine vernünftige Entscheidung!"
 	},
@@ -62,9 +62,9 @@
 			"Du wirfst den Wisch ärgerlich weg und beschließt zu gehen."
 		],
 		"commands": [
-			{ "key": "r", "text": "rechts", "action": "kerker_tod" },
 			{ "key": "l", "text": "links", "action": "turm_ug" },
-			{ "key": "w", "text": "weiter", "action": "kerker_30" }
+			{ "key": "w", "text": "weiter", "action": "kerker_30" },
+			{ "key": "r", "text": "rechts", "action": "kerker_tod" }
 		]
 	},
 
@@ -100,8 +100,8 @@
 			"Du gehst ein Stück weiter und befindest dich jetzt in einem noch kleineren Raum. Du siehst einen Tisch, und darauf liegen ein Helm und ein Umhang. Außerdem steht mitten im Raum eine Leiter, die zu einer Öffnung in der Decke führt.\nPlötzlich hörst du rauhe Stimmen und schwere Schritte, und du weißt, daß hier wahrscheinlich gleich die Schergen von König UBOLZIO auftauchen werden."
 		],
 		"commands": [
-			{ "key": "n", "text": "nimm Helm Umhang", "set-condition": "has-helmet", "action": "kerker_31" },
-			{ "key": "h", "text": "hoch", "set-condition": "no-helmet", "action": "wachraum" },
+			{ "key": "n", "text": "nimm Helm Umhang", "setCondition": "has-helmet", "action": "kerker_31" },
+			{ "key": "h", "text": "hoch", "action": "wachraum" },
 			{ "key": "z", "text": "zurück", "action": "kerkerwache_tod" }
 		]
 	},
@@ -135,14 +135,14 @@
 		"story": [
 			"So schnell du kannst, erklimmst du die Leiter und verschwindest durch das Schlupfloch in der Decke. Sicherheitshalber ziehst du auch noch die Leiter ein. Jetzt bist du erstmal außer Gefahr. Du schaust dich um: Du befindest dich anscheinend im Raum der Burgwachen. Ihr ganzer Krempel liegt hier verstreut herum, unter anderem:",
 			[
-				{ "condition": "no-helmet", "story": "Ein Schwert, ein Schild und ein Seil." },
-				{ "condition": "has-helmet", "story": "Ein Schlüsselbund und eine Keule." }
+				{ "condition": "has-helmet", "story": "Ein Schlüsselbund und eine Keule." },
+				{ "notCondition": "has-helmet", "story": "Ein Schwert, ein Schild und ein Seil." }
 			],
 			"Nimm die Sachen mit!"
 		],
 		"commands": [
-			{ "condition": "no-helmet", "key": "n", "text": "nimm Schwert Schild Seil", "set-condition": "has-sword", "action": "wachraum_10" },
-			{ "condition": "has-helmet", "key": "n", "text": "nimm Schlüsselbund Keule", "set-condition": "has-keys", "action": "wachraum_10" }
+			{ "condition": "has-helmet", "key": "n", "text": "nimm Schlüsselbund Keule", "setCondition": "has-keys", "action": "wachraum_10" },
+			{ "notCondition": "has-helmet", "key": "n", "text": "nimm Schwert Schild Seil", "setCondition": "has-sword", "action": "wachraum_10" }
 		],
 		"hint": "Wenn du die Sachen nicht mitnimmst, geht das Spiel nicht weiter! [Auf Kommata + >und< verzichten.]"
 	},
@@ -154,8 +154,8 @@
 			"Nachdem du die Sachen genommen hast, suchst du nach einem Ausgang. Du entdeckst eine Tür, die allerdings verschlossen ist."
 		],
 		"commands": [
-			{ "condition": "has-sword", "key": "o", "text": "öffne Tür", "set-condition": "has-sword-or-keys", "action": "wachraum_has-sword" },
-			{ "condition": "has-keys", "key": "o", "text": "öffne Tür", "set-condition": "has-sword-or-keys", "action": "wachraum_has-keys" }
+			{ "condition": "has-sword", "key": "o", "text": "öffne Tür", "setCondition": "has-sword-or-keys", "action": "wachraum_has-sword" },
+			{ "condition": "has-keys", "key": "o", "text": "öffne Tür", "setCondition": "has-sword-or-keys", "action": "wachraum_has-keys" }
 		],
 		"hint": "Versuche, die Tür zu öffnen."
 	},
@@ -202,7 +202,7 @@
 			"Du kommst an eine Wendeltreppe. Sie wendelt aufwärts.\nWenn du meinst, daß sie aus dem Kerker führt, folge ihr. Oder geh zurück."
 		],
 		"commands": [
-			{ "key": "h", "text": "hoch", "set-condition": "no-weapons", "action": "turm_eg" },
+			{ "key": "h", "text": "hoch", "setCondition": "no-weapons", "action": "turm_eg" },
 			{ "key": "z", "text": "zurück", "action": "kerker_20a" }
 		]
 	},
@@ -214,8 +214,8 @@
 			"Du hast dich entschlossen, die steile Wendeltreppe hinaufzugehen. Es ist ziemlich mühsam; du erreichst keuchend und schnaufend einen Ausgang.\nUnd jetzt? Willst du noch weiter hinaufsteigen oder lieber sehen, welche Räumlichkeit sich dir hier auftut? [Benutze >hoch< bzw. >links<.]"
 		],
 		"commands": [
-			{ "key": "h", "text": "hoch", "action": "turm_og" },
-			{ "key": "l", "text": "links", "action": "lagerhaus_aus-turm-ug" }
+			{ "key": "l", "text": "links", "action": "lagerhaus_aus-turm-ug" },
+			{ "key": "h", "text": "hoch", "action": "turm_og" }
 		],
 		"hint": "Kannst du nicht lesen? >Hoch< bzw. >links<!"
 	},
@@ -280,7 +280,7 @@
 			"Du faßt wieder Mut und bedankst dich sehr herzlich bei dem alten Mann. Er geleitet dich bis zur Treppe und wünscht dir viel Glück. Du verabschiedest dich von ihm und gehst nun die Wendeltreppe wieder hinab."
 		],
 		"commands": [
-			{ "key": "r", "text": "runter", "set-condition": "has-magic-wand", "action": "burghof-switch" }
+			{ "key": "r", "text": "runter", "setCondition": "has-magic-wand", "action": "burghof-switch" }
 		],
 		"hint": "Geh hinunter."
 	},
@@ -293,7 +293,7 @@
 			"Als du gerade überlegst, ob du nicht erst etwas von den leckeren Sachen hier essen könntest, bevor du weitergehst, dringen plötzlich Gebrüll, schnelle Schritte und Waffengeklirr von unten aus der Wendeltreppe zu dir herauf! Man hat deine Flucht bemerkt!\nJetzt mußt du rasch entscheiden, wohin du fliehst!"
 		],
 		"commands": [
-			{ "key": "r", "text": "rechts", "set-condition": "visited-lagerhaus", "action": "stallungen_flucht" },
+			{ "key": "r", "text": "rechts", "setCondition": "visited-lagerhaus", "action": "stallungen_flucht" },
 			{ "key": "h", "text": "hoch", "action": "lagerhaus_tod" }
 		],
 		"hint": "Keine Zeit für Scherze! Du mußt fliehen!"
@@ -401,7 +401,7 @@
 		],
 		"commands": [
 			{ "condition": "has-magic-wand", "key": "enter", "text": "", "action": "burghof_has-magic-wand" },
-			{ "not-condition": "has-magic-wand", "key": "enter", "text": "", "set-condition": "visited-lagerhaus", "action": "burghof_no-magic-wand" }
+			{ "notCondition": "has-magic-wand", "key": "enter", "text": "", "setCondition": "visited-lagerhaus", "action": "burghof_no-magic-wand" }
 		]
 	},
 
@@ -413,11 +413,11 @@
 			"Du stehst auf dem Burghof und überlegst, wo du jetzt hingehen könntest. Es bieten sich gleich mehrere Richtungen an:\nLinks sind die Stallungen, auf der anderen Seite des Hofes liegt der Palas und rechts von dir befindet sich das Lagerhaus. Außerdem könntest du auf den Wehrgang steigen und sehen, ob du da irgendwie weiterkommst.\nGib deine Richtungswahl ein. [Benutze >hoch<, wenn du auf den Wehrgang willst.]"
 		],
 		"commands": [
-			{ "condition": "has-sword", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang_has-sword" },
-			{ "condition": "has-keys", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang_has-keys" },
-			{ "key": "r", "text": "rechts", "set-condition": "visited-lagerhaus", "action": "lagerhaus" },
-			{ "key": "l", "text": "links", "set-condition": "visited-stallungen", "action": "stallungen" },
-			{ "key": "w", "text": "weiter", "action": "palas" }
+			{ "key": "l", "text": "links", "setCondition": "visited-stallungen", "action": "stallungen" },
+			{ "key": "w", "text": "weiter", "action": "palas" },
+			{ "key": "r", "text": "rechts", "setCondition": "visited-lagerhaus", "action": "lagerhaus" },
+			{ "condition": "has-sword", "key": "h", "text": "hoch", "setCondition": "visited-wehrgang", "action": "wehrgang_has-sword" },
+			{ "condition": "has-keys", "key": "h", "text": "hoch", "setCondition": "visited-wehrgang", "action": "wehrgang_has-keys" }
 		],
 		"hint": "Laß den Blödsinn! Entscheide dich für eine Richtung."
 	},
@@ -441,9 +441,9 @@
 			"Nun entscheide, wohin du gehen willst: In den Palas, der rechts von dir steht, oder in die Stallungen, die sich auf der gegenüberliegenden Seite des Burghofes befinden? Wenn du lieber auf den Wehrgang steigen willst, gib >hoch< ein."
 		],
 		"commands": [
+			{ "key": "w", "text": "weiter", "setCondition": "visited-stallungen", "action": "stallungen" },
 			{ "key": "r", "text": "rechts", "action": "palas" },
-			{ "key": "w", "text": "weiter", "set-condition": "visited-stallungen", "action": "stallungen" },
-			{ "condition": "has-sword", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang_has-sword" },
+			{ "condition": "has-sword", "key": "h", "text": "hoch", "setCondition": "visited-wehrgang", "action": "wehrgang_has-sword" },
 			{ "condition": "no-weapons", "key": "h", "text": "hoch", "action": "wehrgang_tod" }
 		],
 		"hint": "Häremm! Könntest du dich bitte für eine Richtung entscheiden?"
@@ -457,10 +457,10 @@
 		],
 		"commands": [
 			{ "key": "l", "text": "links", "action": "palas" },
-			{ "not-condition": "visited-lagerhaus", "key": "w", "text": "weiter", "set-condition": "visited-lagerhaus", "action": "lagerhaus" },
-			{ "not-condition": "visited-wehrgang", "condition": "has-sword", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang_has-sword" },
-			{ "not-condition": "visited-wehrgang", "condition": "has-keys", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang_has-keys" },
-			{ "not-condition": "visited-wehrgang", "condition": "no-weapons", "key": "h", "text": "hoch", "action": "wehrgang_tod" }
+			{ "notCondition": "visited-lagerhaus", "key": "w", "text": "weiter", "setCondition": "visited-lagerhaus", "action": "lagerhaus" },
+			{ "notCondition": "visited-wehrgang", "condition": "has-sword", "key": "h", "text": "hoch", "setCondition": "visited-wehrgang", "action": "wehrgang_has-sword" },
+			{ "notCondition": "visited-wehrgang", "condition": "has-keys", "key": "h", "text": "hoch", "setCondition": "visited-wehrgang", "action": "wehrgang_has-keys" },
+			{ "notCondition": "visited-wehrgang", "condition": "no-weapons", "key": "h", "text": "hoch", "action": "wehrgang_tod" }
 		],
 		"hint": "Wohin? [>links<, >weiter< bzw. >hoch<]"
 	},
@@ -473,9 +473,9 @@
 		],
 		"commands": [
 			{ "key": "l", "text": "links", "action": "palas" },
-			{ "not-condition": "visited-wehrgang", "condition": "has-sword", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang_has-sword" },
-			{ "not-condition": "visited-wehrgang", "condition": "has-keys", "key": "h", "text": "hoch", "set-condition": "visited-wehrgang", "action": "wehrgang_has-keys" },
-			{ "not-condition": "visited-wehrgang", "condition": "no-weapons", "key": "h", "text": "hoch", "action": "wehrgang_tod" }
+			{ "notCondition": "visited-wehrgang", "condition": "has-sword", "key": "h", "text": "hoch", "setCondition": "visited-wehrgang", "action": "wehrgang_has-sword" },
+			{ "notCondition": "visited-wehrgang", "condition": "has-keys", "key": "h", "text": "hoch", "setCondition": "visited-wehrgang", "action": "wehrgang_has-keys" },
+			{ "notCondition": "visited-wehrgang", "condition": "no-weapons", "key": "h", "text": "hoch", "action": "wehrgang_tod" }
 		],
 		"hint": "Hast du denn immernoch nicht kapiert, wie’s geht?"
 	},
@@ -487,9 +487,9 @@
 			"Du läufst den ganzen Wehrgang wieder zurück, steigst die Stufen zum Burghof hinunter und mußt dich nun für eine neue Richtung entscheiden: Links sind die Stallungen, rechterhand befindet sich das Lagerhaus, und wenn du in den Palas möchtest, mußt du geradeaus [>weiter<] über den Burghof gehen."
 		],
 		"commands": [
-			{ "not-condition": "visited-lagerhaus", "key": "r", "text": "rechts", "set-condition": "visited-lagerhaus", "action": "lagerhaus" },
-			{ "not-condition": "visited-stallungen", "key": "l", "text": "links", "set-condition": "visited-stallungen", "action": "stallungen" },
-			{ "key": "w", "text": "weiter", "action": "palas" }
+			{ "notCondition": "visited-stallungen", "key": "l", "text": "links", "setCondition": "visited-stallungen", "action": "stallungen" },
+			{ "key": "w", "text": "weiter", "action": "palas" },
+			{ "notCondition": "visited-lagerhaus", "key": "r", "text": "rechts", "setCondition": "visited-lagerhaus", "action": "lagerhaus" }
 		],
 		"hint": "Eine klare, vernünftige Entscheidung, bitte."
 	},
@@ -501,9 +501,9 @@
 			"Du läufst den Wehrgang wieder zurück, vorbei an den ahnungslosen Wachen, steigst die Stufen zum Burghof hinunter und legst dort erst einmal deine Tarnung ab. Nun mußt du dich für eine neue Richtung entscheiden: Links sind die Stallungen, rechterhand befindet sich das Lagerhaus, und wenn du in den Palas möchtest, mußt du geradeaus [>weiter<] über den Burghof gehen."
 		],
 		"commands": [
-			{ "not-condition": "visited-lagerhaus", "key": "r", "text": "rechts", "set-condition": "visited-lagerhaus", "action": "lagerhaus" },
-			{ "not-condition": "visited-stallungen", "key": "l", "text": "links", "set-condition": "visited-stallungen", "action": "stallungen" },
-			{ "key": "w", "text": "weiter", "action": "palas" }
+			{ "notCondition": "visited-stallungen", "key": "l", "text": "links", "setCondition": "visited-stallungen", "action": "stallungen" },
+			{ "key": "w", "text": "weiter", "action": "palas" },
+			{ "notCondition": "visited-lagerhaus", "key": "r", "text": "rechts", "setCondition": "visited-lagerhaus", "action": "lagerhaus" }
 		],
 		"hint": "Eine klare, vernünftige Entscheidung, bitte."
 	},
@@ -564,8 +564,8 @@
 			"Nachdem du wieder zu Kräften gekommen bist, gehst du den Wehrgang entlang, bis du zu einem viereckigen Turm gelangst. Du trittst in das Innere des Turms und stehst vor einer Tür aus schwerem Holz, die in ein Turmgemach führen muß. Von außen ist ein eiserner Riegel davorgelegt. Eine Leiter führt außerdem in das Obergeschoß des Turms.\nWas tust du?"
 		],
 		"commands": [
-			{ "key": "h", "text": "hoch", "action": "wehrgang_turm" },
 			{ "key": "o", "text": "öffne Tür", "action": "wehrgang_verlies_has-sword" },
+			{ "key": "h", "text": "hoch", "action": "wehrgang_turm" },
 			{ "key": "z", "text": "zurück", "action": "burghof_vom-wehrgang_has-sword" }
 		]
 	},
@@ -588,8 +588,8 @@
 			"Und es klappt: Du wirst nicht erkannt! Innerlich frohlockend gehst du immer weiter, bis du zu einem viereckigen Turm gelangst. Du trittst in das Innere des Turms und stehst vor einer eisenbeschlagenen Tür, die in ein Turmgemach führen muß. Von außen ist ein schwerer Riegel mit Schloß davorgelegt. Eine Leiter führt außerdem in das Obergeschoß des Turms.\nWas tust du?"
 		],
 		"commands": [
-			{ "key": "h", "text": "hoch", "action": "wehrgang_turm" },
 			{ "key": "o", "text": "öffne Tür", "action": "wehrgang_verlies_has-keys" },
+			{ "key": "h", "text": "hoch", "action": "wehrgang_turm" },
 			{ "key": "z", "text": "zurück", "action": "burghof_vom-wehrgang_has-keys" }
 		]
 	},
@@ -767,7 +767,7 @@
 			{ "condition": "has-sword", "key": "o", "text": "öffne Tür", "action": null, "message": "Diese Tür ist verschlossen." },
 			{ "condition": "no-weapons", "key": "o", "text": "öffne Tür", "action": null, "message": "Diese Tür ist verschlossen." },
 			{ "condition": "has-magic-wand", "key": "w", "text": "weiter", "action": "vorzimmer_drache" },
-			{ "not-condition": "has-magic-wand", "key": "w", "text": "weiter", "set-condition": "not-visited-schlafzimmer", "action": "vorzimmer_kein-drache" }
+			{ "notCondition": "has-magic-wand", "key": "w", "text": "weiter", "setCondition": "not-visited-schlafzimmer", "action": "vorzimmer_kein-drache" }
 		]
 	},
 
@@ -779,7 +779,7 @@
 		],
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "schatzkammer" },
-			{ "key": "z", "text": "zurück", "set-condition": "visited-schlafzimmer", "action": "vorzimmer_kein-drache" }
+			{ "key": "z", "text": "zurück", "setCondition": "visited-schlafzimmer", "action": "vorzimmer_kein-drache" }
 		],
 		"hint": "Versuche, die kleine Tür zu öffnen, oder geh wieder aus dem Raum hinaus."
 	},
