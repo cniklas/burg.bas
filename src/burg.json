@@ -9,7 +9,7 @@
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "kerker_10" }
 		],
-		"hint": "Ich sagte: >Öffne die Tür!< [Eventuell Artikel weglassen.]"
+		"hint": "Ich sagte: Öffne die Tür!"
 	},
 
 	{
@@ -307,7 +307,7 @@
 			"Als du gerade überlegst, ob du nicht erst etwas von den leckeren Sachen hier essen könntest, bevor du weitergehst, dringen plötzlich Gebrüll, schnelle Schritte und Waffengeklirr von unten aus der Wendeltreppe zu dir herauf! Schon wieder bist du bemerkt worden!",
 			[
 				{ "condition": "has-sword", "story": "Was nun? Stellst du dich der bewaffneten Schar mutig entgegen und versuchst, sie zu erledigen, oder fliehst du lieber? [Gib >kämpfen< bzw. >fliehen< ein.]" },
-				{ "condition": "has-keys", "story": "Da du nicht ausreichend bewaffnet bist, um es mit einer Schar Wachen aufzunehmen, beschließt du zu fliehen. Läufst du zurück auf den Burghof oder versuchst du, dich auf dem Dachboden zu verstecken? [>zurück< bzw. >hoch<, das müßte langsam klar sein.]" }
+				{ "condition": "has-keys", "story": "Da du nicht ausreichend bewaffnet bist, um es mit einer Schar Wachen aufzunehmen, beschließt du zu fliehen. Läufst du zurück auf den Burghof oder versuchst du, dich auf dem Dachboden zu verstecken?" }
 			]
 		],
 		"commands": [
@@ -462,14 +462,14 @@
 			{ "notCondition": "visited-wehrgang", "condition": "has-keys", "key": "h", "text": "hoch", "setCondition": "visited-wehrgang", "action": "wehrgang_has-keys" },
 			{ "notCondition": "visited-wehrgang", "condition": "no-weapons", "key": "h", "text": "hoch", "action": "wehrgang_tod" }
 		],
-		"hint": "Wohin? [>links<, >weiter< bzw. >hoch<]"
+		"hint": "Wohin?"
 	},
 
 	{
 		"id": "burghof_aus-stallungen-flucht",
 		"line": 659,
 		"story": [
-			"Dann stürzen sie weiter, weil sie dich im Palas wähnen. Du wartest noch eine Weile, dann kriechst du aus deinem Versteck und gehst auf den Burghof hinaus.\nNun entscheide, wo du als nächstes hingehen möchtest. Bist du mutig und erkundest den Palas, den Sitz UBOLZIOs? Oder willst du lieber hinauf auf den Wehrgang? Gib >links< bzw. >hoch< ein."
+			"Dann stürzen sie weiter, weil sie dich im Palas wähnen. Du wartest noch eine Weile, dann kriechst du aus deinem Versteck und gehst auf den Burghof hinaus.\nNun entscheide, wo du als nächstes hingehen möchtest. Bist du mutig und erkundest UBOLZIOs Palas? Oder willst du lieber hinauf auf den Wehrgang? Gib >links< bzw. >hoch< ein."
 		],
 		"commands": [
 			{ "key": "l", "text": "links", "action": "palas" },

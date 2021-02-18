@@ -6,27 +6,40 @@
 
 		<article class="story">
 			<template v-for="paragraph in scene.story">
-				<div v-if="typeof paragraph === 'string'" class="text-preline">{{ paragraph }}</div>
+				<p v-if="typeof paragraph === 'string'" class="text-preline">{{ paragraph }}</p>
 				<template v-else>
 					<template v-for="section in paragraph">
-						<div :class="{disabled: isDisabled(section)}" class="text-preline">{{ section.story }}</div>
+						<p :class="{disabled: isDisabled(section)}" class="text-preline">{{ section.story }}</p>
 					</template>
 				</template>
 			</template>
 		</article>
 
 		<div class="actions">
-			<!-- <button type="button" @click="next">weiter</button> -->
-			<button type="button" v-for="command in scene.commands" :disabled="isDisabled(command)" @click="handleCommand(command)">
-				{{ command.text || 'weiter' }}
-				{{ command.condition ? `[${command.condition}]` : null }}
-				{{ command.notCondition ? `[NOT ${command.notCondition}]` : null }}
-			</button>
+			<div class="button-wrapper">
+				<button type="button" v-for="command in typeCommands" :disabled="isDisabled(command)" @click="handleCommand(command)" style="font-family:'Courier New',Courier,monospace;font-size:1rem;border-style:dashed">
+					{{ command.text }}
+					{{ command.condition ? `[${command.condition}]` : null }}
+					{{ command.notCondition ? `[NOT ${command.notCondition}]` : null }}
+				</button>
+			</div>
+			<div class="button-wrapper">
+				<button type="button" v-for="command in clickCommands" :disabled="isDisabled(command)" @click="handleCommand(command)">
+					{{ command.text || 'weiter' }}
+					{{ command.condition ? `[${command.condition}]` : null }}
+					{{ command.notCondition ? `[NOT ${command.notCondition}]` : null }}
+				</button>
+			</div>
+
+			<div v-show="scene.hint" class="hint">{{ scene.hint }}</div>
+			<div class="input-wrapper">
+				<input type="text" v-model.trim="typed" class="input" />
+			</div>
 		</div>
 
-		<div v-show="scene.hint" class="hint">{{ scene.hint }}</div>
-
-		<pre><code v-for="condition in conditions">{{ `${condition}\n` }}</code></pre>
+		<div class="debug">
+			<pre><code v-for="condition in conditions">{{ `${condition}\n` }}</code></pre>
+		</div>
 	</section>
 </template>
 
@@ -34,23 +47,20 @@
 import burg from './burg.json'
 import { ref, computed } from 'vue'
 
-const getSceneById = id => burg.find(scene => scene.id === id)
-
 let sceneId = ref('start')
+const getSceneById = id => burg.find(scene => scene.id === id)
 const scene = computed(() => getSceneById(sceneId.value))
+
+const typed = ref()
+
+const clickCommandsList = ['hoch', 'runter', 'links', 'rechts', 'weiter', 'zurück']
+const clickCommands = computed(() => scene.value?.commands?.filter(cmd => clickCommandsList.includes(cmd.text) || cmd.key === 'enter') ?? [])
+const typeCommands = computed(() => scene.value?.commands?.filter(cmd => !clickCommandsList.includes(cmd.text) && cmd.key !== 'enter') ?? [])
+
 const conditions = ref([])
-
-// const next = () => {
-// 	// first valid command
-// 	sceneId.value = scene.value.commands?.find(command => command.action !== null && !command.action.endsWith('_tod'))?.action ?? 'start'
-// 	// last valid command
-// 	// sceneId.value = scene.value.commands?.filter(command => command.action !== null && !command.action.endsWith('_tod'))?.slice(-1)[0].action ?? 'start'
-// }
-
 // const findCondition = (term) => {
 // 	return conditions.value.find(c => c === term)
 // }
-
 const hasCondition = (term) => {
 	return conditions.value.includes(term)
 }
@@ -84,6 +94,7 @@ const handleAction = command => {
 		resetGame()
 	}
 
+	typed.value = ''
 	sceneId.value = command.action
 }
 
@@ -145,8 +156,14 @@ button:disabled {
 	cursor: initial;
 }
 
+.debug {
+	font-family: 'Courier New', Courier, monospace;
+	outline: 2px dashed deeppink;
+}
+
 #app {
-	font-family: Avenir, Helvetica, Arial, sans-serif;
+	/* font-family: Avenir, Helvetica, Arial, sans-serif; */
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-align: center;
@@ -157,13 +174,19 @@ button:disabled {
 	max-width: 720px;
 }
 
+.story,
 .actions {
-	margin-top: 2rem;
+	margin: 2rem 0;
+}
+
+.button-wrapper,
+.hint,
+.input-wrapper {
+	margin: 1rem 0;
 }
 
 .hint {
 	font-style: italic;
-	margin-top: 2rem;
 }
 
 .story {
