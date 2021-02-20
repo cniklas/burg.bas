@@ -695,7 +695,8 @@
 		"id": "palas",
 		"line": 692,
 		"story": [
-			"Du gehst die breiten Stufen zum Palas hinauf und öffnest die mächtige Portaltür, in die eine dämonische Fratze hineingeschnitzt ist. Nun stehst du in einem breiten, gewölbten Gang, der sich bis zur anderen Seite des Gebäudes hinzieht und dort einen Knick nach rechts macht. Aus der Wand zu deiner Rechten ragen einige Eisenringe, worin Fackeln stecken. Eine Steintafel trägt die Inschrift: „Diesen Palas errichtete der große Baumeister DEWITT auf Wunsch seiner Majestät König UBOLZIOs.“\nZu deiner Linken befindet sich eine Tür, die mit festen Eisenbändern beschlagen ist. Dort hinten, wo der Gang nach rechts weiterführt, ist noch eine zweite Tür aus einfachem, dunklem Holz."
+			"Du gehst die breiten Stufen zum Palas hinauf und öffnest die mächtige Portaltür, in die eine dämonische Fratze hineingeschnitzt ist. Nun stehst du in einem breiten, gewölbten Gang, der sich bis zur anderen Seite des Gebäudes hinzieht und dort einen Knick nach rechts macht. Aus der Wand zu deiner Rechten ragen einige Eisenringe, worin Fackeln stecken. Eine Steintafel trägt die Inschrift: „Diesen Palas errichtete der große Baumeister DEWITT auf Wunsch seiner Majestät König UBOLZIOs.“",
+			"Zu deiner Linken befindet sich eine Tür, die mit festen Eisenbändern beschlagen ist. Dort hinten, wo der Gang nach rechts weiterführt, ist noch eine zweite Tür aus einfachem, dunklem Holz."
 		],
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "waffenkammer" }
@@ -830,7 +831,7 @@
 		"line": 900,
 		"story": [
 			"Du folgst dem Gang bis ans Ende und betrittst schließlich den Vorraum zum Thronsaal. Vor der großen Tür, die dort hineinführt, liegt – ein dreiköpfiger Drache! Genau so, wie es dir der alte Mann aus dem Turmzimmer gesagt hatte.",
-			"Der Drache bemerkt dich und richtet seine drei Hälse auf. Es ist ein ekelhaftes, schuppiges, schmutzigbraunes Untier mit vier großen Pranken. Über den gesamten Rücken zieht sich ein Kamm spitzer Stacheln, ebenso über den Schwanz. Seine Augen leuchten gierig, und aus seinen Mäulern trieft der Speichel, als er dich da so verzagt stehen sieht. Du fragst dich, wie du je dazu kommen sollst, ihn mit dem Stab anzurühren, ohne vorher von ihm verschlungen zu werden.\nDu gehst langsam auf ihn zu und hälst dabei den Schild schützend vor dich, mit der anderen Hand faßt du dein Schwert und den Stab."
+			"Der Drache bemerkt dich und richtet seine drei Hälse auf. Es ist ein ekelhaftes, schuppiges, schmutzigbraunes Untier mit vier großen Pranken. Über den gesamten Rücken zieht sich ein Kamm spitzer Stacheln, ebenso über den Schwanz. Seine Augen leuchten gierig, und aus seinen Mäulern trieft der Speichel, als er dich da so verzagt stehen sieht. Du fragst dich, wie du je dazu kommen sollst, ihn mit dem Stab anzurühren, ohne vorher von ihm verschlungen zu werden."
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "vorzimmer_drache-kampf" }
@@ -841,7 +842,7 @@
 		"id": "vorzimmer_drache-kampf",
 		"line": 913,
 		"story": [
-			"Der Drache läßt dich noch ein Stück herankommen, dann springt er auf dich zu und brüllt dabei laut aus allen drei Schlünden. Du schreist auch, allerdings vor Entsetzen, und fuchtelst wild mit Schwert, obwohl du weißt, daß das nichts nützt …"
+			"Du gehst langsam auf ihn zu und hältst dabei den Schild schützend vor dich, mit der anderen Hand faßt du dein Schwert und den Stab.\nDer Drache läßt dich noch ein Stück herankommen, dann springt er auf dich zu und brüllt dabei laut aus allen drei Schlünden. Du schreist auch, allerdings vor Entsetzen, und fuchtelst wild mit Schwert, obwohl du weißt, daß das nichts nützt …"
 		],
 		"music": "<<<t125msl16cccccccccd-cd-ee-d-e-l4c",
 		"commands": [

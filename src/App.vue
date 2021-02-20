@@ -2,8 +2,6 @@
 	<img alt="Vue logo" src="./assets/logo.png" />
 
 	<section>
-		<h3>{{ sceneId }}</h3>
-
 		<article class="story">
 			<template v-for="paragraph in scene.story">
 				<p v-if="typeof paragraph === 'string'" class="text-preline">{{ paragraph }}</p>
@@ -32,12 +30,13 @@
 		</div>
 
 		<div class="debug">
+			<div>{{ sceneId }}</div>
 			<div>
-				<button type="button" v-for="command in noClickCommands" :disabled="isDisabled(command)" style="font-family:'Courier New',Courier,monospace;font-size:1rem;border-style:dashed">
+				<span v-for="command in noClickCommands" class="as-button" :class="{disabled: isDisabled(command)}">
 					{{ command.text }}
 					{{ command.condition ? `[${command.condition}]` : null }}
 					{{ command.notCondition ? `[NOT ${command.notCondition}]` : null }}
-				</button>
+				</span>
 			</div>
 			<pre><code v-for="condition in conditions">{{ `${condition}\n` }}</code></pre>
 		</div>
@@ -135,7 +134,6 @@ const cleanInput = (string) => {
 
 const handleInput = () => {
 	const input = cleanInput(typed.value)
-	// console.log(input, input.length)
 
 	let command
 	if (input === 'weiter') {
@@ -146,7 +144,6 @@ const handleInput = () => {
 		command = scene.value.commands?.find(cmd => !isDisabled(cmd) && cmd.text.toLowerCase() === input)
 	}
 
-	console.log(command)
 	if (command === undefined) {
 		hint.value = scene.value.hint || ''
 		showHint.value = true
@@ -163,6 +160,10 @@ html {
 	color: #cbd5e0;
 }
 
+pre:empty {
+	margin: 0;
+}
+
 input {
 	font-family: inherit;
 	font-size: inherit;
@@ -171,7 +172,6 @@ input {
 
 button {
 	background-color: #1a202c;
-	color: #a0aec0;
 	color: cadetblue;
 	font-family: inherit;
 	font-size: inherit;
@@ -183,31 +183,22 @@ button {
 	user-select: none;
 }
 
-/* button:focus, */
-button:not(:disabled):hover {
-	color: #e2e8f0;
-}
-
 button:disabled {
 	opacity: .4;
 	cursor: initial;
 }
 
-.debug {
-	font-family: 'Courier New', Courier, monospace;
-	outline: 2px dashed deeppink;
+/* button:focus, */
+button:not(:disabled):hover {
+	color: #e2e8f0;
 }
 
 #app {
-	/* font-family: Avenir, Helvetica, Arial, sans-serif; */
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	font-family: Menlo, 'DejaVu Sans Mono', 'Lucida Console', monospace;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-align: center;
-	/* color: #2c3e50; */
-	margin-top: 60px;
-
 	margin: 60px auto 0;
 	max-width: 720px;
 }
@@ -217,14 +208,10 @@ button:disabled {
 	margin: 2rem 0;
 }
 
-.button-wrapper,
 .hint,
+.button-wrapper,
 .input-wrapper {
 	margin: 1rem 0;
-}
-
-.hint {
-	font-style: italic;
 }
 
 .story {
@@ -237,6 +224,32 @@ button:disabled {
 }
 
 .story .disabled {
+	opacity: .35;
+}
+
+.hint {
+	font-style: italic;
+}
+
+.debug {
+	font-family: 'Courier New', Courier, monospace;
+	border: 2px dashed deeppink;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	max-width: 720px;
+}
+
+.debug > * {
+	margin: .75rem 0;
+}
+
+.as-button {
+	display: inline-block;
+	margin: 0 .5rem;
+}
+
+.as-button .disabled {
 	opacity: .35;
 }
 </style>
