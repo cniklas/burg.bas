@@ -1,16 +1,45 @@
 <template>
-	<img alt="Vue logo" src="./assets/logo.png" />
+<pre class="ascii-text">
+88                                                 88
+88                                                 88
+88                                                 88
+88,dPPYba,  88       88 8b,dPPYba,  ,adPPYb,d8     88,dPPYba,  ,adPPYYba, ,adPPYba,
+88P'    "8a 88       88 88P'   "Y8 a8"    `Y88     88P'    "8a ""     `Y8 I8[    ""
+88       d8 88       88 88         8b       88     88       d8 ,adPPPPP88  `"Y8ba,
+88b,   ,a8" "8a,   ,a88 88         "8a,   ,d88 888 88b,   ,a8" 88,    ,88 aa    ]8I
+8Y"Ybbd8"'   `"YbbdP'Y8 88          `"YbbdP"Y8 888 8Y"Ybbd8"'  `"8bbdP"Y8 `"YbbdP"'
+                                    aa,    ,88
+                                     "Y8bbdP"
+</pre>
+
+<!-- <pre class="ascii-drawing">
+▓▓▓
+</pre> -->
 
 	<section>
 		<article class="story">
 			<template v-for="paragraph in scene.story">
 				<p v-if="typeof paragraph === 'string'" class="text-preline">{{ paragraph }}</p>
+
 				<template v-else>
 					<template v-for="section in paragraph">
 						<p :class="{disabled: isDisabled(section)}" class="text-preline">{{ section.story }}</p>
 					</template>
 				</template>
 			</template>
+
+			<!-- <div v-if="scene.delayed" class="delayed" :class="{animated}" :style="`transition-delay:${scene.delayed.delay}ms`"> -->
+			<div v-if="scene.delayed">
+				<template v-for="paragraph in scene.delayed.story">
+					<p v-if="typeof paragraph === 'string'" class="text-preline">{{ paragraph }}</p>
+
+					<template v-else>
+						<template v-for="section in paragraph">
+							<p :class="{disabled: isDisabled(section)}" class="text-preline">{{ section.story }}</p>
+						</template>
+					</template>
+				</template>
+			</div>
 		</article>
 
 		<div class="actions">
@@ -45,11 +74,18 @@
 
 <script setup>
 import burg from './burg.json'
-import { ref, computed } from 'vue'
+import { ref, computed/* , onMounted */ } from 'vue'
 
 let sceneId = ref('start')
 const getSceneById = id => burg.find(scene => scene.id === id)
 const scene = computed(() => getSceneById(sceneId.value))
+
+// const animated = ref(false)
+// const animateIn = () => {
+// 	setTimeout(() => {
+// 		animated.value = true
+// 	}, 100)
+// }
 
 const typed = ref('')
 
@@ -95,7 +131,10 @@ const handleAction = command => {
 	showHint.value = false
 	hint.value = ''
 	typed.value = ''
+	// animated.value = false
 	sceneId.value = command.action
+
+	// animateIn()
 	document.querySelector('.input').focus()
 }
 
@@ -152,6 +191,10 @@ const handleInput = () => {
 
 	handleCommand(command)
 }
+
+// onMounted(() => {
+// 	animateIn()
+// })
 </script>
 
 <style>
@@ -198,7 +241,6 @@ button:not(:disabled):hover {
 	font-family: Menlo, 'DejaVu Sans Mono', 'Lucida Console', monospace;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
 	margin: 60px auto 0;
 	max-width: 720px;
 }
@@ -208,14 +250,14 @@ button:not(:disabled):hover {
 	margin: 2rem 0;
 }
 
+.actions {
+	text-align: center;
+}
+
 .hint,
 .button-wrapper,
 .input-wrapper {
 	margin: 1rem 0;
-}
-
-.story {
-	text-align: initial;
 }
 
 .text-preline {
@@ -227,13 +269,31 @@ button:not(:disabled):hover {
 	opacity: .35;
 }
 
+/*
+.delayed {
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 180ms ease-out;
+}
+
+.delayed.animated {
+	visibility: visible;
+	opacity: 1;
+} */
+
 .hint {
 	font-style: italic;
 }
 
+.input {
+	width: 50%;
+	padding: 0.5rem 0.5rem;
+}
+
 .debug {
 	font-family: 'Courier New', Courier, monospace;
-	border: 2px dashed deeppink;
+	text-align: center;
+	border: 2px dashed;
 	position: fixed;
 	bottom: 0;
 	width: 100%;
@@ -249,7 +309,11 @@ button:not(:disabled):hover {
 	margin: 0 .5rem;
 }
 
-.as-button .disabled {
+.as-button.disabled {
 	opacity: .35;
+}
+
+.ascii-drawing {
+	font-size: 42px;
 }
 </style>

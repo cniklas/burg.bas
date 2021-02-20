@@ -3,9 +3,14 @@
 		"id": "start",
 		"line": 76,
 		"story": [
-			"DU SITZT IM KERKER DES GRAUSAMEN, TYRANNISCHEN KÖNIGS UBOLZIO …",
-			"… denn du wurdest beim Äpfelklauen in den königlichen Obstgärten erwischt und zu 10 Jahren Kerker verknackt. Schöner Mist!!!\nDoch es ist dir inzwischen endlich gelungen, mit einer schäbigen Nagelfeile das verflixte Schloß aufzubekommen. Jetzt öffne die Kerkertür …"
+			"DU SITZT IM KERKER DES GRAUSAMEN, TYRANNISCHEN KÖNIGS UBOLZIO …"
 		],
+		"delayed": {
+			"delay": 2000,
+			"story": [
+				"… denn du wurdest beim Äpfelklauen in den königlichen Obstgärten erwischt und zu 10 Jahren Kerker verknackt. Schöner Mist!!!\nDoch es ist dir inzwischen endlich gelungen, mit einer schäbigen Nagelfeile das verflixte Schloß aufzubekommen. Jetzt öffne die Kerkertür …"
+			]
+		},
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "kerker_10" }
 		],
@@ -58,9 +63,14 @@
 		"id": "kerker_21",
 		"line": 108,
 		"story": [
-			"Du hebst also den Zettel auf, und darauf steht in bunten Buchstaben:\nLEST MICKY-MAUS!",
-			"Du wirfst den Wisch ärgerlich weg und beschließt zu gehen."
+			"Du hebst also den Zettel auf, und darauf steht in bunten Buchstaben:\nLEST MICKY-MAUS!"
 		],
+		"delayed": {
+			"delay": 2000,
+			"story": [
+				"Du wirfst den Wisch ärgerlich weg und beschließt zu gehen."
+			]
+		},
 		"commands": [
 			{ "key": "l", "text": "links", "action": "turm_ug" },
 			{ "key": "w", "text": "weiter", "action": "kerker_30" },
@@ -72,9 +82,14 @@
 		"id": "kerker_21a",
 		"line": 108,
 		"story": [
-			"Du hebst also den Zettel auf, und darauf steht in bunten Buchstaben:\nLEST MICKY-MAUS!",
-			"Du wirfst den Wisch ärgerlich weg und beschließt zu gehen."
+			"Du hebst also den Zettel auf, und darauf steht in bunten Buchstaben:\nLEST MICKY-MAUS!"
 		],
+		"delayed": {
+			"delay": 2000,
+			"story": [
+				"Du wirfst den Wisch ärgerlich weg und beschließt zu gehen."
+			]
+		},
 		"commands": [
 			{ "key": "l", "text": "links", "action": "kerker_30" },
 			{ "key": "w", "text": "weiter", "action": "kerker_tod" },
@@ -306,13 +321,13 @@
 			"Du läufst behende über den Burghof zum Lagerhaus, öffnest schnell das große Tor hindurch. Du betrittst eine große Halle. Du schaust dich um und entdeckst eine Vielzahl an Lebensmitteln aber auch Boote, behauene Steine, Werkzeuge verschiedenster Art, aufgestapelte Holzbohlen, Stoffballen, Tierhäute und noch einige andere Sachen.\nAn einem Ende der Halle - rechts von dir - steht eine breite Holztreppe, die zum Dachboden führt. Links, am anderen Ende, siehst du den Eingang zu einer Wendeltreppe, die man sowohl hinauf-, als auch hinabgehen kann.",
 			"Als du gerade überlegst, ob du nicht erst etwas von den leckeren Sachen hier essen könntest, bevor du weitergehst, dringen plötzlich Gebrüll, schnelle Schritte und Waffengeklirr von unten aus der Wendeltreppe zu dir herauf! Schon wieder bist du bemerkt worden!",
 			[
-				{ "condition": "has-sword", "story": "Was nun? Stellst du dich der bewaffneten Schar mutig entgegen und versuchst, sie zu erledigen, oder fliehst du lieber? [Gib >kämpfen< bzw. >fliehen< ein.]" },
+				{ "condition": "has-sword", "story": "Was nun? Stellst du dich der bewaffneten Schar mutig entgegen und versuchst, sie zu erledigen, oder fliehst du lieber? [Gib >kämpfe< bzw. >flieh< ein.]" },
 				{ "condition": "has-keys", "story": "Da du nicht ausreichend bewaffnet bist, um es mit einer Schar Wachen aufzunehmen, beschließt du zu fliehen. Läufst du zurück auf den Burghof oder versuchst du, dich auf dem Dachboden zu verstecken?" }
 			]
 		],
 		"commands": [
-			{ "condition": "has-sword", "key": "k", "text": "kämpfen", "action": "lagerhaus_kampf" },
-			{ "condition": "has-sword", "key": "f", "text": "fliehen", "action": "lagerhaus_flucht" },
+			{ "condition": "has-sword", "key": "k", "text": "kämpfe", "action": "lagerhaus_kampf" },
+			{ "condition": "has-sword", "key": "f", "text": "flieh", "action": "lagerhaus_flucht" },
 			{ "condition": "has-keys", "key": "h", "text": "hoch", "action": "lagerhaus_tod" },
 			{ "condition": "has-keys", "key": "z", "text": "zurück", "action": "stallungen_flucht" }
 		]
@@ -357,11 +372,11 @@
 		"line": 321,
 		"story": [
 			"Du beschließt, die Schergen UBOLZIOs fertigzumachen! Natürlich willst du dich nicht unbedingt auf einen Nahkampf mit 8 Kerlen gleichzeitig einlassen. Schnell und entschlossen packst du eines von den Fässern, die gleich neben dir stehen, und stößt es die Wendeltreppe hinunter, noch bevor deine Gegner den Treppenausgang erreicht haben. Es poltert lautstark die Treppe hinunter und wenige Sekunden später hörst du das Geschrei und Gefluche der Wachen. Das hat geklappt! Ein paar Augenblicke später ist es einigen gelungen, doch noch bis zu vorzudringen. Du achtest darauf, dich möglichst nicht von der Wendeltreppe zurückdrängen zu lassen, denn der Ausgang ist so schmal, daß immer nur einer von ihnen hindurchpaßt. Trotzdem gerätst du ganz schön ins Schwitzen, denn deine Gegner sind nicht von Pappe!",
-			"Willst du lieber den Rückzug antreten oder weiterkämpfen? [>kämpfen< bzw. >fliehen< eingeben.]"
+			"Willst du lieber den Rückzug antreten oder weiterkämpfen? [>kämpfe< bzw. >flieh< eingeben.]"
 		],
 		"commands": [
-			{ "key": "k", "text": "kämpfen", "action": "lagerhaus_kampf-sieg" },
-			{ "key": "f", "text": "fliehen", "action": "lagerhaus_kampf-tod" }
+			{ "key": "k", "text": "kämpfe", "action": "lagerhaus_kampf-sieg" },
+			{ "key": "f", "text": "flieh", "action": "lagerhaus_kampf-tod" }
 		],
 		"hint": "Willst du lieber den Rückzug antreten oder weiterkämpfen?"
 	},
@@ -409,9 +424,14 @@
 		"id": "burghof_has-sword-or-keys",
 		"line": 188,
 		"story": [
-			"Nun stehst du im Freien. Zum Glück ist niemand in der Nähe. Erstmal atmest du tief durch und genießt die frische Luft, die du während deines langen Kerkeraufenthaltes so vermißt hast.",
-			"Du stehst auf dem Burghof und überlegst, wo du jetzt hingehen könntest. Es bieten sich gleich mehrere Richtungen an:\nLinks sind die Stallungen, auf der anderen Seite des Hofes liegt der Palas und rechts von dir befindet sich das Lagerhaus. Außerdem könntest du auf den Wehrgang steigen und sehen, ob du da irgendwie weiterkommst.\nGib deine Richtungswahl ein. [Benutze >hoch<, wenn du auf den Wehrgang willst.]"
+			"Nun stehst du im Freien. Zum Glück ist niemand in der Nähe. Erstmal atmest du tief durch und genießt die frische Luft, die du während deines langen Kerkeraufenthaltes so vermißt hast."
 		],
+		"delayed": {
+			"delay": 4000,
+			"story": [
+				"Du stehst auf dem Burghof und überlegst, wo du jetzt hingehen könntest. Es bieten sich gleich mehrere Richtungen an:\nLinks sind die Stallungen, auf der anderen Seite des Hofes liegt der Palas und rechts von dir befindet sich das Lagerhaus. Außerdem könntest du auf den Wehrgang steigen und sehen, ob du da irgendwie weiterkommst.\nGib deine Richtungswahl ein. [Benutze >hoch<, wenn du auf den Wehrgang willst.]"
+			]
+		},
 		"commands": [
 			{ "key": "l", "text": "links", "setCondition": "visited-stallungen", "action": "stallungen" },
 			{ "key": "w", "text": "weiter", "action": "palas" },
@@ -560,9 +580,15 @@
 		"id": "wehrgang_has-sword_10",
 		"line": 444,
 		"story": [
-			"Es kommt zu einem langen, harten Kampf, der dir viele Wunden einbringt, obschon du die meisten Hiebe deiner Gegner mit dem Schild auffangen kannst.\nIrgendwann endlich endet das blutige Gefecht. Du läßt das Schwert ermattet sinken und lehnst dich erschöpft gegen eine Zinne.",
-			"Nachdem du wieder zu Kräften gekommen bist, gehst du den Wehrgang entlang, bis du zu einem viereckigen Turm gelangst. Du trittst in das Innere des Turms und stehst vor einer Tür aus schwerem Holz, die in ein Turmgemach führen muß. Von außen ist ein eiserner Riegel davorgelegt. Eine Leiter führt außerdem in das Obergeschoß des Turms.\nWas tust du?"
+			"Es kommt zu einem langen, harten Kampf, der dir viele Wunden einbringt, obschon du die meisten Hiebe deiner Gegner mit dem Schild auffangen kannst.\nIrgendwann endlich endet das blutige Gefecht. Du läßt das Schwert ermattet sinken und lehnst dich erschöpft gegen eine Zinne."
+
 		],
+		"delayed": {
+			"delay": 6000,
+			"story": [
+				"Nachdem du wieder zu Kräften gekommen bist, gehst du den Wehrgang entlang, bis du zu einem viereckigen Turm gelangst. Du trittst in das Innere des Turms und stehst vor einer Tür aus schwerem Holz, die in ein Turmgemach führen muß. Von außen ist ein eiserner Riegel davorgelegt. Eine Leiter führt außerdem in das Obergeschoß des Turms.\nWas tust du?"
+			]
+		},
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "wehrgang_verlies_has-sword" },
 			{ "key": "h", "text": "hoch", "action": "wehrgang_turm" },
@@ -612,9 +638,14 @@
 		"id": "wehrgang_verlies_has-sword",
 		"line": 487,
 		"story": [
-			"Du hast dich entschlossen, die Tür zu öffnen, denn du willst wissen, was sich dahinter verbirgt. Schwert und Schild legst du beiseite, denn du brauchst beide Hände, um den schweren Riegel zu bewegen. Er sitzt verdammt fest, und du mußt erst eine Weile rucken und rütteln, bis du ihn endlich wegbekommst. Dementsprechend bist du gespannt auf das, was dich nun erwarten wird. Du ziehst die Tür auf und …",
-			"… vor dir steht eine wunderschöne, junge Maid!\nSie erschrickt zuerst, weil du ein sehr wildes Bild abgibst, was jedoch vom Kampfe herrührt. Dann aber faßt sie Vertrauen zu dir, weil du ihr freundlich und offen begegnest. Sie erzählt dir, daß sie von UBOLZIO geraubt wurde und er sie hier eingesperrt hat, weil sie sich geweigert hatte, seine Geliebte zu werden. Sie fleht dich an, sie aus der Gewalt UBOLZIOs zu befreien.\nHilfst du ihr?"
+			"Du hast dich entschlossen, die Tür zu öffnen, denn du willst wissen, was sich dahinter verbirgt. Schwert und Schild legst du beiseite, denn du brauchst beide Hände, um den schweren Riegel zu bewegen. Er sitzt verdammt fest, und du mußt erst eine Weile rucken und rütteln, bis du ihn endlich wegbekommst. Dementsprechend bist du gespannt auf das, was dich nun erwarten wird. Du ziehst die Tür auf und …"
 		],
+		"delayed": {
+			"delay": 6000,
+			"story": [
+				"… vor dir steht eine wunderschöne, junge Maid!\nSie erschrickt zuerst, weil du ein sehr wildes Bild abgibst, was jedoch vom Kampfe herrührt. Dann aber faßt sie Vertrauen zu dir, weil du ihr freundlich und offen begegnest. Sie erzählt dir, daß sie von UBOLZIO geraubt wurde und er sie hier eingesperrt hat, weil sie sich geweigert hatte, seine Geliebte zu werden. Sie fleht dich an, sie aus der Gewalt UBOLZIOs zu befreien.\nHilfst du ihr?"
+			]
+		},
 		"commands": [
 			{ "key": "j", "text": "ja", "action": "wehrgang_verlies_has-sword_10" },
 			{ "key": "n", "text": "nein", "action": "wehrgang_verlies-tod" }
@@ -648,9 +679,14 @@
 		"id": "wehrgang_verlies_has-keys",
 		"line": 603,
 		"story": [
-			"Du hast dich entschlossen, die Tür zu öffnen, denn du willst wissen, was sich dahinter verbirgt. Du holst den Schlüsselbund aus deiner Tasche und probierst damit solange herum, bis du das Schloß aufbekommen hast. Du schiebst den Riegel zur Seite und bist sehr gespannt auf das, was dich nun erwarten wird. Du ziehst die Tür auf und …",
-			"… vor dir steht eine wunderschöne, junge Maid!\nSie erschrickt zuerst, weil du die Kleidung der Burgwachen trägst. Dann aber faßt sie Vertrauen zu dir, weil du ihr freundlich und offen begegnest. Sie erzählt dir, daß sie von UBOLZIO geraubt wurde und er sie hier eingesperrt hat, weil sie sich geweigert hatte, seine Geliebte zu werden. Sie fleht dich an, sie aus der Gewalt UBOLZIOs zu befreien.\nHilfst du ihr?"
+			"Du hast dich entschlossen, die Tür zu öffnen, denn du willst wissen, was sich dahinter verbirgt. Du holst den Schlüsselbund aus deiner Tasche und probierst damit solange herum, bis du das Schloß aufbekommen hast. Du schiebst den Riegel zur Seite und bist sehr gespannt auf das, was dich nun erwarten wird. Du ziehst die Tür auf und …"
 		],
+		"delayed": {
+			"delay": 6000,
+			"story": [
+				"… vor dir steht eine wunderschöne, junge Maid!\nSie erschrickt zuerst, weil du die Kleidung der Burgwachen trägst. Dann aber faßt sie Vertrauen zu dir, weil du ihr freundlich und offen begegnest. Sie erzählt dir, daß sie von UBOLZIO geraubt wurde und er sie hier eingesperrt hat, weil sie sich geweigert hatte, seine Geliebte zu werden. Sie fleht dich an, sie aus der Gewalt UBOLZIOs zu befreien.\nHilfst du ihr?"
+			]
+		},
 		"commands": [
 			{ "key": "j", "text": "ja", "action": "wehrgang_verlies_has-keys_10" },
 			{ "key": "n", "text": "nein", "action": "wehrgang_verlies-tod" }
@@ -855,7 +891,7 @@
 		"line": 920,
 		"story": [
 			"Ich weiß zwar nicht wie, aber du schaffst es doch noch, den furchtbaren Drachen mit dem Stab des alten Mannes anzurühren, und augenblicklich zerfällt das Ungetüm vor deinen Augen zu Staub.",
-			"Du wirfst den Stab fort, denn nun ist er für dich ja nutzlos, und schreitest vor bis zur Tür, die in den THRONSAAL führt."
+			"Du wirfst den Stab fort, denn nun ist er für dich ja nutzlos, und gehst bis zur Tür, die in den THRONSAAL führt."
 		],
 		"music": "<<<<t180mnl2cl4cdl6e-dc>l4c.<l8cl2c",
 		"music_delay": 123456,
@@ -972,7 +1008,7 @@
 		"id": "credits",
 		"line": 215,
 		"story": [
-			"----------------------------  E  N  D  E  !  !  !  ----------------------------",
+			"----------------------------- E N D E ! ! !  -----------------------------",
 			"Ein Spiel von KRISCHAN\nIdee: KRISCHAN mit hilfreicher Unterstützung von DEWITT\nText: KRISCHAN\nMusik: KRISCHAN (bis auf wenige Raubkopien)\nOriginally written in BASIC, rewritten in JS with Vue.js\n© Christian Niklas 1996 – 2021"
 		]
 	}
