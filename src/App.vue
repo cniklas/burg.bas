@@ -17,13 +17,6 @@
 
 		<div class="actions">
 			<div class="button-wrapper">
-				<button type="button" v-for="command in typeCommands" :disabled="isDisabled(command)" @click="handleCommand(command)" style="font-family:'Courier New',Courier,monospace;font-size:1rem;border-style:dashed">
-					{{ command.text }}
-					{{ command.condition ? `[${command.condition}]` : null }}
-					{{ command.notCondition ? `[NOT ${command.notCondition}]` : null }}
-				</button>
-			</div>
-			<div class="button-wrapper">
 				<button type="button" v-for="command in clickCommands" :disabled="isDisabled(command)" @click="handleCommand(command)">
 					{{ command.text || 'weiter' }}
 					{{ command.condition ? `[${command.condition}]` : null }}
@@ -31,13 +24,21 @@
 				</button>
 			</div>
 
-			<div v-show="scene.hint" class="hint">{{ scene.hint }}</div>
-			<div class="input-wrapper">
-				<input type="text" v-model.trim="typed" class="input" />
+			<div v-show="hint && showHint" class="hint">{{ hint }}</div>
+
+			<div v-show="sceneId !== 'credits'" class="input-wrapper">
+				<input type="text" v-model.trim="typed" class="input" @keyup.enter="handleInput" />
 			</div>
 		</div>
 
 		<div class="debug">
+			<div>
+				<button type="button" v-for="command in noClickCommands" :disabled="isDisabled(command)" style="font-family:'Courier New',Courier,monospace;font-size:1rem;border-style:dashed">
+					{{ command.text }}
+					{{ command.condition ? `[${command.condition}]` : null }}
+					{{ command.notCondition ? `[NOT ${command.notCondition}]` : null }}
+				</button>
+			</div>
 			<pre><code v-for="condition in conditions">{{ `${condition}\n` }}</code></pre>
 		</div>
 	</section>
@@ -51,19 +52,17 @@ let sceneId = ref('start')
 const getSceneById = id => burg.find(scene => scene.id === id)
 const scene = computed(() => getSceneById(sceneId.value))
 
-const typed = ref()
+const typed = ref('')
 
 const clickCommandsList = ['hoch', 'runter', 'links', 'rechts', 'weiter', 'zurück']
 const clickCommands = computed(() => scene.value?.commands?.filter(cmd => clickCommandsList.includes(cmd.text) || cmd.key === 'enter') ?? [])
-const typeCommands = computed(() => scene.value?.commands?.filter(cmd => !clickCommandsList.includes(cmd.text) && cmd.key !== 'enter') ?? [])
+const noClickCommands = computed(() => scene.value?.commands?.filter(cmd => !clickCommandsList.includes(cmd.text) && cmd.key !== 'enter') ?? [])
 
 const conditions = ref([])
-// const findCondition = (term) => {
-// 	return conditions.value.find(c => c === term)
-// }
-const hasCondition = (term) => {
-	return conditions.value.includes(term)
-}
+const hasCondition = term => conditions.value.includes(term)
+
+const hint = ref('')
+const showHint = ref(false)
 
 const randomBattle = () => {
 	const rnd = Math.floor(Math.random() * Math.floor(3))
@@ -94,21 +93,20 @@ const handleAction = command => {
 		resetGame()
 	}
 
+	showHint.value = false
+	hint.value = ''
 	typed.value = ''
 	sceneId.value = command.action
+	document.querySelector('.input').focus()
 }
 
 const handleMessage = command => {
-	alert(command.message)
+	hint.value = command.message
+	showHint.value = true
 }
 
 const handleCommand = command => {
-	if (command.message) {
-		handleMessage(command)
-		return
-	}
-
-	handleAction(command)
+	command.message ? handleMessage(command) : handleAction(command)
 }
 
 const isDisabled = ({ condition, notCondition }) => {
@@ -124,12 +122,51 @@ const isDisabled = ({ condition, notCondition }) => {
 
 	return false
 }
+
+const cleanInput = (string) => {
+	const regex = /[!"#$%&\'()*+,\-./:;<=>?@[\\\]^_`{\|}~]/g;
+	return string
+		.replaceAll(regex, '')
+		.toLowerCase()
+		.split(' ')
+		.filter(word => word.length && !['der', 'die', 'das', 'den', 'und'].includes(word))
+		.join(' ')
+}
+
+const handleInput = () => {
+	const input = cleanInput(typed.value)
+	// console.log(input, input.length)
+
+	let command
+	if (input === 'weiter') {
+		command = scene.value.commands?.find(cmd => cmd.key === 'enter')
+	}
+
+	if (command === undefined) {
+		command = scene.value.commands?.find(cmd => !isDisabled(cmd) && cmd.text.toLowerCase() === input)
+	}
+
+	console.log(command)
+	if (command === undefined) {
+		hint.value = scene.value.hint || ''
+		showHint.value = true
+		return
+	}
+
+	handleCommand(command)
+}
 </script>
 
 <style>
 html {
 	background-color: #0f0f17;
 	color: #cbd5e0;
+}
+
+input {
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
 }
 
 button {
@@ -164,6 +201,7 @@ button:disabled {
 #app {
 	/* font-family: Avenir, Helvetica, Arial, sans-serif; */
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	font-family: Menlo, 'DejaVu Sans Mono', 'Lucida Console', monospace;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-align: center;

@@ -28,7 +28,7 @@
 		"id": "kerker_20",
 		"line": 96,
 		"story": [
-			"Du gelangst in einen kleinen, beleuchteten Raum. Du kannst nun rechts, links und geradeaus weitergehen. Außerdem bemerkst du, daß vor deinen Füßen ein Zettel liegt. Entscheide, in welcher Richtung du weiterläufst [gib >weiter< für geradeaus ein] oder heb den Zettel auf, wenn du wissen willst, was darauf steht."
+			"Du gelangst in einen kleinen, beleuchteten Raum. Du kannst nun rechts, links und geradeaus weitergehen. Außerdem bemerkst du, daß vor deinen Füßen ein Zettel liegt.\nEntscheide, in welcher Richtung du weiterläufst [>weiter< für geradeaus] oder heb den Zettel auf [>nimm Zettel<], wenn du wissen willst, was darauf steht."
 		],
 		"commands": [
 			{ "key": "n", "text": "nimm Zettel", "action": "kerker_21" },
@@ -43,7 +43,7 @@
 		"id": "kerker_20a",
 		"line": 96,
 		"story": [
-			"Du gelangst in einen kleinen, beleuchteten Raum. Du kannst nun links und geradeaus weitergehen. Außerdem bemerkst du, daß vor deinen Füßen ein Zettel liegt. Entscheide, in welcher Richtung du weiterläufst [gib >weiter< für geradeaus ein] oder heb den Zettel auf, wenn du wissen willst, was darauf steht."
+			"Du gelangst in einen kleinen, beleuchteten Raum. Du kannst nun links und geradeaus weitergehen. Außerdem bemerkst du, daß vor deinen Füßen ein Zettel liegt.\nEntscheide, in welcher Richtung du weiterläufst [>weiter< für geradeaus] oder heb den Zettel auf [>nimm Zettel<], wenn du wissen willst, was darauf steht."
 		],
 		"commands": [
 			{ "key": "n", "text": "nimm Zettel", "action": "kerker_21a" },
@@ -144,7 +144,7 @@
 			{ "condition": "has-helmet", "key": "n", "text": "nimm Schlüsselbund Keule", "setCondition": "has-keys", "action": "wachraum_10" },
 			{ "notCondition": "has-helmet", "key": "n", "text": "nimm Schwert Schild Seil", "setCondition": "has-sword", "action": "wachraum_10" }
 		],
-		"hint": "Wenn du die Sachen nicht mitnimmst, geht das Spiel nicht weiter! [Auf Kommata + >und< verzichten.]"
+		"hint": "Wenn du die Sachen nicht mitnimmst, geht das Spiel nicht weiter!"
 	},
 
 	{
@@ -957,10 +957,12 @@
 		"id": "restart_or_exit",
 		"line": 119,
 		"story": [
-			"Willst du das Spiel noch einmal beginnen? [j=ja, n=nein]"
+			"Willst du das Spiel noch einmal beginnen?"
 		],
 		"commands": [
+			{ "key": "j", "text": "j", "action": "start" },
 			{ "key": "j", "text": "ja", "action": "start" },
+			{ "key": "n", "text": "n", "action": "credits" },
 			{ "key": "n", "text": "nein", "action": "credits" }
 		]
 	},
