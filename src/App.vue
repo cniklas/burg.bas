@@ -1,19 +1,37 @@
 <template>
-	<img alt="Vue logo" src="./assets/logo.png" />
+<pre class="ascii-text">
+88                                                 88
+88                                                 88
+88                                                 88
+88,dPPYba,  88       88 8b,dPPYba,  ,adPPYb,d8     88,dPPYba,  ,adPPYYba, ,adPPYba,
+88P'    "8a 88       88 88P'   "Y8 a8"    `Y88     88P'    "8a ""     `Y8 I8[    ""
+88       d8 88       88 88         8b       88     88       d8 ,adPPPPP88  `"Y8ba,
+88b,   ,a8" "8a,   ,a88 88         "8a,   ,d88 888 88b,   ,a8" 88,    ,88 aa    ]8I
+8Y"Ybbd8"'   `"YbbdP'Y8 88          `"YbbdP"Y8 888 8Y"Ybbd8"'  `"8bbdP"Y8 `"YbbdP"'
+                                    aa,    ,88
+                                     "Y8bbdP"
+</pre>
 
-	<section>
+<!-- <pre class="ascii-drawing">
+▓▓▓
+</pre> -->
+
+	<section class="scene">
 		<article class="story">
-			<template v-for="paragraph in scene.story">
+			<template v-for="paragraph in story">
 				<p v-if="typeof paragraph === 'string'" class="text-preline">{{ paragraph }}</p>
+
 				<template v-else>
 					<template v-for="section in paragraph">
 						<p :class="{disabled: isDisabled(section)}" class="text-preline">{{ section.story }}</p>
 					</template>
 				</template>
 			</template>
+
+			<!-- <div v-if="scene.delayed" class="delayed" :class="{animated}" :style="`transition-delay:${scene.delayed.delay}ms`"> -->
 		</article>
 
-		<div class="actions">
+		<div v-show="!onHold" class="actions">
 			<div class="button-wrapper">
 				<button type="button" v-for="command in clickCommands" :disabled="isDisabled(command)" @click="handleCommand(command)">
 					{{ command.text || 'weiter' }}
@@ -28,34 +46,54 @@
 				<input type="text" v-model.trim="typed" class="input" @keyup.enter="handleInput" />
 			</div>
 		</div>
-
-		<div class="debug">
-			<div>{{ sceneId }}</div>
-			<div>
-				<span v-for="command in noClickCommands" class="as-button" :class="{disabled: isDisabled(command)}">
-					{{ command.text }}
-					{{ command.condition ? `[${command.condition}]` : null }}
-					{{ command.notCondition ? `[NOT ${command.notCondition}]` : null }}
-				</span>
-			</div>
-			<pre><code v-for="condition in conditions">{{ `${condition}\n` }}</code></pre>
-		</div>
 	</section>
+
+	<div class="debug">
+		<div>{{ sceneId }}</div>
+		<div>
+			<span v-for="command in textCommands" class="as-button" :class="{disabled: isDisabled(command)}">
+				{{ command.text }}
+				{{ command.condition ? `[${command.condition}]` : null }}
+				{{ command.notCondition ? `[NOT ${command.notCondition}]` : null }}
+			</span>
+		</div>
+		<pre><code v-for="condition in conditions">{{ `${condition}\n` }}</code></pre>
+	</div>
 </template>
 
 <script setup>
 import burg from './burg.json'
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 
 let sceneId = ref('start')
-const getSceneById = id => burg.find(scene => scene.id === id)
-const scene = computed(() => getSceneById(sceneId.value))
+const scene = computed(() => burg.find(scene => scene.id === sceneId.value))
+const story = ref([])
+const onHold = ref(false)
+const handleStory = () => {
+	story.value = [...scene.value.story]
+
+	if (scene.value.delayed) {
+		onHold.value = true
+
+		setTimeout(() => {
+			onHold.value = false
+			story.value = [...story.value, ...scene.value.delayed.story]
+		}, scene.value.delayed.delay)
+	}
+}
+watch(sceneId, handleStory, { immediate: true })
+// const animated = ref(false)
+// const animateIn = () => {
+// 	setTimeout(() => {
+// 		animated.value = true
+// 	}, 100)
+// }
 
 const typed = ref('')
 
 const clickCommandsList = ['hoch', 'runter', 'links', 'rechts', 'weiter', 'zurück']
 const clickCommands = computed(() => scene.value?.commands?.filter(cmd => clickCommandsList.includes(cmd.text) || cmd.key === 'enter') ?? [])
-const noClickCommands = computed(() => scene.value?.commands?.filter(cmd => !clickCommandsList.includes(cmd.text) && cmd.key !== 'enter') ?? [])
+const textCommands = computed(() => scene.value?.commands?.filter(cmd => !clickCommandsList.includes(cmd.text) && cmd.key !== 'enter') ?? [])
 
 const conditions = ref([])
 const hasCondition = term => conditions.value.includes(term)
@@ -95,7 +133,10 @@ const handleAction = command => {
 	showHint.value = false
 	hint.value = ''
 	typed.value = ''
+	// animated.value = false
 	sceneId.value = command.action
+
+	// animateIn()
 	document.querySelector('.input').focus()
 }
 
@@ -198,9 +239,13 @@ button:not(:disabled):hover {
 	font-family: Menlo, 'DejaVu Sans Mono', 'Lucida Console', monospace;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
 	margin: 60px auto 0;
 	max-width: 720px;
+}
+
+.scene {
+	position: relative;
+	z-index: 10;
 }
 
 .story,
@@ -208,14 +253,12 @@ button:not(:disabled):hover {
 	margin: 2rem 0;
 }
 
-.hint,
-.button-wrapper,
-.input-wrapper {
-	margin: 1rem 0;
+.story {
+	line-height: 1.375;
 }
 
-.story {
-	text-align: initial;
+.story p {
+	margin: 0 0 1.375rem;
 }
 
 .text-preline {
@@ -227,14 +270,43 @@ button:not(:disabled):hover {
 	opacity: .35;
 }
 
+.actions {
+	text-align: center;
+}
+
+.hint,
+.button-wrapper,
+.input-wrapper {
+	margin: 1rem 0;
+}
+
+/*
+.delayed {
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 180ms ease-out;
+}
+
+.delayed.animated {
+	visibility: visible;
+	opacity: 1;
+} */
+
 .hint {
 	font-style: italic;
 }
 
+.input {
+	width: 50%;
+	padding: 0.5rem 0.5rem;
+}
+
 .debug {
 	font-family: 'Courier New', Courier, monospace;
-	border: 2px dashed deeppink;
+	text-align: center;
+	border: 2px dashed;
 	position: fixed;
+	z-index: 1;
 	bottom: 0;
 	width: 100%;
 	max-width: 720px;
@@ -249,7 +321,11 @@ button:not(:disabled):hover {
 	margin: 0 .5rem;
 }
 
-.as-button .disabled {
+.as-button.disabled {
 	opacity: .35;
+}
+
+.ascii-drawing {
+	font-size: 42px;
 }
 </style>
