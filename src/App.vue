@@ -71,6 +71,9 @@ const story = ref([])
 const onHold = ref(false)
 const handleStory = () => {
 	story.value = [...scene.value.story]
+	requestAnimationFrame(() => {
+		document.querySelector('.input').focus()
+	})
 
 	if (scene.value.delayed) {
 		onHold.value = true
@@ -78,6 +81,10 @@ const handleStory = () => {
 		setTimeout(() => {
 			onHold.value = false
 			story.value = [...story.value, ...scene.value.delayed.story]
+
+			requestAnimationFrame(() => {
+				document.querySelector('.input').focus()
+			})
 		}, scene.value.delayed.delay)
 	}
 }
@@ -137,7 +144,6 @@ const handleAction = command => {
 	sceneId.value = command.action
 
 	// animateIn()
-	document.querySelector('.input').focus()
 }
 
 const handleMessage = command => {
@@ -169,7 +175,7 @@ const cleanInput = (string) => {
 		.replaceAll(regex, '')
 		.toLowerCase()
 		.split(' ')
-		.filter(word => word.length && !['der', 'die', 'das', 'den', 'und'].includes(word))
+		.filter(word => word.length && !['der', 'die', 'das', 'den', 'dem', 'und', 'mit'].includes(word))
 		.join(' ')
 }
 
