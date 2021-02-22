@@ -16,9 +16,9 @@
 ▓▓▓
 </pre> -->
 
-	<section>
+	<section class="scene">
 		<article class="story">
-			<template v-for="paragraph in scene.story">
+			<template v-for="paragraph in story">
 				<p v-if="typeof paragraph === 'string'" class="text-preline">{{ paragraph }}</p>
 
 				<template v-else>
@@ -29,17 +29,6 @@
 			</template>
 
 			<!-- <div v-if="scene.delayed" class="delayed" :class="{animated}" :style="`transition-delay:${scene.delayed.delay}ms`"> -->
-			<!-- <div v-if="scene.delayed">
-				<template v-for="paragraph in scene.delayed.story">
-					<p v-if="typeof paragraph === 'string'" class="text-preline">{{ paragraph }}</p>
-
-					<template v-else>
-						<template v-for="section in paragraph">
-							<p :class="{disabled: isDisabled(section)}" class="text-preline">{{ section.story }}</p>
-						</template>
-					</template>
-				</template>
-			</div> -->
 		</article>
 
 		<div v-show="!onHold" class="actions">
@@ -57,28 +46,42 @@
 				<input type="text" v-model.trim="typed" class="input" @keyup.enter="handleInput" />
 			</div>
 		</div>
-
-		<div class="debug">
-			<div>{{ sceneId }}</div>
-			<div>
-				<span v-for="command in noClickCommands" class="as-button" :class="{disabled: isDisabled(command)}">
-					{{ command.text }}
-					{{ command.condition ? `[${command.condition}]` : null }}
-					{{ command.notCondition ? `[NOT ${command.notCondition}]` : null }}
-				</span>
-			</div>
-			<pre><code v-for="condition in conditions">{{ `${condition}\n` }}</code></pre>
-		</div>
 	</section>
+
+	<div class="debug">
+		<div>{{ sceneId }}</div>
+		<div>
+			<span v-for="command in textCommands" class="as-button" :class="{disabled: isDisabled(command)}">
+				{{ command.text }}
+				{{ command.condition ? `[${command.condition}]` : null }}
+				{{ command.notCondition ? `[NOT ${command.notCondition}]` : null }}
+			</span>
+		</div>
+		<pre><code v-for="condition in conditions">{{ `${condition}\n` }}</code></pre>
+	</div>
 </template>
 
 <script setup>
 import burg from './burg.json'
-import { ref, computed/* , onMounted *//* , onUpdated */, watch } from 'vue'
+import { ref, computed, watch } from 'vue'
 
 let sceneId = ref('start')
 const scene = computed(() => burg.find(scene => scene.id === sceneId.value))
+const story = ref([])
+const onHold = ref(false)
+const handleStory = () => {
+	story.value = [...scene.value.story]
 
+	if (scene.value.delayed) {
+		onHold.value = true
+
+		setTimeout(() => {
+			onHold.value = false
+			story.value = [...story.value, ...scene.value.delayed.story]
+		}, scene.value.delayed.delay)
+	}
+}
+watch(sceneId, handleStory, { immediate: true })
 // const animated = ref(false)
 // const animateIn = () => {
 // 	setTimeout(() => {
@@ -90,7 +93,7 @@ const typed = ref('')
 
 const clickCommandsList = ['hoch', 'runter', 'links', 'rechts', 'weiter', 'zurück']
 const clickCommands = computed(() => scene.value?.commands?.filter(cmd => clickCommandsList.includes(cmd.text) || cmd.key === 'enter') ?? [])
-const noClickCommands = computed(() => scene.value?.commands?.filter(cmd => !clickCommandsList.includes(cmd.text) && cmd.key !== 'enter') ?? [])
+const textCommands = computed(() => scene.value?.commands?.filter(cmd => !clickCommandsList.includes(cmd.text) && cmd.key !== 'enter') ?? [])
 
 const conditions = ref([])
 const hasCondition = term => conditions.value.includes(term)
@@ -110,16 +113,6 @@ const randomBattle = () => {
 
 const resetGame = () => {
 	conditions.value = []
-}
-
-const onHold = ref(false)
-const handleDelay = delay => {
-	onHold.value = true
-
-	setTimeout(() => {
-		onHold.value = false
-		scene.value.story = [...scene.value.story, ...scene.value.delayed.story]
-	}, delay)
 }
 
 const handleAction = command => {
@@ -200,18 +193,6 @@ const handleInput = () => {
 
 	handleCommand(command)
 }
-
-// onMounted(() => {
-// 	animateIn()
-// })
-// onUpdated(() => {
-// 	console.log('onUpdated')
-// })
-watch(sceneId, (nu) => {
-	if (scene.value.delayed) {
-		handleDelay(scene.value.delayed.delay)
-	}
-}, { immediate: true })
 </script>
 
 <style>
@@ -262,9 +243,27 @@ button:not(:disabled):hover {
 	max-width: 720px;
 }
 
+.scene {
+	position: relative;
+	z-index: 10;
+}
+
 .story,
 .actions {
 	margin: 2rem 0;
+}
+
+.story {
+	line-height: 1.375;
+}
+
+.text-preline {
+	/* berücksichtigt line breaks */
+	white-space: pre-line;
+}
+
+.story .disabled {
+	opacity: .35;
 }
 
 .actions {
@@ -275,15 +274,6 @@ button:not(:disabled):hover {
 .button-wrapper,
 .input-wrapper {
 	margin: 1rem 0;
-}
-
-.text-preline {
-	/* berücksichtigt line breaks */
-	white-space: pre-line;
-}
-
-.story .disabled {
-	opacity: .35;
 }
 
 /*
@@ -312,6 +302,7 @@ button:not(:disabled):hover {
 	text-align: center;
 	border: 2px dashed;
 	position: fixed;
+	z-index: 1;
 	bottom: 0;
 	width: 100%;
 	max-width: 720px;
