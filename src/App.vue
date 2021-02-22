@@ -29,7 +29,7 @@
 			</template>
 
 			<!-- <div v-if="scene.delayed" class="delayed" :class="{animated}" :style="`transition-delay:${scene.delayed.delay}ms`"> -->
-			<div v-if="scene.delayed">
+			<!-- <div v-if="scene.delayed">
 				<template v-for="paragraph in scene.delayed.story">
 					<p v-if="typeof paragraph === 'string'" class="text-preline">{{ paragraph }}</p>
 
@@ -39,10 +39,10 @@
 						</template>
 					</template>
 				</template>
-			</div>
+			</div> -->
 		</article>
 
-		<div class="actions">
+		<div v-show="!onHold" class="actions">
 			<div class="button-wrapper">
 				<button type="button" v-for="command in clickCommands" :disabled="isDisabled(command)" @click="handleCommand(command)">
 					{{ command.text || 'weiter' }}
@@ -74,11 +74,10 @@
 
 <script setup>
 import burg from './burg.json'
-import { ref, computed/* , onMounted */ } from 'vue'
+import { ref, computed/* , onMounted *//* , onUpdated */, watch } from 'vue'
 
 let sceneId = ref('start')
-const getSceneById = id => burg.find(scene => scene.id === id)
-const scene = computed(() => getSceneById(sceneId.value))
+const scene = computed(() => burg.find(scene => scene.id === sceneId.value))
 
 // const animated = ref(false)
 // const animateIn = () => {
@@ -111,6 +110,16 @@ const randomBattle = () => {
 
 const resetGame = () => {
 	conditions.value = []
+}
+
+const onHold = ref(false)
+const handleDelay = delay => {
+	onHold.value = true
+
+	setTimeout(() => {
+		onHold.value = false
+		scene.value.story = [...scene.value.story, ...scene.value.delayed.story]
+	}, delay)
 }
 
 const handleAction = command => {
@@ -195,6 +204,14 @@ const handleInput = () => {
 // onMounted(() => {
 // 	animateIn()
 // })
+// onUpdated(() => {
+// 	console.log('onUpdated')
+// })
+watch(sceneId, (nu) => {
+	if (scene.value.delayed) {
+		handleDelay(scene.value.delayed.delay)
+	}
+}, { immediate: true })
 </script>
 
 <style>
