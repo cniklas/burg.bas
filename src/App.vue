@@ -257,6 +257,10 @@ button:not(:disabled):hover {
 	line-height: 1.375;
 }
 
+.story p {
+	margin: 0 0 1.375rem;
+}
+
 .text-preline {
 	/* berücksichtigt line breaks */
 	white-space: pre-line;
