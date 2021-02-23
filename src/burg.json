@@ -874,21 +874,22 @@
 		"id": "schlafzimmer",
 		"line": 859,
 		"story": [
-			"Die Tür ist verschlossen, doch du öffnest auch diese mit den Schlüsseln. Der Raum, die du nun betrittst, ist das Privatgemach des Tyrannen UBOLZIO. Die Wände sind mit Samt und Seide überzogen, auf dem Boden liegt ein prächtiger Teppich und an der rechten Wand steht ein großes Himmelbett mit roten Vorhängen. In der linken Ecke des Raumes steht, abgeschirmt durch seidene Vorhänge, ein großer Badekufen, und in der rechten eine große Truhe für Gewänder und andere Bekleidungsstücke.\nNur wenige Schritte von dir entfernt befindet sich eine kleine, gut verborgene Tür in der Wand."
+			"Nachdem du die Tür geöffnet hast, betrittst du einen prunkvollen Raum – das Privatgemach des Tyrannen UBOLZIO. Die Wände sind mit Samt und Seide überzogen, auf dem Boden liegt ein großer, kostbarer Teppich und überall sind kunstvoll gearbeitete Möbelstücke aufgestellt.",
+			"Nur wenige Schritte von dir entfernt befindet sich eine kleine Tür in der Wand."
 		],
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "schatzkammer" },
 			{ "key": "z", "text": "zurück", "setCondition": "visited-schlafzimmer", "action": "vorzimmer_kein-drache" }
 		],
-		"hint": "Versuche, die kleine Tür zu öffnen, oder geh wieder aus dem Raum hinaus."
+		"hint": "Versuche, die kleine Tür zu öffnen, oder verlasse diesen Raum."
 	},
 
 	{
 		"id": "schatzkammer",
 		"line": 872,
 		"story": [
-			"Auch diese Tür ist abgeschlossen, doch du findest schnell den passenden Schlüssel. Als du die Tür aufdrückst und siehst, was sich dahinter befindet, bist du für eine ganze Weile überwältigt!\nDu stehst in einer kleinen Kammer, die vollgestopft ist mit Reichtümern. Da sind große Truhen und Krüge, aus denen die Gold- und Silbermünzen hervorquellen. Mit Perlen und Edelsteinen besetzte Pokale türmen sich neben ungemein kostbaren Vasen, golddurchwirkte Stoffe häufen sich neben Kästen voller Schmuck und Geschmeide. Kunstvolle Gemälde und Figuren sind hier ebenso zu finden wie reich verzierte Waffen.",
-			"Dir gehen beinahe die Augen über, und du überlegst, wie du wenigstens mit einem kleinen Teil dieses Schatzes aus der Burg verschwinden könntest."
+			"Diese Tür ist mit mehreren Schlössern gesichert, doch du findest ohne Mühe die passenden Schlüssel dazu. Als du die Tür öffnest, bist du augenblicklich überwältigt!",
+			"Du stehst in einer kleinen Kammer, die gefüllt ist mit Reichtümern. Da sind große Truhen, aus denen die Gold- und Silbermünzen hervorquellen. Mit Perlen und Edelsteinen besetzte Pokale türmen sich neben kostbaren Vasen, golddurchwirkte Stoffe häufen sich neben Kästen voller Schmuck und Geschmeide. Köstlichste Goldschmiedearbeiten sind hier ebenso zu finden wie reich verzierte Waffen."
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "schatzkammer_ende" }
@@ -899,7 +900,8 @@
 		"id": "schatzkammer_ende",
 		"line": 881,
 		"story": [
-			"Schnell hast du einen Plan gefasst. Du nimmst einen Sack, den größten, den du auftreiben kannst, und stopfst so viele Reichtümer hinein, wie nur geht. Dann hüllst du dich ins Helm und Umhang, die du aus dem Kerker mitgenommen hast, und hebst den Sack über die Schulter. Auf diese Weise getarnt verlässt du die Burg UBOLZIOs ohne größere Schwierigkeiten und feierst die wieder gewonnene Freiheit mit dem Kauf deines ersten Lamborghini …"
+			"Schnell hast du einen Plan gefasst. Du nimmst einen Sack und stopfst so viele Reichtümer hinein, wie nur geht. Anschließend hüllst du dich in Helm und Umhang, die du aus dem Kerker mitgenommen hast.",
+			"So verlässt du ohne Schwierigkeiten die Burg UBOLZIOs mit reicher Beute und feierst die wieder gewonnene Freiheit mit dem Kauf deines ersten Lamborghini …"
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "congratulations_mit-musik" }
@@ -911,8 +913,8 @@
 		"line": 773,
 		"story": [
 			[
-				{ "condition": "visited-schlafzimmer", "story": "Du bist nicht an weiteren Gemächern interessiert und verlässt deshalb diesen Raum. Nachdem du die Tür wieder verschlossen hast, folgst du dem Gang bis ans Ende und betrittst schließlich den Vorraum zum Thronsaal. Auch dieser Bereich ist prächtig ausgeschmückt. Alles dient nur dem Zweck, UBOLZIO und seine Herrschaft zu verherrlichen." },
-				{ "condition": "not-visited-schlafzimmer", "story": "Du folgst dem Gang bis ans Ende und betrittst schließlich den Vorraum zum Thronsaal. Auch dieser Bereich ist prächtig ausgeschmückt. Alles dient nur dem Zweck, UBOLZIO und seine Herrschaft zu verherrlichen." }
+				{ "condition": "visited-schlafzimmer", "story": "Du bist nicht an weiteren Gemächern interessiert und verlässt deshalb diesen Raum.\nDu folgst dem Gang bis ans Ende und betrittst schließlich den Vorraum zum Thronsaal. Auch dieser Bereich ist prächtig ausgeschmückt. Alles dient nur dazu, UBOLZIO und seine Herrschaft zu verherrlichen." },
+				{ "condition": "not-visited-schlafzimmer", "story": "Du folgst dem Gang bis ans Ende und betrittst schließlich den Vorraum zum Thronsaal. Auch dieser Bereich ist prächtig ausgeschmückt. Alles dient nur dazu, UBOLZIO und seine Herrschaft zu verherrlichen." }
 			],
 			"Du gehst weiter, bis du zu der großen, teuren Tür gelangst, die in den THRONSAAL führt!"
 		],
@@ -967,7 +969,8 @@
 		"id": "thronsaal",
 		"line": 784,
 		"story": [
-			"Du öffnest die Tür mit einem Ruck und stürmst hinein, Schwert und Schild fest umklammert. Drinnen umfängt dich sogleich ein ungemeiner Prunk und Reichtum. An den Wänden hängen kostbare Teppiche und goldbestickte Fahnen. Der Steinfußboden ist mit zahlreichen Mosaiken geziert. Öllampen auf goldenen Ständern und hohe Fenster mit buntem Glas tauchen den Raum in ein mystisches Licht. Hinter dem mächtigen Thron, der mit kunstvollen Schnitzereien versehen ist, erstreckt sich eine lange Reihe von prachtvollen Rüstungen. Im rechten Teil des Raumes steht eine lange Festtafel mit samtbezogenen Stühlen ringherum, wo UBOLZIO wohl immer seine gewaltigen Gelage abhält. In der Ecke befindet sich ein großer Kamin, und davor liegt ein Bärenfell."
+			"Du öffnest die Tür mit einem Ruck und stürmst hinein, Schwert und Schild fest umklammert.",
+			"Drinnen umfängt dich ungemeiner Prunk und Reichtum. An den Wänden hängen kostbare Teppiche und goldbestickte Fahnen. Der Boden ist mit zahlreichen Mosaiken geziert. Hohe, bunte Glasfenster tauchen den Raum in ein mystisches Licht. Hinter dem mächtigen Thron, der mit kunstvollen Schnitzereien versehen ist, erstreckt sich eine lange Reihe von prachtvollen Rüstungen."
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "thronsaal_kampf" }
@@ -978,7 +981,7 @@
 		"id": "thronsaal_kampf",
 		"line": 795,
 		"story": [
-			"UBOLZIO hat dich sofort bemerkt und springt von seinem Thron auf. Er sieht das Schwert in deiner Hand blitzen und zieht sofort aus einer reich verzierten Scheide seinen berüchtigten Zweihänder. Du stürzt dich auf ihn, und eure Schwerter treffen klirrend aufeinander. Es entspannt sich ein erbitterter Kampf …"
+			"UBOLZIO hat dich sofort bemerkt und springt von seinem Thron auf. Er sieht das Schwert in deiner Hand blitzen und zieht sofort aus einer reich verzierten Scheide seinen berüchtigten Zweihänder. Du stürzt dich auf ihn, und eure Schwerter treffen klirrend aufeinander. Ein erbitterter Kampf entbrennt …"
 		]
 	},
 
