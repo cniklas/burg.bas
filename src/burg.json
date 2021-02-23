@@ -634,7 +634,7 @@
 		"delayed": {
 			"delay": 6000,
 			"story": [
-				"Nachdem du wieder zu Kräften gekommen bist, gehst du den Wehrgang entlang, bis du zu einem viereckigen Turm gelangst. Du trittst in das Innere des Turms und stehst vor einer Tür aus schwerem Holz, die in ein Turmgemach führen muss. Von außen ist ein eiserner Riegel davorgelegt. Eine Leiter führt außerdem in das Obergeschoss des Turms.\nWas tust du?"
+				"Nachdem du wieder zu Kräften gekommen bist, gehst du den Wehrgang entlang, bis du zu einem viereckigen Turm gelangst. Du trittst in das Innere des Turms und stehst vor einer eisenbeschlagenen Tür, die in ein Turmgemach führen muss. Von außen ist ein Riegel davorgelegt. Eine Leiter führt außerdem in das Obergeschoss des Turms.\nWas tust du?"
 			]
 		},
 		"commands": [
@@ -661,7 +661,7 @@
 		"line": 578,
 		"story": [
 			"Und dein List gelingt: Du wirst nicht erkannt!",
-			"So gehst du immer weiter, bis du zu einem viereckigen Turm gelangst. Du trittst in das Innere des Turms und stehst vor einer eisenbeschlagenen Tür, die in ein Turmgemach führen muss. Von außen ist ein schwerer Riegel mit Schloss davorgelegt. Eine Leiter führt außerdem in das Obergeschoss des Turms.\nWas tust du?"
+			"So gehst du immer weiter, bis du zu einem viereckigen Turm gelangst. Du trittst in das Innere des Turms und stehst vor einer eisenbeschlagenen Tür, die in ein Turmgemach führen muss. Von außen ist ein Riegel mit Schloss davorgelegt. Eine Leiter führt außerdem in das Obergeschoss des Turms.\nWas tust du?"
 		],
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "wehrgang_verlies_has-keys" },
@@ -778,7 +778,8 @@
 		"id": "wehrgang_verlies-tod",
 		"line": 518,
 		"story": [
-			"Ich habe keine Ahnung, was in dich gefahren ist. Das Flehen des Mädchens lässt dich kalt; du kannst bei deiner Flucht keinen Menschen als Risiko an deiner Seite dulden. Erbarmungslos sperrst du sie wieder zurück in ihr Turmgemach und legst den Türriegel fest davor. Dann nimmst du deine Sachen, gehst hinaus aus dem Turm und willst dich davonmachen.\nDoch deine Unbarmherzigkeit bleibt nicht ungestraft: Vom obersten Rand des Turmes löst sich ein großer Stein, stürzt hinunter und erschlägt dich …"
+			"Um deine eigene Flucht nicht zu gefährden, schlägst du ihre Bitte ab, sie mitzunehmen. Außerdem vermutest du eine List UBOLZIOs dahinter. Darum sperrst das Mädchen wieder zurück in ihr Turmgemach und legst den Türriegel fest davor. Dann nimmst du deine Sachen, gehst hinaus aus dem Turm und willst dich davonmachen.",
+			"Doch deine Feigheit und Unbarmherzigkeit bleiben nicht ungestraft: Vom Rand des Turmes löst sich ein großer Stein, stürzt hinunter und erschlägt dich …"
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "game_over" }
@@ -789,8 +790,8 @@
 		"id": "palas",
 		"line": 692,
 		"story": [
-			"Du gehst die breiten Stufen zum Palas hinauf und öffnest die mächtige Portaltür, in die eine dämonische Fratze hineingeschnitzt ist. Nun stehst du in einem breiten, gewölbten Gang, der sich bis zur anderen Seite des Gebäudes hinzieht und dort einen Knick nach rechts macht. Aus der Wand zu deiner Rechten ragen einige Eisenringe, worin Fackeln stecken. Eine Steintafel trägt die Inschrift: „Diesen Palas errichtete der große Baumeister DEWITT auf Wunsch seiner Majestät König UBOLZIOs.“",
-			"Zu deiner Linken befindet sich eine Tür, die mit festen Eisenbändern beschlagen ist. Dort hinten, wo der Gang nach rechts weiterführt, ist noch eine zweite Tür aus einfachem, dunklem Holz."
+			"Du gehst die breiten Stufen zum Portal hinauf und öffnest die schwere Tür, in die häßliche Fratzen hineingeschnitzt sind.\nNun stehst du in einem breiten, gewölbten Gang, der sich bis zum Ende des Gebäudes hinzieht und dort weiter nach rechts verläuft. Eine große Steintafel trägt die Inschrift: „Diesen Palas errichtete der große Baumeister DEWITT auf Wunsch seiner Majestät König UBOLZIOs.“",
+			"Zu deiner Linken befindet sich eine Tür, die ganz aus Eisen ist. Am Ende des Ganges befindet sich noch eine zweite Tür."
 		],
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "waffenkammer" }
@@ -803,9 +804,9 @@
 		"line": 710,
 		"story": [
 			[
-				{ "condition": "has-sword", "story": "Sie ist mit einem schweren Schloss versehen, das du nicht aufbekommst.\nDu gehst hinter zur zweiten Tür." },
-				{ "condition": "has-keys", "story": "Sie ist mit einem schweren Schloss versehen, doch das stellt für dich kein Problem dar. Du nimmst die Schlüssel aus der Tasche und probierst damit solange, bis du das Schloss aufbekommen hast. Du öffnest die Tür und stellst erfreut fest, dass dies die Waffenkammer ist!\nDu denkst, dass es eigentlich besser wäre, mit einem scharfen Schwert bewaffnet zu sein als mit einer einfachen Keule, wie du sie besitzt. Darum suchst dir das beste Schwert und den härtesten Schild aus. Dann verlässt du die Waffenkammer, schließt sie wieder ab und gehst hinter zur zweiten Tür." },
-				{ "condition": "no-weapons", "story": "Zu deinem Glück (und UBOLZIOs Verhängnis) ist die Türe nicht verschlossen. Du ziehst sie auf und betrittst eine dunkle Kammer. Damit du mehr erkennen kannst, holst du dir aus dem Gewölbegang eine Fackel. Nun bemerkst du erfreut, dass dies die Waffenkammer ist! Um nicht weiterhin unbewaffnet im Palas herumzuschleichen, suchst dir das schärfste Schwert und den härtesten Schild aus. Dann verlässt du die Waffenkammer wieder und gehst hinter zur zweiten Tür." }
+				{ "condition": "has-sword", "story": "Die Tür ist mit einem schweren Schloss versehen, das du nicht aufbekommst.\n\nDu gehst weiter zur zweiten Tür." },
+				{ "condition": "has-keys", "story": "Die Tür ist mit einem schweren Schloss versehen. Du nimmst die Schlüssel aus der Tasche und probierst damit solange, bis du das Schloss aufbekommen hast. Du öffnest die Tür und stellst erfreut fest, dass du in die Waffenkammer gelangt bist!\n\nDu denkst, dass es eigentlich besser wäre, mit einem scharfen Schwert bewaffnet zu sein als mit einer einfachen Keule, wie du sie besitzt. Darum suchst dir das beste Schwert und einen festen Schild aus. Dann verlässt du die Waffenkammer und gehst zur zweiten Tür." },
+				{ "condition": "no-weapons", "story": "Zu deinem Glück (und UBOLZIOs Verhängnis) ist die Türe nicht verschlossen. Du öffnest sie und betrittst einen Raum der im Halbdunkel liegt. Erfreut stellst du fest, dass du in die Waffenkammer gelangt bist!\n\nUm nicht weiterhin unbewaffnet im Palas umherzuschleichen, suchst dir das beste Schwert und einen festen Schild aus. Dann verlässt du die Waffenkammer und gehst zur zweiten Tür." }
 			]
 		],
 		"commands": [
@@ -819,7 +820,8 @@
 		"id": "gesinderaum",
 		"line": 717,
 		"story": [
-			"Die Tür lässt sich öffnen, und du schaust in den Raum hinein. Es befinden sich ein Kamin darin, ein Tisch mit mehreren Schemeln drumherum, einige Kleidertruhen und ein eisernes Gestell mit einem Waschzuber darauf. Es gibt zwei Fenster, wovon eines geöffnet ist. An den Wänden stehen breite Holzbänke, darauf liegen Schlafdecken. Wahrscheinlich ist dies hier der Wohnraum des Burggesindes.\nDu klappst die Tür zu."
+			"Die Tür lässt sich öffnen, und du schaust in den Raum hinein.\nEs befinden sich ein Kamin darin, ein Tisch mit einfachem Essgeschirr, einige Kleidertruhen und eine Waschgelegenheit. Es gibt zwei Fenster, wovon eines geöffnet ist. An den Wänden stehen Holzbänke, auf die Decken ausgebreitet sind. Es ist der Wohnraum des Burggesindes.",
+			"Du klappst die Tür zu."
 		],
 		"commands": [
 			{ "key": "r", "text": "rechts", "action": "treppenhaus" }
@@ -831,7 +833,8 @@
 		"id": "treppenhaus",
 		"line": 727,
 		"story": [
-			"Schon nach wenigen Schritten stehst du vor einer großen Wendeltreppe, die ins Obergeschoss des Palas führt. In der Wand rechts von dir ist eine Tür, hinter der du Stimmen vernehmen kannst. Öffnest du die Tür oder gehst du gleich die Wendeltreppe hinauf?"
+			"Schon nach wenigen Schritten stehst du vor einer großen Treppe, die ins Obergeschoss des Palas führt. Rechts von dir befindet sich eine Tür, hinter der du Stimmen vernehmen kannst.",
+			"Öffnest du die Tür oder gehst du die Treppe hinauf?"
 		],
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "kueche" },
@@ -843,8 +846,8 @@
 		"id": "kueche",
 		"line": 740,
 		"story": [
-			"Die Neugier siegt über deinen Verstand: Du öffnest die Tür vorsichtig eine Hand breit und äugst in den Raum hinein. Es ist die Küche. Hier herrscht ein hektisches Treiben; wahrscheinlich hat UBOLZIO für heute ein großes Festgelage angesagt. Das gesamte Gesinde ist hier am Schuften und dabei so beschäftigt, dass du gar nicht bemerkt wirst.\nMänner stehen an dem gewaltigen Kamin und beaufsichtigen sämtliche Speisen, die dort vor sich hin kochen und braten. Andere sitzen um den Tisch herum und nehmen Fasane und Hasen aus, putzen und schneiden das Gemüse, wieder andere waschen Teller und Pokale, Messer, Löffel und Spieße ab. Frauen scheint es in dieser Burg überhaupt nicht zu geben.",
-			"Du schließt die Tür wieder und gehst die große Wendeltreppe hinauf."
+			"Deine Neugier siegt über den Verstand: Du öffnest die Tür vorsichtig eine Hand breit und äugst in den Raum hinein: Es ist die Küche, in der ein emsiges Treiben herrscht. Wahrscheinlich hat UBOLZIO für heute ein großes Gelage angesagt.\nDas gesamte Gesinde ist hier am Schuften und dabei so beschäftigt, dass du gar nicht bemerkt wirst. Einige stehen an einem gewaltigen Herd und beaufsichtigen sämtliche Speisen, die dort vor sich hin kochen und braten. Andere nehmen Fasane und Rebhühner aus oder schneiden das Gemüse; wieder andere waschen Teller, Platten und Pokale, Messer, Löffel und Spieße ab.",
+			"Du schließt die Tür wieder und gehst die große Treppe hinauf."
 		],
 		"commands": [
 			{ "key": "h", "text": "hoch", "action": "palas_og" }
@@ -855,7 +858,8 @@
 		"id": "palas_og",
 		"line": 752,
 		"story": [
-			"Du gehst die breite Wendeltreppe hinauf und kommst nun in die königlichen Gefilde des Palas. Du stehst wieder in einem breiten, gewölbten Gang, der nach etlichen Metern nach links weiterverläuft. Im Gegensatz zu dem dunklen, schlichten Untergeschoss ist hier oben alles viel prächtiger und majestätischer. Große Fenster lassen viel Licht hinein, die Wände sind behängt mit großen Bannern, Wappen und Gemälden, auf denen UBOLZIO abgebildet ist.\nLinks von dir ist eine große Tür aus edelstem Holz mit einem güldenen Griff."
+			"Nun gelangst du in die königlichen Gefilde des Palas. Du stehst in einem breiten Gang, der nach etlichen Metern nach links weiterverläuft. Hohe Fenster lassen viel Licht hinein. An den Wänden hängen prachtvolle Banner und große Gemälde, auf denen UBOLZIO abgebildet ist.",
+			"Links von dir ist eine große Tür aus edelstem Holz mit einem güldenen Griff."
 		],
 		"commands": [
 			{ "condition": "has-keys", "key": "o", "text": "öffne Tür", "action": "schlafzimmer" },
