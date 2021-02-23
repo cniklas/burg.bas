@@ -648,8 +648,8 @@
 		"id": "wehrgang_has-keys",
 		"line": 571,
 		"story": [
-			"Du steigst die Stufen zum Wehrgang hinauf. Als du oben bist, bemerkst du, dass hier auch einige Wachposten patrouillieren. Noch haben sie dich nicht gesehen.\nAber da fällt dir schon etwas ein, um ungeschoren an ihnen vorbeizukommen. Du holst Helm und Umhang hervor, die du aus dem Kerker mitgenommen hast, kleidest dich damit ein und siehst nun ebenso aus wie die Schergen UBOLZIOs.",
-			"In dieser Tarnung betrittst du den Wehrgang und schreitest mutig an den Kerlen vorbei."
+			"Du steigst die Stufen zum Wehrgang hinauf. Als du oben bist, bemerkst du, dass hier auch einige Wachposten patrouillieren.",
+			"Du holst Helm und Umhang hervor, die du aus dem Kerker mitgenommen hast, kleidest dich damit ein und siehst nun ebenso aus wie die Schergen UBOLZIOs. Auf diese Weise vermummt betrittst du den Wehrgang und schreitest mutig auf die Wachen zu."
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "wehrgang_has-keys_10" }
@@ -660,7 +660,8 @@
 		"id": "wehrgang_has-keys_10",
 		"line": 578,
 		"story": [
-			"Und es klappt: Du wirst nicht erkannt! Innerlich frohlockend gehst du immer weiter, bis du zu einem viereckigen Turm gelangst. Du trittst in das Innere des Turms und stehst vor einer eisenbeschlagenen Tür, die in ein Turmgemach führen muss. Von außen ist ein schwerer Riegel mit Schloss davorgelegt. Eine Leiter führt außerdem in das Obergeschoss des Turms.\nWas tust du?"
+			"Und dein List gelingt: Du wirst nicht erkannt!",
+			"So gehst du immer weiter, bis du zu einem viereckigen Turm gelangst. Du trittst in das Innere des Turms und stehst vor einer eisenbeschlagenen Tür, die in ein Turmgemach führen muss. Von außen ist ein schwerer Riegel mit Schloss davorgelegt. Eine Leiter führt außerdem in das Obergeschoss des Turms.\nWas tust du?"
 		],
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "wehrgang_verlies_has-keys" },
@@ -673,7 +674,8 @@
 		"id": "wehrgang_turm",
 		"line": 461,
 		"story": [
-			"Du kletterst die Leiter hinauf. Hier oben ist nichts besonderes. Du entdeckst noch eine Leiter und steigst auch diese empor. Nun stehst du ganz oben auf der Turmplattform. Hier weht ein kräftiger Wind, der an deinen Kleidern zerrt und dir die Haare ins Gesicht bläst. Du bleibst für eine Weile dort oben und siehst dir die Landschaft an. Dann steigst du wieder hinunter.\nGehst du nun zum Burghof zurück oder versuchst du, die Tür zum Turmgemach zu öffnen?"
+			"Du kletterst die Leiter hinauf. Hier oben gibt es nichts Besonderes. Du entdeckst noch eine Leiter und steigst auch diese empor.\nNun stehst du ganz oben auf der Turmplattform. Ein kräftiger Wind bläst dir ins Gesicht und zerrt an deinen Kleidern.",
+			"Du bleibst für eine Weile dort oben, dann steigst du wieder hinunter.\nGehst du nun zum Burghof zurück oder versuchst du, die Tür zum Turmgemach zu öffnen?"
 		],
 		"commands": [
 			{ "condition": "has-sword", "key": "o", "text": "öffne Tür", "action": "wehrgang_verlies_has-sword" },
@@ -687,12 +689,14 @@
 		"id": "wehrgang_verlies_has-sword",
 		"line": 487,
 		"story": [
-			"Du hast dich entschlossen, die Tür zu öffnen, denn du willst wissen, was sich dahinter verbirgt. Du brauchst beide Hände, um den schweren Riegel zu bewegen, und musst eine Weile rucken und rütteln, bis du ihn endlich aufbekommst. Dementsprechend bist du gespannt auf das, was dich nun erwarten wird. Du ziehst die Tür auf und …"
+			"Du hast dich entschlossen, die Tür zu öffnen, denn du willst wissen, was sich dahinter verbirgt.",
+			"Du brauchst beide Hände, um den schweren Riegel zu bewegen, und musst eine Weile rucken und rütteln, bis du ihn endlich aufbekommst. Dementsprechend bist du gespannt auf das, was dich nun erwarten wird. Du ziehst die Tür auf und …"
 		],
 		"delayed": {
 			"delay": 6000,
 			"story": [
-				"… vor dir steht eine wunderschöne, junge Maid!\nSie erschrickt zuerst, weil du ein sehr wildes Bild abgibst, was jedoch vom Kampfe herrührt. Dann aber fasst sie Vertrauen zu dir, weil du ihr freundlich und offen begegnest. Sie erzählt dir, dass sie von UBOLZIO geraubt wurde und er sie hier eingesperrt hat, weil sie sich geweigert hatte, seine Geliebte zu werden. Sie fleht dich an, sie aus der Gewalt UBOLZIOs zu befreien.\nHilfst du ihr?"
+				"… vor dir steht eine wunderschöne, junge Maid!",
+				"Sie erschrickt zuerst aufgrund deines Aussehens. Doch als du ihr von deinem Schicksal berichtest, fasst sie Vertrauen zu dir. Sie erzählt dir, dass sie von UBOLZIO geraubt und hier eingesperrt wurde, weil sie sich geweigert hatte, seine Frau zu werden. Sie fleht dich an, sie aus der Gewalt UBOLZIOs zu befreien.\nHilfst du ihr?"
 			]
 		},
 		"commands": [
@@ -706,7 +710,7 @@
 		"id": "wehrgang_verlies_has-sword_10",
 		"line": 507,
 		"story": [
-			"Natürlich erklärst du dich bereit, mit ihr gemeinsam zu fliehen, denn auch dein Verlangen ist es, so rasch wie möglich diese Burg zu verlassen.\nDir ist klar, dass ihr es nicht schaffen könntet, durch das Burgtor zu entfliehen, ohne von den Wachen entdeckt und getötet zu werden. Darum musst du über einen anderen Fluchtweg nachsinnen."
+			"Natürlich erklärst du dich bereit, mit ihr gemeinsam zu fliehen, denn auch dein Wunsch ist es, diese Burg so rasch wie möglich zu verlassen. Doch ebenso klar ist, dass ihr es nicht schaffen werdet, durch das Burgtor zu entkommen, ohne von den Wachen entdeckt und getötet zu werden. Darum musst du über einen anderen Fluchtweg nachsinnen."
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "wehrgang_verlies_has-sword_ende" }
@@ -717,7 +721,8 @@
 		"id": "wehrgang_verlies_has-sword_ende",
 		"line": 511,
 		"story": [
-			"Dir fällt ein, dass du ja ein langes Seil bei dir hast. Und das ist die Rettung!\nZusammen mit dem Mädchen verlässt du den Turm und bindest das Seil draußen mit dem einen Ende fest um eine Zinne. Das andere Ende wirfst du die Schildmauer hinunter. Ihr steigt daran hinab und seid frei …"
+			"Da fällt dir ein, dass du ein langes Seil mitgenommen hast.",
+			"Zusammen mit dem Mädchen verlässt du den Turm und bindest das Seil draußen mit dem einen Ende fest um eine Zinne. Das andere Ende wirfst du die Schildmauer hinunter. Ihr lasst euch daran hinab und seid frei …"
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "congratulations_mit-musik" }
@@ -728,12 +733,14 @@
 		"id": "wehrgang_verlies_has-keys",
 		"line": 603,
 		"story": [
-			"Du hast dich entschlossen, die Tür zu öffnen, denn du willst wissen, was sich dahinter verbirgt. Du holst den Schlüsselbund aus deiner Tasche und probierst damit solange herum, bis du das Schloss aufbekommen hast. Du schiebst den Riegel zur Seite und bist sehr gespannt auf das, was dich nun erwarten wird. Du ziehst die Tür auf und …"
+			"Du hast dich entschlossen, die Tür zu öffnen, denn du willst wissen, was sich dahinter verbirgt.",
+			"Du holst die Schlüssel aus deiner Tasche und probierst damit solange herum, bis du das Schloss aufbekommen hast. Du schiebst den Riegel zur Seite und bist sehr gespannt auf das, was dich nun erwarten wird. Du ziehst die Tür auf und …"
 		],
 		"delayed": {
 			"delay": 6000,
 			"story": [
-				"… vor dir steht eine wunderschöne, junge Maid!\nSie erschrickt zuerst, weil du die Kleidung der Burgwachen trägst. Dann aber fasst sie Vertrauen zu dir, weil du ihr freundlich und offen begegnest. Sie erzählt dir, dass sie von UBOLZIO geraubt wurde und er sie hier eingesperrt hat, weil sie sich geweigert hatte, seine Geliebte zu werden. Sie fleht dich an, sie aus der Gewalt UBOLZIOs zu befreien.\nHilfst du ihr?"
+				"… vor dir steht eine wunderschöne, junge Maid!",
+				"Sie erschrickt zuerst aufgrund deines Aussehens. Doch als du ihr von deinem Schicksal berichtest, fasst sie Vertrauen zu dir. Sie erzählt dir, dass sie von UBOLZIO geraubt und hier eingesperrt wurde, weil sie sich geweigert hatte, seine Frau zu werden. Sie fleht dich an, sie aus der Gewalt UBOLZIOs zu befreien.\nHilfst du ihr?"
 			]
 		},
 		"commands": [
@@ -747,7 +754,8 @@
 		"id": "wehrgang_verlies_has-keys_10",
 		"line": 621,
 		"story": [
-			"Natürlich erklärst du dich bereit, mit ihr gemeinsam zu fliehen, denn auch dein Verlangen ist es, so rasch wie möglich diese Burg zu verlassen.\nDir fällt auch sogleich ein Fluchtplan ein. Du gehst zum Eingang des Turmes und rufst den Wächter heran, der am nächsten am Turm steht. Dann stellst du dich schnell hinter den Eingang, und als der Wächter hereinkommt schlägst du ihm deine Keule über den Schädel. Er sackt zu Boden und ist für die nächsten paar Stunden ohnmächtig. Du zerrst ihn in das Turmgemach, nimmst ihm den Helm und den Umhang ab und gibst beides dem Mädchen. Sie zieht die Sachen zur Tarnung über, so, wie du es vorhin getan hast, und ihr verlaßt den Turm."
+			"Natürlich erklärst du dich bereit, mit ihr gemeinsam zu fliehen, denn auch dein Wunsch ist es, diese Burg so rasch wie möglich zu verlassen.",
+			"Du gehst zum Eingang des Turms und rufst einen der Wachposten herbei. Als er hereinkommt, ziehst du ihm deine Keule über den Schädel. Dann zerrst du den bewusstlosen Mann in das Turmgemach, nimmst ihm den Helm und den Umhang ab und gibst beides dem Mädchen. Sie zieht sich die Sachen zur Tarnung über, und ihr verlaßt den Turm."
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "wehrgang_verlies_has-keys_ende" }
@@ -758,7 +766,8 @@
 		"id": "wehrgang_verlies_has-keys_ende",
 		"line": 629,
 		"story": [
-			"Ohne verdächtige Hast aber mit ängstlich verkrampftem Herzen geht ihr an den Wachen auf dem Wehrgang vorbei. Ihr erreicht unerkannt den Burghof und geht von dort aus in die Stallungen, wo ihr zwei Pferde sattelt. Ihr führt sie hinaus auf den Hof, sitzt auf und reitet zum Burgtor. Barsch befiehlst du dem dort wachenden Mann, das Tor zu öffnen. Er schöpft keinen Argwohn und lässt euch sogleich hinaus.\nIhr treibt eure Pferde an und verschwindet für immer aus dieser dunklen Burg …"
+			"Mit klopfendem Herzen geht ihr an den Wachen auf dem Wehrgang vorbei. Ihr erreicht unbehelligt den Burghof und geht von dort aus in die Stallungen, wo ihr zwei Pferde sattelt. Ihr führt sie auf den Hof, sitzt auf und reitet zum Burgtor.\nBarsch befiehlst du Wachen, das Tor zu öffnen. Sie schöpfen keinen Verdacht und lassen euch passieren.",
+			"Ihr treibt eure Pferde an und verschwindet für immer aus dieser dunklen Burg …"
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "congratulations_mit-musik" }
@@ -769,7 +778,7 @@
 		"id": "wehrgang_verlies-tod",
 		"line": 518,
 		"story": [
-			"Ich habe keine Ahnung, welcher böse Geist in dich gefahren ist. Das Flehen des Mädchens lässt dich kalt, du kannst bei deiner Flucht keinen Menschen als Risiko an deiner Seite dulden. Erbarmungslos sperrst du sie wieder zurück in ihr Turmgemach und legst den Türriegel fest davor. Dann nimmst du deine Sachen, gehst hinaus aus dem Turm und willst dich davonmachen.\nDoch deine Unbarmherzigkeit bleibt nicht ungestraft: Vom obersten Rand des Turmes löst sich ein großer Stein, stürzt hinunter und erschlägt dich …"
+			"Ich habe keine Ahnung, was in dich gefahren ist. Das Flehen des Mädchens lässt dich kalt; du kannst bei deiner Flucht keinen Menschen als Risiko an deiner Seite dulden. Erbarmungslos sperrst du sie wieder zurück in ihr Turmgemach und legst den Türriegel fest davor. Dann nimmst du deine Sachen, gehst hinaus aus dem Turm und willst dich davonmachen.\nDoch deine Unbarmherzigkeit bleibt nicht ungestraft: Vom obersten Rand des Turmes löst sich ein großer Stein, stürzt hinunter und erschlägt dich …"
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "game_over" }
@@ -795,7 +804,7 @@
 		"story": [
 			[
 				{ "condition": "has-sword", "story": "Sie ist mit einem schweren Schloss versehen, das du nicht aufbekommst.\nDu gehst hinter zur zweiten Tür." },
-				{ "condition": "has-keys", "story": "Sie ist mit einem schweren Schloss versehen, doch das stellt für dich kein Problem dar. Du nimmst den Schlüsselbund aus der Tasche und probierst damit solange, bis du das Schloss aufbekommen hast. Du öffnest die Tür und stellst erfreut fest, dass dies die Waffenkammer ist!\nDu denkst, dass es eigentlich besser wäre, mit einem scharfen Schwert bewaffnet zu sein als mit einer einfachen Keule, wie du sie besitzt. Darum suchst dir das beste Schwert und den härtesten Schild aus. Dann verlässt du die Waffenkammer, schließt sie wieder ab und gehst hinter zur zweiten Tür." },
+				{ "condition": "has-keys", "story": "Sie ist mit einem schweren Schloss versehen, doch das stellt für dich kein Problem dar. Du nimmst die Schlüssel aus der Tasche und probierst damit solange, bis du das Schloss aufbekommen hast. Du öffnest die Tür und stellst erfreut fest, dass dies die Waffenkammer ist!\nDu denkst, dass es eigentlich besser wäre, mit einem scharfen Schwert bewaffnet zu sein als mit einer einfachen Keule, wie du sie besitzt. Darum suchst dir das beste Schwert und den härtesten Schild aus. Dann verlässt du die Waffenkammer, schließt sie wieder ab und gehst hinter zur zweiten Tür." },
 				{ "condition": "no-weapons", "story": "Zu deinem Glück (und UBOLZIOs Verhängnis) ist die Türe nicht verschlossen. Du ziehst sie auf und betrittst eine dunkle Kammer. Damit du mehr erkennen kannst, holst du dir aus dem Gewölbegang eine Fackel. Nun bemerkst du erfreut, dass dies die Waffenkammer ist! Um nicht weiterhin unbewaffnet im Palas herumzuschleichen, suchst dir das schärfste Schwert und den härtesten Schild aus. Dann verlässt du die Waffenkammer wieder und gehst hinter zur zweiten Tür." }
 			]
 		],
