@@ -241,8 +241,8 @@
 			"Und jetzt? Willst du noch weiter hinaufsteigen oder lieber sehen, welche Räumlichkeit sich dir hier auftut? [Benutze >hoch< bzw. >links<.]"
 		],
 		"commands": [
-			{ "key": "l", "text": "links", "action": "lagerhaus_aus-turm-ug" },
-			{ "key": "h", "text": "hoch", "action": "turm_og" }
+			{ "key": "h", "text": "hoch", "action": "turm_og" },
+			{ "key": "l", "text": "links", "action": "lagerhaus_aus-turm-ug" }
 		],
 		"hint": "Kannst du nicht lesen? >hoch< bzw. >links<!"
 	},
@@ -292,7 +292,8 @@
 		"id": "turm_og_20",
 		"line": 371,
 		"story": [
-			"Du klopfst an und wartest. Plötzlich geht die Tür auf, und ein alter Mann in einem wallenden Gewand und mit viel Bart steht vor dir. Er bittet dich freundlich herein.\nNun stehst du in einem Raum, der nicht besonders groß ist, aber ausgefüllt mit dicken Bücherregalen, einem Schreibtisch, einer eisenbeschlagenen Truhe und noch einigen anderen Dingen. An den Wänden hängen seltsame Bilder und Karten.",
+			"Du klopfst an und wartest.",
+			"Plötzlich geht die Tür auf, und ein alter Mann in einem wallenden Gewand und mit viel Bart steht vor dir. Er bittet dich freundlich herein.\nNun stehst du in einem Raum, der nicht besonders groß ist, aber ausgefüllt mit dicken Bücherregalen, einem Schreibtisch, einer eisenbeschlagenen Truhe und noch einigen anderen Dingen. An den Wänden hängen seltsame Bilder und Karten.",
 			"Der Mann fragt dich: „Warum bist du zu mir gekommen?“\nDu sagst: „Ich bin aus dem Kerker entflohen und suche einen Ausweg aus dieser schrecklichen Burg.“\n„Niemand ist je aus der Burg UBOLZIOs entkommen, denn sie ist durch einen mächtigen Zauber geschützt“, sagt der Mann.",
 			"Du bist sehr verzweifelt."
 		],
@@ -307,7 +308,7 @@
 		"story": [
 			"Der Mann legt seine Hand auf deine Schulter, sieht dir fest in Augen und sagt: „Es gibt nur einen einzigen Weg, den Zauber zu brechen:\nDu musst bis zum Thronsaal vordringen und UBOLZIO töten. Der Thronsaal wird von einem dreiköpfigen Drachen bewacht, dem weder Schwert noch Pfeil etwas anhaben können. Doch berührst du ihn mit diesem Stab – bei diesen Worten reicht er dir einen kleinen, weißen Stab – muss er sogleich zu Staub zerfallen.“",
 			"Du fasst wieder Mut.",
-			"Du bedankst dich herzlich bei dem alten Mann, verabschiedest dich von ihm und verlässt diesen Raum."
+			"Du bedankst dich herzlich bei dem Alten, verabschiedest dich und verlässt diesen Raum."
 		],
 		"commands": [
 			{ "key": "r", "text": "runter", "setCondition": "has-magic-wand", "action": "burghof-switch" }
@@ -485,7 +486,7 @@
 		"id": "burghof_has-magic-wand",
 		"line": 411,
 		"story": [
-			"Du beschließt, so schnell wie möglich zum Thronsaal zu gelangen, um UBOLZIOs Herrschaft ein für alle mal zu beenden. Darum gehst du vorsichtig zum Palas, der sich rechts von dir befindet."
+			"Du beschließt, so schnell wie möglich den Thronsaal zu finden, um UBOLZIOs Herrschaft ein für alle mal zu beenden.\nDarum gehst du vorsichtig zum Palas, der sich rechts von dir befindet."
 		],
 		"commands": [
 			{ "key": "r", "text": "rechts", "action": "palas" }
@@ -931,7 +932,8 @@
 		"line": 900,
 		"story": [
 			"Du folgst dem Gang bis ans Ende und betrittst schließlich den Vorraum zum Thronsaal. Vor der großen Tür, die dort hineinführt, liegt – ein dreiköpfiger Drache! Genau so, wie es dir der alte Mann aus dem Turmzimmer gesagt hatte.",
-			"Der Drache bemerkt dich und richtet sich auf. Es ist ein ekelhaftes, schuppiges, schmutzigbraunes Untier mit vier großen Pranken. Über den gesamten Rücken zieht sich ein Kamm spitzer Stacheln, ebenso über den Schwanz. Seine Augen sind gierig auf dich gerichtet und aus seinen Mäulern trieft der Speichel, als er dich so verzagt da stehen sieht.\nDu fragst dich, wie du es schaffen sollst, ihn mit dem Stab anzurühren, ohne vorher von ihm verschlungen zu werden."
+			"Der Drache bemerkt dich und richtet sich auf. Es ist ein ekelhaftes, schuppiges, schmutzigbraunes Ungetüm mit vier großen Pranken. Über den gesamten Rücken zieht sich ein Kamm spitzer Stacheln, ebenso über den Schwanz. Seine Augen sind gierig auf dich geheftet und aus seinen Mäulern trieft der Speichel, als er dich so verzagt da stehen sieht.",
+			"Du fragst dich, wie du es schaffen sollst, ihn mit dem Stab anzurühren, ohne vorher von ihm verschlungen zu werden."
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "vorzimmer_drache-kampf" }
@@ -942,7 +944,8 @@
 		"id": "vorzimmer_drache-kampf",
 		"line": 913,
 		"story": [
-			"Du gehst langsam auf den Drachen zu und hältst dabei den Schild schützend vor dich; mit der anderen Hand hast du den Stab und dein Schwert umklammert.\nDer Drache lässt dich noch ein Stück herankommen, dann springt er auf dich zu und brüllt dabei laut aus allen drei Schlünden. Du schreist auch – allerdings vor Entsetzen – und fuchtelst wild mit Schwert, obwohl du weißt, dass das nichts nützt …"
+			"Du gehst langsam auf den Drachen zu und hältst dabei den Schild schützend vor dich; mit der anderen Hand hast du den Stab und dein Schwert umklammert.",
+			"Der Drache lässt dich noch ein Stück herankommen, dann springt er auf dich zu und brüllt dabei laut aus allen drei Schlünden. Du schreist auch – allerdings vor Entsetzen – und fuchtelst wild mit Schwert, obwohl du weißt, dass das nichts nützt …"
 		],
 		"music": "<<<t125msl16cccccccccd-cd-ee-d-e-l4c",
 		"commands": [
@@ -981,7 +984,8 @@
 		"id": "thronsaal_kampf",
 		"line": 795,
 		"story": [
-			"UBOLZIO hat dich sogleich bemerkt und springt von seinem Thron auf. Er sieht das Schwert in deiner Hand blitzen und zieht sofort seinen gefürchteten Zweihänder aus einer reich verzierten Scheide. Er stürzt sich auf dich, und eure Schwerter treffen klirrend aufeinander. Ein erbitterter Kampf entbrennt …"
+			"UBOLZIO hat dich sogleich bemerkt und springt von seinem Thron auf.\nEr sieht das Schwert in deiner Hand blitzen und zieht sofort seinen gefürchteten Zweihänder aus einer reich verzierten Scheide. Er stürzt sich auf dich, und eure Schwerter treffen klirrend aufeinander.",
+			"Ein erbitterter Kampf entbrennt …"
 		]
 	},
 
