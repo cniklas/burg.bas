@@ -858,7 +858,7 @@
 		"id": "palas_og",
 		"line": 752,
 		"story": [
-			"Nun gelangst du in die königlichen Gefilde des Palas. Du stehst in einem breiten Gang, der nach etlichen Metern nach links weiterverläuft. Hohe Fenster lassen viel Licht hinein. An den Wänden hängen prachtvolle Banner und große Gemälde, auf denen UBOLZIO abgebildet ist.",
+			"Nun gelangst du in die königlichen Gefilde des Palas. Du stehst in einem breiten Gang, der nach etlichen Metern nach links weiterverläuft. Hohe Fenster lassen viel Licht hinein. An den Wänden hängen prächtige Banner und große Gemälde, auf denen UBOLZIO abgebildet ist.",
 			"Links von dir ist eine große Tür aus edelstem Holz mit einem güldenen Griff."
 		],
 		"commands": [
@@ -913,8 +913,8 @@
 		"line": 773,
 		"story": [
 			[
-				{ "condition": "visited-schlafzimmer", "story": "Du bist nicht an weiteren Gemächern interessiert und verlässt deshalb diesen Raum.\nDu folgst dem Gang bis ans Ende und betrittst schließlich den Vorraum zum Thronsaal. Auch dieser Bereich ist prächtig ausgeschmückt. Alles dient nur dazu, UBOLZIO und seine Herrschaft zu verherrlichen." },
-				{ "condition": "not-visited-schlafzimmer", "story": "Du folgst dem Gang bis ans Ende und betrittst schließlich den Vorraum zum Thronsaal. Auch dieser Bereich ist prächtig ausgeschmückt. Alles dient nur dazu, UBOLZIO und seine Herrschaft zu verherrlichen." }
+				{ "condition": "visited-schlafzimmer", "story": "Du bist nicht an weiteren Gemächern interessiert und verlässt deshalb diesen Raum.\nDu folgst dem Gang bis ans Ende und betrittst schließlich den Vorraum zum Thronsaal. Auch dieser Bereich ist prachtvoll ausgestattet. Alles dient nur dazu, UBOLZIO und seine Herrschaft zu lobpreisen." },
+				{ "condition": "not-visited-schlafzimmer", "story": "Du folgst dem Gang bis ans Ende und betrittst schließlich den Vorraum zum Thronsaal. Auch dieser Bereich ist prachtvoll ausgestattet. Alles dient nur dazu, UBOLZIO und seine Herrschaft zu lobpreisen." }
 			],
 			"Du gehst weiter, bis du zu der großen, teuren Tür gelangst, die in den THRONSAAL führt!"
 		],
@@ -931,7 +931,7 @@
 		"line": 900,
 		"story": [
 			"Du folgst dem Gang bis ans Ende und betrittst schließlich den Vorraum zum Thronsaal. Vor der großen Tür, die dort hineinführt, liegt – ein dreiköpfiger Drache! Genau so, wie es dir der alte Mann aus dem Turmzimmer gesagt hatte.",
-			"Der Drache bemerkt dich und richtet seine drei Hälse auf. Es ist ein ekelhaftes, schuppiges, schmutzigbraunes Untier mit vier großen Pranken. Über den gesamten Rücken zieht sich ein Kamm spitzer Stacheln, ebenso über den Schwanz. Seine Augen leuchten gierig, und aus seinen Mäulern trieft der Speichel, als er dich da so verzagt stehen sieht. Du fragst dich, wie du je dazu kommen sollst, ihn mit dem Stab anzurühren, ohne vorher von ihm verschlungen zu werden."
+			"Der Drache bemerkt dich und richtet sich auf. Es ist ein ekelhaftes, schuppiges, schmutzigbraunes Untier mit vier großen Pranken. Über den gesamten Rücken zieht sich ein Kamm spitzer Stacheln, ebenso über den Schwanz. Seine Augen sind gierig auf dich gerichtet und aus seinen Mäulern trieft der Speichel, als er dich so verzagt da stehen sieht.\nDu fragst dich, wie du es schaffen sollst, ihn mit dem Stab anzurühren, ohne vorher von ihm verschlungen zu werden."
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "vorzimmer_drache-kampf" }
@@ -942,7 +942,7 @@
 		"id": "vorzimmer_drache-kampf",
 		"line": 913,
 		"story": [
-			"Du gehst langsam auf ihn zu und hältst dabei den Schild schützend vor dich, mit der anderen Hand fasst du dein Schwert und den Stab.\nDer Drache lässt dich noch ein Stück herankommen, dann springt er auf dich zu und brüllt dabei laut aus allen drei Schlünden. Du schreist auch, allerdings vor Entsetzen, und fuchtelst wild mit Schwert, obwohl du weißt, dass das nichts nützt …"
+			"Du gehst langsam auf den Drachen zu und hältst dabei den Schild schützend vor dich; mit der anderen Hand hast du den Stab und dein Schwert umklammert.\nDer Drache lässt dich noch ein Stück herankommen, dann springt er auf dich zu und brüllt dabei laut aus allen drei Schlünden. Du schreist auch – allerdings vor Entsetzen – und fuchtelst wild mit Schwert, obwohl du weißt, dass das nichts nützt …"
 		],
 		"music": "<<<t125msl16cccccccccd-cd-ee-d-e-l4c",
 		"commands": [
@@ -954,8 +954,8 @@
 		"id": "vorzimmer_drache-sieg",
 		"line": 920,
 		"story": [
-			"Ich weiß zwar nicht wie, aber du schaffst es doch noch, den furchtbaren Drachen mit dem Stab des alten Mannes anzurühren, und augenblicklich zerfällt das Ungetüm vor deinen Augen zu Staub.",
-			"Du wirfst den Stab fort, denn nun ist er für dich ja nutzlos, und gehst bis zur Tür, die in den THRONSAAL führt."
+			"Ich weiß zwar nicht wie, aber du schaffst es tatsächlich, das Scheusal mit dem kleinen Stab zu berühren, und im selben Moment zerfällt es vor deinen Augen zu Staub.",
+			"Du wirfst den Stab beiseite und gehst bis zur Tür, die in den THRONSAAL führt."
 		],
 		"music": "<<<<t180mnl2cl4cdl6e-dc>l4c.<l8cl2c",
 		"music_delay": 123456,
@@ -969,8 +969,8 @@
 		"id": "thronsaal",
 		"line": 784,
 		"story": [
-			"Du öffnest die Tür mit einem Ruck und stürmst hinein, Schwert und Schild fest umklammert.",
-			"Drinnen umfängt dich ungemeiner Prunk und Reichtum. An den Wänden hängen kostbare Teppiche und goldbestickte Fahnen. Der Boden ist mit zahlreichen Mosaiken geziert. Hohe, bunte Glasfenster tauchen den Raum in ein mystisches Licht. Hinter dem mächtigen Thron, der mit kunstvollen Schnitzereien versehen ist, erstreckt sich eine lange Reihe von prachtvollen Rüstungen."
+			"Du öffnest die Tür mit einem Ruck und stürmst mit gezücktem Schwert hinein.",
+			"Drinnen umfängt dich ungemeiner Prunk und Reichtum. An den Wänden hängen kostbare Teppiche und goldbestickte Fahnen. Der Boden ist mit zahlreichen Mosaiken geziert. Hohe, bunte Glasfenster tauchen den Raum in ein mystisches Licht. Hinter dem mächtigen Thron, der mit kunstvollen Schnitzereien versehen ist, erstreckt sich eine lange Reihe von glänzenden Rüstungen."
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "thronsaal_kampf" }
@@ -981,7 +981,7 @@
 		"id": "thronsaal_kampf",
 		"line": 795,
 		"story": [
-			"UBOLZIO hat dich sofort bemerkt und springt von seinem Thron auf. Er sieht das Schwert in deiner Hand blitzen und zieht sofort aus einer reich verzierten Scheide seinen berüchtigten Zweihänder. Du stürzt dich auf ihn, und eure Schwerter treffen klirrend aufeinander. Ein erbitterter Kampf entbrennt …"
+			"UBOLZIO hat dich sogleich bemerkt und springt von seinem Thron auf. Er sieht das Schwert in deiner Hand blitzen und zieht sofort seinen gefürchteten Zweihänder aus einer reich verzierten Scheide. Er stürzt sich auf dich, und eure Schwerter treffen klirrend aufeinander. Ein erbitterter Kampf entbrennt …"
 		]
 	},
 
@@ -989,7 +989,7 @@
 		"id": "thronsaal_kampf-tod",
 		"line": 816,
 		"story": [
-			"Du dachtest wohl, UBOLZIO ließe sich so einfach töten?!? Das erweist sich als ein großer Irrtum! Du hast seine Fechtkünste gewaltig unterschätzt!\nEr zerschlägt dir den Schild, dein Schwert zerbricht schließlich auch, und dann versetzt dir UBOLZIO den tödlichen Stoß …"
+			"Du dachtest wohl, UBOLZIO ließe sich so einfach vernichten?!? Das erweist sich als ein großer Irrtum, denn hast seine Fechtkünste gewaltig unterschätzt!\nEr zerschlägt dir den Schild, dein Schwert zerbricht schließlich auch, und dann versetzt dir UBOLZIO den tödlichen Stoß …"
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "game_over" }
@@ -1000,7 +1000,7 @@
 		"id": "thronsaal_kampf-sieg",
 		"line": 821,
 		"story": [
-			"UBOLZIO führt sein Schwert mit ungeheurer Stärke und zerschlägt deinen Schild. Doch nach und nach werden seine Hiebe kraftloser, sein Arm erlahmt unter dem großen Gewicht des Zweihänders. Du bringst ihn durch einen geschickten Schwertstreich zu Fall und stößt ihm das Schwert in die Brust. Da haucht UBOLZIO seine Seele aus …",
+			"UBOLZIO führt sein Schwert mit ungeheurer Wucht und zerschlägt deinen Schild. Doch nach und nach werden seine Hiebe kraftloser, sein Arm ermüdet unter dem großen Gewicht des Zweihänders. Du bringst ihn durch einen geschickten Schwertstreich zu Fall und stößt ihm das Schwert in die Brust. Da haucht UBOLZIO seine Seele aus …",
 			"DU HAST IHN BEZWUNGEN!"
 		],
 		"music": "t117ms <<l8f#f#f# mlf#l16edef# msl8ggg mlgl16f#ef#g msl8aaa mlal16gf#ed mnl8edc#l4dp8 l8msdddd<ap8aaa> l4d",
@@ -1013,7 +1013,7 @@
 		"id": "thronsaal_ende",
 		"line": 829,
 		"story": [
-			"Du hast UBOLZIO besiegt und das Land von der Tyrannenherrschaft befreit. Vor lauter Dankbarkeit ernennt dich das Volk zu seinem NEUEN KÖNIG!"
+			"Du hast UBOLZIO bezwungen und das Land von seiner Schreckensherrschaft befreit. Vor lauter Dankbarkeit ernennt dich das Volk zu seinem NEUEN KÖNIG!"
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "congratulations" }
