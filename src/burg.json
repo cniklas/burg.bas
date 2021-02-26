@@ -9,7 +9,7 @@
 		"delayed": {
 			"delay": 3000,
 			"story": [
-				"Doch heute ist es dir endlich gelungen, das verflixte Türschloss mit einer schäbigen Nagelfeile aufzubekommen. Jetzt öffne die Kerkertür …"
+				"Doch heute ist es dir endlich gelungen, das verflixte Türschloss mit einer schäbigen Nagelfeile aufzubekommen. Jetzt öffne die <span class=blue-dark>Kerkertür</span> …"
 			]
 		},
 		"commands": [
@@ -22,7 +22,7 @@
 		"id": "kerker_10",
 		"line": 88,
 		"story": [
-			"Du trittst aus dem Kerker und stehst jetzt in einem düsteren Gang. Besonders viel kannst du nicht erkennen, doch du entdeckst schließlich eine Treppe, deren rutschige Stufen vermutlich hier heraus führen."
+			"Du trittst aus dem Kerker und stehst jetzt in einem düsteren Gang. Besonders viel kannst du nicht erkennen, doch du entdeckst schließlich eine <span class=blue-light>Treppe</span>, deren rutschige Stufen vermutlich hier heraus führen."
 		],
 		"commands": [
 			{ "key": "r", "text": "runter", "action": null, "message": "Die Treppe geht übrigens nach oben." },
@@ -34,7 +34,7 @@
 		"id": "kerker_20",
 		"line": 96,
 		"story": [
-			"Du gelangst in einen kleinen, beleuchteten Raum. Du kannst nun rechts, links und geradeaus weitergehen. Außerdem bemerkst du, dass auf dem Boden ein Zettel liegt.",
+			"Du gelangst in einen kleinen, beleuchteten Raum. Du kannst nun <span class=blue-light>rechts</span>, <span class=blue-light>links</span> und <span class=blue-light>geradeaus</span> weitergehen. Außerdem bemerkst du, dass auf dem Boden ein <span class=blue-dark>Zettel</span> liegt.",
 			"Entscheide, in welcher Richtung du weiterläufst [>weiter< für geradeaus] oder heb den Zettel auf [>nimm Zettel<], wenn du wissen willst, was darauf steht."
 		],
 		"commands": [
@@ -50,7 +50,7 @@
 		"id": "kerker_20a",
 		"line": 96,
 		"story": [
-			"Du gelangst in einen kleinen, beleuchteten Raum. Du kannst nun links und geradeaus weitergehen. Außerdem bemerkst du, dass auf dem Boden ein Zettel liegt.",
+			"Du gelangst in einen kleinen, beleuchteten Raum. Du kannst nun <span class=blue-light>links</span> und <span class=blue-light>geradeaus</span> weitergehen. Außerdem bemerkst du, dass auf dem Boden ein <span class=blue-dark>Zettel</span> liegt.",
 			"Entscheide, in welcher Richtung du weiterläufst [>weiter< für geradeaus] oder heb den Zettel auf [>nimm Zettel<], wenn du wissen willst, was darauf steht."
 		],
 		"commands": [
@@ -116,12 +116,12 @@
 		"id": "kerker_30",
 		"line": 128,
 		"story": [
-			"Du gehst ein Stück weiter und befindest dich jetzt in einem noch kleineren Raum.\nDu siehst einen Tisch, und darauf liegen ein Helm und ein Umhang. Außerdem steht mitten im Raum eine Leiter, die zu einer Öffnung in der Decke führt."
+			"Du gehst ein Stück weiter und befindest dich jetzt in einem noch kleineren Raum.\nDu siehst einen Tisch, und darauf liegen ein <span class=blue-dark>Helm</span> und ein <span class=blue-dark>Umhang</span>. Außerdem steht mitten im Raum eine <span class=blue-light>Leiter</span>, die zu einer Öffnung in der Decke führt."
 		],
 		"delayed": {
 			"delay": 4000,
 			"story": [
-				"Plötzlich hörst du raue Stimmen und schwere Schritte. Jeden Moment werden die Schergen UBOLZIOs hier auftauchen!"
+				"Plötzlich hörst du raue Stimmen und schwere Schritte. Jeden Moment werden die <span class=red>Schergen UBOLZIOs</span> hier auftauchen!"
 			]
 		},
 		"commands": [
@@ -135,7 +135,7 @@
 		"id": "kerker_31",
 		"line": 140,
 		"story": [
-			"Du schnappst dir Helm und Umhang. Jetzt aber nichts wie weg!"
+			"Du schnappst dir <span class=blue-dark>Helm</span> und <span class=blue-dark>Umhang</span>. Jetzt aber nichts wie weg!"
 		],
 		"commands": [
 			{ "key": "h", "text": "hoch", "action": "wachraum" },
@@ -147,7 +147,7 @@
 		"id": "kerkerwache_tod",
 		"line": 137,
 		"story": [
-			"Du hastest zurück – und läufst den Wächtern direkt in die Arme. Jetzt ist alles zu spät …"
+			"Du hastest zurück – und läufst den <span class=red>Wächtern</span> direkt in die Arme. Jetzt ist alles zu spät …"
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "game_over" }
@@ -224,8 +224,8 @@
 		"id": "turm_ug",
 		"line": 123,
 		"story": [
-			"Du kommst an eine Wendeltreppe. Sie wendelt aufwärts.",
-			"Wenn du meinst, dass sie aus dem Kerker führt, folge ihr. Oder geh zurück."
+			"Du kommst an eine <span class=blue-light>Wendeltreppe</span>. Sie wendelt aufwärts.",
+			"Wenn du meinst, dass sie aus dem Kerker führt, folge ihr. Oder geh <span class=blue-light>zurück</span>."
 		],
 		"commands": [
 			{ "key": "h", "text": "hoch", "setCondition": "no-weapons", "action": "turm_eg" },
@@ -650,7 +650,7 @@
 		"line": 571,
 		"story": [
 			"Du steigst die Stufen zum Wehrgang hinauf. Als du oben bist, bemerkst du, dass hier auch einige Wachposten patrouillieren.",
-			"Du holst Helm und Umhang hervor, die du aus dem Kerker mitgenommen hast, kleidest dich damit ein und siehst nun ebenso aus wie die Schergen UBOLZIOs. Auf diese Weise vermummt betrittst du den Wehrgang und schreitest mutig auf die Wachen zu."
+			"Du holst Helm und Umhang hervor, die du aus dem Kerker mitgenommen hast, kleidest dich damit ein und siehst nun ebenso aus wie die Schergen UBOLZIOs. Auf diese Weise vermummt betrittst du den Wehrgang und gehst mutig auf die Wachen zu."
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "wehrgang_has-keys_10" }

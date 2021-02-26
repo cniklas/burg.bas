@@ -19,11 +19,11 @@
 	<section class="scene">
 		<article class="story">
 			<template v-for="paragraph in story">
-				<p v-if="typeof paragraph === 'string'" class="text-preline">{{ paragraph }}</p>
+				<p v-if="typeof paragraph === 'string'" class="text-preline" v-html="paragraph" />
 
 				<template v-else>
 					<template v-for="section in paragraph">
-						<p :class="{disabled: isDisabled(section)}" class="text-preline">{{ section.story }}</p>
+						<p :class="{disabled: isDisabled(section)}" class="text-preline" v-html="section.story" />
 					</template>
 				</template>
 			</template>
@@ -95,6 +95,9 @@ watch(sceneId, handleStory, { immediate: true })
 // 		animated.value = true
 // 	}, 100)
 // }
+
+const end_death = computed(() => sceneId.value.endsWith('_tod'))
+const end_freedom = computed(() => sceneId.value.endsWith('_ende'))
 
 const typed = ref('')
 
@@ -202,6 +205,40 @@ const handleInput = () => {
 </script>
 
 <style>
+:root {
+	/* --global-font-size: 14px; */
+	--global-line-height: 1.375;
+
+	/* --spacing:        1em; */
+	/* --spacing-medium: calc(var(--spacing) * 2); */
+	/* --spacing-large:  calc(var(--spacing) * 3); */
+
+	--blue-light:   #89d3fd;
+	--blue-dark:    #067df7;
+	--green:        #5ce6cd;
+	--grey-light:   #ccc;
+	--grey-dark:    #999;
+	--papayawhip:   papayawhip;
+	--pink:         hotpink;
+	--purple-light: #7775A7;
+	--purple-dark:  #bd10e0;
+	--red:          #ff0080;
+	--yellow:       #ffbd2e;
+}
+
+.white        { color: #fff; }
+.blue-light   { color: var(--blue-light); }
+.blue-dark    { color: var(--blue-dark); }
+.green        { color: var(--green); }
+.grey-light   { color: var(--grey-light); }
+.grey-dark    { color: var(--grey-dark); }
+.papayawhip   { color: papayawhip; }
+.yellow       { color: var(--yellow); }
+.pink         { color: hotpink; }
+.purple-light { color: var(--purple-light); }
+.purple-dark  { color: var(--purple-dark); }
+.red          { color: var(--red); }
+
 html {
 	background-color: #0f0f17;
 	color: #cbd5e0;
@@ -260,11 +297,12 @@ button:not(:disabled):hover {
 }
 
 .story {
-	line-height: 1.375;
+	line-height: var(--global-line-height);
 }
 
 .story p {
-	margin: 0 0 1.375rem;
+	margin-top: 0;
+	margin-bottom: calc(var(--global-line-height) * 1rem);
 }
 
 .text-preline {
