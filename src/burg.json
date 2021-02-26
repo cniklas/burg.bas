@@ -1,15 +1,14 @@
 [
 	{
 		"id": "start",
-		"line": 76,
 		"story": [
-			"DU SITZT IM KERKER DES GRAUSAMEN, TYRANNISCHEN KÖNIGS UBOLZIO …",
+			"<span class=red>DU SITZT IM KERKER DES GRAUSAMEN, TYRANNISCHEN KÖNIGS UBOLZIO …</span>",
 			"… denn du wurdest beim Äpfelklauen in den königlichen Obstgärten erwischt und zu zehn Jahren Kerker verknackt. Schöner Mist!"
 		],
 		"delayed": {
 			"delay": 3000,
 			"story": [
-				"Doch heute ist es dir endlich gelungen, das verflixte Türschloss mit einer schäbigen Nagelfeile aufzubekommen. Jetzt öffne die <span class=blue-dark>Kerkertür</span> …"
+				"Doch heute ist es dir endlich gelungen, das verflixte Türschloss mit einer schäbigen Nagelfeile aufzubekommen. Jetzt öffne die <span class=blue-light>Kerkertür</span> …"
 			]
 		},
 		"commands": [
@@ -20,7 +19,6 @@
 
 	{
 		"id": "kerker_10",
-		"line": 88,
 		"story": [
 			"Du trittst aus dem Kerker und stehst jetzt in einem düsteren Gang. Besonders viel kannst du nicht erkennen, doch du entdeckst schließlich eine <span class=blue-light>Treppe</span>, deren rutschige Stufen vermutlich hier heraus führen."
 		],
@@ -32,10 +30,9 @@
 
 	{
 		"id": "kerker_20",
-		"line": 96,
 		"story": [
-			"Du gelangst in einen kleinen, beleuchteten Raum. Du kannst nun <span class=blue-light>rechts</span>, <span class=blue-light>links</span> und <span class=blue-light>geradeaus</span> weitergehen. Außerdem bemerkst du, dass auf dem Boden ein <span class=blue-dark>Zettel</span> liegt.",
-			"Entscheide, in welcher Richtung du weiterläufst [>weiter< für geradeaus] oder heb den Zettel auf [>nimm Zettel<], wenn du wissen willst, was darauf steht."
+			"Du gelangst in einen kleinen, beleuchteten Raum. Du kannst nun <span class=blue-light>links</span>, <span class=blue-light>rechts</span> und <span class=blue-light>geradeaus</span> weitergehen. Außerdem bemerkst du, dass auf dem Boden ein <span class=blue-dark>Zettel</span> liegt.",
+			"Entscheide, in welcher Richtung du weiterläufst [>weiter< für geradeaus], oder heb den Zettel auf [>nimm Zettel<], wenn du wissen willst, was darauf steht."
 		],
 		"commands": [
 			{ "key": "n", "text": "nimm Zettel", "action": "kerker_21" },
@@ -48,10 +45,9 @@
 
 	{
 		"id": "kerker_20a",
-		"line": 96,
 		"story": [
 			"Du gelangst in einen kleinen, beleuchteten Raum. Du kannst nun <span class=blue-light>links</span> und <span class=blue-light>geradeaus</span> weitergehen. Außerdem bemerkst du, dass auf dem Boden ein <span class=blue-dark>Zettel</span> liegt.",
-			"Entscheide, in welcher Richtung du weiterläufst [>weiter< für geradeaus] oder heb den Zettel auf [>nimm Zettel<], wenn du wissen willst, was darauf steht."
+			"Entscheide, in welcher Richtung du weiterläufst [>weiter< für geradeaus], oder heb den Zettel auf [>nimm Zettel<], wenn du wissen willst, was darauf steht."
 		],
 		"commands": [
 			{ "key": "n", "text": "nimm Zettel", "action": "kerker_21a" },
@@ -64,7 +60,6 @@
 
 	{
 		"id": "kerker_21",
-		"line": 108,
 		"story": [
 			"Du hebst also den Zettel auf, und darauf steht in bunten Buchstaben:\nLEST MICKY-MAUS!"
 		],
@@ -83,7 +78,6 @@
 
 	{
 		"id": "kerker_21a",
-		"line": 108,
 		"story": [
 			"Du hebst also den Zettel auf, und darauf steht in bunten Buchstaben:\nLEST MICKY-MAUS!"
 		],
@@ -102,7 +96,6 @@
 
 	{
 		"id": "kerker_tod",
-		"line": 114,
 		"story": [
 			"Du hast kaum ein paar Schritte gemacht, als du plötzlich auf eine verborgene Falltür trittst!",
 			"Schmerzhaft landest du etliche Meter tiefer und stellst fest, dass es aus diesem Loch keinen Ausweg gibt …"
@@ -114,7 +107,6 @@
 
 	{
 		"id": "kerker_30",
-		"line": 128,
 		"story": [
 			"Du gehst ein Stück weiter und befindest dich jetzt in einem noch kleineren Raum.\nDu siehst einen Tisch, und darauf liegen ein <span class=blue-dark>Helm</span> und ein <span class=blue-dark>Umhang</span>. Außerdem steht mitten im Raum eine <span class=blue-light>Leiter</span>, die zu einer Öffnung in der Decke führt."
 		],
@@ -133,7 +125,6 @@
 
 	{
 		"id": "kerker_31",
-		"line": 140,
 		"story": [
 			"Du schnappst dir <span class=blue-dark>Helm</span> und <span class=blue-dark>Umhang</span>. Jetzt aber nichts wie weg!"
 		],
@@ -145,7 +136,6 @@
 
 	{
 		"id": "kerkerwache_tod",
-		"line": 137,
 		"story": [
 			"Du hastest zurück – und läufst den <span class=red>Wächtern</span> direkt in die Arme. Jetzt ist alles zu spät …"
 		],
@@ -156,13 +146,12 @@
 
 	{
 		"id": "wachraum",
-		"line": 144,
 		"story": [
 			"Schnell erklimmst du die Leiter und verschwindest durch das Schlupfloch in der Decke. Sicherheitshalber ziehst du auch noch die Leiter ein. Jetzt bist du erstmal außer Gefahr.",
 			"Du schaust dich um: Du befindest dich anscheinend in der Kemenate der Burgwachen. Ihr ganzer Krempel liegt hier verstreut herum, unter anderem:",
 			[
-				{ "condition": "has-helmet", "story": "ein Schlüsselbund und eine Keule" },
-				{ "notCondition": "has-helmet", "story": "ein Schwert und ein Seil" }
+				{ "condition": "has-helmet", "story": "ein <span class=blue-dark>Schlüsselbund</span> und eine <span class=blue-dark>Keule</span>" },
+				{ "notCondition": "has-helmet", "story": "ein <span class=blue-dark>Schwert</span> und ein <span class=blue-dark>Seil</span>" }
 			]
 		],
 		"commands": [
@@ -174,9 +163,8 @@
 
 	{
 		"id": "wachraum_10",
-		"line": 157,
 		"story": [
-			"Nachdem du die Sachen genommen hast, suchst du nach einem Ausgang.\nDu entdeckst eine Tür, die allerdings verschlossen ist."
+			"Nachdem du die Sachen genommen hast, suchst du nach einem Ausgang.\nDu entdeckst eine <span class=blue-light>Tür</span>, die allerdings verschlossen ist."
 		],
 		"commands": [
 			{ "condition": "has-sword", "key": "o", "text": "öffne Tür", "setCondition": "has-sword-or-keys", "action": "wachraum_has-sword" },
@@ -187,7 +175,6 @@
 
 	{
 		"id": "wachraum_has-sword",
-		"line": 163,
 		"story": [
 			"Womit?"
 		],
@@ -200,7 +187,6 @@
 
 	{
 		"id": "wachraum_20",
-		"line": 171,
 		"story": [
 			"Richtig. Du machst aus der Tür Kleinholz und verlässt diesen Raum."
 		],
@@ -211,7 +197,6 @@
 
 	{
 		"id": "wachraum_has-keys",
-		"line": 186,
 		"story": [
 			"Da du jetzt die Schlüssel besitzt, ist es für dich kein Problem, die Tür zu öffnen. Du verlässt den Raum."
 		],
@@ -222,7 +207,6 @@
 
 	{
 		"id": "turm_ug",
-		"line": 123,
 		"story": [
 			"Du kommst an eine <span class=blue-light>Wendeltreppe</span>. Sie wendelt aufwärts.",
 			"Wenn du meinst, dass sie aus dem Kerker führt, folge ihr. Oder geh <span class=blue-light>zurück</span>."
@@ -235,10 +219,9 @@
 
 	{
 		"id": "turm_eg",
-		"line": 257,
 		"story": [
-			"Du hast dich entschlossen, die steile Wendeltreppe hinaufzugehen. Es ist ziemlich mühsam; du erreichst keuchend und schnaufend einen Ausgang.",
-			"Und jetzt? Willst du noch weiter hinaufsteigen oder lieber sehen, welche Räumlichkeit sich dir hier auftut? [Benutze >hoch< bzw. >links<.]"
+			"Du hast dich entschlossen, die steile Wendeltreppe hinaufzugehen. Es ist ziemlich mühsam; du erreichst keuchend und schnaufend einen <span class=blue-light>Ausgang</span>.",
+			"Und jetzt? Willst du noch weiter <span class=blue-light>hinaufsteigen</span> oder lieber sehen, welche Räumlichkeit sich dir hier auftut? [Benutze >hoch< bzw. >links<.]"
 		],
 		"commands": [
 			{ "key": "h", "text": "hoch", "action": "turm_og" },
@@ -249,19 +232,18 @@
 
 	{
 		"id": "turm_og",
-		"line": 349,
 		"story": [
-			"Du steigst die Wendeltreppe immer höher, bis sie plötzlich vor einer kleinen Tür endet."
+			"Du steigst die Wendeltreppe immer höher, bis sie plötzlich vor einer <span class=blue-light>kleinen Tür</span> endet."
 		],
 		"commands": [
-			{ "key": "o", "text": "öffne Tür", "action": "turm_og_10" }
+			{ "key": "o", "text": "öffne Tür", "action": "turm_og_10" },
+			{ "key": "r", "text": "runter", "action": "burghof-switch" }
 		],
 		"hint": "Mach etwas Sinnvolles!"
 	},
 
 	{
 		"id": "turm_og_10",
-		"line": 355,
 		"story": [
 			"Du willst die Tür öffnen, aber sie ist verschlossen.\nFolgendes kannst du jetzt machen:",
 			[
@@ -278,9 +260,8 @@
 
 	{
 		"id": "turm_tod",
-		"line": 366,
 		"story": [
-			"Du schlägst mit deiner Waffe ein paar mal auf das Holz ein. Doch mit einem Mal wird die Tür geöffnet und ein Zauberer steht vor dir!",
+			"Du schlägst mit deiner Waffe ein paar mal auf das Holz ein. Doch mit einem Mal wird die Tür geöffnet und ein <span class=red>Zauberer</span> steht vor dir!",
 			"Dass es ein Zauberer ist, bemerkst du erst, als er dich schon in eine Kröte verwandelt hat zur Strafe dafür, dass du seine Tür beschädigt hast …"
 		],
 		"commands": [
@@ -290,11 +271,10 @@
 
 	{
 		"id": "turm_og_20",
-		"line": 371,
 		"story": [
 			"Du klopfst an und wartest.",
-			"Plötzlich geht die Tür auf, und ein alter Mann in einem wallenden Gewand und mit viel Bart steht vor dir. Er bittet dich freundlich herein.\nNun stehst du in einem Raum, der nicht besonders groß ist, aber ausgefüllt mit dicken Bücherregalen, einem Schreibtisch, einer eisenbeschlagenen Truhe und noch einigen anderen Dingen. An den Wänden hängen seltsame Bilder und Karten.",
-			"Der Mann fragt dich: „Warum bist du zu mir gekommen?“\nDu sagst: „Ich bin aus dem Kerker entflohen und suche einen Ausweg aus dieser schrecklichen Burg.“\n„Niemand ist je aus der Burg UBOLZIOs entkommen, denn sie ist durch einen mächtigen Zauber geschützt“, sagt der Mann.",
+			"Plötzlich geht die Tür auf, und ein <span class=red>alter Mann</span> in einem wallenden Gewand und mit viel Bart steht vor dir. Er bittet dich freundlich herein.\nNun stehst du in einem Raum, der nicht besonders groß ist, aber ausgefüllt mit dicken Bücherregalen, einem Schreibtisch, einer eisenbeschlagenen Truhe und noch einigen anderen Dingen. An den Wänden hängen seltsame Bilder und Karten.",
+			"Der Mann fragt dich: <span class=white>„Warum bist du zu mir gekommen?“</span>\nDu sagst: <span class=white>„Ich bin aus dem Kerker entflohen und suche einen Ausweg aus dieser schrecklichen Burg.“</span>\n<span class=white>„Niemand ist je aus der Burg UBOLZIOs entkommen, denn sie ist durch einen mächtigen Zauber geschützt“</span>, sagt der Mann.",
 			"Du bist sehr verzweifelt."
 		],
 		"commands": [
@@ -304,9 +284,8 @@
 
 	{
 		"id": "turm_og_21",
-		"line": 385,
 		"story": [
-			"Der Mann legt seine Hand auf deine Schulter, sieht dir fest in Augen und sagt: „Es gibt nur einen einzigen Weg, den Zauber zu brechen:\nDu musst bis zum Thronsaal vordringen und UBOLZIO töten. Der Thronsaal wird von einem dreiköpfigen Drachen bewacht, dem weder Schwert noch Pfeil etwas anhaben können. Doch berührst du ihn mit diesem Stab – bei diesen Worten reicht er dir einen kleinen, weißen Stab – muss er sogleich zu Staub zerfallen.“",
+			"Der Mann legt seine Hand auf deine Schulter, sieht dir fest in Augen und sagt: <span class=white>„Es gibt nur einen einzigen Weg, den Zauber zu brechen:\nDu musst bis zum Thronsaal vordringen und UBOLZIO töten. Der Thronsaal wird von einem dreiköpfigen Drachen bewacht, dem weder Schwert noch Pfeil etwas anhaben können. Doch berührst du ihn mit diesem Stab</span> – bei diesen Worten reicht er dir einen kleinen, weißen Stab – <span class=white>muss er sogleich zu Staub zerfallen.“</span>",
 			"Du fasst wieder Mut.",
 			"Du bedankst dich herzlich bei dem Alten, verabschiedest dich und verlässt diesen Raum."
 		],
@@ -318,10 +297,9 @@
 
 	{
 		"id": "lagerhaus_aus-turm-ug",
-		"line": 266,
 		"story": [
 			"Du betrittst eine große Halle.\nHier gibt es eine Vielzahl an Lebensmitteln aber auch Boote, behauene Steine, aufgestapelte Holzbohlen, Werkzeuge verschiedenster Art, Stoffballen, Tierhäute und noch einige andere Sachen. Allem Anschein nach befindest du dich in einem Lagerhaus.",
-			"Links ist ein großes Tor, durch das man vermutlich auf den Burghof gelangt, und am anderen Ende der Halle führt du eine Holztreppe nach oben."
+			"Links ist ein großes Tor, durch das man vermutlich auf den <span class=blue-light>Burghof</span> gelangt, und am anderen Ende der Halle führt du eine <span class=blue-light>Holztreppe</span> nach oben."
 		],
 		"delayed": {
 			"delay": 7000,
@@ -339,18 +317,17 @@
 
 	{
 		"id": "lagerhaus",
-		"line": 281,
 		"story": [
 			"Du läufst behände zum Lagerhaus, öffnest das große Tor und gehst hinein.\nDu schaust dich um und entdeckst eine Vielzahl an Lebensmitteln aber auch Boote, behauene Steine, aufgestapelte Holzbohlen, Werkzeuge verschiedenster Art, Stoffballen, Tierhäute und noch einige andere Sachen.",
-			"An einem Ende der Halle führt eine Holztreppe nach oben. Am anderen Ende befindet sich der Eingang zu einer Wendeltreppe."
+			"An einem Ende der Halle führt eine <span class=blue-light>Holztreppe</span> nach oben. Am anderen Ende befindet sich der Eingang zu einer <span class=blue-light>Wendeltreppe</span>."
 		],
 		"delayed": {
 			"delay": 7000,
 			"story": [
 				"Gerade als du dir etwas zu essen nehmen willst, dringen plötzlich Gebrüll, schnelle Schritte und Waffengeklirr von unten aus der Wendeltreppe zu dir herauf! Schon wieder bist du bemerkt worden!",
 				[
-					{ "condition": "has-sword", "story": "Was nun? Stellst du dich den Wachen mutig entgegen und versuchst, sie zu erledigen? Oder fliehst du lieber? [Gib >kämpfe< bzw. >flieh< ein.]" },
-					{ "condition": "has-keys", "story": "Da du nicht ausreichend bewaffnet bist, um es mit einer Schar Wachen aufzunehmen, beschließt du zu fliehen.\nLäufst du zurück auf den Burghof oder willst du dich im oberen Stockwerk verstecken?" }
+					{ "condition": "has-sword", "story": "Was nun? Stellst du dich den <span class=red>Wachen</span> mutig entgegen und versuchst, sie zu <span class=blue-light>erledigen</span>? Oder <span class=blue-light>fliehst</span> du lieber? [Gib >kämpfe< bzw. >flieh< ein.]" },
+					{ "condition": "has-keys", "story": "Da du nicht ausreichend bewaffnet bist, um es mit einer Schar <span class=red>Wachen</span> aufzunehmen, beschließt du zu fliehen.\nLäufst du zurück auf den <span class=blue-light>Burghof</span> oder willst du dich im <span class=blue-light>oberen Stockwerk</span> verstecken?" }
 				]
 			]
 		},
@@ -364,7 +341,6 @@
 
 	{
 		"id": "lagerhaus_tod",
-		"line": 301,
 		"story": [
 			"Du hetzt die Treppe hinauf und versteckst dich dort so gut es geht zwischen Fässern mit Pökelfleisch und Mehlsäcken. Doch die Wachen sind nicht so leicht zu überlisten und suchen das ganze Lagerhaus nach dir ab.",
 			"Es ist nur eine Frage der Zeit, bis sie dich gefunden haben …"
@@ -376,9 +352,8 @@
 
 	{
 		"id": "lagerhaus_flucht",
-		"line": 311,
 		"story": [
-			"Du hast beschlossen, dich lieber aus dem Staub zu machen.\nLäufst du zurück auf den Burghof oder willst du dich im oberen Stockwerk verstecken?"
+			"Du hast beschlossen, dich lieber aus dem Staub zu machen.\nLäufst du zurück auf den <span class=blue-light>Burghof</span> oder willst du dich im <span class=blue-light>oberen Stockwerk</span> verstecken?"
 		],
 		"commands": [
 			{ "key": "h", "text": "hoch", "action": "lagerhaus_flucht-tod" },
@@ -388,7 +363,6 @@
 
 	{
 		"id": "lagerhaus_flucht-tod",
-		"line": 316,
 		"story": [
 			"Du hetzt die Treppe hinauf und versteckst dich dort so gut es geht zwischen Fässern mit Pökelfleisch und Mehlsäcken. Doch die Wachen sind nicht so leicht zu überlisten und suchen das ganze Lagerhaus nach dir ab.",
 			"Du sitzt in der Falle, und da wird dir auch dein Schwert nicht viel nützen …"
@@ -400,7 +374,6 @@
 
 	{
 		"id": "lagerhaus_kampf",
-		"line": 321,
 		"story": [
 			"Du beschließt, die Schergen UBOLZIOs fertigzumachen!",
 			"Natürlich kannst du dich nicht auf einen Kampf mit mehreren Gegnern gleichzeitig einlassen. Deshalb packst du eines der Fässer, die in deiner Nähe stehen, und stößt es die Wendeltreppe hinunter. Wenige Augenblicke später hörst du das Geschrei und Gefluche der Wachen. Das hat geklappt!"
@@ -409,7 +382,7 @@
 			"delay": 6000,
 			"story": [
 				"Dennoch gelingt es einigen, bis zu dir vorzudringen.\nGlücklicherweise ist der Ausgang der Wendeltreppe so schmal, dass immer nur einer von ihnen hindurchpasst. Trotzdem gerätst du bald in Bedrängnis, denn deine Gegner sind nicht von Pappe!",
-				"Willst du weiterkämpfen oder lieber den Rückzug antreten? [>kämpfe< bzw. >flieh< eingeben.]"
+				"Willst du <span class=blue-light>weiterkämpfen</span> oder lieber den <span class=blue-light>Rückzug</span> antreten? [>kämpfe< bzw. >flieh< eingeben.]"
 			]
 		},
 		"commands": [
@@ -421,7 +394,6 @@
 
 	{
 		"id": "lagerhaus_kampf-tod",
-		"line": 337,
 		"story": [
 			"Das war leider ein großer Fehler, genauer gesagt dein letzter!",
 			"Du drehst dich um und versuchst zu entkommen, und so kannst du nicht sehen, wie einer der Schergen seine Armbrust anlegt, auf dich zielt und abdrückt …"
@@ -433,10 +405,9 @@
 
 	{
 		"id": "lagerhaus_kampf-sieg",
-		"line": 341,
 		"story": [
 			"Du nimmst all deine Kräfte zusammen und kämpfst verbissen weiter. Und du schaffst es schließlich!\nDu wischt dir den Schweiß vom Gesicht …",
-			"Nach einer kurzen Ruhepause beschließt du, die Wendeltreppe hinaufzusteigen, um zu sehen, was sich dort oben befindet."
+			"Nach einer kurzen Ruhepause beschließt du, die <span class=blue-light>Wendeltreppe</span> hinaufzusteigen, um zu sehen, was sich dort oben befindet."
 		],
 		"commands": [
 			{ "key": "h", "text": "hoch", "action": "turm_og" }
@@ -446,7 +417,6 @@
 
 	{
 		"id": "burghof-switch",
-		"line": 401,
 		"story": [
 			[
 				{ "condition": "has-sword", "story": "Du läufst die Wendeltreppe hinunter, gehst durch das Lagerhaus hindurch und trittst auf den Burghof." },
@@ -461,7 +431,6 @@
 
 	{
 		"id": "burghof_has-sword-or-keys",
-		"line": 188,
 		"story": [
 			"Nun stehst du im Freien. Zum Glück ist niemand in der Nähe.\nErstmal atmest du tief durch und genießt die frische Luft, die du während deines langen Kerkeraufenthaltes so vermisst hast."
 		],
@@ -469,7 +438,7 @@
 			"delay": 4000,
 			"story": [
 				"Du stehst auf dem Burghof und überlegst, wo du jetzt hingehen könntest:",
-				"Links sind die Stallungen.\nAuf der anderen Seite des Hofes liegt der Palas.\nRechts von dir befindet sich das Lagerhaus.\nAußerdem könntest du auf den Wehrgang steigen und sehen, ob du da irgendwie weiterkommst. [>hoch<]"
+				"Links sind die <span class=blue-light>Stallungen</span>.\nRechts von dir befindet sich das <span class=blue-light>Lagerhaus</span>.\nAuf der anderen Seite des Hofes liegt der <span class=blue-light>Palas</span>.\nAußerdem könntest du auf den <span class=blue-light>Wehrgang</span> steigen und sehen, ob du da irgendwie weiterkommst. [>hoch<]"
 			]
 		},
 		"commands": [
@@ -484,9 +453,8 @@
 
 	{
 		"id": "burghof_has-magic-wand",
-		"line": 411,
 		"story": [
-			"Du beschließt, so schnell wie möglich den Thronsaal zu finden, um UBOLZIOs Herrschaft ein für alle mal zu beenden.\nDarum gehst du vorsichtig zum Palas, der sich rechts von dir befindet."
+			"Du beschließt, so schnell wie möglich den Thronsaal zu finden, um UBOLZIOs Herrschaft ein für alle mal zu beenden.\nDarum gehst du vorsichtig zum <span class=blue-light>Palas</span>, der sich rechts von dir befindet."
 		],
 		"commands": [
 			{ "key": "r", "text": "rechts", "action": "palas" }
@@ -496,10 +464,9 @@
 
 	{
 		"id": "burghof_no-magic-wand",
-		"line": 418,
 		"story": [
 			"Nun entscheide, wohin du gehen willst.",
-			"In den Palas, der rechts von dir steht?\nOder in die Stallungen, die sich auf der gegenüberliegenden Seite des Burghofes befinden?\nWenn du lieber auf den Wehrgang steigen willst, gib >hoch< ein."
+			"In den <span class=blue-light>Palas</span>, der rechts von dir steht?\nOder in die <span class=blue-light>Stallungen</span>, die sich auf der gegenüberliegenden Seite des Burghofes befinden?\nWenn du lieber auf den <span class=blue-light>Wehrgang</span> steigen willst, gib >hoch< ein."
 		],
 		"commands": [
 			{ "key": "w", "text": "weiter", "setCondition": "visited-stallungen", "action": "stallungen" },
@@ -507,15 +474,14 @@
 			{ "condition": "has-sword", "key": "h", "text": "hoch", "setCondition": "visited-wehrgang", "action": "wehrgang_has-sword" },
 			{ "condition": "no-weapons", "key": "h", "text": "hoch", "action": "wehrgang_tod" }
 		],
-		"hint": "Hä-remm! Könntest du dich bitte für eine Richtung entscheiden?"
+		"hint": "Kannst du dich bitte für eine Richtung entscheiden?"
 	},
 
 	{
 		"id": "burghof_aus-stallungen",
-		"line": 550,
 		"story": [
 			"Wohin treibt es dich jetzt?",
-			"In den Palas, dann musst du nach links gehen.\nIns Lagerhaus auf der anderen Seite des Burghofes?\nOder willst du dich erst auf dem Wehrgang umschauen?"
+			"In den <span class=blue-light>Palas</span>, dann musst du nach links gehen.\nIns <span class=blue-light>Lagerhaus</span> auf der anderen Seite des Burghofes?\nOder willst du dich erst auf dem <span class=blue-light>Wehrgang</span> umschauen?"
 		],
 		"commands": [
 			{ "key": "l", "text": "links", "action": "palas" },
@@ -529,10 +495,9 @@
 
 	{
 		"id": "burghof_aus-stallungen-flucht",
-		"line": 659,
 		"story": [
 			"Dann stürzen sie weiter, weil sie dich im Palas vermuten.\nDu wartest noch eine Weile, dann kriechst du aus deinem Versteck und gehst auf den Burghof hinaus.",
-			"Nun entscheide, wo du als nächstes hingehen möchtest.\nBist du mutig und erkundest UBOLZIOs Palas? Oder willst du lieber hinauf auf den Wehrgang? Gib >links< bzw. >hoch< ein."
+			"Nun entscheide, wo du als nächstes hingehen möchtest.\nBist du mutig und erkundest UBOLZIOs <span class=blue-light>Palas</span>? Oder willst du lieber hinauf auf den <span class=blue-light>Wehrgang</span>? Gib >links< bzw. >hoch< ein."
 		],
 		"commands": [
 			{ "key": "l", "text": "links", "action": "palas" },
@@ -545,10 +510,9 @@
 
 	{
 		"id": "burghof_vom-wehrgang_has-sword",
-		"line": 470,
 		"story": [
 			"Du läufst den ganzen Wehrgang wieder zurück, steigst die Stufen zum Burghof hinunter und musst dich nun für eine neue Richtung entscheiden.",
-			"Links sind die Stallungen.\nRechterhand befindet sich das Lagerhaus.\nWenn du in den Palas möchtest, musst du geradeaus [>weiter<] über den Burghof gehen."
+			"Links sind die <span class=blue-light>Stallungen</span>.\nRechterhand befindet sich das <span class=blue-light>Lagerhaus</span>.\nWenn du in den <span class=blue-light>Palas</span> möchtest, musst du geradeaus [>weiter<] über den Burghof gehen."
 		],
 		"commands": [
 			{ "notCondition": "visited-stallungen", "key": "l", "text": "links", "setCondition": "visited-stallungen", "action": "stallungen" },
@@ -560,10 +524,9 @@
 
 	{
 		"id": "burghof_vom-wehrgang_has-keys",
-		"line": 597,
 		"story": [
 			"Du läufst den Wehrgang wieder zurück, vorbei an den ahnungslosen Wachen, steigst die Stufen zum Burghof hinunter und legst dort erst einmal deine Tarnung ab.",
-			"Nun musst du dich für eine neue Richtung entscheiden:\nLinks sind die Stallungen.\nRechterhand befindet sich das Lagerhaus.\nWenn du in den Palas möchtest, musst du geradeaus [>weiter<] über den Burghof gehen."
+			"Nun musst du dich für eine neue Richtung entscheiden:\nLinks sind die <span class=blue-light>Stallungen</span>.\nRechterhand befindet sich das <span class=blue-light>Lagerhaus</span>.\nWenn du in den <span class=blue-light>Palas</span> möchtest, musst du geradeaus [>weiter<] über den Burghof gehen."
 		],
 		"commands": [
 			{ "notCondition": "visited-stallungen", "key": "l", "text": "links", "setCondition": "visited-stallungen", "action": "stallungen" },
@@ -575,7 +538,6 @@
 
 	{
 		"id": "stallungen",
-		"line": 545,
 		"story": [
 			"Du läufst hinüber zu den Stallungen, öffnest das Tor und gehst hinein. Aber außer Pferdeboxen mit vielen Pferden drin und einem Berg von aufgehäuftem Heu kannst du hier nichts Besonderes entdecken. Was sollte es in einem Pferdestall auch Außergewöhnliches geben?",
 			"Du drehst dich um und gehst auf den Burghof zurück."
@@ -587,7 +549,6 @@
 
 	{
 		"id": "stallungen_flucht",
-		"line": 653,
 		"story": [
 			[
 				{ "condition": "has-sword-or-keys", "story": "Das Obergeschoss erscheint dir nicht als sicher genug, darum läufst du schnell zurück auf den Burghof. Hastig siehst du dich nach einem Versteck vor deinen Verfolgern um. Da erblickst du die Stallungen." },
@@ -602,9 +563,8 @@
 
 	{
 		"id": "wehrgang_tod",
-		"line": 434,
 		"story": [
-			"Völlig unbewaffnet auf den Wehrgang zu steigen, war eine schlechte Idee! Hier oben laufen einige Wachposten herum, und als sie dich entdecken, legen sie sofort ihre Armbrüste an und schießen auf dich.",
+			"Völlig unbewaffnet auf den Wehrgang zu steigen, war eine schlechte Idee! Hier oben laufen einige <span class=red>Wachposten</span> herum, und als sie dich entdecken, legen sie sofort ihre Armbrüste an und schießen auf dich.",
 			"Du wirst gleich mehrfach getroffen und stirbst …"
 		],
 		"commands": [
@@ -614,9 +574,8 @@
 
 	{
 		"id": "wehrgang_has-sword",
-		"line": 439,
 		"story": [
-			"Du steigst die Stufen zum Wehrgang hinauf. Als du oben bist, bemerkst du, dass hier auch einige Wachposten patrouillieren. Du packst dein Schwert fester und stürzt auf den ersten los.",
+			"Du steigst die Stufen zum Wehrgang hinauf. Als du oben bist, bemerkst du, dass hier auch einige <span class=red>Wachposten</span> patrouillieren. Du packst dein Schwert fester und stürzt auf den ersten los.",
 			"Zunächst sind die Wachen völlig überrascht. Doch dann fassen sie sich und gehen zum Gegenangriff über."
 		],
 		"commands": [
@@ -626,16 +585,15 @@
 
 	{
 		"id": "wehrgang_has-sword_10",
-		"line": 444,
 		"story": [
-			"Es kommt zu einem langen, harten Kampf, der dir viele Wunden einbringt, obschon du die meisten Hiebe deiner Gegner parieren kannst.",
+			"Es kommt zu einem langen, harten Kampf, der dir viele Wunden einbringt, obgleich du die meisten Hiebe deiner Gegner parieren kannst.",
 			"Irgendwann endet das blutige Gefecht.\nDu lässt das Schwert ermattet sinken und lehnst dich erschöpft gegen eine Zinne."
 
 		],
 		"delayed": {
 			"delay": 6000,
 			"story": [
-				"Nachdem du wieder zu Kräften gekommen bist, gehst du den Wehrgang entlang, bis du zu einem viereckigen Turm gelangst. Du trittst in das Innere des Turms und stehst vor einer eisenbeschlagenen Tür, die in ein Turmgemach führen muss. Von außen ist ein Riegel davorgelegt. Eine Leiter führt außerdem in das Obergeschoss des Turms.\nWas tust du?"
+				"Nachdem du wieder zu Kräften gekommen bist, gehst du den Wehrgang entlang, bis du zu einem viereckigen Turm gelangst. Du trittst in das Innere des Turms und stehst vor einer eisenbeschlagenen Tür, die in ein <span class=blue-light>Turmgemach</span> führen muss. Von außen ist ein Riegel davorgelegt. Eine Leiter führt außerdem in das <span class=blue-light>Obergeschoss</span> des Turms.\nWas tust du?"
 			]
 		},
 		"commands": [
@@ -647,10 +605,9 @@
 
 	{
 		"id": "wehrgang_has-keys",
-		"line": 571,
 		"story": [
-			"Du steigst die Stufen zum Wehrgang hinauf. Als du oben bist, bemerkst du, dass hier auch einige Wachposten patrouillieren.",
-			"Du holst Helm und Umhang hervor, die du aus dem Kerker mitgenommen hast, kleidest dich damit ein und siehst nun ebenso aus wie die Schergen UBOLZIOs. Auf diese Weise vermummt betrittst du den Wehrgang und gehst mutig auf die Wachen zu."
+			"Du steigst die Stufen zum Wehrgang hinauf. Als du oben bist, bemerkst du, dass hier auch einige <span class=red>Wachposten</span> patrouillieren.",
+			"Du holst Helm und Umhang hervor, die du aus dem Kerker mitgenommen hast, kleidest dich damit ein und siehst nun ebenso aus wie die Schergen UBOLZIOs. Auf diese Weise vermummt betrittst du den Wehrgang und läufst mutig auf die Wachen zu."
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "wehrgang_has-keys_10" }
@@ -659,10 +616,9 @@
 
 	{
 		"id": "wehrgang_has-keys_10",
-		"line": 578,
 		"story": [
 			"Und dein List gelingt: Du wirst nicht erkannt!",
-			"So gehst du immer weiter, bis du zu einem viereckigen Turm gelangst. Du trittst in das Innere des Turms und stehst vor einer eisenbeschlagenen Tür, die in ein Turmgemach führen muss. Von außen ist ein Riegel mit Schloss davorgelegt. Eine Leiter führt außerdem in das Obergeschoss des Turms.\nWas tust du?"
+			"So gehst du immer weiter, bis du zu einem viereckigen Turm gelangst. Du trittst in das Innere des Turms und stehst vor einer eisenbeschlagenen Tür, die in ein <span class=blue-light>Turmgemach</span> führen muss. Von außen ist ein Riegel mit Schloss davorgelegt. Eine Leiter führt außerdem in das <span class=blue-light>Obergeschoss</span> des Turms.\nWas tust du?"
 		],
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "wehrgang_verlies_has-keys" },
@@ -673,10 +629,9 @@
 
 	{
 		"id": "wehrgang_turm",
-		"line": 461,
 		"story": [
 			"Du kletterst die Leiter hinauf. Hier oben gibt es nichts Besonderes. Du entdeckst noch eine Leiter und steigst auch diese empor.\nNun stehst du ganz oben auf der Turmplattform. Ein kräftiger Wind bläst dir ins Gesicht und zerrt an deinen Kleidern.",
-			"Du bleibst für eine Weile dort oben, dann steigst du wieder hinunter.\nGehst du nun zum Burghof zurück oder versuchst du, die Tür zum Turmgemach zu öffnen?"
+			"Du bleibst für eine Weile dort oben, dann steigst du wieder hinunter.\nGehst du nun zum <span class=blue-light>Burghof</span> zurück oder versuchst du, die Tür zum <span class=blue-light>Turmgemach</span> zu öffnen?"
 		],
 		"commands": [
 			{ "condition": "has-sword", "key": "o", "text": "öffne Tür", "action": "wehrgang_verlies_has-sword" },
@@ -688,7 +643,6 @@
 
 	{
 		"id": "wehrgang_verlies_has-sword",
-		"line": 487,
 		"story": [
 			"Du hast dich entschlossen, die Tür zu öffnen, denn du willst wissen, was sich dahinter verbirgt.",
 			"Du brauchst beide Hände, um den schweren Riegel zu bewegen, und musst eine Weile rucken und rütteln, bis du ihn endlich aufbekommst. Dementsprechend bist du gespannt auf das, was dich nun erwarten wird. Du ziehst die Tür auf und …"
@@ -696,8 +650,9 @@
 		"delayed": {
 			"delay": 6000,
 			"story": [
-				"… vor dir steht eine wunderschöne, junge Maid!",
-				"Sie erschrickt zuerst aufgrund deines Aussehens. Doch als du ihr von deinem Schicksal berichtest, fasst sie Vertrauen zu dir. Sie erzählt dir, dass sie von UBOLZIO geraubt und hier eingesperrt wurde, weil sie sich geweigert hatte, seine Frau zu werden. Sie fleht dich an, sie aus der Gewalt UBOLZIOs zu befreien.\nHilfst du ihr?"
+				"… vor dir steht eine wunderschöne <span class=red>junge Maid</span>!",
+				"Sie erschrickt zuerst aufgrund deines Aussehens. Doch als du ihr von deinem Schicksal berichtest, fasst sie Vertrauen zu dir.\nSie erzählt dir, dass sie von UBOLZIO geraubt und hier eingesperrt wurde, weil sie sich geweigert hatte, seine Frau zu werden. Sie fleht dich an, sie aus der Gewalt UBOLZIOs zu befreien.",
+				"Hilfst du ihr?"
 			]
 		},
 		"commands": [
@@ -709,9 +664,8 @@
 
 	{
 		"id": "wehrgang_verlies_has-sword_10",
-		"line": 507,
 		"story": [
-			"Natürlich erklärst du dich bereit, mit ihr gemeinsam zu fliehen, denn auch dein Wunsch ist es, diese Burg so rasch wie möglich zu verlassen. Doch ebenso klar ist, dass ihr es nicht schaffen werdet, durch das Burgtor zu entkommen, ohne von den Wachen entdeckt und getötet zu werden. Darum musst du über einen anderen Fluchtweg nachsinnen."
+			"Natürlich erklärst du dich bereit, mit ihr gemeinsam zu fliehen, denn auch dein Wunsch ist es, diese Burg so rasch wie möglich zu verlassen. Doch ebenso klar ist, dass ihr es nicht schaffen werdet, durch das Burgtor zu entkommen, ohne von den Wachen entdeckt und getötet zu werden.\nDeshalb musst du über einen anderen Fluchtweg nachsinnen."
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "wehrgang_verlies_has-sword_ende" }
@@ -720,7 +674,6 @@
 
 	{
 		"id": "wehrgang_verlies_has-sword_ende",
-		"line": 511,
 		"story": [
 			"Da fällt dir ein, dass du ein langes Seil mitgenommen hast.",
 			"Zusammen mit dem Mädchen verlässt du den Turm und bindest das Seil draußen mit dem einen Ende fest um eine Zinne. Das andere Ende wirfst du die Schildmauer hinunter. Ihr lasst euch daran hinab und seid frei …"
@@ -732,7 +685,6 @@
 
 	{
 		"id": "wehrgang_verlies_has-keys",
-		"line": 603,
 		"story": [
 			"Du hast dich entschlossen, die Tür zu öffnen, denn du willst wissen, was sich dahinter verbirgt.",
 			"Du holst die Schlüssel aus deiner Tasche und probierst damit solange herum, bis du das Schloss aufbekommen hast. Du schiebst den Riegel zur Seite und bist sehr gespannt auf das, was dich nun erwarten wird. Du ziehst die Tür auf und …"
@@ -740,8 +692,9 @@
 		"delayed": {
 			"delay": 6000,
 			"story": [
-				"… vor dir steht eine wunderschöne, junge Maid!",
-				"Sie erschrickt zuerst aufgrund deines Aussehens. Doch als du ihr von deinem Schicksal berichtest, fasst sie Vertrauen zu dir. Sie erzählt dir, dass sie von UBOLZIO geraubt und hier eingesperrt wurde, weil sie sich geweigert hatte, seine Frau zu werden. Sie fleht dich an, sie aus der Gewalt UBOLZIOs zu befreien.\nHilfst du ihr?"
+				"… vor dir steht eine wunderschöne <span class=red>junge Maid</span>!",
+				"Sie erschrickt zuerst aufgrund deines Aussehens. Doch als du ihr von deinem Schicksal berichtest, fasst sie Vertrauen zu dir.\nSie erzählt dir, dass sie von UBOLZIO geraubt und hier eingesperrt wurde, weil sie sich geweigert hatte, seine Frau zu werden. Sie fleht dich an, sie aus der Gewalt UBOLZIOs zu befreien.",
+				"Hilfst du ihr?"
 			]
 		},
 		"commands": [
@@ -753,7 +706,6 @@
 
 	{
 		"id": "wehrgang_verlies_has-keys_10",
-		"line": 621,
 		"story": [
 			"Natürlich erklärst du dich bereit, mit ihr gemeinsam zu fliehen, denn auch dein Wunsch ist es, diese Burg so rasch wie möglich zu verlassen.",
 			"Du gehst zum Eingang des Turms und rufst einen der Wachposten herbei. Als er hereinkommt, ziehst du ihm deine Keule über den Schädel. Dann zerrst du den bewusstlosen Mann in das Turmgemach, nimmst ihm den Helm und den Umhang ab und gibst beides dem Mädchen. Sie zieht sich die Sachen zur Tarnung über, und ihr verlaßt den Turm."
@@ -765,9 +717,8 @@
 
 	{
 		"id": "wehrgang_verlies_has-keys_ende",
-		"line": 629,
 		"story": [
-			"Mit klopfendem Herzen geht ihr an den Wachen auf dem Wehrgang vorbei. Ihr erreicht unbehelligt den Burghof und geht von dort aus in die Stallungen, wo ihr zwei Pferde sattelt. Ihr führt sie auf den Hof, sitzt auf und reitet zum Burgtor.\nBarsch befiehlst du Wachen, das Tor zu öffnen. Sie schöpfen keinen Verdacht und lassen euch passieren.",
+			"Mit klopfendem Herzen geht ihr an den Wachen auf dem Wehrgang vorbei. Ihr erreicht unbehelligt den Burghof und geht von dort aus in die Stallungen, wo ihr zwei Pferde sattelt. Ihr führt sie auf den Hof, sitzt auf und reitet zum Burgtor.\nBarsch befiehlst du den <span class=red>Wachen</span>, das Tor zu öffnen. Sie schöpfen keinen Verdacht und lassen euch passieren.",
 			"Ihr treibt eure Pferde an und verschwindet für immer aus dieser dunklen Burg …"
 		],
 		"commands": [
@@ -777,7 +728,6 @@
 
 	{
 		"id": "wehrgang_verlies-tod",
-		"line": 518,
 		"story": [
 			"Um deine eigene Flucht nicht zu gefährden, schlägst du ihre Bitte ab, sie mitzunehmen. Außerdem vermutest du eine List UBOLZIOs dahinter. Darum sperrst das Mädchen wieder zurück in ihr Turmgemach und legst den Türriegel fest davor. Dann nimmst du deine Sachen, gehst hinaus aus dem Turm und willst dich davonmachen.",
 			"Doch deine Feigheit und Unbarmherzigkeit bleiben nicht ungestraft: Vom Rand des Turmes löst sich ein großer Stein, stürzt hinunter und erschlägt dich …"
@@ -789,10 +739,9 @@
 
 	{
 		"id": "palas",
-		"line": 692,
 		"story": [
-			"Du gehst die breiten Stufen zum Portal hinauf und öffnest die schwere Tür, in die häßliche Fratzen hineingeschnitzt sind.\nNun stehst du in einem breiten, gewölbten Gang, der sich bis zum Ende des Gebäudes hinzieht und dort weiter nach rechts verläuft. Eine große Steintafel trägt die Inschrift: „Diesen Palas errichtete der große Baumeister DEWITT auf Wunsch seiner Majestät König UBOLZIOs.“",
-			"Zu deiner Linken befindet sich eine Tür, die ganz aus Eisen ist. Am Ende des Ganges befindet sich noch eine zweite Tür."
+			"Du gehst die breiten Stufen zum Portal hinauf und öffnest die schwere Tür, in die häßliche Fratzen hineingeschnitzt sind.\nNun stehst du in einem breiten, gewölbten Gang, der sich bis zum Ende des Gebäudes hinzieht und dort weiter nach rechts verläuft. Eine große Steintafel trägt die Inschrift: <span class=pink>„Diesen Palas errichtete der große Baumeister DEWITT auf Wunsch seiner Majestät König UBOLZIOs.“</span>",
+			"Zu deiner Linken befindet sich eine <span class=blue-light>Tür</span>, die ganz aus Eisen ist. Am Ende des Ganges befindet sich noch eine <span class=blue-light>zweite Tür</span>."
 		],
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "waffenkammer" }
@@ -802,12 +751,11 @@
 
 	{
 		"id": "waffenkammer",
-		"line": 710,
 		"story": [
 			[
-				{ "condition": "has-sword", "story": "Die Tür ist mit einem schweren Schloss versehen, das du nicht aufbekommst.\n\nDu gehst weiter zur zweiten Tür." },
-				{ "condition": "has-keys", "story": "Die Tür ist mit einem schweren Schloss versehen. Du nimmst die Schlüssel aus der Tasche und probierst damit solange, bis du das Schloss aufbekommen hast. Du öffnest die Tür und stellst erfreut fest, dass du in die Waffenkammer gelangt bist!\n\nDu denkst, dass es eigentlich besser wäre, mit einem scharfen Schwert bewaffnet zu sein als mit einer einfachen Keule, wie du sie besitzt. Darum suchst dir das beste Schwert und einen festen Schild aus. Dann verlässt du die Waffenkammer und gehst zur zweiten Tür." },
-				{ "condition": "no-weapons", "story": "Zu deinem Glück (und UBOLZIOs Verhängnis) ist die Türe nicht verschlossen. Du öffnest sie und betrittst einen Raum der im Halbdunkel liegt. Erfreut stellst du fest, dass du in die Waffenkammer gelangt bist!\n\nUm nicht weiterhin unbewaffnet im Palas umherzuschleichen, suchst dir das beste Schwert und einen festen Schild aus. Dann verlässt du die Waffenkammer und gehst zur zweiten Tür." }
+				{ "condition": "has-sword", "story": "Die Tür ist mit einem schweren Schloss versehen, das du nicht aufbekommst.\n\nDu gehst weiter zur <span class=blue-light>zweiten Tür</span>." },
+				{ "condition": "has-keys", "story": "Die Tür ist mit einem schweren Schloss versehen. Du nimmst die Schlüssel aus der Tasche und probierst damit solange, bis du das Schloss aufbekommen hast. Du öffnest die Tür und stellst erfreut fest, dass du in die Waffenkammer gelangt bist!\n\nDu denkst, dass es eigentlich besser wäre, mit einem scharfen Schwert bewaffnet zu sein als mit einer einfachen Keule, wie du sie besitzt. Darum suchst dir das beste Schwert und einen festen Schild aus. Dann verlässt du die Waffenkammer und gehst zur <span class=blue-light>zweiten Tür</span>." },
+				{ "condition": "no-weapons", "story": "Zu deinem Glück (und UBOLZIOs Verhängnis) ist die Türe nicht verschlossen. Du öffnest sie und betrittst einen Raum der im Halbdunkel liegt. Erfreut stellst du fest, dass du in die Waffenkammer gelangt bist!\n\nUm nicht länger unbewaffnet umherzuschleichen, suchst dir das beste Schwert und einen festen Schild aus. Dann verlässt du die Waffenkammer und gehst zur <span class=blue-light>zweiten Tür</span>." }
 			]
 		],
 		"commands": [
@@ -819,7 +767,6 @@
 
 	{
 		"id": "gesinderaum",
-		"line": 717,
 		"story": [
 			"Die Tür lässt sich öffnen, und du schaust in den Raum hinein.\nEs befinden sich ein Kamin darin, ein Tisch mit einfachem Essgeschirr, einige Kleidertruhen und eine Waschgelegenheit. Es gibt zwei Fenster, wovon eines geöffnet ist. An den Wänden stehen Holzbänke, auf die Decken ausgebreitet sind. Es ist der Wohnraum des Burggesindes.",
 			"Du klappst die Tür zu."
@@ -832,9 +779,8 @@
 
 	{
 		"id": "treppenhaus",
-		"line": 727,
 		"story": [
-			"Schon nach wenigen Schritten stehst du vor einer großen Treppe, die ins Obergeschoss des Palas führt. Rechts von dir befindet sich eine Tür, hinter der du Stimmen vernehmen kannst.",
+			"Schon nach wenigen Schritten stehst du vor einer großen Treppe, die ins <span class=blue-light>Obergeschoss</span> des Palas führt. Rechts von dir befindet sich eine <span class=blue-light>Tür</span>, hinter der du Stimmen vernehmen kannst.",
 			"Öffnest du die Tür oder gehst du die Treppe hinauf?"
 		],
 		"commands": [
@@ -845,10 +791,9 @@
 
 	{
 		"id": "kueche",
-		"line": 740,
 		"story": [
-			"Deine Neugier siegt über den Verstand: Du öffnest die Tür vorsichtig eine Hand breit und äugst in den Raum hinein: Es ist die Küche, in der ein emsiges Treiben herrscht. Wahrscheinlich hat UBOLZIO für heute ein großes Gelage angesagt.\nDas gesamte Gesinde ist hier am Schuften und dabei so beschäftigt, dass du gar nicht bemerkt wirst. Einige stehen an einem gewaltigen Herd und beaufsichtigen sämtliche Speisen, die dort vor sich hin kochen und braten. Andere nehmen Fasane und Rebhühner aus oder schneiden das Gemüse; wieder andere waschen Teller, Platten und Pokale, Messer, Löffel und Spieße ab.",
-			"Du schließt die Tür wieder und gehst die große Treppe hinauf."
+			"Deine Neugier siegt über den Verstand: Du öffnest die Tür vorsichtig eine Hand breit und äugst in den Raum hinein: Es ist die Küche, in der ein emsiges Treiben herrscht. Wahrscheinlich hat UBOLZIO für heute ein großes Gelage angesagt.\nDas gesamte <span class=red>Gesinde</span> ist hier am Schuften und dabei so beschäftigt, dass du gar nicht bemerkt wirst. Einige stehen an einem gewaltigen Herd und beaufsichtigen sämtliche Speisen, die dort vor sich hin kochen und braten. Andere nehmen Fasane und Rebhühner aus oder schneiden das Gemüse; wieder andere waschen Teller, Platten und Pokale, Messer, Löffel und Spieße ab.",
+			"Du schließt die Tür wieder und gehst die <span class=blue-light>große Treppe</span> hinauf."
 		],
 		"commands": [
 			{ "key": "h", "text": "hoch", "action": "palas_og" }
@@ -857,10 +802,9 @@
 
 	{
 		"id": "palas_og",
-		"line": 752,
 		"story": [
 			"Nun gelangst du in die königlichen Gefilde des Palas. Du stehst in einem breiten Gang, der nach etlichen Metern nach links weiterverläuft. Hohe Fenster lassen viel Licht hinein. An den Wänden hängen prächtige Banner und große Gemälde, auf denen UBOLZIO abgebildet ist.",
-			"Links von dir ist eine große Tür aus edelstem Holz mit einem güldenen Griff."
+			"Links von dir ist eine <span class=blue-light>große Tür</span> aus edelstem Holz mit einem güldenen Griff."
 		],
 		"commands": [
 			{ "condition": "has-keys", "key": "o", "text": "öffne Tür", "action": "schlafzimmer" },
@@ -873,10 +817,9 @@
 
 	{
 		"id": "schlafzimmer",
-		"line": 859,
 		"story": [
 			"Nachdem du die Tür geöffnet hast, betrittst du einen prunkvollen Raum – das Privatgemach des Tyrannen UBOLZIO. Die Wände sind mit Samt und Seide überzogen, auf dem Boden liegt ein großer, kostbarer Teppich und überall sind kunstvoll gearbeitete Möbelstücke aufgestellt.",
-			"Nur wenige Schritte von dir entfernt befindet sich eine kleine Tür in der Wand."
+			"Nur wenige Schritte von dir entfernt befindet sich eine <span class=blue-light>kleine Tür</span> in der Wand."
 		],
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "schatzkammer" },
@@ -887,7 +830,6 @@
 
 	{
 		"id": "schatzkammer",
-		"line": 872,
 		"story": [
 			"Diese Tür ist mit mehreren Schlössern gesichert, doch du findest ohne Mühe die passenden Schlüssel dazu. Als du die Tür öffnest, bist du augenblicklich überwältigt!",
 			"Du stehst in einer kleinen Kammer, die gefüllt ist mit Reichtümern. Da sind große Truhen, aus denen die Gold- und Silbermünzen hervorquellen. Mit Perlen und Edelsteinen besetzte Pokale türmen sich neben kostbaren Vasen, golddurchwirkte Stoffe häufen sich neben Kästen voller Schmuck und Geschmeide. Köstlichste Goldschmiedearbeiten sind hier ebenso zu finden wie reich verzierte Waffen."
@@ -899,7 +841,6 @@
 
 	{
 		"id": "schatzkammer_ende",
-		"line": 881,
 		"story": [
 			"Schnell hast du einen Plan gefasst. Du nimmst einen Sack und stopfst so viele Reichtümer hinein, wie nur geht. Anschließend hüllst du dich in Helm und Umhang, die du aus dem Kerker mitgenommen hast.",
 			"So verlässt du ohne Schwierigkeiten die Burg UBOLZIOs mit reicher Beute und feierst die wieder gewonnene Freiheit mit dem Kauf deines ersten Lamborghini …"
@@ -911,13 +852,12 @@
 
 	{
 		"id": "vorzimmer_kein-drache",
-		"line": 773,
 		"story": [
 			[
 				{ "condition": "visited-schlafzimmer", "story": "Du bist nicht an weiteren Gemächern interessiert und verlässt deshalb diesen Raum.\nDu folgst dem Gang bis ans Ende und betrittst schließlich den Vorraum zum Thronsaal. Auch dieser Bereich ist prachtvoll ausgestattet. Alles dient nur dazu, UBOLZIO und seine Herrschaft zu lobpreisen." },
 				{ "condition": "not-visited-schlafzimmer", "story": "Du folgst dem Gang bis ans Ende und betrittst schließlich den Vorraum zum Thronsaal. Auch dieser Bereich ist prachtvoll ausgestattet. Alles dient nur dazu, UBOLZIO und seine Herrschaft zu lobpreisen." }
 			],
-			"Du gehst weiter, bis du zu der großen, teuren Tür gelangst, die in den THRONSAAL führt!"
+			"Du gehst weiter, bis du zu der großen, teuren Tür gelangst, die in den <span class=blue-light>THRONSAAL</span> führt!"
 		],
 		"music": "<<<<t180mnl2cl4cdl6e-dc>l4c.<l8cl2c",
 		"music_delay": 123456,
@@ -929,9 +869,8 @@
 
 	{
 		"id": "vorzimmer_drache",
-		"line": 900,
 		"story": [
-			"Du folgst dem Gang bis ans Ende und betrittst schließlich den Vorraum zum Thronsaal. Vor der großen Tür, die dort hineinführt, liegt – ein dreiköpfiger Drache! Genau so, wie es dir der alte Mann aus dem Turmzimmer gesagt hatte.",
+			"Du folgst dem Gang bis ans Ende und betrittst schließlich den Vorraum zum Thronsaal. Vor der großen Tür, die dort hineinführt, liegt – ein <span class=red>dreiköpfiger Drache</span>! Genau so, wie es dir der alte Mann aus dem Turmzimmer gesagt hatte.",
 			"Der Drache bemerkt dich und richtet sich auf. Es ist ein ekelhaftes, schuppiges, schmutzigbraunes Ungetüm mit vier großen Pranken. Über den gesamten Rücken zieht sich ein Kamm spitzer Stacheln, ebenso über den Schwanz. Seine Augen sind gierig auf dich geheftet und aus seinen Mäulern trieft der Speichel, als er dich so verzagt da stehen sieht.",
 			"Du fragst dich, wie du es schaffen sollst, ihn mit dem Stab anzurühren, ohne vorher von ihm verschlungen zu werden."
 		],
@@ -942,7 +881,6 @@
 
 	{
 		"id": "vorzimmer_drache-kampf",
-		"line": 913,
 		"story": [
 			"Du gehst langsam auf den Drachen zu und hältst dabei den Schild schützend vor dich; mit der anderen Hand hast du den Stab und dein Schwert umklammert.",
 			"Der Drache lässt dich noch ein Stück herankommen, dann springt er auf dich zu und brüllt dabei laut aus allen drei Schlünden. Du schreist auch – allerdings vor Entsetzen – und fuchtelst wild mit Schwert, obwohl du weißt, dass das nichts nützt …"
@@ -955,10 +893,9 @@
 
 	{
 		"id": "vorzimmer_drache-sieg",
-		"line": 920,
 		"story": [
 			"Ich weiß zwar nicht wie, aber du schaffst es tatsächlich, das Scheusal mit dem kleinen Stab zu berühren, und im selben Moment zerfällt es vor deinen Augen zu Staub.",
-			"Du wirfst den Stab beiseite und gehst bis zur Tür, die in den THRONSAAL führt."
+			"Du wirfst den Stab beiseite und gehst bis zur Tür, die in den <span class=blue-light>THRONSAAL</span> führt."
 		],
 		"music": "<<<<t180mnl2cl4cdl6e-dc>l4c.<l8cl2c",
 		"music_delay": 123456,
@@ -970,7 +907,6 @@
 
 	{
 		"id": "thronsaal",
-		"line": 784,
 		"story": [
 			"Du öffnest die Tür mit einem Ruck und stürmst mit gezücktem Schwert hinein.",
 			"Drinnen umfängt dich ungemeiner Prunk und Reichtum. An den Wänden hängen kostbare Teppiche und goldbestickte Fahnen. Der Boden ist mit zahlreichen Mosaiken geziert. Hohe, bunte Glasfenster tauchen den Raum in ein mystisches Licht. Hinter dem mächtigen Thron, der mit kunstvollen Schnitzereien versehen ist, erstreckt sich eine lange Reihe von glänzenden Rüstungen."
@@ -982,18 +918,16 @@
 
 	{
 		"id": "thronsaal_kampf",
-		"line": 795,
 		"story": [
-			"UBOLZIO hat dich sogleich bemerkt und springt von seinem Thron auf.\nEr sieht das Schwert in deiner Hand blitzen und zieht sofort seinen gefürchteten Zweihänder aus einer reich verzierten Scheide. Er stürzt sich auf dich, und eure Schwerter treffen klirrend aufeinander.",
+			"<span class=red>UBOLZIO</span> hat dich sogleich bemerkt und springt von seinem Thron auf.\nEr sieht das Schwert in deiner Hand blitzen und zieht sofort seinen gefürchteten Zweihänder aus einer reich verzierten Scheide. Er stürzt sich auf dich, und eure Schwerter treffen klirrend aufeinander.",
 			"Ein erbitterter Kampf entbrennt …"
 		]
 	},
 
 	{
 		"id": "thronsaal_kampf-tod",
-		"line": 816,
 		"story": [
-			"Du dachtest wohl, UBOLZIO ließe sich so einfach vernichten?!? Das erweist sich als ein großer Irrtum, denn hast seine Fechtkünste gewaltig unterschätzt!\nEr zerschlägt dir den Schild, dein Schwert zerbricht schließlich auch, und dann versetzt dir UBOLZIO den tödlichen Stoß …"
+			"Du dachtest wohl, <span class=red>UBOLZIO</span> ließe sich so einfach vernichten?!? Das erweist sich als ein großer Irrtum, denn hast seine Fechtkünste gewaltig unterschätzt!\nEr zerschlägt dir den Schild, dein Schwert zerbricht schließlich auch, und dann versetzt dir UBOLZIO den tödlichen Stoß …"
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "game_over" }
@@ -1002,9 +936,8 @@
 
 	{
 		"id": "thronsaal_kampf-sieg",
-		"line": 821,
 		"story": [
-			"UBOLZIO führt sein Schwert mit ungeheurer Wucht und zerschlägt deinen Schild. Doch nach und nach werden seine Hiebe kraftloser, sein Arm ermüdet unter dem großen Gewicht des Zweihänders. Du bringst ihn durch einen geschickten Schwertstreich zu Fall und stößt ihm das Schwert in die Brust. Da haucht UBOLZIO seine Seele aus …",
+			"<span class=red>UBOLZIO</span> führt sein Schwert mit ungeheurer Wucht und zerschlägt deinen Schild. Doch nach und nach werden seine Hiebe kraftloser, sein Arm ermüdet unter dem großen Gewicht des Zweihänders. Du bringst ihn durch einen geschickten Schwertstreich zu Fall und stößt ihm das Schwert in die Brust. Da haucht UBOLZIO seine Seele aus …",
 			"DU HAST IHN BEZWUNGEN!"
 		],
 		"music": "t117ms <<l8f#f#f# mlf#l16edef# msl8ggg mlgl16f#ef#g msl8aaa mlal16gf#ed mnl8edc#l4dp8 l8msdddd<ap8aaa> l4d",
@@ -1015,9 +948,8 @@
 
 	{
 		"id": "thronsaal_ende",
-		"line": 829,
 		"story": [
-			"Du hast UBOLZIO bezwungen und das Land von seiner Schreckensherrschaft befreit. Vor lauter Dankbarkeit ernennt dich das Volk zu seinem NEUEN KÖNIG!"
+			"Du hast UBOLZIO besiegt und das Land von seiner Schreckensherrschaft befreit. Vor lauter Dankbarkeit ernennt dich das Volk zu seinem NEUEN KÖNIG!"
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "congratulations" }
@@ -1026,9 +958,8 @@
 
 	{
 		"id": "congratulations",
-		"line": 837,
 		"story": [
-			"GRATULATION!\nDU HAST DICH WACKER DURCH DIESES ABENTEUER GESCHLAGEN!"
+			"<span class=green>GRATULATION!\nDU HAST DICH WACKER DURCH DIESES ABENTEUER GESCHLAGEN!</span>"
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "credits" }
@@ -1037,9 +968,8 @@
 
 	{
 		"id": "congratulations_mit-musik",
-		"line": 685,
 		"story": [
-			"GRATULATION!\nDU HAST DICH WACKER DURCH DIESES ABENTEUER GESCHLAGEN!"
+			"<span class=green>GRATULATION!\nDU HAST DICH WACKER DURCH DIESES ABENTEUER GESCHLAGEN!</span>"
 		],
 		"music": "t130ms<<l8cl16ccl8cecegeg>l2c",
 		"commands": [
@@ -1049,9 +979,8 @@
 
 	{
 		"id": "game_over",
-		"line": 117,
 		"story": [
-			"DAS WAR’S FÜR DICH!"
+			"<span class=red>DAS WAR’S FÜR DICH!</span>"
 		],
 		"music": "<<<<t117mnl2dl4d.l8dl2dmll4fmsemlemsdmldmnc#l2d",
 		"commands": [
@@ -1061,7 +990,6 @@
 
 	{
 		"id": "restart_or_exit",
-		"line": 119,
 		"story": [
 			"Willst du das Spiel noch einmal beginnen?"
 		],
@@ -1075,7 +1003,6 @@
 
 	{
 		"id": "credits",
-		"line": 215,
 		"story": [
 			"----------------------------- E N D E ! ! !  -----------------------------",
 			"Ein Spiel von KRISCHAN\nIdee: KRISCHAN mit hilfreicher Unterstützung von DEWITT\nText: KRISCHAN\nMusik: KRISCHAN (bis auf wenige Raubkopien)\nOriginally written in BASIC, rewritten in JS with Vue.js\n© Christian Niklas 1996 – 2021"

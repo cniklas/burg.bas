@@ -23,7 +23,7 @@
 
 				<template v-else>
 					<template v-for="section in paragraph">
-						<p :class="{disabled: isDisabled(section)}" class="text-preline" v-html="section.story" />
+						<p v-show="!isDisabled(section)" class="text-preline" v-html="section.story" />
 					</template>
 				</template>
 			</template>
@@ -33,16 +33,17 @@
 
 		<div v-show="!onHold" class="actions">
 			<div class="button-wrapper">
-				<button type="button" v-for="command in clickCommands" :disabled="isDisabled(command)" @click="handleCommand(command)">
+				<!-- <button type="button" v-for="command in clickCommands" :disabled="isDisabled(command)" @click="handleCommand(command)">
 					{{ command.text || 'weiter' }}
 					{{ command.condition ? `[${command.condition}]` : null }}
 					{{ command.notCondition ? `[NOT ${command.notCondition}]` : null }}
-				</button>
+				</button> -->
+				<button v-show="goNext" type="button" @click="handleCommand(goNext)">weiter</button>
 			</div>
 
 			<div v-show="hint && showHint" class="hint">{{ hint }}</div>
 
-			<div v-show="sceneId !== 'credits'" class="input-wrapper">
+			<div v-show="!goNext && sceneId !== 'credits'" class="input-wrapper">
 				<input type="text" v-model.trim="typed" class="input" @keyup.enter="handleInput" />
 			</div>
 		</div>
@@ -50,13 +51,13 @@
 
 	<div class="debug">
 		<div>{{ sceneId }}</div>
-		<div>
+		<!-- <div>
 			<span v-for="command in textCommands" class="as-button" :class="{disabled: isDisabled(command)}">
 				{{ command.text }}
 				{{ command.condition ? `[${command.condition}]` : null }}
 				{{ command.notCondition ? `[NOT ${command.notCondition}]` : null }}
 			</span>
-		</div>
+		</div> -->
 		<pre><code v-for="condition in conditions">{{ `${condition}\n` }}</code></pre>
 	</div>
 </template>
@@ -101,9 +102,10 @@ const end_freedom = computed(() => sceneId.value.endsWith('_ende'))
 
 const typed = ref('')
 
-const clickCommandsList = ['hoch', 'runter', 'links', 'rechts', 'weiter', 'zurück']
-const clickCommands = computed(() => scene.value?.commands?.filter(cmd => clickCommandsList.includes(cmd.text) || cmd.key === 'enter') ?? [])
-const textCommands = computed(() => scene.value?.commands?.filter(cmd => !clickCommandsList.includes(cmd.text) && cmd.key !== 'enter') ?? [])
+// const clickCommandsList = ['hoch', 'runter', 'links', 'rechts', 'weiter', 'zurück']
+// const clickCommands = computed(() => scene.value.commands?.filter(cmd => clickCommandsList.includes(cmd.text) || cmd.key === 'enter') ?? [])
+// const textCommands = computed(() => scene.value.commands?.filter(cmd => !clickCommandsList.includes(cmd.text) && cmd.key !== 'enter') ?? [])
+const goNext = computed(() => scene.value.commands?.find(cmd => cmd.key === 'enter' && !isDisabled(cmd)));
 
 const conditions = ref([])
 const hasCondition = term => conditions.value.includes(term)
@@ -185,14 +187,15 @@ const cleanInput = (string) => {
 const handleInput = () => {
 	const input = cleanInput(typed.value)
 
-	let command
-	if (input === 'weiter') {
-		command = scene.value.commands?.find(cmd => cmd.key === 'enter')
-	}
+	// let command
+	// if (input === 'weiter') {
+	// 	command = scene.value.commands?.find(cmd => !isDisabled(cmd) && cmd.key === 'enter')
+	// }
 
-	if (command === undefined) {
-		command = scene.value.commands?.find(cmd => !isDisabled(cmd) && cmd.text.toLowerCase() === input)
-	}
+	// if (command === undefined) {
+	// 	command = scene.value.commands?.find(cmd => !isDisabled(cmd) && cmd.text.toLowerCase() === input)
+	// }
+	const command = scene.value.commands?.find(cmd => !isDisabled(cmd) && cmd.text.toLowerCase() === input)
 
 	if (command === undefined) {
 		hint.value = scene.value.hint || ''
@@ -207,7 +210,7 @@ const handleInput = () => {
 <style>
 :root {
 	/* --global-font-size: 14px; */
-	--global-line-height: 1.375;
+	--global-line-height: 1.375; /* 'leading-snug' */
 
 	/* --spacing:        1em; */
 	/* --spacing-medium: calc(var(--spacing) * 2); */
@@ -215,25 +218,23 @@ const handleInput = () => {
 
 	--blue-light:   #89d3fd;
 	--blue-dark:    #067df7;
+	--gold:         #ffbd2e;
 	--green:        #5ce6cd;
-	--grey-light:   #ccc;
 	--grey-dark:    #999;
 	--papayawhip:   papayawhip;
 	--pink:         hotpink;
 	--purple-light: #7775A7;
 	--purple-dark:  #bd10e0;
 	--red:          #ff0080;
-	--yellow:       #ffbd2e;
 }
 
 .white        { color: #fff; }
 .blue-light   { color: var(--blue-light); }
 .blue-dark    { color: var(--blue-dark); }
+.gold         { color: var(--gold); }
 .green        { color: var(--green); }
-.grey-light   { color: var(--grey-light); }
 .grey-dark    { color: var(--grey-dark); }
 .papayawhip   { color: papayawhip; }
-.yellow       { color: var(--yellow); }
 .pink         { color: hotpink; }
 .purple-light { color: var(--purple-light); }
 .purple-dark  { color: var(--purple-dark); }
@@ -244,33 +245,25 @@ html {
 	color: #cbd5e0;
 }
 
-pre:empty {
+pre:empty,
+div:empty,
+p:empty {
 	margin: 0;
-}
-
-input {
-	font-family: inherit;
-	font-size: inherit;
-	line-height: inherit;
 }
 
 button {
 	background-color: #1a202c;
 	color: cadetblue;
-	font-family: inherit;
-	font-size: inherit;
 	font-size: 80%;
-	line-height: inherit;
 	border: 1px solid currentColor;
 	padding: .5rem 1rem;
-	cursor: pointer;
 	user-select: none;
 }
-
+/*
 button:disabled {
 	opacity: .4;
 	cursor: initial;
-}
+} */
 
 /* button:focus, */
 button:not(:disabled):hover {
@@ -286,14 +279,22 @@ button:not(:disabled):hover {
 	max-width: 720px;
 }
 
+.ascii-drawing {
+	font-size: 42px;
+}
+
+.ascii-text {
+	font-size: 0.8125rem;
+	line-height: 1.153846;
+}
+
 .scene {
-	position: relative;
-	z-index: 10;
+	@apply relative z-10;
 }
 
 .story,
 .actions {
-	margin: 2rem 0;
+	@apply my-8;
 }
 
 .story {
@@ -301,27 +302,25 @@ button:not(:disabled):hover {
 }
 
 .story p {
-	margin-top: 0;
 	margin-bottom: calc(var(--global-line-height) * 1rem);
 }
 
 .text-preline {
-	/* berücksichtigt line breaks */
-	white-space: pre-line;
+	@apply whitespace-pre-line;
 }
-
+/*
 .story .disabled {
 	opacity: .35;
-}
+} */
 
 .actions {
-	text-align: center;
+	@apply text-center;
 }
 
 .hint,
 .button-wrapper,
 .input-wrapper {
-	margin: 1rem 0;
+	@apply my-4;
 }
 
 /*
@@ -341,8 +340,8 @@ button:not(:disabled):hover {
 }
 
 .input {
-	width: 50%;
-	padding: 0.5rem 0.5rem;
+	@apply w-2/4 p-2;
+	color: #000;
 }
 
 .debug {
@@ -367,9 +366,5 @@ button:not(:disabled):hover {
 
 .as-button.disabled {
 	opacity: .35;
-}
-
-.ascii-drawing {
-	font-size: 42px;
 }
 </style>
