@@ -44,7 +44,8 @@
 	</section>
 
 	<div class="debug">
-		<div>{{ sceneId }}</div>
+		<div>id: {{ sceneId }}</div>
+		<div>music: {{ isPlaying }}</div>
 		<!-- <div>
 			<span v-for="command in textCommands" class="as-button" :class="{disabled: isDisabled(command)}">
 				{{ command.text }}
@@ -61,13 +62,15 @@ import burg from './burg.json'
 import { ref, computed, watch } from 'vue'
 import PanelA from './components/Panel.vue'
 import PanelB from './components/Panel.vue'
-// import { Howl, Howler } from 'howler'
+import { Howl, Howler } from 'howler'
 
 // // Audio test
 // const sound = new Howl({
 // 	src: ['audio/dragon.mp3']
 // });
 // sound.play();
+let music
+const isPlaying = ref(false)
 
 const panel = ref('PanelA')
 let i = 0
@@ -77,13 +80,16 @@ const scene = computed(() => burg.find(scene => scene.id === sceneId.value))
 const story = ref([])
 const onHold = ref(false)
 const handleStory = () => {
+	// animate panel
 	panel.value = ++i % 2 ? 'PanelA' : 'PanelB'
 
+	// replace story
 	story.value = [...scene.value.story]
 	requestAnimationFrame(() => {
 		document.querySelector('.input').focus()
 	})
 
+	// set time for delayed story
 	if (scene.value.delayed) {
 		onHold.value = true
 
@@ -95,6 +101,21 @@ const handleStory = () => {
 				document.querySelector('.input').focus()
 			})
 		}, scene.value.delayed.delay)
+	}
+
+	// fade out music
+	if (isPlaying.value) {
+		music.fade(1, 0, 1200)
+	}
+
+	if (scene.value.audio_file) {
+		music = new Howl({
+			src: [`audio/${scene.value.audio_file}.mp3`],
+			onplay: () => { isPlaying.value = true },
+			// onend: () => { isPlaying.value = false },
+			onfade: () => { isPlaying.value = false }
+		})
+		music.play()
 	}
 }
 watch(sceneId, handleStory, { immediate: true })
