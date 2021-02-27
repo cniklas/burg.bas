@@ -1,5 +1,16 @@
 [
 	{
+		"id": "intro",
+		"story": [
+			"----------------------------- D I E   B U R G -----------------------------"
+		],
+		"audio_file": "intro-2",
+		"commands": [
+			{ "key": "enter", "text": "", "action": "start" }
+		]
+	},
+
+	{
 		"id": "start",
 		"story": [
 			"<span class=red>DU SITZT IM KERKER DES GRAUSAMEN, TYRANNISCHEN KÖNIGS UBOLZIO …</span>",
@@ -754,8 +765,8 @@
 		"story": [
 			[
 				{ "condition": "has-sword", "story": "Die Tür ist mit einem schweren Schloss versehen, das du nicht aufbekommst.\n\nDu gehst weiter zur <span class=blue-light>zweiten Tür</span>." },
-				{ "condition": "has-keys", "story": "Die Tür ist mit einem schweren Schloss versehen. Du nimmst die Schlüssel aus der Tasche und probierst damit solange, bis du das Schloss aufbekommen hast. Du öffnest die Tür und stellst erfreut fest, dass du in die Waffenkammer gelangt bist!\n\nDu denkst, dass es eigentlich besser wäre, mit einem scharfen Schwert bewaffnet zu sein als mit einer einfachen Keule, wie du sie besitzt. Darum suchst dir das beste Schwert und einen festen Schild aus. Dann verlässt du die Waffenkammer und gehst zur <span class=blue-light>zweiten Tür</span>." },
-				{ "condition": "no-weapons", "story": "Zu deinem Glück (und UBOLZIOs Verhängnis) ist die Türe nicht verschlossen. Du öffnest sie und betrittst einen Raum der im Halbdunkel liegt. Erfreut stellst du fest, dass du in die Waffenkammer gelangt bist!\n\nUm nicht länger unbewaffnet umherzuschleichen, suchst dir das beste Schwert und einen festen Schild aus. Dann verlässt du die Waffenkammer und gehst zur <span class=blue-light>zweiten Tür</span>." }
+				{ "condition": "has-keys", "story": "Die Tür ist mit einem schweren Schloss versehen. Du nimmst die Schlüssel aus der Tasche und probierst damit solange, bis du das Schloss aufbekommen hast. Du öffnest die Tür und stellst erfreut fest, dass du in die Waffenkammer gelangt bist!\n\nDu denkst, dass es eigentlich besser wäre, mit einem scharfen Schwert bewaffnet zu sein als mit einer einfachen Keule, wie du sie besitzt. Darum nimmst du das beste Schwert und einen festen Schild mit. Dann verlässt du die Waffenkammer und gehst zur <span class=blue-light>zweiten Tür</span>." },
+				{ "condition": "no-weapons", "story": "Zu deinem Glück (und UBOLZIOs Verhängnis) ist die Türe nicht verschlossen. Du öffnest sie und betrittst einen Raum der im Halbdunkel liegt. Erfreut stellst du fest, dass du in die Waffenkammer gelangt bist!\n\nUm nicht länger unbewaffnet umherzuschleichen, nimmst du das beste Schwert und einen festen Schild mit. Dann verlässt du die Waffenkammer und gehst zur <span class=blue-light>zweiten Tür</span>." }
 			]
 		],
 		"commands": [
@@ -860,6 +871,7 @@
 			"Du gehst weiter, bis du zu der großen, teuren Tür gelangst, die in den <span class=blue-light>THRONSAAL</span> führt!"
 		],
 		"music": "<<<<t180mnl2cl4cdl6e-dc>l4c.<l8cl2c",
+		"audio_file": "suspense",
 		"music_delay": 123456,
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "thronsaal" }
@@ -886,6 +898,7 @@
 			"Der Drache lässt dich noch ein Stück herankommen, dann springt er auf dich zu und brüllt dabei laut aus allen drei Schlünden. Du schreist auch – allerdings vor Entsetzen – und fuchtelst wild mit Schwert, obwohl du weißt, dass das nichts nützt …"
 		],
 		"music": "<<<t125msl16cccccccccd-cd-ee-d-e-l4c",
+		"audio_file": "dragon",
 		"commands": [
 			{ "key": "enter", "text": "", "action": "vorzimmer_drache-sieg" }
 		]
@@ -898,6 +911,7 @@
 			"Du wirfst den Stab beiseite und gehst bis zur Tür, die in den <span class=blue-light>THRONSAAL</span> führt."
 		],
 		"music": "<<<<t180mnl2cl4cdl6e-dc>l4c.<l8cl2c",
+		"audio_file": "suspense",
 		"music_delay": 123456,
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "thronsaal" }
@@ -927,7 +941,8 @@
 	{
 		"id": "thronsaal_kampf-tod",
 		"story": [
-			"Du dachtest wohl, <span class=red>UBOLZIO</span> ließe sich so einfach vernichten?!? Das erweist sich als ein großer Irrtum, denn hast seine Fechtkünste gewaltig unterschätzt!\nEr zerschlägt dir den Schild, dein Schwert zerbricht schließlich auch, und dann versetzt dir UBOLZIO den tödlichen Stoß …"
+			"Du dachtest wohl, <span class=red>UBOLZIO</span> ließe sich so einfach vernichten?!? Das erweist sich als ein großer Irrtum, denn hast seine Fechtkünste gewaltig unterschätzt!",
+			"Er zerschlägt dir den Schild, dein Schwert zerbricht schließlich auch, und dann versetzt dir UBOLZIO den tödlichen Stoß …"
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "game_over" }
@@ -941,6 +956,7 @@
 			"DU HAST IHN BEZWUNGEN!"
 		],
 		"music": "t117ms <<l8f#f#f# mlf#l16edef# msl8ggg mlgl16f#ef#g msl8aaa mlal16gf#ed mnl8edc#l4dp8 l8msdddd<ap8aaa> l4d",
+		"audio_file": "victory",
 		"commands": [
 			{ "key": "enter", "text": "", "action": "thronsaal_ende" }
 		]
@@ -972,6 +988,7 @@
 			"<span class=green>GRATULATION!\nDU HAST DICH WACKER DURCH DIESES ABENTEUER GESCHLAGEN!</span>"
 		],
 		"music": "t130ms<<l8cl16ccl8cecegeg>l2c",
+		"audio_file": "freedom",
 		"commands": [
 			{ "key": "enter", "text": "", "action": "credits" }
 		]
@@ -983,6 +1000,7 @@
 			"<span class=red>DAS WAR’S FÜR DICH!</span>"
 		],
 		"music": "<<<<t117mnl2dl4d.l8dl2dmll4fmsemlemsdmldmnc#l2d",
+		"audio_file": "defeat",
 		"commands": [
 			{ "key": "enter", "text": "", "action": "restart_or_exit" }
 		]
