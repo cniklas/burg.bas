@@ -1,32 +1,26 @@
 <template>
-<pre class="ascii-text">
-88                                                 88
-88                                                 88
-88                                                 88
-88,dPPYba,  88       88 8b,dPPYba,  ,adPPYb,d8     88,dPPYba,  ,adPPYYba, ,adPPYba,
-88P'    "8a 88       88 88P'   "Y8 a8"    `Y88     88P'    "8a ""     `Y8 I8[    ""
-88       d8 88       88 88         8b       88     88       d8 ,adPPPPP88  `"Y8ba,
-88b,   ,a8" "8a,   ,a88 88         "8a,   ,d88 888 88b,   ,a8" 88,    ,88 aa    ]8I
-8Y"Ybbd8"'   `"YbbdP'Y8 88          `"YbbdP"Y8 888 8Y"Ybbd8"'  `"8bbdP"Y8 `"YbbdP"'
-                                    aa,    ,88
-                                     "Y8bbdP"
-</pre>
+<!-- <pre class="ascii-text">
+</pre> -->
 
 <!-- <pre class="ascii-drawing">
 ▓▓▓
 </pre> -->
 
 	<section class="scene">
-		<article class="story">
-			<template v-for="paragraph in story">
-				<p v-if="typeof paragraph === 'string'" class="text-preline" v-html="paragraph" />
+		<article class="story grid">
+			<transition name="panel">
+				<component :is="panel" class="grid-child">
+					<template v-for="paragraph in story">
+						<p v-if="typeof paragraph === 'string'" class="text-preline" v-html="paragraph" />
 
-				<template v-else>
-					<template v-for="section in paragraph">
-						<p v-show="!isDisabled(section)" class="text-preline" v-html="section.story" />
+						<template v-else>
+							<template v-for="section in paragraph">
+								<p v-show="!isDisabled(section)" class="text-preline" v-html="section.story" />
+							</template>
+						</template>
 					</template>
-				</template>
-			</template>
+				</component>
+			</transition>
 
 			<!-- <div v-if="scene.delayed" class="delayed" :class="{animated}" :style="`transition-delay:${scene.delayed.delay}ms`"> -->
 		</article>
@@ -65,12 +59,26 @@
 <script setup>
 import burg from './burg.json'
 import { ref, computed, watch } from 'vue'
+import PanelA from './components/Panel.vue'
+import PanelB from './components/Panel.vue'
+// import { Howl, Howler } from 'howler'
+
+// // Audio test
+// const sound = new Howl({
+// 	src: ['audio/dragon.mp3']
+// });
+// sound.play();
+
+const panel = ref('PanelA')
+let i = 0
 
 let sceneId = ref('start')
 const scene = computed(() => burg.find(scene => scene.id === sceneId.value))
 const story = ref([])
 const onHold = ref(false)
 const handleStory = () => {
+	panel.value = ++i % 2 ? 'PanelA' : 'PanelB'
+
 	story.value = [...scene.value.story]
 	requestAnimationFrame(() => {
 		document.querySelector('.input').focus()
@@ -286,6 +294,25 @@ button:not(:disabled):hover {
 .ascii-text {
 	font-size: 0.8125rem;
 	line-height: 1.153846;
+}
+
+.grid-child {
+	grid-column: 1 / 2;
+	grid-row: 1 / 2;
+}
+
+.panel-enter-active,
+.panel-leave-active {
+	transition: opacity 90ms ease-out;
+}
+
+.panel-leave-active {
+	transition-timing-function: ease-in;
+}
+
+.panel-enter,
+.panel-leave-to {
+	opacity: 0;
 }
 
 .scene {
