@@ -7,20 +7,16 @@
 </pre> -->
 
 	<section class="scene">
-		<article class="story grid">
-			<transition name="panel">
-				<component :is="panel" class="grid-child">
-					<template v-for="paragraph in story">
-						<p v-if="typeof paragraph === 'string'" class="text-preline" v-html="paragraph" />
+		<article class="story">
+			<template v-for="paragraph in story">
+				<p v-if="typeof paragraph === 'string'" class="text-preline" v-html="paragraph" />
 
-						<template v-else>
-							<template v-for="section in paragraph">
-								<p v-show="!isDisabled(section)" class="text-preline" v-html="section.story" />
-							</template>
-						</template>
+				<template v-else>
+					<template v-for="section in paragraph">
+						<p v-show="!isDisabled(section)" class="text-preline" v-html="section.story" />
 					</template>
-				</component>
-			</transition>
+				</template>
+			</template>
 
 			<!-- <div v-if="scene.delayed" class="delayed" :class="{animated}" :style="`transition-delay:${scene.delayed.delay}ms`"> -->
 		</article>
@@ -60,8 +56,6 @@
 <script setup>
 import burg from './burg.json'
 import { ref, computed, watch } from 'vue'
-import PanelA from './components/Panel.vue'
-import PanelB from './components/Panel.vue'
 import { Howl, Howler } from 'howler'
 
 // // Audio test
@@ -72,17 +66,11 @@ import { Howl, Howler } from 'howler'
 let music
 const isPlaying = ref(false)
 
-const panel = ref('PanelA')
-let i = 0
-
 let sceneId = ref('start')
 const scene = computed(() => burg.find(scene => scene.id === sceneId.value))
 const story = ref([])
 const onHold = ref(false)
 const handleStory = () => {
-	// animate panel
-	panel.value = ++i % 2 ? 'PanelA' : 'PanelB'
-
 	// replace story
 	story.value = [...scene.value.story]
 	requestAnimationFrame(() => {
@@ -315,25 +303,6 @@ button:not(:disabled):hover {
 .ascii-text {
 	font-size: 0.8125rem;
 	line-height: 1.153846;
-}
-
-.grid-child {
-	grid-column: 1 / 2;
-	grid-row: 1 / 2;
-}
-
-.panel-enter-active,
-.panel-leave-active {
-	transition: opacity 90ms ease-out;
-}
-
-.panel-leave-active {
-	transition-timing-function: ease-in;
-}
-
-.panel-enter,
-.panel-leave-to {
-	opacity: 0;
 }
 
 .scene {
