@@ -41,7 +41,6 @@
 
 	<div class="debug">
 		<div>id: {{ sceneId }}</div>
-		<div>music: {{ isPlaying }}</div>
 		<!-- <div>
 			<span v-for="command in textCommands" class="as-button" :class="{disabled: isDisabled(command)}">
 				{{ command.text }}
@@ -58,13 +57,19 @@ import burg from './burg.json'
 import { ref, computed, watch } from 'vue'
 import { Howl, Howler } from 'howler'
 
-// // Audio test
-// const sound = new Howl({
-// 	src: ['audio/dragon.mp3']
-// });
-// sound.play();
-let music
-const isPlaying = ref(false)
+let music = null
+// const isPlaying = ref(false)
+const loadMusic = (file, autoplay = false) => {
+	console.log(autoplay ? 'load + play' : 'preload', `"${file}"`)
+	music = new Howl({
+		src: `audio/${file}.mp3`,
+		autoplay,
+		onload: () => { console.log('onload') },
+		onplay: () => { console.log('onplay')/* ; isPlaying.value = true */ },
+		// onend: (id) => { console.log('onend', id) },
+		onfade: () => { console.log('onfade')/* ; isPlaying.value = false */ }
+	})
+}
 
 let sceneId = ref('start')
 const scene = computed(() => burg.find(scene => scene.id === sceneId.value))
@@ -92,18 +97,24 @@ const handleStory = () => {
 	}
 
 	// fade out music
-	if (isPlaying.value) {
+	// if (isPlaying.value) {
+	if (music && music.playing()) {
+		console.log('fade out')
 		music.fade(1, 0, 1200)
 	}
 
-	if (scene.value.audio_file) {
-		music = new Howl({
-			src: [`audio/${scene.value.audio_file}.mp3`],
-			onplay: () => { isPlaying.value = true },
-			// onend: () => { isPlaying.value = false },
-			onfade: () => { isPlaying.value = false }
-		})
-		music.play()
+	// if (scene.value.load_audio && !isPlaying.value) {
+	if (scene.value.load_audio && !(music && music.playing())) {
+		loadMusic(scene.value.load_audio);
+	}
+
+	if (scene.value.play) {
+		if (music && music._src.includes(scene.value.play)) {
+			music.play()
+		}
+		else {
+			loadMusic(scene.value.play, true)
+		}
 	}
 }
 watch(sceneId, handleStory, { immediate: true })
