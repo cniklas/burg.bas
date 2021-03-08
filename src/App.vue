@@ -32,8 +32,7 @@
 			</div>
 
 			<div v-show="hint && showHint" class="hint">{{ hint }}</div>
-
-			<div v-show="!goNext && sceneId !== 'credits'" class="input-wrapper">
+			<div v-show="showInput && !goNext" class="input-wrapper">
 				<input type="text" v-model.trim="typed" class="input" @keyup.enter="handleInput" />
 			</div>
 		</div>
@@ -41,7 +40,6 @@
 
 	<div class="debug">
 		<div>id: {{ sceneId }}</div>
-		<div>music: {{ isPlaying }}</div>
 		<!-- <div>
 			<span v-for="command in textCommands" class="as-button" :class="{disabled: isDisabled(command)}">
 				{{ command.text }}
@@ -58,13 +56,41 @@ import burg from './burg.json'
 import { ref, computed, watch } from 'vue'
 import { Howl, Howler } from 'howler'
 
-// // Audio test
-// const sound = new Howl({
-// 	src: ['audio/dragon.mp3']
-// });
-// sound.play();
-let music
-const isPlaying = ref(false)
+const playlist = []
+let music = null
+const loadMusic = (id, autoplay = false) => {
+	console.log(autoplay ? 'load + play' : 'preload', `"${id}"`)
+	if (!playlist.find(item => item.id === id)) {
+		playlist.push({
+			id,
+			audio: new Howl({
+				src: `audio/${id}.mp3`,
+				// autoplay,
+				onload: () => { console.log('onload') },
+				onplay: (i) => { console.log('onplay', i) },
+				onend: (i) => { console.log('onend', i) },
+				onfade: (i) => {
+					console.log('onfade', i)
+					playlist.find(item => item.id === id).audio.stop().volume(1)
+				}
+			})
+		})
+	}
+}
+
+const playMusic = (id) => {
+	// if (music && music.playing()) {
+	// 	music.stop().volume(1)
+	// }
+
+	music = playlist.find(item => item.id === id)?.audio ?? null
+	music?.play()
+}
+
+const fadeOutMusic = () => {
+	console.log('fade out')
+	music.fade(1, 0, 800)
+}
 
 let sceneId = ref('start')
 const scene = computed(() => burg.find(scene => scene.id === sceneId.value))
@@ -92,18 +118,18 @@ const handleStory = () => {
 	}
 
 	// fade out music
-	if (isPlaying.value) {
-		music.fade(1, 0, 1200)
+	if (music && music.playing()) {
+		fadeOutMusic()
 	}
 
-	if (scene.value.audio_file) {
-		music = new Howl({
-			src: [`audio/${scene.value.audio_file}.mp3`],
-			onplay: () => { isPlaying.value = true },
-			// onend: () => { isPlaying.value = false },
-			onfade: () => { isPlaying.value = false }
-		})
-		music.play()
+	// load music
+	if (scene.value.load_audio) {
+		loadMusic(scene.value.load_audio);
+	}
+
+	// play music
+	if (scene.value.play) {
+		playMusic(scene.value.play)
 	}
 }
 watch(sceneId, handleStory, { immediate: true })
@@ -117,8 +143,6 @@ watch(sceneId, handleStory, { immediate: true })
 const end_death = computed(() => sceneId.value.endsWith('_tod'))
 const end_freedom = computed(() => sceneId.value.endsWith('_ende'))
 
-const typed = ref('')
-
 // const clickCommandsList = ['hoch', 'runter', 'links', 'rechts', 'weiter', 'zurück']
 // const clickCommands = computed(() => scene.value.commands?.filter(cmd => clickCommandsList.includes(cmd.text) || cmd.key === 'enter') ?? [])
 // const textCommands = computed(() => scene.value.commands?.filter(cmd => !clickCommandsList.includes(cmd.text) && cmd.key !== 'enter') ?? [])
@@ -127,12 +151,18 @@ const goNext = computed(() => scene.value.commands?.find(cmd => cmd.key === 'ent
 const conditions = ref([])
 const hasCondition = term => conditions.value.includes(term)
 
+const typed = ref('')
 const hint = ref('')
 const showHint = ref(false)
+const showInput = computed(() => {
+	return !['intro', 'thronsaal_kampf', 'credits'].includes(sceneId.value)
+})
 
 const randomBattle = () => {
+	// todo Dauer
+	// todo kein Input
 	const rnd = Math.floor(Math.random() * Math.floor(3))
-	console.log(rnd)
+	console.log(rnd > 0 ? '👍' : '👎')
 	const action = rnd > 0 ? 'thronsaal_kampf-sieg' : 'thronsaal_kampf-tod'
 
 	setTimeout(() => {
