@@ -32,8 +32,7 @@
 			</div>
 
 			<div v-show="hint && showHint" class="hint">{{ hint }}</div>
-
-			<div v-show="!goNext && sceneId !== 'credits'" class="input-wrapper">
+			<div v-show="showInput && !goNext" class="input-wrapper">
 				<input type="text" v-model.trim="typed" class="input" @keyup.enter="handleInput" />
 			</div>
 		</div>
@@ -144,8 +143,6 @@ watch(sceneId, handleStory, { immediate: true })
 const end_death = computed(() => sceneId.value.endsWith('_tod'))
 const end_freedom = computed(() => sceneId.value.endsWith('_ende'))
 
-const typed = ref('')
-
 // const clickCommandsList = ['hoch', 'runter', 'links', 'rechts', 'weiter', 'zurück']
 // const clickCommands = computed(() => scene.value.commands?.filter(cmd => clickCommandsList.includes(cmd.text) || cmd.key === 'enter') ?? [])
 // const textCommands = computed(() => scene.value.commands?.filter(cmd => !clickCommandsList.includes(cmd.text) && cmd.key !== 'enter') ?? [])
@@ -154,14 +151,18 @@ const goNext = computed(() => scene.value.commands?.find(cmd => cmd.key === 'ent
 const conditions = ref([])
 const hasCondition = term => conditions.value.includes(term)
 
+const typed = ref('')
 const hint = ref('')
 const showHint = ref(false)
+const showInput = computed(() => {
+	return !['intro', 'thronsaal_kampf', 'credits'].includes(sceneId.value)
+})
 
 const randomBattle = () => {
 	// todo Dauer
 	// todo kein Input
 	const rnd = Math.floor(Math.random() * Math.floor(3))
-	console.log(rnd)
+	console.log(rnd > 0 ? '👍' : '👎')
 	const action = rnd > 0 ? 'thronsaal_kampf-sieg' : 'thronsaal_kampf-tod'
 
 	setTimeout(() => {

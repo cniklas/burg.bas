@@ -561,7 +561,7 @@
 	{
 		"id": "stallungen",
 		"story": [
-			"Du läufst hinüber zu den Stallungen, öffnest das Tor und gehst hinein. Aber außer Pferdeboxen mit vielen Pferden drin und einem Berg von aufgehäuftem Heu kannst du hier nichts Besonderes entdecken. Was sollte es in einem Pferdestall auch Außergewöhnliches geben?",
+			"Du läufst hinüber zu den Stallungen, öffnest das Tor und gehst hinein. Außer Pferdeboxen mit vielen Pferden drin und einem Berg von aufgehäuftem Heu kannst du hier nichts Besonderes entdecken. Was sollte es in einem Pferdestall auch Außergewöhnliches geben?",
 			"Du drehst dich um und gehst auf den Burghof zurück."
 		],
 		"commands": [
@@ -770,6 +770,7 @@
 			"Zu deiner Linken befindet sich eine <span class=blue-light>Tür</span>, die ganz aus Eisen ist. Am Ende des Ganges befindet sich noch eine <span class=blue-light>zweite Tür</span>."
 		],
 		"commands": [
+			{ "condition": "has-sword", "key": "w", "text": "weiter", "action": "gesinderaum_tuer" },
 			{ "key": "o", "text": "öffne Tür", "action": "waffenkammer" }
 		],
 		"hint": "Versuche, die erste Tür zu öffnen."
@@ -783,6 +784,18 @@
 				{ "condition": "has-keys", "story": "Die Tür ist mit einem schweren Schloss versehen. Du nimmst die Schlüssel aus der Tasche und probierst damit solange, bis du das Schloss aufbekommen hast. Du öffnest die Tür und stellst erfreut fest, dass du in die Waffenkammer gelangt bist!\n\nDu denkst, dass es eigentlich besser wäre, mit einem scharfen Schwert bewaffnet zu sein als mit einer einfachen Keule, wie du sie besitzt. Darum nimmst du das beste Schwert und einen festen Schild mit. Dann verlässt du die Waffenkammer und gehst zur <span class=blue-light>zweiten Tür</span>." },
 				{ "condition": "no-weapons", "story": "Zu deinem Glück (und UBOLZIOs Verhängnis) ist die Türe nicht verschlossen. Du öffnest sie und betrittst einen Raum der im Halbdunkel liegt. Erfreut stellst du fest, dass du in die Waffenkammer gelangt bist!\n\nUm nicht länger unbewaffnet umherzuschleichen, nimmst du das beste Schwert und einen festen Schild mit. Dann verlässt du die Waffenkammer und gehst zur <span class=blue-light>zweiten Tür</span>." }
 			]
+		],
+		"commands": [
+			{ "key": "o", "text": "öffne Tür", "action": "gesinderaum" },
+			{ "key": "r", "text": "rechts", "action": "treppenhaus" }
+		],
+		"hint": "Versuche, die zweite Tür zu öffnen, oder folge dem Gang nach rechts."
+	},
+
+	{
+		"id": "gesinderaum_tuer",
+		"story": [
+			"Du gehst weiter zur <span class=blue-light>zweiten Tür</span>."
 		],
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "gesinderaum" },
