@@ -300,9 +300,14 @@
 		"id": "turm_og_21",
 		"story": [
 			"Der Mann legt seine Hand auf deine Schulter, sieht dir fest in Augen und sagt: <span class=white>„Es gibt nur einen einzigen Weg, den Zauber zu brechen:\nDu musst bis zum Thronsaal vordringen und UBOLZIO töten. Der Thronsaal wird von einem dreiköpfigen Drachen bewacht, dem weder Schwert noch Pfeil etwas anhaben können. Doch berührst du ihn mit diesem Stab</span> – bei diesen Worten reicht er dir einen kleinen, weißen Stab – <span class=white>muss er sogleich zu Staub zerfallen.“</span>",
-			"Du fasst wieder Mut.",
-			"Du bedankst dich herzlich bei dem Alten, verabschiedest dich und verlässt diesen Raum."
+			"Du fasst wieder Mut."
 		],
+		"delayed": {
+			"delay": 4000,
+			"story": [
+				"Du bedankst dich herzlich bei dem Alten, verabschiedest dich und verlässt diesen Raum."
+			]
+		},
 		"commands": [
 			{ "key": "r", "text": "runter", "setCondition": "has-magic-wand", "action": "burghof-switch" }
 		],
@@ -951,6 +956,7 @@
 			"<span class=red>UBOLZIO</span> hat dich sogleich bemerkt und springt von seinem Thron auf.\nEr sieht das Schwert in deiner Hand blitzen und zieht sofort seinen gefürchteten Zweihänder aus einer reich verzierten Scheide. Er stürzt sich auf dich, und eure Schwerter treffen klirrend aufeinander.",
 			"Ein erbitterter Kampf entbrennt …"
 		],
+		"load_audio": "victory",
 		"play": "battle"
 	},
 

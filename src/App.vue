@@ -57,18 +57,40 @@ import burg from './burg.json'
 import { ref, computed, watch } from 'vue'
 import { Howl, Howler } from 'howler'
 
+const playlist = []
 let music = null
-// const isPlaying = ref(false)
-const loadMusic = (file, autoplay = false) => {
-	console.log(autoplay ? 'load + play' : 'preload', `"${file}"`)
-	music = new Howl({
-		src: `audio/${file}.mp3`,
-		autoplay,
-		onload: () => { console.log('onload') },
-		onplay: () => { console.log('onplay')/* ; isPlaying.value = true */ },
-		// onend: (id) => { console.log('onend', id) },
-		onfade: () => { console.log('onfade')/* ; isPlaying.value = false */ }
-	})
+const loadMusic = (id, autoplay = false) => {
+	console.log(autoplay ? 'load + play' : 'preload', `"${id}"`)
+	if (!playlist.find(item => item.id === id)) {
+		playlist.push({
+			id,
+			audio: new Howl({
+				src: `audio/${id}.mp3`,
+				// autoplay,
+				onload: () => { console.log('onload') },
+				onplay: (i) => { console.log('onplay', i) },
+				onend: (i) => { console.log('onend', i) },
+				onfade: (i) => {
+					console.log('onfade', i)
+					playlist.find(item => item.id === id).audio.stop().volume(1)
+				}
+			})
+		})
+	}
+}
+
+const playMusic = (id) => {
+	// if (music && music.playing()) {
+	// 	music.stop().volume(1)
+	// }
+
+	music = playlist.find(item => item.id === id)?.audio ?? null
+	music?.play()
+}
+
+const fadeOutMusic = () => {
+	console.log('fade out')
+	music.fade(1, 0, 800)
 }
 
 let sceneId = ref('start')
@@ -97,24 +119,18 @@ const handleStory = () => {
 	}
 
 	// fade out music
-	// if (isPlaying.value) {
 	if (music && music.playing()) {
-		console.log('fade out')
-		music.fade(1, 0, 1200)
+		fadeOutMusic()
 	}
 
-	// if (scene.value.load_audio && !isPlaying.value) {
-	if (scene.value.load_audio && !(music && music.playing())) {
+	// load music
+	if (scene.value.load_audio) {
 		loadMusic(scene.value.load_audio);
 	}
 
+	// play music
 	if (scene.value.play) {
-		if (music && music._src.includes(scene.value.play)) {
-			music.play()
-		}
-		else {
-			loadMusic(scene.value.play, true)
-		}
+		playMusic(scene.value.play)
 	}
 }
 watch(sceneId, handleStory, { immediate: true })
@@ -142,6 +158,8 @@ const hint = ref('')
 const showHint = ref(false)
 
 const randomBattle = () => {
+	// todo Dauer
+	// todo kein Input
 	const rnd = Math.floor(Math.random() * Math.floor(3))
 	console.log(rnd)
 	const action = rnd > 0 ? 'thronsaal_kampf-sieg' : 'thronsaal_kampf-tod'
