@@ -32,7 +32,7 @@
 			</div>
 
 			<div v-show="hint && showHint" class="hint">{{ hint }}</div>
-			<div v-show="showInput && !goNext" class="input-wrapper">
+			<div v-show="!hideInput && !goNext" class="input-wrapper">
 				<input type="text" v-model.trim="typed" class="input" @keyup.enter="handleInput" />
 			</div>
 		</div>
@@ -124,12 +124,21 @@ const handleStory = () => {
 
 	// load music
 	if (scene.value.load_audio) {
-		loadMusic(scene.value.load_audio);
+		loadMusic(scene.value.load_audio)
 	}
 
 	// play music
 	if (scene.value.play) {
-		playMusic(scene.value.play)
+		scene.value.play_delay
+			? setTimeout(() => { playMusic(scene.value.play) }, scene.value.play_delay)
+			: playMusic(scene.value.play)
+	}
+
+	// continue
+	if (scene.value.continue) {
+		setTimeout(() => {
+			handleAction({ action: scene.value.continue.action })
+		}, scene.value.continue.delay)
 	}
 }
 watch(sceneId, handleStory, { immediate: true })
@@ -154,20 +163,18 @@ const hasCondition = term => conditions.value.includes(term)
 const typed = ref('')
 const hint = ref('')
 const showHint = ref(false)
-const showInput = computed(() => {
-	return !['intro', 'thronsaal_kampf', 'credits'].includes(sceneId.value)
+const hideInput = computed(() => {
+	return !!scene.value.continue || ['thronsaal_kampf', 'credits'].includes(sceneId.value)
 })
 
 const randomBattle = () => {
-	// todo Dauer
-	// todo kein Input
 	const rnd = Math.floor(Math.random() * Math.floor(3))
 	console.log(rnd > 0 ? '👍' : '👎')
 	const action = rnd > 0 ? 'thronsaal_kampf-sieg' : 'thronsaal_kampf-tod'
 
 	setTimeout(() => {
 		handleAction({ action })
-	}, 3000)
+	}, 70000)
 }
 
 const resetGame = () => {
@@ -185,7 +192,7 @@ const handleAction = command => {
 	}
 
 	// zurück auf Start
-	if (command.action === 'start') {
+	else if (command.action === 'start') {
 		resetGame()
 	}
 
