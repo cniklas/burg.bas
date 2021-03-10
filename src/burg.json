@@ -5,9 +5,7 @@
 			"--------------------------  D  I  E     B  U  R  G  --------------------------"
 		],
 		"play": "intro-2",
-		"commands": [
-			{ "key": "enter", "text": "", "action": "start" }
-		]
+		"continue": { "delay": 123, "action": "start" }
 	},
 
 	{
@@ -25,7 +23,8 @@
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "kerker_10" }
 		],
-		"hint": "Ich sagte: Öffne die Tür!"
+		"hint": "Ich sagte: Öffne die Tür!",
+		"load_audio": "defeat"
 	},
 
 	{
@@ -113,8 +112,7 @@
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "game_over" }
-		],
-		"load_audio": "defeat"
+		]
 	},
 
 	{
@@ -153,8 +151,7 @@
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "game_over" }
-		],
-		"load_audio": "defeat"
+		]
 	},
 
 	{
@@ -279,8 +276,7 @@
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "game_over" }
-		],
-		"load_audio": "defeat"
+		]
 	},
 
 	{
@@ -299,11 +295,11 @@
 	{
 		"id": "turm_og_21",
 		"story": [
-			"Der Mann legt seine Hand auf deine Schulter, sieht dir fest in Augen und sagt: <span class=white>„Es gibt nur einen einzigen Weg, den Zauber zu brechen:\nDu musst bis zum Thronsaal vordringen und UBOLZIO töten. Der Thronsaal wird von einem dreiköpfigen Drachen bewacht, dem weder Schwert noch Pfeil etwas anhaben können. Doch berührst du ihn mit diesem Stab</span> – bei diesen Worten reicht er dir einen kleinen, weißen Stab – <span class=white>muss er sogleich zu Staub zerfallen.“</span>",
+			"Der Mann legt seine Hand auf deine Schulter, sieht dir fest in Augen und sagt: <span class=white>„Es gibt nur einen einzigen Weg, den Zauber zu brechen:\nDu musst bis zum Thronsaal vordringen und UBOLZIO töten. Der Thronsaal wird von einem dreiköpfigen Drachen bewacht, dem weder Schwert noch Pfeil etwas anhaben können. Doch berührst du ihn mit diesem Stab</span> – bei diesen Worten reicht er dir einen kleinen, weißen <span class=blue-dark>Stab</span> – <span class=white>muss er sogleich zu Staub zerfallen.“</span>",
 			"Du fasst wieder Mut."
 		],
 		"delayed": {
-			"delay": 4000,
+			"delay": 6000,
 			"story": [
 				"Du bedankst dich herzlich bei dem Alten, verabschiedest dich und verlässt diesen Raum."
 			]
@@ -366,8 +362,7 @@
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "game_over" }
-		],
-		"load_audio": "defeat"
+		]
 	},
 
 	{
@@ -389,8 +384,7 @@
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "game_over" }
-		],
-		"load_audio": "defeat"
+		]
 	},
 
 	{
@@ -421,16 +415,20 @@
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "game_over" }
-		],
-		"load_audio": "defeat"
+		]
 	},
 
 	{
 		"id": "lagerhaus_kampf-sieg",
 		"story": [
-			"Du nimmst all deine Kräfte zusammen und kämpfst verbissen weiter. Und du schaffst es schließlich!\nDu wischt dir den Schweiß vom Gesicht …",
-			"Nach einer kurzen Ruhepause beschließt du, die <span class=blue-light>Wendeltreppe</span> hinaufzusteigen, um zu sehen, was sich dort oben befindet."
+			"Du nimmst all deine Kräfte zusammen und kämpfst verbissen weiter. Und du schaffst es schließlich!\nDu wischt dir den Schweiß vom Gesicht …"
 		],
+		"delayed": {
+			"delay": 5000,
+			"story": [
+				"Nach einer kurzen Ruhepause beschließt du, die <span class=blue-light>Wendeltreppe</span> hinaufzusteigen, um zu sehen, was sich dort oben befindet."
+			]
+		},
 		"commands": [
 			{ "key": "h", "text": "hoch", "action": "turm_og" }
 		],
@@ -591,8 +589,7 @@
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "game_over" }
-		],
-		"load_audio": "defeat"
+		]
 	},
 
 	{
@@ -692,7 +689,8 @@
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "wehrgang_verlies_has-sword_ende" }
-		]
+		],
+		"load_audio": "freedom"
 	},
 
 	{
@@ -703,8 +701,7 @@
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "congratulations_mit-musik" }
-		],
-		"load_audio": "freedom"
+		]
 	},
 
 	{
@@ -736,7 +733,8 @@
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "wehrgang_verlies_has-keys_ende" }
-		]
+		],
+		"load_audio": "freedom"
 	},
 
 	{
@@ -747,8 +745,7 @@
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "congratulations_mit-musik" }
-		],
-		"load_audio": "freedom"
+		]
 	},
 
 	{
@@ -759,8 +756,7 @@
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "game_over" }
-		],
-		"load_audio": "defeat"
+		]
 	},
 
 	{
@@ -876,7 +872,8 @@
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "schatzkammer_ende" }
-		]
+		],
+		"load_audio": "freedom"
 	},
 
 	{
@@ -887,8 +884,7 @@
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "congratulations_mit-musik" }
-		],
-		"load_audio": "freedom"
+		]
 	},
 
 	{
@@ -897,12 +893,17 @@
 			[
 				{ "condition": "visited-schlafzimmer", "story": "Du bist nicht an weiteren Gemächern interessiert und verlässt deshalb diesen Raum.\nDu folgst dem Gang bis ans Ende und betrittst schließlich den Vorraum zum Thronsaal. Auch dieser Bereich ist prachtvoll ausgestattet. Alles dient nur dazu, UBOLZIO und seine Herrschaft zu lobpreisen." },
 				{ "condition": "not-visited-schlafzimmer", "story": "Du folgst dem Gang bis ans Ende und betrittst schließlich den Vorraum zum Thronsaal. Auch dieser Bereich ist prachtvoll ausgestattet. Alles dient nur dazu, UBOLZIO und seine Herrschaft zu lobpreisen." }
-			],
-			"Du gehst weiter, bis du zu der großen, teuren Tür gelangst, die in den <span class=blue-light>THRONSAAL</span> führt!"
+			]
 		],
+		"delayed": {
+			"delay": 3000,
+			"story": [
+				"Du gehst weiter, bis du zu der großen, teuren Tür gelangst, die in den <span class=blue-light>THRONSAAL</span> führt!"
+			]
+		},
 		"music": "<<<<t180mnl2cl4cdl6e-dc>l4c.<l8cl2c",
 		"play": "suspense",
-		"music_delay": 123456,
+		"play_delay": 3000,
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "thronsaal" }
 		],
@@ -925,12 +926,10 @@
 	{
 		"id": "vorzimmer_drache-kampf",
 		"story": [
-			"Du gehst langsam auf den Drachen zu und hältst dabei den Schild schützend vor dich; mit der anderen Hand hast du den Stab und dein Schwert umklammert.",
 			"Der Drache lässt dich noch ein Stück herankommen, dann springt er auf dich zu und brüllt dabei laut aus allen drei Schlünden. Du schreist auch – allerdings vor Entsetzen – und fuchtelst wild mit Schwert, obwohl du weißt, dass das nichts nützt …"
 		],
 		"music": "<<<t125msl16cccccccccd-cd-ee-d-e-l4c",
 		"play": "dragon",
-		"music_delay": 123456,
 		"commands": [
 			{ "key": "enter", "text": "", "action": "vorzimmer_drache-sieg" }
 		]
@@ -939,12 +938,17 @@
 	{
 		"id": "vorzimmer_drache-sieg",
 		"story": [
-			"Ich weiß zwar nicht wie, aber du schaffst es tatsächlich, das Scheusal mit dem kleinen Stab zu berühren, und im selben Moment zerfällt es vor deinen Augen zu Staub.",
-			"Du wirfst den Stab beiseite und gehst bis zur Tür, die in den <span class=blue-light>THRONSAAL</span> führt."
+			"Ich weiß zwar nicht wie, aber du schaffst es tatsächlich, das Scheusal mit dem kleinen Stab zu berühren, und im selben Moment zerfällt es vor deinen Augen zu Staub."
 		],
+		"delayed": {
+			"delay": 3000,
+			"story": [
+				"Du wirfst den Stab beiseite und gehst bis zur Tür, die in den <span class=blue-light>THRONSAAL</span> führt."
+			]
+		},
 		"music": "<<<<t180mnl2cl4cdl6e-dc>l4c.<l8cl2c",
 		"play": "suspense",
-		"music_delay": 123456,
+		"play_delay": 3000,
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "thronsaal" }
 		],
@@ -969,8 +973,8 @@
 			"<span class=red>UBOLZIO</span> hat dich sogleich bemerkt und springt von seinem Thron auf.\nEr sieht das Schwert in deiner Hand blitzen und zieht sofort seinen gefürchteten Zweihänder aus einer reich verzierten Scheide. Er stürzt sich auf dich, und eure Schwerter treffen klirrend aufeinander.",
 			"Ein erbitterter Kampf entbrennt …"
 		],
-		"load_audio": "victory",
-		"play": "battle"
+		"play": "battle",
+		"play_delay": 1000
 	},
 
 	{
@@ -981,31 +985,34 @@
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "game_over" }
-		],
-		"load_audio": "defeat"
+		]
 	},
 
 	{
 		"id": "thronsaal_kampf-sieg",
 		"story": [
-			"<span class=red>UBOLZIO</span> führt sein Schwert mit ungeheurer Wucht und zerschlägt deinen Schild. Doch nach und nach werden seine Hiebe kraftloser, sein Arm ermüdet unter dem großen Gewicht des Zweihänders. Du bringst ihn durch einen geschickten Schwertstreich zu Fall und stößt ihm das Schwert in die Brust. Da haucht UBOLZIO seine Seele aus …",
-			"DU HAST IHN BEZWUNGEN!"
+			"<span class=red>UBOLZIO</span> führt sein Schwert mit ungeheurer Wucht und zerschlägt deinen Schild. Doch nach und nach werden seine Hiebe kraftloser. Du bringst ihn durch einen geschickten Schwertstreich zu Fall und stößt ihm das Schwert in die Brust.\nDa haucht UBOLZIO seine Seele aus …"
 		],
-		"music": "t117ms <<l8f#f#f# mlf#l16edef# msl8ggg mlgl16f#ef#g msl8aaa mlal16gf#ed mnl8edc#l4dp8 l8msdddd<ap8aaa> l4d",
-		"play": "victory",
+		"delayed": {
+			"delay": 4000,
+			"story": [
+				"DU HAST IHN BEZWUNGEN!"
+			]
+		},
 		"commands": [
 			{ "key": "enter", "text": "", "action": "thronsaal_ende" }
-		]
+		],
+		"load_audio": "victory"
 	},
 
 	{
 		"id": "thronsaal_ende",
 		"story": [
-			"Du hast UBOLZIO besiegt und das Land von seiner Schreckensherrschaft befreit. Vor lauter Dankbarkeit ernennt dich das Volk zu seinem NEUEN KÖNIG!"
+			"Du hast UBOLZIO besiegt und das Land von seiner Schreckensherrschaft befreit. Vor lauter Dankbarkeit ernennt dich das Volk zu seinem <span class=gold>NEUEN KÖNIG</span>!"
 		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "congratulations" }
-		]
+		"music": "t117ms <<l8f#f#f# mlf#l16edef# msl8ggg mlgl16f#ef#g msl8aaa mlal16gf#ed mnl8edc#l4dp8 l8msdddd<ap8aaa> l4d",
+		"play": "victory",
+		"continue": { "delay": 10000, "action": "congratulations" }
 	},
 
 	{
@@ -1037,9 +1044,7 @@
 		],
 		"music": "<<<<t117mnl2dl4d.l8dl2dmll4fmsemlemsdmldmnc#l2d",
 		"play": "defeat",
-		"commands": [
-			{ "key": "enter", "text": "", "action": "restart_or_exit" }
-		]
+		"continue": { "delay": 8000, "action": "restart_or_exit" }
 	},
 
 	{
