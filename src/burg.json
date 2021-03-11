@@ -136,7 +136,7 @@
 	{
 		"id": "kerker_31",
 		"story": [
-			"Du schnappst dir <span class=blue-dark>Helm</span> und <span class=blue-dark>Umhang</span>. Jetzt aber nichts wie weg!"
+			"Du schnappst dir Helm und Umhang. Jetzt aber nichts wie weg!"
 		],
 		"commands": [
 			{ "key": "h", "text": "hoch", "action": "wachraum" },
@@ -545,7 +545,7 @@
 	{
 		"id": "burghof_vom-wehrgang_has-keys",
 		"story": [
-			"Du läufst den Wehrgang wieder zurück, vorbei an den ahnungslosen Wachen, steigst die Stufen zum Burghof hinunter und legst dort erst einmal deine Tarnung ab.",
+			"Du läufst den Wehrgang wieder zurück, vorbei an den ahnungslosen <span class=red>Wachen</span>, steigst die Stufen zum Burghof hinunter und legst dort erst einmal deine Tarnung ab.",
 			"Nun musst du dich für eine neue Richtung entscheiden:\nLinks sind die <span class=blue-light>Stallungen</span>.\nRechterhand befindet sich das <span class=blue-light>Lagerhaus</span>.\nWenn du in den <span class=blue-light>Palas</span> möchtest, musst du geradeaus [>weiter<] über den Burghof gehen."
 		],
 		"commands": [
@@ -574,7 +574,7 @@
 				{ "condition": "has-sword-or-keys", "story": "Das Obergeschoss erscheint dir nicht als sicher genug, darum läufst du schnell zurück auf den Burghof. Hastig siehst du dich nach einem Versteck vor deinen Verfolgern um. Da erblickst du die Stallungen." },
 				{ "condition": "no-weapons", "story": "Schnell bist du beim Tor, welches glücklicherweise nicht verschlossen ist, öffnest es und läufst hinaus auf den Burghof. Hastig siehst du dich nach einem Versteck vor deinen Verfolgern um. Da fallen dir die Stallungen ins Auge." }
 			],
-			"Ohne noch länger zu zögern, flüchtest du hinein und kriechst in einen aufgetürmten Berg von Heu. Wenige Augenblicke später hörst du, wie die Meute auf den Burghof stürmt."
+			"Ohne noch länger zu zögern, flüchtest du hinein und kriechst in einen aufgetürmten Berg von Heu. Wenige Augenblicke später hörst du, wie die <span class=red>Meute</span> auf den Burghof stürmt."
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "burghof_aus-stallungen-flucht" }
@@ -740,7 +740,7 @@
 	{
 		"id": "wehrgang_verlies_has-keys_ende",
 		"story": [
-			"Mit klopfendem Herzen geht ihr an den Wachen auf dem Wehrgang vorbei. Ihr erreicht unbehelligt den Burghof und geht von dort aus in die Stallungen, wo ihr zwei Pferde sattelt. Ihr führt sie auf den Hof, sitzt auf und reitet zum Burgtor.\nBarsch befiehlst du den <span class=red>Wachen</span>, das Tor zu öffnen. Sie schöpfen keinen Verdacht und lassen euch passieren.",
+			"Mit klopfendem Herzen geht ihr an den <span class=red>Wachen</span> auf dem Wehrgang vorbei. Ihr erreicht unbehelligt den Burghof und geht von dort aus in die Stallungen, wo ihr zwei Pferde sattelt. Ihr führt sie auf den Hof, sitzt auf und reitet zum Burgtor.\nBarsch befiehlst du den Wächtern, das Tor zu öffnen. Sie schöpfen keinen Verdacht und lassen euch passieren.",
 			"Ihr treibt eure Pferde an und verschwindet für immer aus dieser dunklen Burg …"
 		],
 		"commands": [
@@ -777,8 +777,8 @@
 		"story": [
 			[
 				{ "condition": "has-sword", "story": "Die Tür ist mit einem schweren Schloss versehen, das du nicht aufbekommst.\n\nDu gehst weiter zur <span class=blue-light>zweiten Tür</span>." },
-				{ "condition": "has-keys", "story": "Die Tür ist mit einem schweren Schloss versehen. Du nimmst die Schlüssel aus der Tasche und probierst damit solange, bis du das Schloss aufbekommen hast. Du öffnest die Tür und stellst erfreut fest, dass du in die Waffenkammer gelangt bist!\n\nDu denkst, dass es eigentlich besser wäre, mit einem scharfen Schwert bewaffnet zu sein als mit einer einfachen Keule, wie du sie besitzt. Darum nimmst du das beste Schwert und einen festen Schild mit. Dann verlässt du die Waffenkammer und gehst zur <span class=blue-light>zweiten Tür</span>." },
-				{ "condition": "no-weapons", "story": "Zu deinem Glück (und UBOLZIOs Verhängnis) ist die Türe nicht verschlossen. Du öffnest sie und betrittst einen Raum der im Halbdunkel liegt. Erfreut stellst du fest, dass du in die Waffenkammer gelangt bist!\n\nUm nicht länger unbewaffnet umherzuschleichen, nimmst du das beste Schwert und einen festen Schild mit. Dann verlässt du die Waffenkammer und gehst zur <span class=blue-light>zweiten Tür</span>." }
+				{ "condition": "has-keys", "story": "Die Tür ist mit einem schweren Schloss versehen. Du nimmst die Schlüssel aus der Tasche und probierst damit solange, bis du das Schloss aufbekommen hast. Du öffnest die Tür und stellst erfreut fest, dass du in die Waffenkammer gelangt bist!\n\nDu denkst, dass es eigentlich besser wäre, mit einem scharfen Schwert bewaffnet zu sein als mit einer einfachen Keule, wie du sie besitzt. Darum nimmst du das beste <span class=blue-dark>Schwert</span> und einen festen <span class=blue-dark>Schild</span> mit. Dann verlässt du die Waffenkammer und gehst zur <span class=blue-light>zweiten Tür</span>." },
+				{ "condition": "no-weapons", "story": "Zu deinem Glück (und UBOLZIOs Verhängnis) ist die Türe nicht verschlossen. Du öffnest sie und betrittst einen Raum der im Halbdunkel liegt. Erfreut stellst du fest, dass du in die Waffenkammer gelangt bist!\n\nUm nicht länger unbewaffnet umherzuschleichen, nimmst du das beste <span class=blue-dark>Schwert</span> und einen festen <span class=blue-dark>Schild</span> mit. Dann verlässt du die Waffenkammer und gehst zur <span class=blue-light>zweiten Tür</span>." }
 			]
 		],
 		"commands": [
@@ -1008,7 +1008,7 @@
 	{
 		"id": "thronsaal_ende",
 		"story": [
-			"Du hast UBOLZIO besiegt und das Land von seiner Schreckensherrschaft befreit. Vor lauter Dankbarkeit ernennt dich das Volk zu seinem <span class=gold>NEUEN KÖNIG</span>!"
+			"Du hast UBOLZIO besiegt und das Land von seiner Schreckensherrschaft befreit.\nVor lauter Dankbarkeit ernennt dich das Volk zu seinem <span class=gold>NEUEN KÖNIG</span>!"
 		],
 		"music": "t117ms <<l8f#f#f# mlf#l16edef# msl8ggg mlgl16f#ef#g msl8aaa mlal16gf#ed mnl8edc#l4dp8 l8msdddd<ap8aaa> l4d",
 		"play": "victory",

@@ -28,12 +28,12 @@
 					{{ command.condition ? `[${command.condition}]` : null }}
 					{{ command.notCondition ? `[NOT ${command.notCondition}]` : null }}
 				</button> -->
-				<button v-show="goNext" type="button" @click="handleCommand(goNext)">weiter</button>
+				<button v-show="goNext" type="button" @click.stop="handleCommand(goNext)">weiter</button>
 			</div>
 
 			<div v-show="hint && showHint" class="hint">{{ hint }}</div>
 			<div v-show="!hideInput && !goNext" class="input-wrapper">
-				<input type="text" v-model.trim="typed" class="input" @keyup.enter="handleInput" />
+				<input type="text" v-model.trim="typed" ref="input" class="input" @click.stop @keyup.enter="handleInput" />
 			</div>
 		</div>
 	</section>
@@ -48,13 +48,14 @@
 			</span>
 		</div> -->
 		<pre><code v-for="condition in conditions">{{ `${condition}\n` }}</code></pre>
+		<!-- <pre><code v-for="item in inventory" class="blue-dark">{{ item }} </code></pre> -->
 	</div>
 </template>
 
 <script setup>
 import burg from './burg.json'
-import { ref, computed, watch } from 'vue'
-import { Howl, Howler } from 'howler'
+import { ref, computed, watch, onMounted } from 'vue'
+import { Howl } from 'howler'
 
 const playlist = []
 let music = null
@@ -92,6 +93,11 @@ const fadeOutMusic = () => {
 	music.fade(1, 0, 800)
 }
 
+const input = ref(null)
+const focusInput = () => {
+	input.value.focus()
+}
+
 let sceneId = ref('start')
 const scene = computed(() => burg.find(scene => scene.id === sceneId.value))
 const story = ref([])
@@ -99,9 +105,7 @@ const onHold = ref(false)
 const handleStory = () => {
 	// replace story
 	story.value = [...scene.value.story]
-	requestAnimationFrame(() => {
-		document.querySelector('.input').focus()
-	})
+	requestAnimationFrame(focusInput)
 
 	// set time for delayed story
 	if (scene.value.delayed) {
@@ -111,9 +115,7 @@ const handleStory = () => {
 			onHold.value = false
 			story.value = [...story.value, ...scene.value.delayed.story]
 
-			requestAnimationFrame(() => {
-				document.querySelector('.input').focus()
-			})
+			requestAnimationFrame(focusInput)
 		}, scene.value.delayed.delay)
 	}
 
@@ -149,6 +151,7 @@ watch(sceneId, handleStory, { immediate: true })
 // 	}, 100)
 // }
 
+// todo zum Einfärben des Hintergrunds
 const end_death = computed(() => sceneId.value.endsWith('_tod'))
 const end_freedom = computed(() => sceneId.value.endsWith('_ende'))
 
@@ -166,6 +169,41 @@ const showHint = ref(false)
 const hideInput = computed(() => {
 	return !!scene.value.continue || ['thronsaal_kampf', 'credits'].includes(sceneId.value)
 })
+// const showInput = computed(() => {
+// 	return (
+// 		!scene.value.continue
+// 		&& !['thronsaal_kampf', 'credits'].includes(sceneId.value)
+// 		&& !scene.value.commands?.find(cmd => cmd.key === 'enter' && !isDisabled(cmd))
+// 	)
+// })
+
+const gold = ref(0)
+// todo reduzieren bei Kämpfen
+// todo berücksichtigen im Endkampf
+const health = ref(100)
+const inventory = ref([])
+const manageInventory = condition => {
+	switch (condition) {
+		case 'has-helmet': inventory.value.push('Helm', 'Umhang'); break;
+		case 'has-keys': inventory.value.push('Keule', 'Schlüssel'); break;
+		case 'has-sword': inventory.value.push('Schwert', 'Seil'); break;
+		case 'has-magic-wand': inventory.value.push('Stab'); break;
+	}
+}
+
+const resetGame = () => {
+	conditions.value = []
+	inventory.value = []
+}
+
+const getArmed = () => {
+	if (!hasCondition('has-sword')) {
+		if (hasCondition('has-keys')) {
+			inventory.value.splice(inventory.value.indexOf('Keule'), 1)
+		}
+		inventory.value.push('Schwert', 'Schild')
+	}
+}
 
 const randomBattle = () => {
 	const rnd = Math.floor(Math.random() * Math.floor(3))
@@ -177,23 +215,17 @@ const randomBattle = () => {
 	}, 70000)
 }
 
-const resetGame = () => {
-	conditions.value = []
-}
-
 const handleAction = command => {
 	if (command.setCondition && !hasCondition(command.setCondition)) {
 		conditions.value.push(command.setCondition)
+		manageInventory(command.setCondition)
 	}
 
-	// Endgegner
-	if (command.action === 'thronsaal_kampf') {
-		randomBattle()
-	}
-
-	// zurück auf Start
-	else if (command.action === 'start') {
-		resetGame()
+	switch (command.action) {
+		case 'start': resetGame(); break;
+		case 'waffenkammer': getArmed(); break;
+		case 'schatzkammer_ende': gold.value += 100; break;
+		case 'thronsaal_kampf': randomBattle(); break;
 	}
 
 	showHint.value = false
@@ -259,6 +291,11 @@ const handleInput = () => {
 
 	handleCommand(command)
 }
+
+onMounted(() => {
+	focusInput()
+	document.addEventListener('click', focusInput)
+})
 </script>
 
 <style>
@@ -394,8 +431,11 @@ button:not(:disabled):hover {
 }
 
 .input {
-	@apply w-2/4 p-2;
-	color: #000;
+	@apply w-full py-2;
+	/* color: #000; */
+	background-color: transparent;
+	color: inherit;
+	outline: 0;
 }
 
 .debug {
