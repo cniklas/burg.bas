@@ -40,6 +40,8 @@
 
 	<div class="debug">
 		<div>id: {{ sceneId }}</div>
+		<div class="gold">Gold: {{ gold }}</div>
+		<div class="pink">Health: {{ health }}</div>
 		<!-- <div>
 			<span v-for="command in textCommands" class="as-button" :class="{disabled: isDisabled(command)}">
 				{{ command.text }}
@@ -48,7 +50,7 @@
 			</span>
 		</div> -->
 		<pre><code v-for="condition in conditions">{{ `${condition}\n` }}</code></pre>
-		<!-- <pre><code v-for="item in inventory" class="blue-dark">{{ item }} </code></pre> -->
+		<pre class="blue-dark"><code v-for="item in inventory">{{ item }} </code></pre>
 	</div>
 </template>
 
@@ -79,7 +81,7 @@ const loadMusic = (id, autoplay = false) => {
 	}
 }
 
-const playMusic = (id) => {
+const playMusic = id => {
 	// if (music && music.playing()) {
 	// 	music.stop().volume(1)
 	// }
@@ -124,11 +126,6 @@ const handleStory = () => {
 		fadeOutMusic()
 	}
 
-	// load music
-	if (scene.value.load_audio) {
-		loadMusic(scene.value.load_audio)
-	}
-
 	// play music
 	if (scene.value.play) {
 		scene.value.play_delay
@@ -136,11 +133,28 @@ const handleStory = () => {
 			: playMusic(scene.value.play)
 	}
 
+	// reduce health
+	if (scene.value.health) {
+		reduceHealth(Math.abs(scene.value.health))
+	}
+
 	// continue
 	if (scene.value.continue) {
 		setTimeout(() => {
 			handleAction({ action: scene.value.continue.action })
 		}, scene.value.continue.delay)
+	}
+
+	// load music
+	if (scene.value.load_audio) {
+		loadMusic(scene.value.load_audio)
+	}
+
+	// do other stuff
+	switch (sceneId.value) {
+		case 'waffenkammer': getArmed(); break;
+		case 'schatzkammer_ende': animateCount(gold, 100); break;
+		case 'thronsaal_kampf': finalBattle(); break;
 	}
 }
 watch(sceneId, handleStory, { immediate: true })
@@ -178,9 +192,19 @@ const hideInput = computed(() => {
 // })
 
 const gold = ref(0)
-// todo reduzieren bei Kämpfen
-// todo berücksichtigen im Endkampf
+
 const health = ref(100)
+const reduceHealth = points => {
+  const min = Math.ceil(points / 2)
+  const max = Math.floor(points)
+
+	const rnd = Math.floor(Math.random() * (max - min + 1)) + min
+	// health.value -= rnd
+	sceneId.value === 'lagerhaus_kampf'
+		? setTimeout(() => { animateCount(health, rnd, false) }, scene.value.delayed.delay)
+		: animateCount(health, rnd, false)
+}
+
 const inventory = ref([])
 const manageInventory = condition => {
 	switch (condition) {
@@ -205,7 +229,8 @@ const getArmed = () => {
 	}
 }
 
-const randomBattle = () => {
+// todo `health` berücksichtigen
+const finalBattle = () => {
 	const rnd = Math.floor(Math.random() * Math.floor(3))
 	console.log(rnd > 0 ? '👍' : '👎')
 	const action = rnd > 0 ? 'thronsaal_kampf-sieg' : 'thronsaal_kampf-tod'
@@ -215,17 +240,15 @@ const randomBattle = () => {
 	}, 70000)
 }
 
+// Todo wenn in "brenzligen" Situationen mehr als ein/zweimal Quatsch eingegeben wird, stirbt der Protagonist (Wachen sind dann z.B. herangekommen)
 const handleAction = command => {
 	if (command.setCondition && !hasCondition(command.setCondition)) {
 		conditions.value.push(command.setCondition)
 		manageInventory(command.setCondition)
 	}
 
-	switch (command.action) {
-		case 'start': resetGame(); break;
-		case 'waffenkammer': getArmed(); break;
-		case 'schatzkammer_ende': gold.value += 100; break;
-		case 'thronsaal_kampf': randomBattle(); break;
+	if (command.action === 'start') {
+		resetGame()
 	}
 
 	showHint.value = false
@@ -260,7 +283,7 @@ const isDisabled = ({ condition, notCondition }) => {
 	return false
 }
 
-const cleanInput = (string) => {
+const cleanInput = string => {
 	const regex = /[!"#$%&\'()*+,\-./:;<=>?@[\\\]^_`{\|}~]/g;
 	return string
 		.replaceAll(regex, '')
@@ -293,6 +316,43 @@ const handleInput = () => {
 	handleCommand(command)
 }
 
+////
+const animationDuration = 2000
+// Calculate how long each ‘frame’ should last if we want to update the animation 60 times per second
+const frameDuration = 1000 / 60
+// Use that to calculate how many frames we need to complete the animation
+const totalFrames = Math.round( animationDuration / frameDuration )
+// An ease-out function that slows the count as it progresses
+const easeOutQuad = t => t * ( 2 - t )
+
+const animateCount = (el, amount, add = true) => {
+	const currentValue = el.value
+	let frame = 0
+	const countTo = amount
+
+	// Start the animation running 60 times per second
+	const counter = setInterval( () => {
+		frame++
+		// Calculate our progress as a value between 0 and 1
+		// Pass that value to our easing function to get our progress on a curve
+		const progress = easeOutQuad( frame / totalFrames )
+		// Use the progress value to calculate the current count
+		const currentCount = Math.round( countTo * progress )
+
+		// If the current count has changed, update the element
+		if ( amount !== currentCount ) {
+			amount = currentCount
+			el.value = add ? currentValue + amount : currentValue - amount
+		}
+
+		// If we’ve reached our last frame, stop the animation
+		if ( frame === totalFrames ) {
+			clearInterval( counter )
+		}
+	}, frameDuration )
+}
+////
+
 onMounted(() => {
 	focusInput()
 	document.addEventListener('click', focusInput)
@@ -312,7 +372,6 @@ onMounted(() => {
 	--blue-dark:    #067df7;
 	--gold:         #ffbd2e;
 	--green:        #5ce6cd;
-	--grey-dark:    #999;
 	--papayawhip:   papayawhip;
 	--pink:         hotpink;
 	--purple-light: #7775A7;
