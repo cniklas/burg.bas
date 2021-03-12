@@ -31,7 +31,7 @@
 				<button v-show="goNext" type="button" @click.stop="handleCommand(goNext)">weiter</button>
 			</div>
 
-			<div v-show="hint && showHint" class="hint">{{ hint }}</div>
+			<div v-show="hint && showHint" class="hint papayawhip">{{ hint }}</div>
 			<div v-show="!hideInput && !goNext" class="input-wrapper">
 				<input type="text" v-model.trim="typed" ref="input" class="input" @click.stop @keyup.enter="handleInput" />
 			</div>
@@ -265,6 +265,7 @@ const cleanInput = (string) => {
 	return string
 		.replaceAll(regex, '')
 		.toLowerCase()
+		.replaceAll('geradeaus', 'weiter')
 		.split(' ')
 		.filter(word => word.length && !['der', 'die', 'das', 'den', 'dem', 'und', 'mit'].includes(word))
 		.join(' ')
@@ -425,10 +426,10 @@ button:not(:disabled):hover {
 	visibility: visible;
 	opacity: 1;
 } */
-
+/*
 .hint {
 	font-style: italic;
-}
+} */
 
 .input {
 	@apply w-full py-2;
