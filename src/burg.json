@@ -198,7 +198,7 @@
 	{
 		"id": "wachraum_20",
 		"story": [
-			"Richtig. Du machst aus der Tür Kleinholz und verlässt diesen Raum."
+			"Du machst aus der Tür Kleinholz und verlässt diesen Raum."
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "burghof_has-sword-or-keys" }
@@ -400,6 +400,7 @@
 				"Willst du <span class=blue-light>weiterkämpfen</span> oder lieber den <span class=blue-light>Rückzug</span> antreten? <span class=papayawhip>[>kämpfe< bzw. >flieh< eingeben.]</span>"
 			]
 		},
+		"health": -8,
 		"commands": [
 			{ "key": "k", "text": "kämpfe", "action": "lagerhaus_kampf-sieg" },
 			{ "key": "f", "text": "flieh", "action": "lagerhaus_kampf-tod" }
@@ -429,6 +430,7 @@
 				"Nach einer kurzen Ruhepause beschließt du, die <span class=blue-light>Wendeltreppe</span> hinaufzusteigen, um zu sehen, was sich dort oben befindet."
 			]
 		},
+		"health": -16,
 		"commands": [
 			{ "key": "h", "text": "hoch", "action": "turm_og" }
 		],
@@ -616,6 +618,7 @@
 				"Nachdem du wieder zu Kräften gekommen bist, gehst du den Wehrgang entlang, bis du zu einem viereckigen Turm gelangst. Du trittst in das Innere des Turms und stehst vor einer eisenbeschlagenen Tür, die in ein <span class=blue-light>Turmgemach</span> führen muss. Von außen ist ein Riegel davorgelegt. Eine Leiter führt außerdem in das <span class=blue-light>Obergeschoss</span> des Turms.\nWas tust du?"
 			]
 		},
+		"health": -16,
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "wehrgang_verlies_has-sword" },
 			{ "key": "h", "text": "hoch", "action": "wehrgang_turm" },
