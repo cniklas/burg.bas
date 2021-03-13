@@ -9,11 +9,11 @@
 	<section class="scene">
 		<article class="story">
 			<template v-for="paragraph in story">
-				<p v-if="typeof paragraph === 'string'" class="text-preline" v-html="paragraph" />
+				<p v-if="typeof paragraph === 'string'" class="whitespace-pre-line" v-html="paragraph" />
 
 				<template v-else>
 					<template v-for="section in paragraph">
-						<p v-show="!isDisabled(section)" class="text-preline" v-html="section.story" />
+						<p v-show="!isDisabled(section)" class="whitespace-pre-line" v-html="section.story" />
 					</template>
 				</template>
 			</template>
@@ -23,12 +23,7 @@
 
 		<div v-show="!onHold" class="actions">
 			<div class="button-wrapper">
-				<!-- <button type="button" v-for="command in clickCommands" :disabled="isDisabled(command)" @click="handleCommand(command)">
-					{{ command.text || 'weiter' }}
-					{{ command.condition ? `[${command.condition}]` : null }}
-					{{ command.notCondition ? `[NOT ${command.notCondition}]` : null }}
-				</button> -->
-				<button v-show="goNext" type="button" @click.stop="handleCommand(goNext)">weiter</button>
+				<button v-show="goNext" type="button" @click.stop="handleCommand(goNext)">{{ goNext?.text || 'weiter' }}</button>
 			</div>
 
 			<div v-show="hint && showHint" class="hint papayawhip">{{ hint }}</div>
@@ -39,24 +34,16 @@
 	</section>
 
 	<div class="debug">
-		<div>id: {{ sceneId }}</div>
 		<div class="gold">Gold: {{ gold }}</div>
 		<div class="pink">Health: {{ health }}</div>
-		<!-- <div>
-			<span v-for="command in textCommands" class="as-button" :class="{disabled: isDisabled(command)}">
-				{{ command.text }}
-				{{ command.condition ? `[${command.condition}]` : null }}
-				{{ command.notCondition ? `[NOT ${command.notCondition}]` : null }}
-			</span>
-		</div> -->
-		<pre><code v-for="condition in conditions">{{ `${condition}\n` }}</code></pre>
+		<!-- <pre><code v-for="condition in conditions">{{ `${condition}\n` }}</code></pre> -->
 		<pre class="blue-dark"><code v-for="item in inventory">{{ item }} </code></pre>
 	</div>
 </template>
 
 <script setup>
 import burg from './burg.json'
-import { ref, computed, watch, onMounted } from 'vue'
+import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
 import { Howl } from 'howler'
 
 const playlist = []
@@ -101,6 +88,9 @@ const focusInput = () => {
 }
 
 let sceneId = ref('start')
+// todo zum Einfärben des Hintergrunds
+const end_death = computed(() => sceneId.value.endsWith('_tod'))
+const end_freedom = computed(() => sceneId.value.endsWith('_ende'))
 const scene = computed(() => burg.find(scene => scene.id === sceneId.value))
 const story = ref([])
 const onHold = ref(false)
@@ -137,12 +127,40 @@ const handleStory = () => {
 	if (scene.value.health) {
 		reduceHealth(Math.abs(scene.value.health))
 	}
+	if (end_death.value) {
+		animateCount(health, health.value, false)
+	}
 
 	// continue
 	if (scene.value.continue) {
+		/*
+		// continue after audio has been loaded
+		if (scene.value.load_audio) {
+			let i = 0
+			// console.time('foo')
+			const interval = setInterval(() => {
+				i += 300
+				// console.log(i)
+				// console.timeLog('foo')
+				const loaded = playlist.find(item => item.id === scene.value.load_audio)?.audio?._state ?? false
+				if (loaded === 'loaded' || i >= 3000) {
+					// console.timeEnd('foo')
+					clearInterval(interval)
+					handleAction({ action: scene.value.continue.action })
+				}
+			}, 300)
+		}
+		// continue after audio has been played oder given delay or fallback
+		else {
+		} */
+		let delay = scene.value.continue.delay || 200
+		if (scene.value.play) {
+			delay = Math.ceil( (playlist.find(item => item.id === scene.value.play)?.audio?._duration ?? delay / 1000) * 1000 )
+		}
+
 		setTimeout(() => {
 			handleAction({ action: scene.value.continue.action })
-		}, scene.value.continue.delay)
+		}, delay)
 	}
 
 	// load music
@@ -164,10 +182,6 @@ watch(sceneId, handleStory, { immediate: true })
 // 		animated.value = true
 // 	}, 100)
 // }
-
-// todo zum Einfärben des Hintergrunds
-const end_death = computed(() => sceneId.value.endsWith('_tod'))
-const end_freedom = computed(() => sceneId.value.endsWith('_ende'))
 
 // const clickCommandsList = ['hoch', 'runter', 'links', 'rechts', 'weiter', 'zurück']
 // const clickCommands = computed(() => scene.value.commands?.filter(cmd => clickCommandsList.includes(cmd.text) || cmd.key === 'enter') ?? [])
@@ -218,6 +232,8 @@ const manageInventory = condition => {
 const resetGame = () => {
 	conditions.value = []
 	inventory.value = []
+	gold.value = 0
+	health.value = 100
 }
 
 const getArmed = () => {
@@ -233,14 +249,15 @@ const getArmed = () => {
 const finalBattle = () => {
 	const rnd = Math.floor(Math.random() * Math.floor(3))
 	console.log(rnd > 0 ? '👍' : '👎')
-	const action = rnd > 0 ? 'thronsaal_kampf-sieg' : 'thronsaal_kampf-tod'
+	const action = rnd > 0 ? 'thronsaal_kampf_sieg' : 'thronsaal_kampf_tod'
 
+	const delay = scene.value.play_delay + 200 + Math.ceil( (playlist.find(item => item.id === scene.value.play)?.audio?._duration ?? 70) * 1000 )
 	setTimeout(() => {
 		handleAction({ action })
-	}, 70000)
+	}, delay)
 }
 
-// Todo wenn in "brenzligen" Situationen mehr als ein/zweimal Quatsch eingegeben wird, stirbt der Protagonist (Wachen sind dann z.B. herangekommen)
+// todo wenn in "brenzligen" Situationen mehr als ein/zweimal Quatsch eingegeben wird, stirbt der Protagonist (Wachen sind dann z.B. herangekommen)
 const handleAction = command => {
 	if (command.setCondition && !hasCondition(command.setCondition)) {
 		conditions.value.push(command.setCondition)
@@ -357,6 +374,10 @@ onMounted(() => {
 	focusInput()
 	document.addEventListener('click', focusInput)
 })
+
+onBeforeUnmount(() => {
+	document.removeEventListener('click', focusInput)
+})
 </script>
 
 <style>
@@ -456,8 +477,8 @@ button:not(:disabled):hover {
 	margin-bottom: calc(var(--global-line-height) * 1rem);
 }
 
-.text-preline {
-	@apply whitespace-pre-line;
+.text-prewrap {
+	@apply block whitespace-pre-wrap text-center;
 }
 /*
 .story .disabled {
@@ -511,14 +532,5 @@ button:not(:disabled):hover {
 
 .debug > * {
 	margin: .75rem 0;
-}
-
-.as-button {
-	display: inline-block;
-	margin: 0 .5rem;
-}
-
-.as-button.disabled {
-	opacity: .35;
 }
 </style>
