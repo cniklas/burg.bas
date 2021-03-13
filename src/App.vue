@@ -23,13 +23,13 @@
 			</transition-group>
 		</article>
 
-		<div v-show="!onHold" class="actions">
-			<div class="button-wrapper">
-				<button v-show="goNext" type="button" @click.stop="handleCommand(goNext)">{{ goNext?.text || 'weiter' }}</button>
+		<div v-show="readyToStart && !onHold" class="actions">
+			<div v-show="nextButton" class="button-wrapper">
+				<button type="button" @click.stop="handleCommand(nextButton)">{{ nextButton?.text || 'weiter' }}</button>
 			</div>
 
 			<div v-show="hint && showHint" class="hint papayawhip">{{ hint }}</div>
-			<div v-show="!hideInput && !goNext" class="input-wrapper">
+			<div v-show="!hideInput && !nextButton" class="input-wrapper">
 				<input type="text" v-model.trim="typed" ref="input" class="input" @click.stop @keyup.enter="handleInput" />
 			</div>
 		</div>
@@ -58,7 +58,7 @@ const loadMusic = (id, autoplay = false) => {
 			audio: new Howl({
 				src: `audio/${id}.mp3`,
 				// autoplay,
-				onload: () => { console.log('onload') },
+				onload: () => { console.log('onload'); readyToStart.value = true },
 				onplay: (i) => { console.log('onplay', i) },
 				onend: (i) => { console.log('onend', i) },
 				onfade: (i) => {
@@ -89,12 +89,13 @@ const focusInput = () => {
 	input.value.focus()
 }
 
-let sceneId = ref('start')
+let sceneId = ref('loading')
 // todo zum Einfärben des Hintergrunds
 const end_death = computed(() => sceneId.value.endsWith('_tod'))
 const end_freedom = computed(() => sceneId.value.endsWith('_ende'))
 const scene = computed(() => burg.find(scene => scene.id === sceneId.value))
 const story = ref([])
+const readyToStart = ref(false)
 const onHold = ref(false)
 const handleStory = async () => {
 	// für Transition
@@ -192,7 +193,7 @@ watch(sceneId, handleStory, { immediate: true })
 // const clickCommandsList = ['hoch', 'runter', 'links', 'rechts', 'weiter', 'zurück']
 // const clickCommands = computed(() => scene.value.commands?.filter(cmd => clickCommandsList.includes(cmd.text) || cmd.key === 'enter') ?? [])
 // const textCommands = computed(() => scene.value.commands?.filter(cmd => !clickCommandsList.includes(cmd.text) && cmd.key !== 'enter') ?? [])
-const goNext = computed(() => scene.value.commands?.find(cmd => cmd.key === 'enter' && !isDisabled(cmd)));
+const nextButton = computed(() => scene.value.commands?.find(cmd => cmd.key === 'enter' && !isDisabled(cmd)));
 
 const conditions = ref([])
 const hasCondition = term => conditions.value.includes(term)

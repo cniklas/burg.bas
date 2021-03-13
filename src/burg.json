@@ -1,5 +1,14 @@
 [
 	{
+		"id": "loading",
+		"story": [],
+		"commands": [
+			{ "key": "enter", "text": "Spiel starten", "action": "intro" }
+		],
+		"load_audio": "intro-2"
+	},
+
+	{
 		"id": "intro",
 		"story": [
 			"<span class='text-prewrap'>---------------------  D  I  E     B  U  R  G  ---------------------</span>"
@@ -283,10 +292,15 @@
 		"id": "turm_og_20",
 		"story": [
 			"Du klopfst an und wartest.",
-			"Plötzlich geht die Tür auf, und ein <span class=red>alter Mann</span> in einem wallenden Gewand und mit viel Bart steht vor dir. Er bittet dich freundlich herein.\nNun stehst du in einem Raum, der nicht besonders groß ist, aber ausgefüllt mit dicken Bücherregalen, einem Schreibtisch, einer eisenbeschlagenen Truhe und noch einigen anderen Dingen. An den Wänden hängen seltsame Bilder und Karten.",
-			"Der Mann fragt dich: <span class=white>„Warum bist du zu mir gekommen?“</span>\nDu sagst: <span class=white>„Ich bin aus dem Kerker entflohen und suche einen Ausweg aus dieser schrecklichen Burg.“</span>\n<span class=white>„Niemand ist je aus der Burg UBOLZIOs entkommen, denn sie ist durch einen mächtigen Zauber geschützt“</span>, sagt der Mann.",
-			"Du bist sehr verzweifelt."
+			"Plötzlich geht die Tür auf, und ein <span class=red>alter Mann</span> in einem wallenden Gewand und mit viel Bart steht vor dir. Er bittet dich freundlich herein.\nNun stehst du in einem Raum, der nicht besonders groß ist, aber ausgefüllt mit dicken Bücherregalen, einem Schreibtisch, einer eisenbeschlagenen Truhe und noch einigen anderen Dingen. An den Wänden hängen seltsame Bilder und Karten."
 		],
+		"delayed": {
+			"delay": 4000,
+			"story": [
+				"Der Mann fragt dich: <span class=white>„Warum bist du zu mir gekommen?“</span>\nDu sagst: <span class=white>„Ich bin aus dem Kerker entflohen und suche einen Ausweg aus dieser schrecklichen Burg.“</span>\n<span class=white>„Niemand ist je aus der Burg UBOLZIOs entkommen, denn sie ist durch einen mächtigen Zauber geschützt“</span>, sagt der Mann.",
+				"Du bist sehr verzweifelt."
+			]
+		},
 		"commands": [
 			{ "key": "enter", "text": "", "action": "turm_og_21" }
 		]
