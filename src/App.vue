@@ -8,17 +8,19 @@
 
 	<section class="scene">
 		<article class="story">
-			<template v-for="paragraph in story">
-				<p v-if="typeof paragraph === 'string'" class="whitespace-pre-line" v-html="paragraph" />
+			<transition-group name="fade" mode="out-in">
+				<template v-for="(paragraph, i) in story" :key="`p${i}`">
+					<p v-if="typeof paragraph === 'string'" class="whitespace-pre-line" v-html="paragraph" />
 
-				<template v-else>
-					<template v-for="section in paragraph">
-						<p v-show="!isDisabled(section)" class="whitespace-pre-line" v-html="section.story" />
+					<template v-else>
+						<template v-for="(section, j) in paragraph" :key="`s${j}`">
+							<p v-show="!isDisabled(section)" class="whitespace-pre-line" v-html="section.story" />
+						</template>
 					</template>
 				</template>
-			</template>
 
-			<!-- <div v-if="scene.delayed" class="delayed" :class="{animated}" :style="`transition-delay:${scene.delayed.delay}ms`"> -->
+				<!-- <div v-if="scene.delayed" class="delayed" :class="{animated}" :style="`transition-delay:${scene.delayed.delay}ms`"> -->
+			</transition-group>
 		</article>
 
 		<div v-show="!onHold" class="actions">
@@ -43,7 +45,7 @@
 
 <script setup>
 import burg from './burg.json'
-import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { Howl } from 'howler'
 
 const playlist = []
@@ -94,7 +96,11 @@ const end_freedom = computed(() => sceneId.value.endsWith('_ende'))
 const scene = computed(() => burg.find(scene => scene.id === sceneId.value))
 const story = ref([])
 const onHold = ref(false)
-const handleStory = () => {
+const handleStory = async () => {
+	// für Transition
+	story.value = []
+	await nextTick()
+
 	// replace story
 	story.value = [...scene.value.story]
 	requestAnimationFrame(focusInput)
@@ -532,5 +538,14 @@ button:not(:disabled):hover {
 
 .debug > * {
 	margin: .75rem 0;
+}
+
+.fade-enter-active {
+	transition: opacity 280ms ease-in-out;
+}
+
+.fade-enter-from,
+.fade-leave-active {
+	opacity: 0;
 }
 </style>
