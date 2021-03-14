@@ -23,7 +23,7 @@
 			</transition-group>
 		</article>
 
-		<div v-show="readyToStart && !onHold" class="actions">
+		<div v-show="isMusicReady && !onHold" class="actions">
 			<div v-show="nextButton" class="button-wrapper">
 				<button type="button" @click.stop="handleCommand(nextButton)">{{ nextButton?.text || 'weiter' }}</button>
 			</div>
@@ -45,44 +45,12 @@
 
 <script setup>
 import burg from './burg.json'
-import { ref, computed, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
-import { Howl } from 'howler'
+import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue'
+import useHowler from './useHowler'
+import useCountAnimation from './useCountAnimation'
 
-const playlist = []
-let music = null
-const loadMusic = (id, autoplay = false) => {
-	console.log(autoplay ? 'load + play' : 'preload', `"${id}"`)
-	if (!playlist.find(item => item.id === id)) {
-		playlist.push({
-			id,
-			audio: new Howl({
-				src: `audio/${id}.mp3`,
-				// autoplay,
-				onload: () => { console.log('onload'); readyToStart.value = true },
-				onplay: (i) => { console.log('onplay', i) },
-				onend: (i) => { console.log('onend', i) },
-				onfade: (i) => {
-					console.log('onfade', i)
-					playlist.find(item => item.id === id).audio.stop().volume(1)
-				}
-			})
-		})
-	}
-}
-
-const playMusic = id => {
-	// if (music && music.playing()) {
-	// 	music.stop().volume(1)
-	// }
-
-	music = playlist.find(item => item.id === id)?.audio ?? null
-	music?.play()
-}
-
-const fadeOutMusic = () => {
-	console.log('fade out')
-	music.fade(1, 0, 800)
-}
+const { playlist, isMusicReady, loadMusic, playMusic, fadeOutMusic } = useHowler()
+const { animateCount } = useCountAnimation()
 
 const input = ref(null)
 const focusInput = () => {
@@ -95,7 +63,6 @@ const end_death = computed(() => sceneId.value.endsWith('_tod'))
 const end_freedom = computed(() => sceneId.value.endsWith('_ende'))
 const scene = computed(() => burg.find(scene => scene.id === sceneId.value))
 const story = ref([])
-const readyToStart = ref(false)
 const onHold = ref(false)
 const handleStory = async () => {
 	// für Transition
@@ -119,9 +86,7 @@ const handleStory = async () => {
 	}
 
 	// fade out music
-	if (music && music.playing()) {
-		fadeOutMusic()
-	}
+	fadeOutMusic()
 
 	// play music
 	if (scene.value.play) {
@@ -340,49 +305,12 @@ const handleInput = () => {
 	handleCommand(command)
 }
 
-////
-const animationDuration = 2000
-// Calculate how long each ‘frame’ should last if we want to update the animation 60 times per second
-const frameDuration = 1000 / 60
-// Use that to calculate how many frames we need to complete the animation
-const totalFrames = Math.round( animationDuration / frameDuration )
-// An ease-out function that slows the count as it progresses
-const easeOutQuad = t => t * ( 2 - t )
-
-const animateCount = (el, amount, add = true) => {
-	const currentValue = el.value
-	let frame = 0
-	const countTo = amount
-
-	// Start the animation running 60 times per second
-	const counter = setInterval( () => {
-		frame++
-		// Calculate our progress as a value between 0 and 1
-		// Pass that value to our easing function to get our progress on a curve
-		const progress = easeOutQuad( frame / totalFrames )
-		// Use the progress value to calculate the current count
-		const currentCount = Math.round( countTo * progress )
-
-		// If the current count has changed, update the element
-		if ( amount !== currentCount ) {
-			amount = currentCount
-			el.value = add ? currentValue + amount : currentValue - amount
-		}
-
-		// If we’ve reached our last frame, stop the animation
-		if ( frame === totalFrames ) {
-			clearInterval( counter )
-		}
-	}, frameDuration )
-}
-////
-
 onMounted(() => {
 	focusInput()
 	document.addEventListener('click', focusInput)
 })
 
-onBeforeUnmount(() => {
+onUnmounted(() => {
 	document.removeEventListener('click', focusInput)
 })
 </script>
