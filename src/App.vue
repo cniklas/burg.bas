@@ -144,6 +144,7 @@ const handleStory = async () => {
 	switch (sceneId.value) {
 		case 'waffenkammer': getArmed(); break;
 		case 'schatzkammer_ende': animateCount(gold, 100); break;
+		case 'vorzimmer_drache_sieg': setTimeout(() => { manageInventory('discard-magic-wand') }, scene.value.delayed.delay); break;
 		case 'thronsaal_kampf': finalBattle(); break;
 	}
 }
@@ -198,6 +199,9 @@ const manageInventory = condition => {
 		case 'has-keys': inventory.value.push('Keule', 'Schlüssel'); break;
 		case 'has-sword': inventory.value.push('Schwert', 'Seil'); break;
 		case 'has-magic-wand': inventory.value.push('Stab'); break;
+		case 'discard-mace': inventory.value.splice(inventory.value.indexOf('Keule'), 1); break;
+		case 'get-armed': inventory.value.push('Schwert', 'Schild'); break;
+		case 'discard-magic-wand': inventory.value.splice(inventory.value.indexOf('Stab'), 1); break;
 	}
 }
 
@@ -211,9 +215,9 @@ const resetGame = () => {
 const getArmed = () => {
 	if (!hasCondition('has-sword')) {
 		if (hasCondition('has-keys')) {
-			inventory.value.splice(inventory.value.indexOf('Keule'), 1)
+			manageInventory('discard-mace')
 		}
-		inventory.value.push('Schwert', 'Schild')
+		manageInventory('get-armed')
 	}
 }
 
@@ -470,7 +474,7 @@ button:not(:disabled):hover {
 }
 
 .fade-enter-active {
-	transition: opacity 280ms ease-in-out;
+	transition: opacity 320ms ease-in-out;
 }
 
 .fade-enter-from,
