@@ -292,7 +292,7 @@
 		"id": "turm_og_20",
 		"story": [
 			"Du klopfst an und wartest.",
-			"Plötzlich geht die Tür auf, und ein <span class=red>alter Mann</span> in einem wallenden Gewand und mit viel Bart steht vor dir. Er bittet dich freundlich herein.\nNun stehst du in einem Raum, der nicht besonders groß ist, aber ausgefüllt mit dicken Bücherregalen, einem Schreibtisch, einer eisenbeschlagenen Truhe und noch einigen anderen Dingen. An den Wänden hängen seltsame Bilder und Karten."
+			"Plötzlich geht die Tür auf, und ein <span class=red>alter Mann</span> in einem wallenden Gewand und mit viel Bart steht vor dir. Er bittet dich mürrisch herein.\nNun stehst du in einem Raum, der nicht besonders groß ist, aber ausgefüllt mit dicken Bücherregalen, einem Schreibtisch, einer eisenbeschlagenen Truhe und noch einigen anderen Dingen. An den Wänden hängen seltsame Bilder und Karten."
 		],
 		"delayed": {
 			"delay": 4000,
@@ -309,7 +309,7 @@
 	{
 		"id": "turm_og_21",
 		"story": [
-			"Der Mann legt seine Hand auf deine Schulter, sieht dir fest in Augen und sagt: <span class=white>„Es gibt nur einen einzigen Weg, den Zauber zu brechen:\nDu musst bis zum Thronsaal vordringen und UBOLZIO töten. Der Thronsaal wird von einem dreiköpfigen Drachen bewacht, dem weder Schwert noch Pfeil etwas anhaben können. Doch berührst du ihn mit diesem Stab</span> – bei diesen Worten reicht er dir einen kleinen, weißen <span class=blue-dark>Stab</span> – <span class=white>muss er sogleich zu Staub zerfallen.“</span>",
+			"Der Mann sieht dir fest in Augen und sagt: <span class=white>„Es gibt nur einen einzigen Weg, den Zauber zu brechen:\nDu musst bis zum Thronsaal vordringen und UBOLZIO töten. Der Thronsaal wird von einem dreiköpfigen Drachen bewacht, dem weder Schwert noch Pfeil etwas anhaben können. Doch wenn du ihn mit diesem Stab berührst</span> – bei diesen Worten reicht er dir einen kleinen, weißen <span class=blue-dark>Stab</span> – <span class=white>muss er sogleich zu Staub zerfallen.“</span>",
 			"Du fasst wieder Mut."
 		],
 		"delayed": {
@@ -930,10 +930,16 @@
 	{
 		"id": "vorzimmer_drache",
 		"story": [
-			"Du folgst dem Gang bis ans Ende und betrittst schließlich den Vorraum zum Thronsaal. Vor der großen Tür, die dort hineinführt, liegt – ein <span class=red>dreiköpfiger Drache</span>! Genau so, wie es dir der alte Mann aus dem Turmzimmer gesagt hatte.",
-			"Der Drache bemerkt dich und richtet sich auf. Es ist ein ekelhaftes, schuppiges, schmutzigbraunes Ungetüm mit vier großen Pranken. Über den gesamten Rücken zieht sich ein Kamm spitzer Stacheln, ebenso über den Schwanz. Seine Augen sind gierig auf dich geheftet und aus seinen Mäulern trieft der Speichel, als er dich so verzagt da stehen sieht.",
-			"Du fragst dich, wie du es schaffen sollst, ihn mit dem Stab anzurühren, ohne vorher von ihm verschlungen zu werden."
+			"Du folgst dem Gang bis ans Ende und betrittst schließlich den Vorraum zum Thronsaal. Vor der großen Tür, die dort hineinführt, liegt – ein <span class=red>dreiköpfiger Drache</span>! Genau so, wie es dir der alte Mann aus dem Turmzimmer gesagt hatte."
+
 		],
+		"delayed": {
+			"delay": 3000,
+			"story": [
+				"Der Drache bemerkt dich und richtet sich auf. Es ist ein ekelhaftes, schuppiges, schmutzigbraunes Ungetüm mit vier großen Pranken. Über den gesamten Rücken zieht sich ein Kamm spitzer Stacheln, ebenso über den Schwanz. Seine Augen sind gierig auf dich geheftet und aus seinen Mäulern trieft der Speichel, als er dich so verzagt da stehen sieht.",
+				"Du fragst dich, wie du es schaffen sollst, ihn mit dem Stab anzurühren, ohne vorher von ihm verschlungen zu werden."
+			]
+		},
 		"commands": [
 			{ "key": "enter", "text": "", "action": "vorzimmer_drache_kampf" }
 		],
@@ -966,6 +972,7 @@
 		"music": "<<<<t180mnl2cl4cdl6e-dc>l4c.<l8cl2c",
 		"play": "suspense",
 		"play_delay": 3000,
+		"health": -8,
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "thronsaal" }
 		],

@@ -7,21 +7,10 @@
 </pre> -->
 
 	<section class="scene">
-		<article class="story">
-			<transition-group name="fade" mode="out-in">
-				<template v-for="(paragraph, i) in story" :key="`p${i}`">
-					<p v-if="typeof paragraph === 'string'" class="whitespace-pre-line" v-html="paragraph" />
-
-					<template v-else>
-						<template v-for="(section, j) in paragraph" :key="`s${j}`">
-							<p v-show="!isDisabled(section)" class="whitespace-pre-line" v-html="section.story" />
-						</template>
-					</template>
-				</template>
-
-				<!-- <div v-if="scene.delayed" class="delayed" :class="{animated}" :style="`transition-delay:${scene.delayed.delay}ms`"> -->
-			</transition-group>
-		</article>
+		<Story
+			:story="story"
+			:is-disabled="isDisabled"
+		/>
 
 		<div v-show="isMusicReady && !onHold" class="actions">
 			<div v-show="nextButton" class="button-wrapper">
@@ -29,7 +18,7 @@
 			</div>
 
 			<div v-show="hint && showHint" class="hint papayawhip">{{ hint }}</div>
-			<div v-show="!hideInput && !nextButton" class="input-wrapper">
+			<div v-show="showInput && !nextButton" class="input-wrapper">
 				<input type="text" v-model.trim="typed" ref="input" class="input" @click.stop @keyup.enter="handleInput" />
 			</div>
 		</div>
@@ -45,6 +34,7 @@
 
 <script setup>
 import burg from './burg.json'
+import Story from './components/Story.vue'
 import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import useHowler from './useHowler'
 import useCountAnimation from './useCountAnimation'
@@ -144,6 +134,7 @@ const handleStory = async () => {
 	switch (sceneId.value) {
 		case 'waffenkammer': getArmed(); break;
 		case 'schatzkammer_ende': animateCount(gold, 100); break;
+		case 'vorzimmer_drache_sieg': setTimeout(() => { manageInventory('discard-magic-wand') }, scene.value.delayed.delay); break;
 		case 'thronsaal_kampf': finalBattle(); break;
 	}
 }
@@ -166,9 +157,8 @@ const hasCondition = term => conditions.value.includes(term)
 const typed = ref('')
 const hint = ref('')
 const showHint = ref(false)
-const hideInput = computed(() => {
-	return !!scene.value.continue || ['thronsaal_kampf', 'credits'].includes(sceneId.value)
-})
+// const hideInput = computed(() => !!scene.value.continue || ['thronsaal_kampf', 'credits'].includes(sceneId.value))
+const showInput = computed(() => !(!!scene.value.continue || ['thronsaal_kampf', 'credits'].includes(sceneId.value)))
 // const showInput = computed(() => {
 // 	return (
 // 		!scene.value.continue
@@ -198,6 +188,9 @@ const manageInventory = condition => {
 		case 'has-keys': inventory.value.push('Keule', 'Schlüssel'); break;
 		case 'has-sword': inventory.value.push('Schwert', 'Seil'); break;
 		case 'has-magic-wand': inventory.value.push('Stab'); break;
+		case 'discard-mace': inventory.value.splice(inventory.value.indexOf('Keule'), 1); break;
+		case 'get-armed': inventory.value.push('Schwert', 'Schild'); break;
+		case 'discard-magic-wand': inventory.value.splice(inventory.value.indexOf('Stab'), 1); break;
 	}
 }
 
@@ -211,9 +204,9 @@ const resetGame = () => {
 const getArmed = () => {
 	if (!hasCondition('has-sword')) {
 		if (hasCondition('has-keys')) {
-			inventory.value.splice(inventory.value.indexOf('Keule'), 1)
+			manageInventory('discard-mace')
 		}
-		inventory.value.push('Schwert', 'Schild')
+		manageInventory('get-armed')
 	}
 }
 
@@ -470,7 +463,7 @@ button:not(:disabled):hover {
 }
 
 .fade-enter-active {
-	transition: opacity 280ms ease-in-out;
+	transition: opacity 320ms ease-in-out;
 }
 
 .fade-enter-from,
