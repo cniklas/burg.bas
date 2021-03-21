@@ -12,6 +12,12 @@
 			:is-disabled="isDisabled"
 		/>
 
+		<Battle
+			v-if="showBattle && startFight"
+			:health="health"
+			@got-hit="gotHit"
+		/>
+
 		<div v-show="isMusicReady && !onHold" class="actions">
 			<div v-show="nextButton" class="button-wrapper">
 				<button type="button" @click.stop="handleCommand(nextButton)">{{ nextButton?.text || 'weiter' }}</button>
@@ -35,6 +41,7 @@
 <script setup>
 import burg from './burg.json'
 import Story from './components/Story.vue'
+import Battle from './components/Battle.vue'
 import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import useHowler from './useHowler'
 import useCountAnimation from './useCountAnimation'
@@ -47,7 +54,7 @@ const focusInput = () => {
 	input.value.focus()
 }
 
-let sceneId = ref('loading')
+let sceneId = ref('start')
 // todo zum Einfärben des Hintergrunds
 const end_death = computed(() => sceneId.value.endsWith('_tod'))
 const end_freedom = computed(() => sceneId.value.endsWith('_ende'))
@@ -180,6 +187,11 @@ const reduceHealth = points => {
 		? setTimeout(() => { animateCount(health, rnd, false) }, scene.value.delayed.delay)
 		: animateCount(health, rnd, false)
 }
+const gotHit = points => {
+	// todo Dauer der Animation muss definierbar sein
+  // animateCount(health, points, false)
+	health.value -= points
+}
 
 const inventory = ref([])
 const manageInventory = condition => {
@@ -210,16 +222,20 @@ const getArmed = () => {
 	}
 }
 
-// todo `health` berücksichtigen
+const showBattle = computed(() => sceneId.value === 'thronsaal_kampf')
+const startFight = ref(false)
 const finalBattle = () => {
-	const rnd = Math.floor(Math.random() * Math.floor(3))
-	console.log(rnd > 0 ? '👍' : '👎')
-	const action = rnd > 0 ? 'thronsaal_kampf_sieg' : 'thronsaal_kampf_tod'
+	// const rnd = Math.floor(Math.random() * Math.floor(3))
+	// console.log(rnd > 0 ? '👍' : '👎')
+	// const action = rnd > 0 ? 'thronsaal_kampf_sieg' : 'thronsaal_kampf_tod'
 
-	const delay = scene.value.play_delay + 200 + Math.ceil( (playlist.find(item => item.id === scene.value.play)?.audio?._duration ?? 70) * 1000 )
-	setTimeout(() => {
-		handleAction({ action })
-	}, delay)
+	// const delay = scene.value.play_delay + 200 + Math.ceil( (playlist.find(item => item.id === scene.value.play)?.audio?._duration ?? 70) * 1000 )
+	// setTimeout(() => {
+	// 	handleAction({ action })
+	// }, delay)
+	scene.value.play_delay
+		? setTimeout(() => { startFight.value = true }, scene.value.play_delay)
+		: startFight.value = true
 }
 
 // todo wenn in "brenzligen" Situationen mehr als ein/zweimal Quatsch eingegeben wird, stirbt der Protagonist (Wachen sind dann z.B. herangekommen)
