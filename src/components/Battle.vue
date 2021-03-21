@@ -1,21 +1,22 @@
 <template>
-	<div>
+	<section class="battle">
 		<ol>
 			<li v-for="(attack, i) in attacks" :key="i">
 				{{ attack.message }}
 			</li>
 		</ol>
 
-		<div v-show="battleResult" v-html="battleResult" />
+		<div v-show="battleResult" class="battle-result" v-html="battleResult" />
 
-		<div id="scroll-to" />
-	</div>
+		<div ref="scroll-to" />
+	</section>
 </template>
 
 <script>
 export default {
 	props: {
-		health: Number
+		health: Number,
+		strikeInterval: Number
 	},
 	data() {
 		return {
@@ -65,22 +66,20 @@ export default {
 
 	methods: {
 		battle() {
-			const timer = setInterval(() => {
-				this.player.hit = false
-				this.player.attack = Math.floor(Math.random() * 16) + 1
-				this.opponent.hit = false
-				this.opponent.attack = Math.floor(Math.random() * 16) + 1
-				this._randomMove(this.player, this.opponent)
-				this._randomMove(this.opponent, this.player)
+			this.player.hit = false
+			this.player.attack = Math.floor(Math.random() * 16) + 1
+			this.opponent.hit = false
+			this.opponent.attack = Math.floor(Math.random() * 16) + 1
+			this._randomMove(this.player, this.opponent)
+			this._randomMove(this.opponent, this.player)
 
-				this.$nextTick(() => {
-					document.getElementById('scroll-to').scrollIntoView()
-				})
+			requestAnimationFrame(() => {
+				this.$refs['scroll-to'].scrollIntoView()
+			})
 
-				if (this.player.health <= 0 || this.opponent.health <= 0) {
-					clearInterval(timer)
-				}
-			}, 500)
+			if (!(this.player.health <= 0 || this.opponent.health <= 0)) {
+				setTimeout(this.battle, this.strikeInterval)
+			}
 		},
 
 		_randomMove(attacker, defender) {

@@ -1,4 +1,6 @@
 <template>
+	<div class="flex flex-col justify-end h-screen">
+		<main class="flex flex-col flex-1" style="max-height:calc(100vh / 1.5)">
 <!-- <pre class="ascii-text">
 </pre> -->
 
@@ -6,35 +8,38 @@
 ▓▓▓
 </pre> -->
 
-	<section class="scene">
-		<Story
-			:story="story"
-			:is-disabled="isDisabled"
-		/>
+			<div class="scene h-full flex flex-col justify-between">
+				<Story
+					:story="story"
+					:is-disabled="isDisabled"
+				/>
 
-		<Battle
-			v-if="showBattle && startFight"
-			:health="health"
-			@got-hit="gotHit"
-		/>
+				<Battle
+					v-if="showBattle && startFight"
+					class="flex-1 overflow-y-auto"
+					:health="health"
+					:strike-interval="strikeInterval"
+					@got-hit="gotHit"
+				/>
 
-		<div v-show="isMusicReady && !onHold" class="actions">
-			<div v-show="nextButton" class="button-wrapper">
-				<button type="button" @click.stop="handleCommand(nextButton)">{{ nextButton?.text || 'weiter' }}</button>
+				<section v-show="isMusicReady && !onHold" class="actions">
+					<div v-show="nextButton" class="button-wrapper">
+						<button type="button" @click.stop="handleCommand(nextButton)">{{ nextButton?.text || 'weiter' }}</button>
+					</div>
+
+					<div v-show="hint && showHint" class="hint papayawhip">{{ hint }}</div>
+					<div v-show="showInput && !nextButton" class="input-wrapper">
+						<input type="text" v-model.trim="typed" ref="input" class="input" @click.stop @keyup.enter="handleInput" />
+					</div>
+				</section>
 			</div>
+		</main>
 
-			<div v-show="hint && showHint" class="hint papayawhip">{{ hint }}</div>
-			<div v-show="showInput && !nextButton" class="input-wrapper">
-				<input type="text" v-model.trim="typed" ref="input" class="input" @click.stop @keyup.enter="handleInput" />
-			</div>
-		</div>
-	</section>
-
-	<div class="debug">
-		<div class="gold">Gold: {{ gold }}</div>
-		<div class="pink">Health: {{ health }}</div>
-		<!-- <pre><code v-for="condition in conditions">{{ `${condition}\n` }}</code></pre> -->
-		<pre class="blue-dark"><code v-for="item in inventory">{{ item }} </code></pre>
+		<aside class="debug text-center">
+			<div class="gold">Gold: {{ gold }}</div>
+			<div class="pink">Health: {{ health }}</div>
+			<pre class="blue-dark"><code v-for="item in inventory">{{ item }} </code></pre>
+		</aside>
 	</div>
 </template>
 
@@ -182,15 +187,13 @@ const reduceHealth = points => {
   const max = Math.floor(points)
 
 	const rnd = Math.floor(Math.random() * (max - min + 1)) + min
-	// health.value -= rnd
 	sceneId.value === 'lagerhaus_kampf'
 		? setTimeout(() => { animateCount(health, rnd, false) }, scene.value.delayed.delay)
 		: animateCount(health, rnd, false)
 }
+const strikeInterval = ref(1200)
 const gotHit = points => {
-	// todo Dauer der Animation muss definierbar sein
-  // animateCount(health, points, false)
-	health.value -= points
+  animateCount(health, points, false, strikeInterval.value)
 }
 
 const inventory = ref([])
@@ -356,6 +359,10 @@ onUnmounted(() => {
 .purple-dark  { color: var(--purple-dark); }
 .red          { color: var(--red); }
 
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background-color: hsla(218, 40%, 50%, 0.08); border-radius: 3px; }
+::-webkit-scrollbar-thumb { background-color: #97a0af; border-radius: 3px; }
+
 html {
 	background-color: #0f0f17;
 	color: #cbd5e0;
@@ -391,7 +398,8 @@ button:not(:disabled):hover {
 	font-family: Menlo, 'DejaVu Sans Mono', 'Lucida Console', monospace;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	margin: 60px auto 0;
+	/* margin: 60px auto 0; */
+	margin: 0 auto;
 	max-width: 720px;
 }
 
@@ -402,10 +410,6 @@ button:not(:disabled):hover {
 .ascii-text {
 	font-size: 0.8125rem;
 	line-height: 1.153846;
-}
-
-.scene {
-	@apply relative z-10;
 }
 
 .story,
@@ -428,6 +432,16 @@ button:not(:disabled):hover {
 .story .disabled {
 	opacity: .35;
 } */
+
+.battle {
+	line-height: var(--global-line-height);
+	scroll-behavior: smooth;
+}
+
+.battle li:nth-child(2n+3),
+.battle-result {
+	margin-top: calc(var(--global-line-height) * 1rem);
+}
 
 .actions {
 	@apply text-center;
@@ -465,13 +479,12 @@ button:not(:disabled):hover {
 
 .debug {
 	font-family: 'Courier New', Courier, monospace;
-	text-align: center;
 	border: 2px dashed;
-	position: fixed;
-	z-index: 1;
-	bottom: 0;
-	width: 100%;
-	max-width: 720px;
+	/* position: fixed; */
+	/* z-index: 1; */
+	/* bottom: 0; */
+	/* width: 100%; */
+	/* max-width: 720px; */
 }
 
 .debug > * {
