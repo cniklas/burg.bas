@@ -49,14 +49,17 @@ export default {
 			switch (true) {
 				case this.opponent.health <= 0 && this.player.health > 0 :
 					message = `<span class="purple-dark">${this.opponent.name}</span> died from <span class="red">a heart attack</span> 🚑`
+					this.$emit('won')
 					break
 
 				case this.player.health <= 0 && this.opponent.health > 0 :
 					message = `${this.player.name} died 💀`
+					this.$emit('lost')
 					break
 
 				case this.player.health <= 0 && this.opponent.health <= 0 :
 					message = 'Everyone died 😱'
+					this.$emit('lost')
 					break
 			}
 

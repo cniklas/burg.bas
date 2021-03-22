@@ -20,16 +20,18 @@
 					:health="health"
 					:strike-interval="strikeInterval"
 					@got-hit="gotHit"
+					@won="battleWon"
+					@lost="battleLost"
 				/>
 
 				<section v-show="isMusicReady && !onHold" class="actions">
 					<div v-show="nextButton" class="button-wrapper">
-						<button type="button" @click.stop="handleCommand(nextButton)">{{ nextButton?.text || 'weiter' }}</button>
+						<button type="button" class="button" @click.stop="handleCommand(nextButton)">{{ nextButton?.text || 'weiter' }}</button>
 					</div>
 
 					<div v-show="hint && showHint" class="hint papayawhip">{{ hint }}</div>
 					<div v-show="showInput && !nextButton" class="input-wrapper">
-						<input type="text" v-model.trim="typed" ref="input" class="input" @click.stop @keyup.enter="handleInput" />
+						<input type="text" v-model.trim="typed" ref="input" class="input" :placeholder="inputPlaceholder" @click.stop @keyup.enter="handleInput" />
 					</div>
 				</section>
 			</div>
@@ -61,8 +63,8 @@ const focusInput = () => {
 
 let sceneId = ref('start')
 // todo zum Einfärben des Hintergrunds
-const end_death = computed(() => sceneId.value.endsWith('_tod'))
-const end_freedom = computed(() => sceneId.value.endsWith('_ende'))
+const isEndDeath = computed(() => sceneId.value.endsWith('_tod'))
+const isEndFreedom = computed(() => sceneId.value.endsWith('_ende'))
 const scene = computed(() => burg.find(scene => scene.id === sceneId.value))
 const story = ref([])
 const onHold = ref(false)
@@ -101,7 +103,7 @@ const handleStory = async () => {
 	if (scene.value.health) {
 		reduceHealth(Math.abs(scene.value.health))
 	}
-	if (end_death.value) {
+	if (isEndDeath.value) {
 		animateCount(health, health.value, false)
 	}
 
@@ -167,6 +169,7 @@ const conditions = ref([])
 const hasCondition = term => conditions.value.includes(term)
 
 const typed = ref('')
+const inputPlaceholder = computed(() => sceneId.value === 'start' ? 'Fang an zu tippen' : '')
 const hint = ref('')
 const showHint = ref(false)
 // const hideInput = computed(() => !!scene.value.continue || ['thronsaal_kampf', 'credits'].includes(sceneId.value))
@@ -239,6 +242,12 @@ const finalBattle = () => {
 	scene.value.play_delay
 		? setTimeout(() => { startFight.value = true }, scene.value.play_delay)
 		: startFight.value = true
+}
+const battleWon = () => {
+	conditions.value.push('battle-won')
+}
+const battleLost = () => {
+	conditions.value.push('battle-lost')
 }
 
 // todo wenn in "brenzligen" Situationen mehr als ein/zweimal Quatsch eingegeben wird, stirbt der Protagonist (Wachen sind dann z.B. herangekommen)
@@ -374,25 +383,6 @@ p:empty {
 	margin: 0;
 }
 
-button {
-	background-color: #1a202c;
-	color: cadetblue;
-	font-size: 80%;
-	border: 1px solid currentColor;
-	padding: .5rem 1rem;
-	user-select: none;
-}
-/*
-button:disabled {
-	opacity: .4;
-	cursor: initial;
-} */
-
-/* button:focus, */
-button:not(:disabled):hover {
-	color: #e2e8f0;
-}
-
 #app {
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	font-family: Menlo, 'DejaVu Sans Mono', 'Lucida Console', monospace;
@@ -469,11 +459,30 @@ button:not(:disabled):hover {
 	font-style: italic;
 } */
 
+.button {
+	background-color: #1a202c;
+	color: cadetblue;
+	font-size: 1.25rem;
+	border: 1px solid currentColor;
+	padding: .5rem 1rem;
+	user-select: none;
+	width: 50%;
+}
+/*
+.button:disabled {
+	opacity: .4;
+	cursor: initial;
+} */
+
+/* .button:focus, */
+.button:not(:disabled):hover {
+	color: #e2e8f0;
+}
+
 .input {
-	@apply w-full py-2;
-	/* color: #000; */
-	background-color: transparent;
+	@apply w-full py-2 bg-transparent;
 	color: inherit;
+	font-size: 1.625rem;
 	outline: 0;
 }
 

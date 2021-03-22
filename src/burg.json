@@ -998,7 +998,13 @@
 			"Ein erbitterter Kampf entbrennt …"
 		],
 		"play": "battle",
-		"play_delay": 1000
+		"play_delay": 1000,
+
+		"load_audio": "victory",
+		"commands": [
+			{ "condition": "battle-lost", "key": "enter", "text": "", "action": "game-over" },
+			{ "condition": "battle-won", "key": "enter", "text": "", "action": "thronsaal_ende" }
+		]
 	},
 
 	{
