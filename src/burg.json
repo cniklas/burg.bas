@@ -994,11 +994,17 @@
 	{
 		"id": "thronsaal_kampf",
 		"story": [
-			"<span class=red>UBOLZIO</span> hat dich sogleich bemerkt und springt von seinem Thron auf.\nEr sieht das Schwert in deiner Hand blitzen und zieht sofort seinen gefürchteten Zweihänder aus einer reich verzierten Scheide. Er stürzt sich auf dich, und eure Schwerter treffen klirrend aufeinander.",
+			"<span class=red>UBOLZIO</span> hat dich sogleich bemerkt und springt von seinem Thron auf.\nEr sieht das Schwert in deiner Hand blitzen und zieht sofort seinen gefürchteten Zweihänder aus einer reich verzierten Scheide. Er stürzt sich auf dich, und eure Waffen treffen klirrend aufeinander.",
 			"Ein erbitterter Kampf entbrennt …"
 		],
 		"play": "battle",
-		"play_delay": 1000
+		"play_delay": 1000,
+
+		"load_audio": "victory",
+		"commands": [
+			{ "condition": "battle-lost", "key": "enter", "text": "", "action": "game-over" },
+			{ "condition": "battle-won", "key": "enter", "text": "", "action": "thronsaal_ende" }
+		]
 	},
 
 	{
