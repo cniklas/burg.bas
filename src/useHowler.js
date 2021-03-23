@@ -18,8 +18,8 @@ export default function() {
 						console.log('onload')
 						isMusicReady.value = true
 					},
-					onplay: () => { console.log('onplay') },
-					onend: () => { console.log('onend') },
+					onplay: () => { console.log(`onplay "${id}"`) },
+					onend: () => { console.log(`onend "${id}"`) },
 					onfade: () => {
 						console.log('onfade (end)')
 						playlist.find(item => item.id === id).audio.stop().volume(1)

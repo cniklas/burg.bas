@@ -19,9 +19,8 @@
 					class="flex-1 overflow-y-auto"
 					:health="health"
 					:strike-interval="strikeInterval"
-					@got-hit="gotHit"
-					@won="battleWon"
-					@lost="battleLost"
+					@got-hit="onHit"
+					@finish="onFinish"
 				/>
 
 				<section v-show="isMusicReady && !onHold" class="actions">
@@ -61,8 +60,8 @@ const focusInput = () => {
 	input.value.focus()
 }
 
-let sceneId = ref('start')
-// todo zum Einfärben des Hintergrunds
+let sceneId = ref('thronsaal')
+// TODO zum Einfärben des Hintergrunds
 const isEndDeath = computed(() => sceneId.value.endsWith('_tod'))
 const isEndFreedom = computed(() => sceneId.value.endsWith('_ende'))
 const scene = computed(() => burg.find(scene => scene.id === sceneId.value))
@@ -195,7 +194,7 @@ const reduceHealth = points => {
 		: animateCount(health, rnd, false)
 }
 const strikeInterval = ref(1200)
-const gotHit = points => {
+const onHit = points => {
   animateCount(health, points, false, strikeInterval.value)
 }
 
@@ -243,14 +242,11 @@ const finalBattle = () => {
 		? setTimeout(() => { startFight.value = true }, scene.value.play_delay)
 		: startFight.value = true
 }
-const battleWon = () => {
-	conditions.value.push('battle-won')
-}
-const battleLost = () => {
-	conditions.value.push('battle-lost')
+const onFinish = (val) => {
+	conditions.value.push(`battle-${val}`)
 }
 
-// todo wenn in "brenzligen" Situationen mehr als ein/zweimal Quatsch eingegeben wird, stirbt der Protagonist (Wachen sind dann z.B. herangekommen)
+// TODO wenn in "brenzligen" Situationen mehr als ein/zweimal Quatsch eingegeben wird, stirbt der Protagonist (Wachen sind dann z.B. herangekommen)
 const handleAction = command => {
 	if (command.setCondition && !hasCondition(command.setCondition)) {
 		conditions.value.push(command.setCondition)
@@ -462,11 +458,11 @@ p:empty {
 .button {
 	background-color: #1a202c;
 	color: cadetblue;
-	font-size: 1.25rem;
+	font-size: 1rem;
 	border: 1px solid currentColor;
 	padding: .5rem 1rem;
 	user-select: none;
-	width: 50%;
+	width: 25%;
 }
 /*
 .button:disabled {
