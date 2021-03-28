@@ -1,6 +1,6 @@
 <template>
 	<div class="flex flex-col justify-end h-screen">
-		<main class="flex flex-col flex-1" style="max-height:calc(100vh / 1.5)">
+		<main class="flex flex-col flex-1" style="max-height:calc(100vh / 1.5);max-height:90vh">
 <!-- <pre class="ascii-text">
 </pre> -->
 
@@ -17,6 +17,7 @@
 				<Battle
 					v-if="showBattle && startFight"
 					class="flex-1 overflow-y-auto"
+					:name="name"
 					:health="health"
 					:strike-interval="strikeInterval"
 					@got-hit="onHit"
@@ -54,6 +55,31 @@ import useCountAnimation from './useCountAnimation'
 
 const { playlist, isMusicReady, loadMusic, playMusic, fadeOutMusic } = useHowler()
 const { animateCount } = useCountAnimation()
+
+const firstNames = [
+	'Basil',
+	'Herbert',
+	'Winston',
+	'Fredrick',
+	'Grumpf',
+	'Wilhelm',
+	'Theodore',
+	'Greasus'
+]
+const lastNames = [
+	'Berrybrook',
+	'Deathrump',
+	'Wellington',
+	'Bloodlord',
+	'Firerump',
+	'Flamebeard',
+	'the Flatulant IV',
+	'Thornheart',
+	'Ragefist',
+	'Goldtooth',
+	'Guillemaere'
+]
+const name = ref(`${firstNames[ Math.floor(Math.random() * firstNames.length) ]} ${lastNames[ Math.floor(Math.random() * lastNames.length) ]}`)
 
 const input = ref(null)
 const focusInput = () => {

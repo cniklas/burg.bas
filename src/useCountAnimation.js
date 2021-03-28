@@ -15,6 +15,11 @@ export default function() {
 		let number = el.value
 		let frame = 0
 
+		// beim Runterzählen bei 0 stoppen
+		if (!add && changeBy > oldValue) {
+			changeBy = oldValue
+		}
+
 		// Start the animation running 60 times per second
 		const counter = setInterval(() => {
 			frame++
