@@ -27,7 +27,10 @@ const weapons = [
 
 export default {
 	props: {
-		name: String,
+		userName: {
+			type: String,
+			default: 'Hans Wurst'
+		},
 		health: Number,
 		strikeInterval: Number
 	},
@@ -35,7 +38,6 @@ export default {
 		return {
 			attacks: [],
 			player: {
-				name: '🦸🏼‍♂️ Hans Wurst',
 				weapon: 'seinem Schwert'
 			},
 			opponent: {
@@ -245,7 +247,7 @@ export default {
 	created() {
 		this.player = {
 			...this.player,
-			name: `🦸🏼‍♂️ ${this.name}`,
+			name: `🦸🏼‍♂️ ${this.userName}`,
 			health: this.health,
 			originHealth: this.health
 		}
@@ -273,18 +275,3 @@ export default {
 	}
 }
 </script>
-
-<style scoped>
-/* ol {
-	list-style-type: decimal;
-	padding-left: 2.5rem;
-} */
-/*
-ol div {
-	@apply bg-green-800;
-}
-
-ol li:nth-child(even) div {
-	@apply bg-pink-800;
-} */
-</style>

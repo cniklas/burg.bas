@@ -3,8 +3,8 @@ import { Howl } from 'howler'
 
 export default function() {
 	let _music = null
-	const playlist = []
-	const isMusicReady = ref(false)
+	const playlist = [] // TODO ref()?
+	// const isMusicReady = ref(false)
 
 	const loadMusic = (id, autoplay = false) => {
 		console.log(autoplay ? 'load + play' : 'preload', `"${id}"`)
@@ -16,7 +16,7 @@ export default function() {
 					// autoplay,
 					onload: () => {
 						console.log('onload')
-						isMusicReady.value = true
+						// isMusicReady.value = true
 					},
 					onplay: () => { console.log(`onplay "${id}"`) },
 					onend: () => { console.log(`onend "${id}"`) },
@@ -47,7 +47,7 @@ export default function() {
 
 	return {
 		playlist,
-		isMusicReady,
+		// isMusicReady,
 		loadMusic,
 		playMusic,
 		fadeOutMusic
