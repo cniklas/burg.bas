@@ -17,23 +17,26 @@
 			<input type="text" v-model.trim="userName" ref="input" class="input" placeholder="Gib einen Namen ein oder drücke ENTER" @click.stop @keyup.enter="createName" />
 		</div>
 
-		<!-- TODO fade in/out nicely -->
-		<div v-show="showButton" class="button-wrapper">
-			<button type="button" class="button" @click.stop="$emit('start', userName)">Spiel starten</button>
-		</div>
+		<transition name="fade" mode="in-out">
+			<div v-show="showButton" class="button-wrapper">
+				<button type="button" class="button" @click.stop="$emit('start', userName)">Spiel starten</button>
+			</div>
+		</transition>
 	</section>
 </template>
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted, defineEmit } from 'vue'
-// import useHowler from '../useHowler'
+import useHowler from '../useHowler'
 
 defineEmit([
 	'start'
 ])
 
+const { loadMusic } = useHowler
+
 const userName = ref('')
-const showButton = computed(() => userName.value !== '')
+const showButton = computed(() => userName.value.length >= 2)
 
 const firstNames = [
 	'Basil',
@@ -70,12 +73,9 @@ const focusInput = () => {
 onMounted(() => {
 	focusInput()
 	document.addEventListener('click', focusInput)
+	loadMusic('intro-2')
 })
 onUnmounted(() => {
 	document.removeEventListener('click', focusInput)
 })
 </script>
-
-<style>
-
-</style>

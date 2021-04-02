@@ -17,7 +17,6 @@
 					@finish="finishBattle"
 				/>
 
-				<!-- v-show="isMusicReady && !onHold" -->
 				<section v-show="!onHold" class="actions">
 					<div v-show="nextButton" class="button-wrapper">
 						<button type="button" class="button" @click.stop="handleCommand(nextButton)">{{ nextButton?.text || 'weiter' }}</button>
@@ -47,14 +46,11 @@ import { ref, computed, watch, onMounted, onUnmounted, defineProps, nextTick } f
 import useHowler from '../useHowler'
 import useCountAnimation from '../useCountAnimation'
 
-// um Props im Script Block zu verwenden:
-// const myProps = defineProps( … )
-// const { userName } = toRefs(myProps)
 defineProps({
 	userName: String
 })
 
-const { playlist/* , isMusicReady */, loadMusic, playMusic, fadeOutMusic } = useHowler()
+const { playlist, loadMusic, playMusic, fadeOutMusic } = useHowler
 const { animateCount } = useCountAnimation()
 
 const input = ref(null)
@@ -110,29 +106,9 @@ const handleStory = async () => {
 
 	// continue
 	if (scene.value.continue) {
-		/*
-		// continue after audio has been loaded
-		if (scene.value.load_audio) {
-			let i = 0
-			// console.time('foo')
-			const interval = setInterval(() => {
-				i += 300
-				// console.log(i)
-				// console.timeLog('foo')
-				const loaded = playlist.find(item => item.id === scene.value.load_audio)?.audio?._state ?? false
-				if (loaded === 'loaded' || i >= 3000) {
-					// console.timeEnd('foo')
-					clearInterval(interval)
-					handleAction({ action: scene.value.continue.action })
-				}
-			}, 300)
-		}
-		// continue after audio has been played oder given delay or fallback
-		else {
-		} */
 		let delay = scene.value.continue.delay || 200
 		if (scene.value.play) {
-			delay = Math.ceil( (playlist.find(item => item.id === scene.value.play)?.audio?._duration ?? delay / 1000) * 1000 )
+			delay = Math.ceil( (playlist.value.find(item => item.id === scene.value.play)?.audio?._duration ?? delay / 1000) * 1000 )
 		}
 
 		setTimeout(() => {
@@ -154,17 +130,6 @@ const handleStory = async () => {
 	}
 }
 watch(sceneId, handleStory, { immediate: true })
-// const animated = ref(false)
-// const animateIn = () => {
-// 	setTimeout(() => {
-// 		animated.value = true
-// 	}, 100)
-// }
-
-// const clickCommandsList = ['hoch', 'runter', 'links', 'rechts', 'weiter', 'zurück']
-// const clickCommands = computed(() => scene.value.commands?.filter(cmd => clickCommandsList.includes(cmd.text) || cmd.key === 'enter') ?? [])
-// const textCommands = computed(() => scene.value.commands?.filter(cmd => !clickCommandsList.includes(cmd.text) && cmd.key !== 'enter') ?? [])
-const nextButton = computed(() => scene.value.commands?.find(cmd => cmd.key === 'enter' && !isDisabled(cmd)));
 
 const conditions = ref([])
 const hasCondition = term => conditions.value.includes(term)
@@ -173,15 +138,8 @@ const typed = ref('')
 const inputPlaceholder = computed(() => sceneId.value === 'start' ? 'Fang an zu tippen' : '')
 const hint = ref('')
 const showHint = ref(false)
-// const hideInput = computed(() => !!scene.value.continue || ['thronsaal_kampf', 'credits'].includes(sceneId.value))
 const showInput = computed(() => !(!!scene.value.continue || ['thronsaal_kampf', 'credits'].includes(sceneId.value)))
-// const showInput = computed(() => {
-// 	return (
-// 		!scene.value.continue
-// 		&& !['thronsaal_kampf', 'credits'].includes(sceneId.value)
-// 		&& !scene.value.commands?.find(cmd => cmd.key === 'enter' && !isDisabled(cmd))
-// 	)
-// })
+const nextButton = computed(() => scene.value.commands?.find(cmd => cmd.key === 'enter' && !isDisabled(cmd)))
 
 const gold = ref(0)
 
@@ -233,10 +191,8 @@ const showBattle = computed(() => sceneId.value === 'thronsaal_kampf')
 const startFight = ref(false)
 const finalBattle = () => {
 	// const rnd = Math.floor(Math.random() * Math.floor(3))
-	// console.log(rnd > 0 ? '👍' : '👎')
 	// const action = rnd > 0 ? 'thronsaal_kampf_sieg' : 'thronsaal_kampf_tod'
-
-	// const delay = scene.value.play_delay + 200 + Math.ceil( (playlist.find(item => item.id === scene.value.play)?.audio?._duration ?? 70) * 1000 )
+	// const delay = scene.value.play_delay + 200 + Math.ceil( (playlist.value.find(item => item.id === scene.value.play)?.audio?._duration ?? 70) * 1000 )
 	// setTimeout(() => {
 	// 	handleAction({ action })
 	// }, delay)
@@ -244,8 +200,8 @@ const finalBattle = () => {
 		? setTimeout(() => { startFight.value = true }, scene.value.play_delay)
 		: startFight.value = true
 }
-const finishBattle = (val) => {
-	conditions.value.push(`battle-${val}`)
+const finishBattle = (result) => {
+	conditions.value.push(`battle-${result}`)
 }
 
 // TODO wenn in "brenzligen" Situationen mehr als ein/zweimal Quatsch eingegeben wird, stirbt der Protagonist (Wachen sind dann z.B. herangekommen)
@@ -262,10 +218,7 @@ const handleAction = command => {
 	showHint.value = false
 	hint.value = ''
 	typed.value = ''
-	// animated.value = false
 	sceneId.value = command.action
-
-	// animateIn()
 }
 
 const handleMessage = command => {
@@ -304,15 +257,6 @@ const cleanInput = string => {
 
 const handleInput = () => {
 	const input = cleanInput(typed.value)
-
-	// let command
-	// if (input === 'weiter') {
-	// 	command = scene.value.commands?.find(cmd => !isDisabled(cmd) && cmd.key === 'enter')
-	// }
-
-	// if (command === undefined) {
-	// 	command = scene.value.commands?.find(cmd => !isDisabled(cmd) && cmd.text.toLowerCase() === input)
-	// }
 	const command = scene.value.commands?.find(cmd => !isDisabled(cmd) && cmd.text.toLowerCase() === input)
 
 	if (command === undefined) {
@@ -333,7 +277,3 @@ onUnmounted(() => {
 	document.removeEventListener('click', focusInput)
 })
 </script>
-
-<style>
-
-</style>

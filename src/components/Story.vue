@@ -1,6 +1,6 @@
 <template>
 	<article class="story">
-		<transition-group name="fade" mode="out-in">
+		<transition-group name="story-fade" mode="out-in">
 			<template v-for="(section, i) in story" :key="`sct${i}`">
 				<p v-if="typeof section === 'string'" class="whitespace-pre-line" v-html="section" />
 
@@ -10,8 +10,6 @@
 					</template>
 				</template>
 			</template>
-
-			<!-- <div v-if="scene.delayed" class="delayed" :class="{animated}" :style="`transition-delay:${scene.delayed.delay}ms`"> -->
 		</transition-group>
 	</article>
 </template>
@@ -24,3 +22,15 @@ defineProps({
 	isDisabled: Function
 })
 </script>
+
+<style>
+.story-fade-enter-active/* ,
+.story-fade-leave-active */ {
+	transition: opacity 320ms ease-in-out;
+}
+
+.story-fade-enter-from/* ,
+.story-fade-leave-to */ {
+	opacity: 0;
+}
+</style>
