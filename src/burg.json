@@ -139,7 +139,8 @@
 			{ "key": "n", "text": "nimm Helm Umhang", "setCondition": "has-helmet", "action": "kerker_31" },
 			{ "key": "h", "text": "hoch", "action": "wachraum" },
 			{ "key": "z", "text": "zurück", "action": "kerkerwache_tod" }
-		]
+		],
+		"timeout": { "action": "kerkerwache_timeout" }
 	},
 
 	{
@@ -150,13 +151,24 @@
 		"commands": [
 			{ "key": "h", "text": "hoch", "action": "wachraum" },
 			{ "key": "z", "text": "zurück", "action": "kerkerwache_tod" }
-		]
+		],
+		"timeout": { "action": "kerkerwache_timeout" }
 	},
 
 	{
 		"id": "kerkerwache_tod",
 		"story": [
 			"Du hastest zurück – und läufst den <span class=red>Wächtern</span> direkt in die Arme. Jetzt ist alles zu spät …"
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "game-over" }
+		]
+	},
+
+	{
+		"id": "kerkerwache_timeout",
+		"story": [
+			"In diesem Augenblick haben dich die Wachen erreicht und überwältigen dich im Nu. Warum hast du so lange gezögert …?"
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "game-over" }
@@ -341,7 +353,8 @@
 			{ "key": "l", "text": "links", "setCondition": "visited-lagerhaus", "action": "stallungen_flucht" },
 			{ "key": "h", "text": "hoch", "action": "lagerhaus_tod" }
 		],
-		"hint": "Keine Zeit für Scherze! Du musst fliehen!"
+		"hint": "Keine Zeit für Scherze! Du musst fliehen!",
+		"timeout": { "action": "lagerhaus_timeout" }
 	},
 
 	{
@@ -365,7 +378,8 @@
 			{ "condition": "has-sword", "key": "f", "text": "flieh", "action": "lagerhaus_flucht" },
 			{ "condition": "has-keys", "key": "h", "text": "hoch", "action": "lagerhaus_tod" },
 			{ "condition": "has-keys", "key": "z", "text": "zurück", "action": "stallungen_flucht" }
-		]
+		],
+		"timeout": { "action": "lagerhaus_timeout" }
 	},
 
 	{
@@ -387,7 +401,8 @@
 		"commands": [
 			{ "key": "h", "text": "hoch", "action": "lagerhaus_flucht_tod" },
 			{ "key": "z", "text": "zurück", "action": "stallungen_flucht" }
-		]
+		],
+		"timeout": { "action": "lagerhaus_timeout" }
 	},
 
 	{
@@ -395,6 +410,16 @@
 		"story": [
 			"Du hetzt die Treppe hinauf und versteckst dich dort so gut es geht zwischen Fässern mit Pökelfleisch und Mehlsäcken. Doch die Wachen sind nicht so leicht zu überlisten und suchen das ganze Lagerhaus nach dir ab.",
 			"Du sitzt in der Falle, und da wird dir auch dein Schwert nicht viel nützen …"
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "game-over" }
+		]
+	},
+
+	{
+		"id": "lagerhaus_timeout",
+		"story": [
+			"In diesem Augenblick haben dich die Wachen erreicht und überwältigen dich im Nu. Warum hast du so lange gezögert …?"
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "game-over" }

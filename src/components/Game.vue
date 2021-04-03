@@ -92,7 +92,7 @@ const handleStory = async () => {
 	// play music
 	if (scene.value.play) {
 		scene.value.play_delay
-			? setTimeout(() => { playMusic(scene.value.play) }, scene.value.play_delay)
+			? setTimeout(playMusic, scene.value.play_delay, scene.value.play)
 			: playMusic(scene.value.play)
 	}
 
@@ -111,9 +111,7 @@ const handleStory = async () => {
 			delay = Math.ceil( (playlist.value.find(item => item.id === scene.value.play)?.audio?._duration ?? delay / 1000) * 1000 )
 		}
 
-		setTimeout(() => {
-			handleAction({ action: scene.value.continue.action })
-		}, delay)
+		setTimeout(handleAction, delay, { action: scene.value.continue.action })
 	}
 
 	// load music
@@ -125,7 +123,7 @@ const handleStory = async () => {
 	switch (sceneId.value) {
 		case 'waffenkammer': getArmed(); break;
 		case 'schatzkammer_ende': animateCount(gold, 100); break;
-		case 'vorzimmer_drache_sieg': setTimeout(() => { manageInventory('discard-magic-wand') }, scene.value.delayed.delay); break;
+		case 'vorzimmer_drache_sieg': setTimeout(manageInventory, scene.value.delayed.delay, 'discard-magic-wand'); break;
 		case 'thronsaal_kampf': finalBattle(); break;
 	}
 }
@@ -150,7 +148,7 @@ const reduceHealth = points => {
 
 	const rnd = Math.floor(Math.random() * (max - min + 1)) + min
 	sceneId.value === 'lagerhaus_kampf'
-		? setTimeout(() => { animateCount(health, rnd, false) }, scene.value.delayed.delay)
+		? setTimeout(animateCount, scene.value.delayed.delay, health, rnd, false)
 		: animateCount(health, rnd, false)
 }
 const strikeInterval = ref(1200)
@@ -193,9 +191,7 @@ const finalBattle = () => {
 	// const rnd = Math.floor(Math.random() * Math.floor(3))
 	// const action = rnd > 0 ? 'thronsaal_kampf_sieg' : 'thronsaal_kampf_tod'
 	// const delay = scene.value.play_delay + 200 + Math.ceil( (playlist.value.find(item => item.id === scene.value.play)?.audio?._duration ?? 70) * 1000 )
-	// setTimeout(() => {
-	// 	handleAction({ action })
-	// }, delay)
+	// setTimeout(handleAction, delay, { action })
 	scene.value.play_delay
 		? setTimeout(() => { startFight.value = true }, scene.value.play_delay)
 		: startFight.value = true
@@ -204,8 +200,11 @@ const finishBattle = (result) => {
 	conditions.value.push(`battle-${result}`)
 }
 
-// TODO wenn in "brenzligen" Situationen mehr als ein/zweimal Quatsch eingegeben wird, stirbt der Protagonist (Wachen sind dann z.B. herangekommen)
+let timeout = null
 const handleAction = command => {
+	clearTimeout(timeout)
+	timeout = null
+
 	if (command.setCondition && !hasCondition(command.setCondition)) {
 		conditions.value.push(command.setCondition)
 		manageInventory(command.setCondition)
@@ -256,6 +255,10 @@ const cleanInput = string => {
 }
 
 const handleInput = () => {
+	if (scene.value.timeout && !timeout) {
+		timeout = setTimeout(handleAction, 7000, { action: scene.value.timeout.action })
+	}
+
 	const input = cleanInput(typed.value)
 	const command = scene.value.commands?.find(cmd => !isDisabled(cmd) && cmd.text.toLowerCase() === input)
 
