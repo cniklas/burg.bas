@@ -139,7 +139,8 @@
 			{ "key": "n", "text": "nimm Helm Umhang", "setCondition": "has-helmet", "action": "kerker_31" },
 			{ "key": "h", "text": "hoch", "action": "wachraum" },
 			{ "key": "z", "text": "zurück", "action": "kerkerwache_tod" }
-		]
+		],
+		"timeout": { "action": "kerkerwache_timeout" }
 	},
 
 	{
@@ -150,13 +151,24 @@
 		"commands": [
 			{ "key": "h", "text": "hoch", "action": "wachraum" },
 			{ "key": "z", "text": "zurück", "action": "kerkerwache_tod" }
-		]
+		],
+		"timeout": { "action": "kerkerwache_timeout" }
 	},
 
 	{
 		"id": "kerkerwache_tod",
 		"story": [
 			"Du hastest zurück – und läufst den <span class=red>Wächtern</span> direkt in die Arme. Jetzt ist alles zu spät …"
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "game-over" }
+		]
+	},
+
+	{
+		"id": "kerkerwache_timeout",
+		"story": [
+			"In diesem Augenblick haben dich die Wachen erreicht und überwältigen dich im Nu. Warum hast du so lange gezögert …?"
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "game-over" }
@@ -341,7 +353,8 @@
 			{ "key": "l", "text": "links", "setCondition": "visited-lagerhaus", "action": "stallungen_flucht" },
 			{ "key": "h", "text": "hoch", "action": "lagerhaus_tod" }
 		],
-		"hint": "Keine Zeit für Scherze! Du musst fliehen!"
+		"hint": "Keine Zeit für Scherze! Du musst fliehen!",
+		"timeout": { "action": "lagerhaus_timeout" }
 	},
 
 	{
@@ -364,8 +377,10 @@
 			{ "condition": "has-sword", "key": "k", "text": "kämpfe", "action": "lagerhaus_kampf" },
 			{ "condition": "has-sword", "key": "f", "text": "flieh", "action": "lagerhaus_flucht" },
 			{ "condition": "has-keys", "key": "h", "text": "hoch", "action": "lagerhaus_tod" },
-			{ "condition": "has-keys", "key": "z", "text": "zurück", "action": "stallungen_flucht" }
-		]
+			{ "condition": "has-keys", "key": "z", "text": "zurück", "action": "stallungen_flucht" },
+			{ "condition": "has-keys", "key": "r", "text": "raus", "action": "stallungen_flucht" }
+		],
+		"timeout": { "action": "lagerhaus_timeout" }
 	},
 
 	{
@@ -386,8 +401,10 @@
 		],
 		"commands": [
 			{ "key": "h", "text": "hoch", "action": "lagerhaus_flucht_tod" },
-			{ "key": "z", "text": "zurück", "action": "stallungen_flucht" }
-		]
+			{ "key": "z", "text": "zurück", "action": "stallungen_flucht" },
+			{ "key": "r", "text": "raus", "action": "stallungen_flucht" }
+		],
+		"timeout": { "action": "lagerhaus_timeout" }
 	},
 
 	{
@@ -395,6 +412,16 @@
 		"story": [
 			"Du hetzt die Treppe hinauf und versteckst dich dort so gut es geht zwischen Fässern mit Pökelfleisch und Mehlsäcken. Doch die Wachen sind nicht so leicht zu überlisten und suchen das ganze Lagerhaus nach dir ab.",
 			"Du sitzt in der Falle, und da wird dir auch dein Schwert nicht viel nützen …"
+		],
+		"commands": [
+			{ "key": "enter", "text": "", "action": "game-over" }
+		]
+	},
+
+	{
+		"id": "lagerhaus_timeout",
+		"story": [
+			"In diesem Augenblick haben dich die Wachen erreicht und überwältigen dich im Nu. Warum hast du so lange gezögert …?"
 		],
 		"commands": [
 			{ "key": "enter", "text": "", "action": "game-over" }
@@ -794,8 +821,8 @@
 		"story": [
 			[
 				{ "condition": "has-sword", "story": "Die Tür ist mit einem schweren Schloss versehen, das du nicht aufbekommst.\n\nDu gehst weiter zur <span class=blue-light>zweiten Tür</span>." },
-				{ "condition": "has-keys", "story": "Die Tür ist mit einem schweren Schloss versehen. Du nimmst die Schlüssel aus der Tasche und probierst damit solange, bis du das Schloss aufbekommen hast. Du öffnest die Tür und stellst erfreut fest, dass du in die Waffenkammer gelangt bist!\n\nDu denkst, dass es eigentlich besser wäre, mit einem scharfen Schwert bewaffnet zu sein als mit einer einfachen Keule, wie du sie besitzt. Darum nimmst du das beste <span class=blue-dark>Schwert</span> und einen festen <span class=blue-dark>Schild</span> mit. Dann verlässt du die Waffenkammer und gehst zur <span class=blue-light>zweiten Tür</span>." },
-				{ "condition": "no-weapons", "story": "Zu deinem Glück (und UBOLZIOs Verhängnis) ist die Türe nicht verschlossen. Du öffnest sie und betrittst einen Raum der im Halbdunkel liegt. Erfreut stellst du fest, dass du in die Waffenkammer gelangt bist!\n\nUm nicht länger unbewaffnet umherzuschleichen, nimmst du das beste <span class=blue-dark>Schwert</span> und einen festen <span class=blue-dark>Schild</span> mit. Dann verlässt du die Waffenkammer und gehst zur <span class=blue-light>zweiten Tür</span>." }
+				{ "condition": "has-keys", "story": "Die Tür ist mit einem schweren Schloss versehen. Du nimmst die Schlüssel aus der Tasche und probierst damit solange, bis du das Schloss aufbekommen hast. Du öffnest die Tür und stellst erfreut fest, dass du in die Waffenkammer gelangt bist!\n\nDu tauscht deine Keule gegen das beste <span class=blue-dark>Schwert</span> ein, das du finden kannst, und nimmst auch einen festen <span class=blue-dark>Schild</span> mit. Dann verlässt du diesen Raum und gehst zur <span class=blue-light>zweiten Tür</span>." },
+				{ "condition": "no-weapons", "story": "Zu deinem Glück (und UBOLZIOs Verhängnis) ist die Türe nicht verschlossen. Du öffnest sie und betrittst einen Raum der im Halbdunkel liegt. Erfreut stellst du fest, dass du in die Waffenkammer gelangt bist!\n\nUm nicht länger unbewaffnet umherzuschleichen, nimmst du das beste <span class=blue-dark>Schwert</span> und einen festen <span class=blue-dark>Schild</span> mit. Dann verlässt du diesen Raum und gehst zur <span class=blue-light>zweiten Tür</span>." }
 			]
 		],
 		"commands": [
@@ -876,9 +903,9 @@
 		],
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "schatzkammer" },
-			{ "key": "z", "text": "zurück", "setCondition": "visited-schlafzimmer", "action": "vorzimmer_kein-drache" }
-		],
-		"hint": "Versuche, die kleine Tür zu öffnen, oder verlasse diesen Raum."
+			{ "key": "z", "text": "zurück", "setCondition": "visited-schlafzimmer", "action": "vorzimmer_kein-drache" },
+			{ "key": "r", "text": "raus", "setCondition": "visited-schlafzimmer", "action": "vorzimmer_kein-drache" }
+		]
 	},
 
 	{
