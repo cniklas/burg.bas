@@ -83,7 +83,7 @@ export default {
 			this.opponent.hit = false
 			this.opponent.attack = (Math.floor(Math.random() * 12) + 1) + 4
 
-			// bestimme, wer beginnt
+			// bestimmen, wer beginnt
 			if (Math.floor(Math.random() * 2) % 2) {
 				this._randomMove(this.player, this.opponent, true)
 				this._randomMove(this.opponent, this.player)
@@ -121,13 +121,12 @@ export default {
 			this.attacks.push({ message/* , attacker: { health: attacker.health, hit: attacker.hit, ...attackerLog } */ })
 		},
 
-		// TODO Verteilung
 		_attack(d20, attacker, defender) {
-			if (d20 === 1) {
+			if (d20 <= 2) {
 				// this.attacks.push({ message: `${attacker.name} misses, is knocked off balance, falls backward and soils himself!` })
 				return `${attacker.name} haut daneben, verliert das Gleichgewicht und beschmutzt sich!`
 			}
-			else if (d20 >= 2 && d20 <= 19) {
+			else if (d20 >= 3 && d20 <= 19) {
 				const weapon = weapons[ Math.floor(Math.random() * weapons.length) ]
 
 				defender.hit = true
@@ -139,21 +138,18 @@ export default {
 				defender.hit = true
 				defender.health -= attacker.attack * 2
 				// this.attacks.push({ message: `${defender.name} loses his right arm. An artery has been opened by the strike and a sensory nerve has been severed! ${attacker.name} equips the right arm, flails it around wildly and attacks ${defender.name} for ${attacker.attack * 2} damage!` })
-				// return `${attacker.name} tritt ${defender.name} auf sein Hühnerauge. Das tat weh!`
-				return `${attacker.name} landet einen Treffer bei ${defender.name} und tritt ihm dabei auf sein Hühnerauge. Das tat doppelt weh!`
+				return `${attacker.name} landet einen Treffer und tritt ${defender.name} dabei auf sein Hühnerauge. Das tat doppelt weh!`
 			}
 		},
 
-		// TODO Verteilung
 		// _block(d20, attacker, defender) {
 		_block(d20, defender, attacker) {
-			if (d20 === 1) {
+			if (d20 <= 2) {
 				// this.attacks.push({ message: `${attacker.name} fails to block and takes ${attacker.attack} damage.` })
 				// this.attacks.push({ message: `${defender.name} fails to block and takes ${defender.hit ? attacker.attack : 'zero'} damage.` })
-				// return `${defender.name} versucht ${attacker.name}s Schlag abzuwehren, doch er wird getroffen. Schadensbilanz: ${defender.hit ? attacker.attack : 'nicht der Rede wert'}`
 				return `${defender.name} versucht vergeblich den Schlag abzuwehren und ${defender.hit ? 'wird getroffen' : 'kommt mit einem blauen Auge davon'}.`
 			}
-			else if (d20 >= 2 && d20 <= 19) {
+			else if (d20 >= 3 && d20 <= 18) {
 				// defender.health -= attacker.attack
 				// Treffer wird zurückgenommen
 				if (defender.hit) {
@@ -174,61 +170,60 @@ export default {
 			}
 		},
 
-		// TODO Verteilung
 		_spell(d100, attacker, defender) {
-			if (d100 === 1) {
+			if (d100 <= 8) {
 				defender.health -= attacker.attack
 				// this.attacks.push({ message: `${attacker.name} casts polymorph on himself, turns into a sheep and bites ${defender.name} for ${attacker.attack} damage!` })
 				return `${attacker.name} wendet Polymorphie an, verwandelt sich in ein Schaf und beißt ${defender.name}. Schmerz-Level: ${attacker.attack}`
 			}
-			else if (d100 >= 2 && d100 <= 5) {
+			else if (d100 >= 9 && d100 <= 16) {
 				// defender.health -= attacker.attack
 				attacker.health -= attacker.attack
 				// this.attacks.push({ message: `${attacker.name} casts wild magic. A stray yak cow tumbles from the sky and lands on ${attacker.name} for ${attacker.attack} damage!` })
 				return `${attacker.name} wirbelt wilde Zaubersprüche. Eine verirrte Kuh fällt vom Himmel herab und landet auf ${attacker.name}. Schadensbilanz:  ${attacker.attack}`
 			}
 
-			else if (d100 >= 6 && d100 <= 7) {
+			else if (d100 >= 17 && d100 <= 23) {
 				// this.attacks.push({ message: `${attacker.name} casts wild magic and turns a vibrant shade of blue!` })
 				return `${attacker.name} wirbelt wilde Zaubersprüche und verwandelt sich in ein leuchtendes Blau.`
 			}
-			else if (d100 >= 8 && d100 <= 9) {
+			else if (d100 >= 24 && d100 <= 28) {
 				// this.attacks.push({ message: `${attacker.name} vomits.` })
 				return `${attacker.name} kotzt.`
 			}
-			else if (d100 >= 10 && d100 <= 19) {
+			else if (d100 >= 29 && d100 <= 35) {
 				// this.attacks.push({ message: `${attacker.name} casts confusion centered on himself!` })
 				return `${attacker.name} spricht einen Verwirrungszauber aus und hat augenblicklich sein Passwort vergessen.`
 			}
-			else if (d100 >= 20 && d100 <= 29) {
+			else if (d100 >= 36 && d100 <= 42) {
 				// this.attacks.push({ message: `${attacker.name} casts wild magic and grows an eternal flaming beard!` })
 				return `${attacker.name} wirbelt wilde Zaubersprüche und lässt sich einen ewigen Flammenbart wachsen.`
 			}
-			else if (d100 >= 30 && d100 <= 39) {
+			else if (d100 >= 43 && d100 <= 49) {
 				// this.attacks.push({ message: `${attacker.name} casts levitate on himself and can only shout when they speak!` })
 				return `${attacker.name} spricht einen Schwebezauber aus und geht an die Decke.`
 			}
-			else if (d100 >= 40 && d100 <= 49) {
+			else if (d100 >= 50 && d100 <= 56) {
 				// this.attacks.push({ message: `${attacker.name} casts wild magic and becomes 80 years older!` })
 				return `${attacker.name} wirbelt wilde Zaubersprüche und wird achtzig Jahre älter.`
 			}
-			else if (d100 >= 50 && d100 <= 59) {
+			else if (d100 >= 57 && d100 <= 63) {
 				// this.attacks.push({ message: `${attacker.name} casts wild magic. Illusory butterflies and flower petals flutter in the air!` })
 				return `${attacker.name} wirbelt wilde Zaubersprüche. Alles wird mit Glitzer überzogen.`
 			}
-			else if (d100 >= 60 && d100 <= 69) {
+			else if (d100 >= 64 && d100 <= 70) {
 				// this.attacks.push({ message: `${attacker.name} casts wild magic and is transported to the Astral Plane until the end of the spells duration!` })
 				return `${attacker.name} wirbelt wilde Zaubersprüche und wird in die Astralebene transportiert, bis die Wirkung nachlässt.`
 			}
-			else if (d100 >= 70 && d100 <= 79) {
+			else if (d100 >= 71 && d100 <= 77) {
 				// this.attacks.push({ message: `${attacker.name} casts wild magic and is immune to being intoxicated by alcohol for the next 30 days!` })
 				return `${attacker.name} wirbelt wilde Zaubersprüche und ist für die nächsten 30 Tage immun gegen die Wirkung berauschender Substanzen.`
 			}
-			else if (d100 >= 80 && d100 <= 89) {
+			else if (d100 >= 78 && d100 <= 84) {
 				// this.attacks.push({ message: `${attacker.name} casts friends on ${defender.name}. It is ineffective!` })
 				return `${attacker.name} schleudert schlechte Witze auf ${defender.name}.`
 			}
-			else if (d100 >= 90 && d100 <= 99) {
+			else if (d100 >= 85 && d100 <= 92) {
 				defender.hit = true
 				defender.health -= attacker.attack
 				// this.attacks.push({ message: `${attacker.name} casts magic missile. ${defender.name} takes ${attacker.attack} fire damage!` })

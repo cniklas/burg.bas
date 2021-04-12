@@ -33,7 +33,7 @@
 		<aside class="debug text-center">
 			<div class="gold">Gold: {{ gold }}</div>
 			<div class="pink">Health: {{ health }}</div>
-			<pre class="blue-dark"><code v-for="item in inventory">{{ item }} </code></pre>
+			<pre class="blue-dark"><code v-for="(item, i) in inventory" :key="`item-${i}`">{{ item }} </code></pre>
 		</aside>
 	</div>
 </template>
