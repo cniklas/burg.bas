@@ -1,67 +1,74 @@
 <template>
-	<div class="flex flex-col justify-end h-screen">
-		<main class="flex flex-col flex-1" style="max-height:calc(100vh / 1.5);max-height:90vh">
+	<div class="base-column flex flex-col justify-between gap-y-8" :class="{'game-won': gameWon, 'game-lost': gameLost}">
+		<main class="main flex-auto">
 			<div class="scene h-full flex flex-col justify-between">
-				<Story
+				<AppStory
 					:story="story"
-					:is-disabled="isDisabled"
-				/>
+					:is-enabled="isEnabled"
+				>
+					<div v-if="showCredits" class="hidden md:flex justify-center mt-12">
+<pre class="ascii-text">
+88                                                 88
+88                                                 88
+88                                                 88
+88,dPPYba,  88       88 8b,dPPYba,  ,adPPYb,d8     88,dPPYba,  ,adPPYYba, ,adPPYba,
+88P'    "8a 88       88 88P'   "Y8 a8"    `Y88     88P'    "8a ""     `Y8 I8[    ""
+88       d8 88       88 88         8b       88     88       d8 ,adPPPPP88  `"Y8ba,
+88b,   ,a8" "8a,   ,a88 88         "8a,   ,d88 888 88b,   ,a8" 88,    ,88 aa    ]8I
+8Y"Ybbd8"'   `"YbbdP'Y8 88          `"YbbdP"Y8 888 8Y"Ybbd8"'  `"8bbdP"Y8 `"YbbdP"'
+                                    aa,    ,88
+                                     "Y8bbdP"
+</pre>
+					</div>
+				</AppStory>
 
-				<Battle
-					v-if="showBattle && startFight"
-					class="flex-1 overflow-y-auto"
+				<AppBattle
+					v-if="showBattle && startBattle"
+					class="flex-auto overflow-y-auto"
 					:user-name="userName"
 					:health="health"
 					:strike-interval="strikeInterval"
 					@got-hit="onHit"
-					@finish="finishBattle"
+					@finish="onBattleFinished"
 				/>
 
-				<section v-show="!onHold" class="actions">
-					<div v-show="nextButton" class="button-wrapper">
-						<button type="button" class="button" @click.stop="handleCommand(nextButton)">{{ nextButton?.text || 'weiter' }}</button>
+				<section v-show="!onHold && !showCredits" class="actions">
+					<div v-if="nextButton" class="button-wrapper">
+						<button type="button" class="button" ref="button" @click.stop="handleCommand(nextButton); blurButton()">{{ nextButton?.text || 'weiter' }}</button>
 					</div>
 
 					<div v-show="hint && showHint" class="hint papayawhip">{{ hint }}</div>
-					<div v-show="showInput && !nextButton" class="input-wrapper">
-						<input type="text" v-model.trim="typed" ref="input" class="input" :placeholder="inputPlaceholder" @click.stop @keyup.enter="handleInput" />
+					<div v-if="showInput" class="input-wrapper">
+						<input type="text" v-model.trim="typed" ref="input" class="input" placeholder="?" spellcheck="false" @click.stop @keyup.enter="handleInput">
 					</div>
 				</section>
 			</div>
 		</main>
 
-		<aside class="debug text-center">
-			<div class="gold">Gold: {{ gold }}</div>
-			<div class="pink">Health: {{ health }}</div>
-			<pre class="blue-dark"><code v-for="(item, i) in inventory" :key="`item-${i}`">{{ item }} </code></pre>
-		</aside>
+		<AppPanel v-show="!showCredits" />
 	</div>
 </template>
 
 <script setup>
 import burg from '../burg.json'
-import Story from './Story.vue'
-import Battle from './Battle.vue'
-import { ref, computed, watch, onMounted, onUnmounted, defineProps, nextTick } from 'vue'
+import AppStory from './Story.vue'
+import AppBattle from './Battle.vue'
+import AppPanel from './Panel.vue'
+import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import useHowler from '../useHowler'
+import useInput from '../useInput'
+import useState from '../useState'
 import useCountAnimation from '../useCountAnimation'
 
-defineProps({
-	userName: String
-})
-
 const { playlist, loadMusic, playMusic, fadeOutMusic } = useHowler
+const { userName, gold, health, hasCondition, isEnabled, handleCondition, manageInventory, getArmed, resetState } = useState
+const { input, focusInput, cleanInput, button, blurButton } = useInput()
 const { animateCount } = useCountAnimation()
 
-const input = ref(null)
-const focusInput = () => {
-	input.value.focus()
-}
-
 const sceneId = ref('intro')
-// TODO zum Einfärben des Hintergrunds
-const isEndDeath = computed(() => sceneId.value.endsWith('_tod'))
-const isEndFreedom = computed(() => sceneId.value.endsWith('_ende'))
+const gameWon = computed(() => hasCondition('battle-won') || sceneId.value.endsWith('_ende') || sceneId.value.startsWith('congratulations'))
+const gameLost = computed(() => sceneId.value === 'game-over' || scene.value.commands?.find(cmd => cmd.action === 'game-over' && isEnabled(cmd)))
+const showCredits = computed(() => sceneId.value === 'credits')
 const scene = computed(() => burg.find(scene => scene.id === sceneId.value))
 const story = ref([])
 const onHold = ref(false)
@@ -72,7 +79,6 @@ const handleStory = async () => {
 
 	// replace story
 	story.value = [...scene.value.story]
-	requestAnimationFrame(focusInput)
 
 	// set time for delayed story
 	if (scene.value.delayed) {
@@ -84,6 +90,9 @@ const handleStory = async () => {
 
 			requestAnimationFrame(focusInput)
 		}, scene.value.delayed.delay)
+	}
+	else {
+		requestAnimationFrame(focusInput)
 	}
 
 	// fade out music
@@ -100,13 +109,13 @@ const handleStory = async () => {
 	if (scene.value.health) {
 		reduceHealth(Math.abs(scene.value.health))
 	}
-	if (isEndDeath.value) {
+	if (gameLost.value) {
 		animateCount(health, health.value, false)
 	}
 
 	// continue
 	if (scene.value.continue) {
-		let delay = scene.value.continue.delay || 200
+		let delay = scene.value.continue.delay ?? 200
 		if (scene.value.play) {
 			delay = Math.ceil( (playlist.value.find(item => item.id === scene.value.play)?.audio?._duration ?? delay / 1000) * 1000 )
 		}
@@ -129,19 +138,6 @@ const handleStory = async () => {
 }
 watch(sceneId, handleStory, { immediate: true })
 
-const conditions = ref([])
-const hasCondition = term => conditions.value.includes(term)
-
-const typed = ref('')
-const inputPlaceholder = computed(() => sceneId.value === 'start' ? 'Fang an zu tippen' : '')
-const hint = ref('')
-const showHint = ref(false)
-const showInput = computed(() => !(!!scene.value.continue || ['thronsaal_kampf', 'credits'].includes(sceneId.value)))
-const nextButton = computed(() => scene.value.commands?.find(cmd => cmd.key === 'enter' && !isDisabled(cmd)))
-
-const gold = ref(0)
-
-const health = ref(100)
 const reduceHealth = points => {
   const min = Math.ceil(points / 2)
   const max = Math.floor(points)
@@ -151,53 +147,33 @@ const reduceHealth = points => {
 		? setTimeout(animateCount, scene.value.delayed.delay, health, rnd, false)
 		: animateCount(health, rnd, false)
 }
+
+const showBattle = computed(() => sceneId.value === 'thronsaal_kampf')
+const startBattle = ref(false)
+const finalBattle = () => {
+	scene.value.play_delay
+		? setTimeout(() => { startBattle.value = true }, scene.value.play_delay)
+		: startBattle.value = true
+}
 const strikeInterval = ref(1200)
 const onHit = points => {
   animateCount(health, points, false, strikeInterval.value)
 }
+const onBattleFinished = result => {
+	fadeOutMusic()
+	handleCondition(`battle-${result}`)
+}
 
-const inventory = ref([])
-const manageInventory = condition => {
-	switch (condition) {
-		case 'has-helmet': inventory.value.push('Helm', 'Umhang'); break;
-		case 'has-keys': inventory.value.push('Keule', 'Schlüssel'); break;
-		case 'has-sword': inventory.value.push('Schwert', 'Seil'); break;
-		case 'has-magic-wand': inventory.value.push('Stab'); break;
-		case 'discard-mace': inventory.value.splice(inventory.value.indexOf('Keule'), 1); break;
-		case 'get-armed': inventory.value.push('Schwert', 'Schild'); break;
-		case 'discard-magic-wand': inventory.value.splice(inventory.value.indexOf('Stab'), 1); break;
-	}
+const nextScene = id => {
+	hint.value = ''
+	showHint.value = false
+	typed.value = ''
+	sceneId.value = id
 }
 
 const resetGame = () => {
-	conditions.value = []
-	inventory.value = []
-	gold.value = 0
-	health.value = 100
-}
-
-const getArmed = () => {
-	if (!hasCondition('has-sword')) {
-		if (hasCondition('has-keys')) {
-			manageInventory('discard-mace')
-		}
-		manageInventory('get-armed')
-	}
-}
-
-const showBattle = computed(() => sceneId.value === 'thronsaal_kampf')
-const startFight = ref(false)
-const finalBattle = () => {
-	// const rnd = Math.floor(Math.random() * Math.floor(3))
-	// const action = rnd > 0 ? 'thronsaal_kampf_sieg' : 'thronsaal_kampf_tod'
-	// const delay = scene.value.play_delay + 200 + Math.ceil( (playlist.value.find(item => item.id === scene.value.play)?.audio?._duration ?? 70) * 1000 )
-	// setTimeout(handleAction, delay, { action })
-	scene.value.play_delay
-		? setTimeout(() => { startFight.value = true }, scene.value.play_delay)
-		: startFight.value = true
-}
-const finishBattle = (result) => {
-	conditions.value.push(`battle-${result}`)
+	startBattle.value = false
+	resetState()
 }
 
 let timeout = null
@@ -205,65 +181,45 @@ const handleAction = command => {
 	clearTimeout(timeout)
 	timeout = null
 
-	if (command.setCondition && !hasCondition(command.setCondition)) {
-		conditions.value.push(command.setCondition)
-		manageInventory(command.setCondition)
-	}
+	handleCondition(command.setCondition)
 
-	if (command.action === 'start') {
+	if (['start', 'credits'].includes(command.action)) {
 		resetGame()
 	}
 
-	showHint.value = false
-	hint.value = ''
-	typed.value = ''
-	sceneId.value = command.action
+	nextScene(command.action)
 }
 
-const handleMessage = command => {
-	hint.value = command.message
+const handleMessage = message => {
+	hint.value = message
 	showHint.value = true
 }
 
 const handleCommand = command => {
-	command.message ? handleMessage(command) : handleAction(command)
+	command.message ? handleMessage(command.message) : handleAction(command)
 }
 
-const isDisabled = ({ condition, notCondition }) => {
-	if (condition && notCondition) {
-		return !hasCondition(condition) || hasCondition(notCondition)
-	}
-	if (condition) {
-		return !hasCondition(condition)
-	}
-	if (notCondition) {
-		return hasCondition(notCondition)
-	}
-
-	return false
-}
-
-const cleanInput = string => {
-	const regex = /[!"#$%&\'()*+,\-./:;<=>?@[\\\]^_`{\|}~]/g;
-	return string
-		.replaceAll(regex, '')
-		.toLowerCase()
-		.replaceAll('geradeaus', 'weiter')
-		.split(' ')
-		.filter(word => word.length && !['der', 'die', 'das', 'den', 'dem', 'und', 'mit'].includes(word))
-		.join(' ')
-}
-
+const nextButton = computed(() => scene.value.commands?.find(cmd => cmd.key === 'enter' && isEnabled(cmd)))
+const hint = ref('')
+const showHint = ref(false)
+const typed = ref('')
+const showInput = computed(() => !(
+	!!scene.value.continue
+	|| nextButton.value
+	|| showBattle.value
+))
 const handleInput = () => {
 	if (scene.value.timeout && !timeout) {
 		timeout = setTimeout(handleAction, 7000, { action: scene.value.timeout.action })
 	}
 
-	const input = cleanInput(typed.value)
-	const command = scene.value.commands?.find(cmd => !isDisabled(cmd) && cmd.text.toLowerCase() === input)
+	const inputString = cleanInput(typed.value)
+	const command = scene.value.commands?.find(cmd =>
+		isEnabled(cmd) && (typeof cmd.text === 'string' ? cmd.text.toLowerCase() === inputString : cmd.text.find(text => text.toLowerCase() === inputString))
+	)
 
 	if (command === undefined) {
-		hint.value = scene.value.hint || ''
+		hint.value = scene.value.hint ?? ''
 		showHint.value = true
 		return
 	}
@@ -272,7 +228,6 @@ const handleInput = () => {
 }
 
 onMounted(() => {
-	focusInput()
 	document.addEventListener('click', focusInput)
 })
 
@@ -280,3 +235,22 @@ onUnmounted(() => {
 	document.removeEventListener('click', focusInput)
 })
 </script>
+
+<style lang="postcss" scoped>
+.base-column {
+	box-shadow: 0 0 5.375rem var(--bg-color);
+	transition: box-shadow 480ms ease-out;
+}
+
+.base-column.game-won {
+	box-shadow: 0 0 5.375rem var(--green);
+}
+
+.base-column.game-lost {
+	box-shadow: 0 0 5.375rem var(--red);
+}
+
+.main {
+	max-height: calc(100% - 8rem); /* row-gap + .panel */
+}
+</style>

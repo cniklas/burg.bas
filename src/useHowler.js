@@ -42,11 +42,9 @@ const fadeOutMusic = () => {
 	}
 }
 
-const useHowler = {
+export default {
 	playlist,
 	loadMusic,
 	playMusic,
 	fadeOutMusic
 }
-
-export default useHowler

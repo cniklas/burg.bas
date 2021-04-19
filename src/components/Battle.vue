@@ -1,17 +1,12 @@
 <template>
-	<section class="battle">
-		<ol>
+	<section class="battle" ref="container">
+		<ol ref="timeline">
 			<li v-for="(attack, i) in attacks" :key="i">
-				<!-- <div>
-					<small>{{ attack.attacker }}</small>
-				</div> -->
 				{{ attack.message }}
 			</li>
 		</ol>
 
-		<div v-show="battleResult" class="battle-result" v-html="battleResult" />
-
-		<div ref="scroll-to" />
+		<div v-show="battleResult" class="battle-result">{{ battleResult }}</div>
 	</section>
 </template>
 
@@ -27,10 +22,7 @@ const weapons = [
 
 export default {
 	props: {
-		userName: {
-			type: String,
-			default: 'Hans Wurst'
-		},
+		userName: String,
 		health: Number,
 		strikeInterval: Number
 	},
@@ -56,12 +48,12 @@ export default {
 			let message = ''
 			switch (true) {
 				case this.opponent.health <= 0 && this.player.health > 0 :
-					message = `<span class="red">${this.opponent.name}</span> erleidet eine Herzattacke und stirbt. 🚑`
+					message = `${this.opponent.name} erleidet eine Herzattacke und stirbt. 💀`
 					this.$emit('finish', 'won')
 					break
 
 				case this.player.health <= 0 && this.opponent.health > 0 :
-					message = `${this.player.name} erliegt seinen Verletzungen und stirbt. 💀`
+					message = `${this.player.name} erliegt seinen Verletzungen und stirbt. 🚑`
 					this.$emit('finish', 'lost')
 					break
 
@@ -75,7 +67,31 @@ export default {
 		}
 	},
 
+	watch: {
+		// 'player.health': (val) => {},
+		// player: {
+		// 	handler(val) {},
+		// 	deep: true
+		// }
+		playerHealth(val, oldVal) {
+			if (val < this.player.originHealth) {
+				this.$emit('got-hit', oldVal - val)
+			}
+		}
+	},
+
 	methods: {
+		_observe() {
+			const container = this.$refs['container']
+			const timeline = this.$refs['timeline']
+			const ro = new ResizeObserver(() => {
+				container.scrollTop = container.scrollHeight
+			});
+
+			ro.observe(container);
+			ro.observe(timeline);
+		},
+
 		battle() {
 			this.player.hit = false
 			// this.player.attack = Math.floor(Math.random() * 16) + 1 // 1 bis 16
@@ -92,10 +108,6 @@ export default {
 				this._randomMove(this.opponent, this.player, true)
 				this._randomMove(this.player, this.opponent)
 			}
-
-			requestAnimationFrame(() => {
-				this.$refs['scroll-to'].scrollIntoView()
-			})
 
 			if (!(this.player.health <= 0 || this.opponent.health <= 0)) {
 				setTimeout(this.battle, this.strikeInterval)
@@ -142,15 +154,12 @@ export default {
 			}
 		},
 
-		// _block(d20, attacker, defender) {
 		_block(d20, defender, attacker) {
 			if (d20 <= 2) {
-				// this.attacks.push({ message: `${attacker.name} fails to block and takes ${attacker.attack} damage.` })
 				// this.attacks.push({ message: `${defender.name} fails to block and takes ${defender.hit ? attacker.attack : 'zero'} damage.` })
 				return `${defender.name} versucht vergeblich den Schlag abzuwehren und ${defender.hit ? 'wird getroffen' : 'kommt mit einem blauen Auge davon'}.`
 			}
 			else if (d20 >= 3 && d20 <= 18) {
-				// defender.health -= attacker.attack
 				// Treffer wird zurückgenommen
 				if (defender.hit) {
 					defender.health += attacker.attack
@@ -163,7 +172,6 @@ export default {
 				if (defender.hit) {
 					defender.health += attacker.attack
 				}
-				// defender.health -= attacker.attack * 2
 				attacker.health -= attacker.attack * 2
 				// this.attacks.push({ message: `${attacker.name}’s attack is deflected by ${defender.name}’s small ${defender.armour} breastplate!` })
 				return `${attacker.name}s Waffe prallt am Schild von ${defender.name} ab und tritt ihn selbst!`
@@ -177,7 +185,6 @@ export default {
 				return `${attacker.name} wendet Polymorphie an, verwandelt sich in ein Schaf und beißt ${defender.name}. Schmerz-Level: ${attacker.attack}`
 			}
 			else if (d100 >= 9 && d100 <= 16) {
-				// defender.health -= attacker.attack
 				attacker.health -= attacker.attack
 				// this.attacks.push({ message: `${attacker.name} casts wild magic. A stray yak cow tumbles from the sky and lands on ${attacker.name} for ${attacker.attack} damage!` })
 				return `${attacker.name} wirbelt wilde Zaubersprüche. Eine verirrte Kuh fällt vom Himmel herab und landet auf ${attacker.name}. Schadensbilanz:  ${attacker.attack}`
@@ -230,7 +237,6 @@ export default {
 				return `${attacker.name} singt „Freude, schöner Götterfunken“. Schmerz-Level: ${attacker.attack}.`
 			}
 			else {
-				// defender.health -= attacker.attack
 				attacker.hit = true
 				attacker.health -= defender.attack
 				// this.attacks.push({ message: `${attacker.name} casts polymorph. ${defender.name} turns into a sheep and bites ${attacker.name} for ${defender.attack} damage!` })
@@ -249,24 +255,8 @@ export default {
 	},
 
 	mounted() {
+		this._observe()
 		this.battle()
-	},
-
-	watch: {
-		// 'player.health': (val) => {
-		// 	console.log('watch: player.health', val)
-		// },
-		// player: {
-		// 	handler(val) {
-		// 		console.log('watch: player', val)
-		// 	},
-		// 	deep: true
-		// }
-		playerHealth(val, oldVal) {
-			if (val < this.player.originHealth) {
-				this.$emit('got-hit', oldVal - val)
-			}
-		}
 	}
 }
 </script>
