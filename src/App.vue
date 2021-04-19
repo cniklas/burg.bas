@@ -35,6 +35,11 @@ const startGame = (name) => {
 	--purple-light: #7775A7;
 	--purple-dark:  #bd10e0;
 	--red:          #ff0080;
+
+	--text-color:   #cbd5e0;
+	--bg-color:     #0f0f17;
+	--button-color: hsl(182, 25%, 50%); /* cadetblue */
+	--button-color-hover: hsl(182deg 35% 50%);
 }
 
 .white        { color: #fff; }
@@ -54,8 +59,8 @@ const startGame = (name) => {
 ::-webkit-scrollbar-thumb { background-color: #97a0af; border-radius: 3px; }
 
 html {
-	background-color: #0f0f17;
-	color: #cbd5e0;
+	background-color: var(--bg-color);
+	color: var(--text-color);
 }
 
 pre:empty,
@@ -69,8 +74,8 @@ p:empty {
 	font-family: Menlo, 'DejaVu Sans Mono', 'Lucida Console', monospace;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	margin: 0 auto;
-	max-width: 720px;
+	/* margin: 0 auto; */
+	/* max-width: 720px; */
 }
 
 .ascii-drawing {
@@ -80,6 +85,12 @@ p:empty {
 .ascii-text {
 	font-size: 0.8125rem;
 	line-height: 1.153846;
+}
+
+.base-column {
+	@apply px-2 md:px-0;
+	margin: 0 auto;
+	max-width: 720px;
 }
 
 .story,
@@ -120,17 +131,22 @@ p:empty {
 }
 
 .button {
+	@apply tracking-wider;
 	background-color: #1a202c;
-	color: cadetblue;
+	color: var(--button-color);
 	font-size: 1rem;
 	border: 1px solid currentColor;
-	padding: .5rem 1rem;
+	padding: .5rem 1.75rem;
 	user-select: none;
-	width: 25%;
+	box-shadow: 0 0 0px 0px var(--bg-color), 0 0 0px 0px currentColor;
+	transition: color 160ms ease, box-shadow 160ms ease;
 }
 
 .button:not(:disabled):hover {
-	color: #e2e8f0;
+	/* color: #e2e8f0; */
+	color: var(--button-color-hover);
+	box-shadow: 0 0 0px 1px var(--bg-color), 0 0 0px 2px currentColor;
+	outline: none;
 }
 
 .input {
@@ -146,7 +162,7 @@ p:empty {
 }
 
 .debug > * {
-	margin: .75rem 0;
+	margin: 0;
 }
 
 .fade-enter-active,

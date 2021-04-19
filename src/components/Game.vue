@@ -1,6 +1,6 @@
 <template>
-	<div class="flex flex-col justify-end h-screen">
-		<main class="flex flex-col flex-1" style="max-height:calc(100vh / 1.5);max-height:90vh">
+	<div class="base-column flex flex-col justify-between h-screen">
+		<main class="main flex-auto">
 			<div class="scene h-full flex flex-col justify-between">
 				<Story
 					:story="story"
@@ -30,10 +30,10 @@
 			</div>
 		</main>
 
-		<aside class="debug text-center">
+		<aside class="aside debug p-3 text-center">
 			<div class="gold">Gold: {{ gold }}</div>
 			<div class="pink">Health: {{ health }}</div>
-			<pre class="blue-dark"><code v-for="(item, i) in inventory" :key="`item-${i}`">{{ item }} </code></pre>
+			<div class="blue-dark"><span v-for="(item, i) in inventory" :key="`item-${i}`">{{ item }} </span></div>
 		</aside>
 	</div>
 </template>
@@ -280,3 +280,13 @@ onUnmounted(() => {
 	document.removeEventListener('click', focusInput)
 })
 </script>
+
+<style scoped>
+.base-column {
+	/* gap: 2rem; */
+}
+
+.main {
+	max-height: calc(100vh - (100px + 2rem));
+}
+</style>

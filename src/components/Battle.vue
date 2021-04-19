@@ -2,9 +2,6 @@
 	<section class="battle">
 		<ol>
 			<li v-for="(attack, i) in attacks" :key="i">
-				<!-- <div>
-					<small>{{ attack.attacker }}</small>
-				</div> -->
 				{{ attack.message }}
 			</li>
 		</ol>
@@ -253,13 +250,9 @@ export default {
 	},
 
 	watch: {
-		// 'player.health': (val) => {
-		// 	console.log('watch: player.health', val)
-		// },
+		// 'player.health': (val) => {},
 		// player: {
-		// 	handler(val) {
-		// 		console.log('watch: player', val)
-		// 	},
+		// 	handler(val) {},
 		// 	deep: true
 		// }
 		playerHealth(val, oldVal) {
