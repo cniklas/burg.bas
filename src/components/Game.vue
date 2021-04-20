@@ -1,5 +1,5 @@
 <template>
-	<div class="base-column flex flex-col justify-between h-screen">
+	<div class="base-column pt-8 flex flex-col justify-between h-screen">
 		<main class="main flex-auto">
 			<div class="scene h-full flex flex-col justify-between">
 				<Story
@@ -9,7 +9,7 @@
 
 				<Battle
 					v-if="showBattle && startFight"
-					class="flex-1 overflow-y-auto"
+					class="flex-auto overflow-y-auto"
 					:user-name="userName"
 					:health="health"
 					:strike-interval="strikeInterval"
@@ -30,7 +30,7 @@
 			</div>
 		</main>
 
-		<aside class="aside debug p-3 text-center">
+		<aside class="debug p-3 text-center">
 			<div class="gold">Gold: {{ gold }}</div>
 			<div class="pink">Health: {{ health }}</div>
 			<div class="blue-dark"><span v-for="(item, i) in inventory" :key="`item-${i}`">{{ item }} </span></div>
@@ -288,5 +288,14 @@ onUnmounted(() => {
 
 .main {
 	max-height: calc(100vh - (100px + 2rem));
+}
+
+.debug {
+	font-family: 'Courier New', Courier, monospace;
+	border: 2px dashed;
+}
+
+.debug > * {
+	margin: 0;
 }
 </style>

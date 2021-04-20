@@ -78,10 +78,6 @@ p:empty {
 	/* max-width: 720px; */
 }
 
-.ascii-drawing {
-	font-size: 42px;
-}
-
 .ascii-text {
 	font-size: 0.8125rem;
 	line-height: 1.153846;
@@ -93,17 +89,17 @@ p:empty {
 	max-width: 720px;
 }
 
-.story,
-.actions {
-	@apply my-8;
-}
-
 .story {
+	@apply mb-8;
 	line-height: var(--global-line-height);
 }
 
 .story p {
 	margin-bottom: calc(var(--global-line-height) * 1rem);
+}
+
+.story > :last-child {
+	margin-bottom: 0;
 }
 
 .text-prewrap {
@@ -121,7 +117,7 @@ p:empty {
 }
 
 .actions {
-	@apply text-center;
+	@apply mt-8 text-center;
 }
 
 .hint,
@@ -154,15 +150,6 @@ p:empty {
 	color: inherit;
 	font-size: 1.625rem;
 	outline: 0;
-}
-
-.debug {
-	font-family: 'Courier New', Courier, monospace;
-	border: 2px dashed;
-}
-
-.debug > * {
-	margin: 0;
 }
 
 .fade-enter-active,

@@ -11,8 +11,8 @@
                                     aa,    ,88
                                      "Y8bbdP"
 </pre> -->
-	<div class="base-column">
-		<h2 class="text-3xl text-center font-medium my-8">Bist du bereit für ein waghalsiges Abenteuer in einer unbekannten Burg?</h2>
+	<div class="base-column pt-8">
+		<h1 class="headline text-3xl text-center font-medium mb-8">Bist du bereit für ein waghalsiges Abenteuer in einer unbekannten Burg?</h1>
 
 		<section class="actions">
 			<div class="input-wrapper">
@@ -68,8 +68,8 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-h2 {
-	color: hsl(172deg 88% 20%); /* ~ text-green-800 */
+.headline {
+	color: hsl(172deg 88% 22%); /* ~ text-green-800 */
 }
 
 @media (min-width: 768px) {

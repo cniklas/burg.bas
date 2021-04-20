@@ -7,7 +7,6 @@
 		</ol>
 
 		<div v-show="battleResult" class="battle-result" v-html="battleResult" />
-
 		<div ref="scroll-to" />
 	</section>
 </template>
@@ -53,12 +52,12 @@ export default {
 			let message = ''
 			switch (true) {
 				case this.opponent.health <= 0 && this.player.health > 0 :
-					message = `<span class="red">${this.opponent.name}</span> erleidet eine Herzattacke und stirbt. 🚑`
+					message = `${this.opponent.name} erleidet eine Herzattacke und stirbt. 💀`
 					this.$emit('finish', 'won')
 					break
 
 				case this.player.health <= 0 && this.opponent.health > 0 :
-					message = `${this.player.name} erliegt seinen Verletzungen und stirbt. 💀`
+					message = `${this.player.name} erliegt seinen Verletzungen und stirbt. 🚑`
 					this.$emit('finish', 'lost')
 					break
 
