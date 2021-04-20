@@ -188,10 +188,6 @@ const getArmed = () => {
 const showBattle = computed(() => sceneId.value === 'thronsaal_kampf')
 const startFight = ref(false)
 const finalBattle = () => {
-	// const rnd = Math.floor(Math.random() * Math.floor(3))
-	// const action = rnd > 0 ? 'thronsaal_kampf_sieg' : 'thronsaal_kampf_tod'
-	// const delay = scene.value.play_delay + 200 + Math.ceil( (playlist.value.find(item => item.id === scene.value.play)?.audio?._duration ?? 70) * 1000 )
-	// setTimeout(handleAction, delay, { action })
 	scene.value.play_delay
 		? setTimeout(() => { startFight.value = true }, scene.value.play_delay)
 		: startFight.value = true

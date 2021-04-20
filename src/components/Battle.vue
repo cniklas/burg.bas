@@ -23,10 +23,7 @@ const weapons = [
 
 export default {
 	props: {
-		userName: {
-			type: String,
-			default: 'Hans Wurst'
-		},
+		userName: String,
 		health: Number,
 		strikeInterval: Number
 	},
@@ -138,15 +135,12 @@ export default {
 			}
 		},
 
-		// _block(d20, attacker, defender) {
 		_block(d20, defender, attacker) {
 			if (d20 <= 2) {
-				// this.attacks.push({ message: `${attacker.name} fails to block and takes ${attacker.attack} damage.` })
 				// this.attacks.push({ message: `${defender.name} fails to block and takes ${defender.hit ? attacker.attack : 'zero'} damage.` })
 				return `${defender.name} versucht vergeblich den Schlag abzuwehren und ${defender.hit ? 'wird getroffen' : 'kommt mit einem blauen Auge davon'}.`
 			}
 			else if (d20 >= 3 && d20 <= 18) {
-				// defender.health -= attacker.attack
 				// Treffer wird zurückgenommen
 				if (defender.hit) {
 					defender.health += attacker.attack
@@ -159,7 +153,6 @@ export default {
 				if (defender.hit) {
 					defender.health += attacker.attack
 				}
-				// defender.health -= attacker.attack * 2
 				attacker.health -= attacker.attack * 2
 				// this.attacks.push({ message: `${attacker.name}’s attack is deflected by ${defender.name}’s small ${defender.armour} breastplate!` })
 				return `${attacker.name}s Waffe prallt am Schild von ${defender.name} ab und tritt ihn selbst!`
@@ -173,7 +166,6 @@ export default {
 				return `${attacker.name} wendet Polymorphie an, verwandelt sich in ein Schaf und beißt ${defender.name}. Schmerz-Level: ${attacker.attack}`
 			}
 			else if (d100 >= 9 && d100 <= 16) {
-				// defender.health -= attacker.attack
 				attacker.health -= attacker.attack
 				// this.attacks.push({ message: `${attacker.name} casts wild magic. A stray yak cow tumbles from the sky and lands on ${attacker.name} for ${attacker.attack} damage!` })
 				return `${attacker.name} wirbelt wilde Zaubersprüche. Eine verirrte Kuh fällt vom Himmel herab und landet auf ${attacker.name}. Schadensbilanz:  ${attacker.attack}`
@@ -226,7 +218,6 @@ export default {
 				return `${attacker.name} singt „Freude, schöner Götterfunken“. Schmerz-Level: ${attacker.attack}.`
 			}
 			else {
-				// defender.health -= attacker.attack
 				attacker.hit = true
 				attacker.health -= defender.attack
 				// this.attacks.push({ message: `${attacker.name} casts polymorph. ${defender.name} turns into a sheep and bites ${attacker.name} for ${defender.attack} damage!` })

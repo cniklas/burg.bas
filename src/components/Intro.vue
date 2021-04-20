@@ -81,4 +81,14 @@ onUnmounted(() => {
 .input::placeholder {
 	font-size: 1rem; /* 16px */
 }
+
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 320ms ease-in-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+	opacity: 0;
+}
 </style>

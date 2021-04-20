@@ -74,8 +74,6 @@ p:empty {
 	font-family: Menlo, 'DejaVu Sans Mono', 'Lucida Console', monospace;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	/* margin: 0 auto; */
-	/* max-width: 720px; */
 }
 
 .ascii-text {
@@ -150,15 +148,5 @@ p:empty {
 	color: inherit;
 	font-size: 1.625rem;
 	outline: 0;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-	transition: opacity 320ms ease-in-out;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-	opacity: 0;
 }
 </style>
