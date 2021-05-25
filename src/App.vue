@@ -17,7 +17,7 @@ const startGame = (name) => {
 }
 </script>
 
-<style>
+<style lang="postcss">
 :root {
 	/* --global-font-size: 14px; */
 	--global-line-height: 1.375; /* 'leading-snug' */

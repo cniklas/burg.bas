@@ -51,7 +51,7 @@
 		"id": "kerker_20",
 		"story": [
 			"Du gelangst in einen kleinen, beleuchteten Raum. Du kannst nun <span class=blue-light>links</span>, <span class=blue-light>rechts</span> und <span class=blue-light>geradeaus</span> weitergehen. Außerdem bemerkst du, dass auf dem Boden ein <span class=blue-dark>Zettel</span> liegt.",
-			"Entscheide, in welcher Richtung du weiterläufst, oder heb den Zettel auf <span class=papayawhip>[>nimm Zettel<]</span>, wenn du wissen willst, was darauf steht."
+			"Entscheide, in welcher Richtung du weiterläufst, oder heb den Zettel auf, wenn du wissen willst, was darauf steht. <span class=papayawhip>[nimm Zettel]</span>"
 		],
 		"commands": [
 			{ "key": "n", "text": "nimm Zettel", "action": "kerker_21" },
@@ -66,7 +66,7 @@
 		"id": "kerker_20a",
 		"story": [
 			"Du gelangst in einen kleinen, beleuchteten Raum. Du kannst nun <span class=blue-light>links</span> und <span class=blue-light>geradeaus</span> weitergehen. Außerdem bemerkst du, dass auf dem Boden ein <span class=blue-dark>Zettel</span> liegt.",
-			"Entscheide, in welcher Richtung du weiterläufst, oder heb den Zettel auf <span class=papayawhip>[>nimm Zettel<]</span>, wenn du wissen willst, was darauf steht."
+			"Entscheide, in welcher Richtung du weiterläufst, oder heb den Zettel auf, wenn du wissen willst, was darauf steht. <span class=papayawhip>[nimm Zettel]</span>"
 		],
 		"commands": [
 			{ "key": "n", "text": "nimm Zettel", "action": "kerker_21a" },
@@ -278,8 +278,8 @@
 		"story": [
 			"Du willst die Tür öffnen, aber sie ist verschlossen.\nFolgendes kannst du jetzt machen:",
 			[
-				{ "condition": "has-sword", "story": "1. Du gehst wieder.\n2. Du benutzt wiedermal dein Schwert. <span class=papayawhip>[>Schwert<]</span>\n3. Du klopfst an und wartest, ob vielleicht jemand öffnet. <span class=papayawhip>[>klopfe an<]</span>" },
-				{ "condition": "no-weapons", "story": "1. Du gehst wieder.\n2. Du klopfst an und wartest, ob vielleicht jemand öffnet. <span class=papayawhip>[>klopfe an<]</span>" }
+				{ "condition": "has-sword", "story": "1. Du gehst wieder.\n2. Du benutzt wiedermal dein Schwert. <span class=papayawhip>[Schwert]</span>\n3. Du klopfst an und wartest, ob vielleicht jemand öffnet. <span class=papayawhip>[klopfe an]</span>" },
+				{ "condition": "no-weapons", "story": "1. Du gehst wieder.\n2. Du klopfst an und wartest, ob vielleicht jemand öffnet. <span class=papayawhip>[klopfe an]</span>" }
 			]
 		],
 		"commands": [
@@ -368,7 +368,7 @@
 			"story": [
 				"Gerade als du dir etwas zu essen nehmen willst, dringen plötzlich Gebrüll, schnelle Schritte und Waffengeklirr von unten aus der Wendeltreppe zu dir herauf! Schon wieder bist du bemerkt worden!",
 				[
-					{ "condition": "has-sword", "story": "Was nun? Stellst du dich den <span class=red>Wachen</span> mutig entgegen und versuchst, sie zu <span class=blue-light>erledigen</span>? Oder <span class=blue-light>fliehst</span> du lieber? <span class=papayawhip>[Gib >kämpfe< bzw. >flieh< ein.]</span>" },
+					{ "condition": "has-sword", "story": "Was nun? Stellst du dich den <span class=red>Wachen</span> mutig entgegen und versuchst, sie zu <span class=blue-light>erledigen</span>? Oder <span class=blue-light>fliehst</span> du lieber? <span class=papayawhip>[kämpfe]</span> bzw. <span class=papayawhip>[flieh]</span>" },
 					{ "condition": "has-keys", "story": "Da du nicht ausreichend bewaffnet bist, um es mit einer Schar <span class=red>Wachen</span> aufzunehmen, beschließt du zu fliehen.\nLäufst du zurück auf den <span class=blue-light>Burghof</span> oder willst du dich im <span class=blue-light>oberen Stockwerk</span> verstecken?" }
 				]
 			]
@@ -501,7 +501,7 @@
 			"delay": 4000,
 			"story": [
 				"Du stehst auf dem Burghof und überlegst, wo du jetzt hingehen könntest:",
-				"Links sind die <span class=blue-light>Stallungen</span>.\nRechts von dir befindet sich das <span class=blue-light>Lagerhaus</span>.\nAuf der anderen Seite des Hofes liegt der <span class=blue-light>Palas</span>.\nAußerdem könntest du auf den <span class=blue-light>Wehrgang</span> steigen <span class=papayawhip>[>hoch<]</span> und sehen, ob du da irgendwie weiterkommst."
+				"Links sind die <span class=blue-light>Stallungen</span>.\nRechts von dir befindet sich das <span class=blue-light>Lagerhaus</span>.\nAuf der anderen Seite des Hofes liegt der <span class=blue-light>Palas</span>.\nAußerdem könntest du auf den <span class=blue-light>Wehrgang</span> steigen und sehen, ob du da irgendwie weiterkommst. <span class=papayawhip>[hoch]</span>"
 			]
 		},
 		"commands": [
@@ -560,7 +560,7 @@
 		"id": "burghof_aus-stallungen-flucht",
 		"story": [
 			"Dann stürzen sie weiter, weil sie dich im Palas vermuten.\nDu wartest noch eine Weile, dann kriechst du aus deinem Versteck und gehst auf den Burghof hinaus.",
-			"Nun entscheide, wo du als nächstes hingehen möchtest.\nBist du mutig und erkundest UBOLZIOs <span class=blue-light>Palas</span>? Oder willst du lieber hinauf auf den <span class=blue-light>Wehrgang</span>? <span class=papayawhip>Gib >links< bzw. >hoch< ein.</span>"
+			"Nun entscheide, wo du als nächstes hingehen möchtest.\nBist du mutig und erkundest UBOLZIOs <span class=blue-light>Palas</span>? Oder willst du lieber hinauf auf den <span class=blue-light>Wehrgang</span>? <span class=papayawhip>[links]</span> bzw. <span class=papayawhip>[hoch]</span>"
 		],
 		"commands": [
 			{ "key": "l", "text": "links", "action": "palas" },
