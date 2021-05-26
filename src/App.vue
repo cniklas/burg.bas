@@ -33,7 +33,7 @@ const startGame = (name) => {
 	--papayawhip:   papayawhip;
 	--pink:         hotpink;
 	--purple-light: #7775A7;
-	--purple-dark:  #bd10e0;
+	/* --purple-dark:  #bd10e0; */
 	--red:          #ff0080;
 
 	--text-color:   #cbd5e0;
@@ -47,11 +47,10 @@ const startGame = (name) => {
 .blue-dark    { color: var(--blue-dark); }
 .gold         { color: var(--gold); }
 .green        { color: var(--green); }
-.grey-dark    { color: var(--grey-dark); }
 .papayawhip   { color: papayawhip; }
 .pink         { color: hotpink; }
 .purple-light { color: var(--purple-light); }
-.purple-dark  { color: var(--purple-dark); }
+/* .purple-dark  { color: var(--purple-dark); } */
 .red          { color: var(--red); }
 
 ::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -63,17 +62,17 @@ html {
 	color: var(--text-color);
 }
 
-pre:empty,
-div:empty,
-p:empty {
-	margin: 0;
-}
-
-#app {
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+body {
+	/* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
 	font-family: Menlo, 'DejaVu Sans Mono', 'Lucida Console', monospace;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+pre:empty,
+div:empty,
+p:empty {
+	@apply m-0
 }
 
 .ascii-text {
@@ -82,8 +81,7 @@ p:empty {
 }
 
 .base-column {
-	@apply px-2 md:px-0;
-	margin: 0 auto;
+	@apply mx-auto px-2 md:px-0;
 	max-width: 720px;
 }
 
@@ -97,7 +95,7 @@ p:empty {
 }
 
 .story > :last-child {
-	margin-bottom: 0;
+	@apply mb-0;
 }
 
 .text-prewrap {
@@ -125,28 +123,22 @@ p:empty {
 }
 
 .button {
-	@apply tracking-wider;
+	@apply tracking-wider border border-current py-2 px-7 select-none focus:outline-none;
 	background-color: #1a202c;
 	color: var(--button-color);
 	font-size: 1rem;
-	border: 1px solid currentColor;
-	padding: .5rem 1.75rem;
-	user-select: none;
 	box-shadow: 0 0 0px 0px var(--bg-color), 0 0 0px 0px currentColor;
 	transition: color 160ms ease, box-shadow 160ms ease;
 }
 
 .button:not(:disabled):hover {
-	/* color: #e2e8f0; */
 	color: var(--button-color-hover);
 	box-shadow: 0 0 0px 1px var(--bg-color), 0 0 0px 2px currentColor;
-	outline: none;
 }
 
 .input {
-	@apply w-full py-2 bg-transparent;
+	@apply w-full py-2 bg-transparent outline-none;
 	color: inherit;
 	font-size: 1.625rem;
-	outline: 0;
 }
 </style>

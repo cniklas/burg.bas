@@ -16,7 +16,7 @@
 
 		<section class="actions">
 			<div class="input-wrapper">
-				<input type="text" v-model.trim="userName" ref="input" class="input text-center" placeholder="Gib einen Namen ein oder drücke ENTER" @click.stop @keyup.enter="createName" />
+				<input type="text" v-model.trim="userName" ref="input" class="input text-center" placeholder="Gib einen Namen ein oder drücke ENTER" spellcheck="false" @click.stop @keyup.enter="createName" />
 			</div>
 
 			<transition name="fade" mode="in-out">

@@ -1,5 +1,5 @@
 <template>
-	<div class="base-column pt-8 flex flex-col justify-between h-screen">
+	<div class="base-column pt-8 flex flex-col justify-between h-screen" :class="{'end-death': isEndDeath, 'end-freedom': isEndFreedom}">
 		<main class="main flex-auto">
 			<div class="scene h-full flex flex-col justify-between">
 				<Story
@@ -24,16 +24,16 @@
 
 					<div v-show="hint && showHint" class="hint papayawhip">{{ hint }}</div>
 					<div v-show="showInput && !nextButton" class="input-wrapper">
-						<input type="text" v-model.trim="typed" ref="input" class="input" :placeholder="inputPlaceholder" @click.stop @keyup.enter="handleInput" />
+						<input type="text" v-model.trim="typed" ref="input" class="input" :placeholder="inputPlaceholder" spellcheck="false" @click.stop @keyup.enter="handleInput" />
 					</div>
 				</section>
 			</div>
 		</main>
 
-		<aside class="debug p-3 text-center">
+		<aside class="debug">
 			<div class="gold">Gold: {{ gold }}</div>
 			<div class="pink">Health: {{ health }}</div>
-			<div class="blue-dark"><span v-for="(item, i) in inventory" :key="`item-${i}`">{{ item }}</span></div>
+			<div class="blue-dark flex justify-center gap-x-2.5"><span v-for="(item, i) in inventory" :key="`item-${i}`">{{ item }}</span></div>
 		</aside>
 	</div>
 </template>
@@ -59,9 +59,8 @@ const focusInput = () => {
 }
 
 const sceneId = ref('intro')
-// TODO zum Einfärben des Hintergrunds
-const isEndDeath = computed(() => sceneId.value.endsWith('_tod'))
-const isEndFreedom = computed(() => sceneId.value.endsWith('_ende'))
+const isEndDeath = computed(() => sceneId.value.endsWith('_tod') || sceneId.value.endsWith('_timeout') || sceneId.value === 'game-over')
+const isEndFreedom = computed(() => sceneId.value.endsWith('_ende') || sceneId.value.startsWith('congratulations'))
 const scene = computed(() => burg.find(scene => scene.id === sceneId.value))
 const story = ref([])
 const onHold = ref(false)
@@ -277,9 +276,19 @@ onUnmounted(() => {
 })
 </script>
 
-<style scoped>
+<style lang="postcss" scoped>
 .base-column {
 	/* gap: 2rem; */
+	box-shadow: 0 0 0 2rem var(--bg-color);
+	transition: box-shadow 480ms ease-out;
+}
+
+.base-column.end-death {
+	box-shadow: 0 0 0 2rem var(--bg-color), 0 0 5.375rem 2rem var(--red);
+}
+
+.base-column.end-freedom {
+	box-shadow: 0 0 0 2rem var(--bg-color), 0 0 5.375rem 2rem var(--green);
 }
 
 .main {
@@ -287,11 +296,7 @@ onUnmounted(() => {
 }
 
 .debug {
+	@apply p-3 text-center border-2 border-dashed;
 	font-family: 'Courier New', Courier, monospace;
-	border: 2px dashed;
-}
-
-.debug > * {
-	margin: 0;
 }
 </style>
