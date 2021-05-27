@@ -19,13 +19,6 @@ const startGame = (name) => {
 
 <style lang="postcss">
 :root {
-	/* --global-font-size: 14px; */
-	--global-line-height: 1.375; /* 'leading-snug' */
-
-	/* --spacing:        1em; */
-	/* --spacing-medium: calc(var(--spacing) * 2); */
-	/* --spacing-large:  calc(var(--spacing) * 3); */
-
 	--blue-light:   #89d3fd;
 	--blue-dark:    #067df7;
 	--gold:         #ffbd2e;
@@ -40,6 +33,7 @@ const startGame = (name) => {
 	--bg-color:     #0f0f17;
 	--button-color: hsl(182, 25%, 50%); /* cadetblue */
 	--button-color-hover: hsl(182deg 35% 50%);
+	--global-line-height: 1.375; /* 'leading-snug' */
 }
 
 .white        { color: #fff; }
@@ -76,8 +70,9 @@ p:empty {
 }
 
 .ascii-text {
-	font-size: 0.8125rem;
-	line-height: 1.153846;
+	font-family: 'Courier New', Courier, monospace;
+	font-size: 0.75rem;
+	line-height: 1;
 }
 
 .base-column {

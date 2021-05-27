@@ -1,11 +1,26 @@
 <template>
-	<div class="base-column pt-8 flex flex-col justify-between h-screen" :class="{'end-death': isEndDeath, 'end-freedom': isEndFreedom}">
+	<div class="base-column pt-8 flex flex-col justify-between gap-y-8 h-screen" :class="{'end-death': isEndDeath, 'end-freedom': isEndFreedom}">
 		<main class="main flex-auto">
 			<div class="scene h-full flex flex-col justify-between">
 				<Story
 					:story="story"
 					:is-disabled="isDisabled"
-				/>
+				>
+					<div v-if="isEndCredits" class="flex justify-center mt-12">
+<pre class="ascii-text">
+88                                                 88
+88                                                 88
+88                                                 88
+88,dPPYba,  88       88 8b,dPPYba,  ,adPPYb,d8     88,dPPYba,  ,adPPYYba, ,adPPYba,
+88P'    "8a 88       88 88P'   "Y8 a8"    `Y88     88P'    "8a ""     `Y8 I8[    ""
+88       d8 88       88 88         8b       88     88       d8 ,adPPPPP88  `"Y8ba,
+88b,   ,a8" "8a,   ,a88 88         "8a,   ,d88 888 88b,   ,a8" 88,    ,88 aa    ]8I
+8Y"Ybbd8"'   `"YbbdP'Y8 88          `"YbbdP"Y8 888 8Y"Ybbd8"'  `"8bbdP"Y8 `"YbbdP"'
+                                    aa,    ,88
+                                     "Y8bbdP"
+</pre>
+					</div>
+				</Story>
 
 				<Battle
 					v-if="showBattle && startFight"
@@ -30,7 +45,7 @@
 			</div>
 		</main>
 
-		<aside class="debug">
+		<aside v-show="!isEndCredits" class="debug">
 			<div class="gold">Gold: {{ gold }}</div>
 			<div class="pink">Health: {{ health }}</div>
 			<div class="blue-dark flex justify-center gap-x-2.5"><span v-for="(item, i) in inventory" :key="`item-${i}`">{{ item }}</span></div>
@@ -61,6 +76,7 @@ const focusInput = () => {
 const sceneId = ref('intro')
 const isEndDeath = computed(() => sceneId.value.endsWith('_tod') || sceneId.value.endsWith('_timeout') || sceneId.value === 'game-over')
 const isEndFreedom = computed(() => sceneId.value.endsWith('_ende') || sceneId.value.startsWith('congratulations'))
+const isEndCredits = computed(() => sceneId.value === 'credits')
 const scene = computed(() => burg.find(scene => scene.id === sceneId.value))
 const story = ref([])
 const onHold = ref(false)
@@ -278,7 +294,6 @@ onUnmounted(() => {
 
 <style lang="postcss" scoped>
 .base-column {
-	/* gap: 2rem; */
 	box-shadow: 0 0 0 2rem var(--bg-color);
 	transition: box-shadow 480ms ease-out;
 }
@@ -292,11 +307,13 @@ onUnmounted(() => {
 }
 
 .main {
-	max-height: calc(100vh - (100px + 2rem));
+	max-height: calc(100% - 8rem); /* gap + .debug */
 }
 
 .debug {
-	@apply p-3 text-center border-2 border-dashed;
+	@apply p-2.5 text-center border-2 border-dashed h-24;
 	font-family: 'Courier New', Courier, monospace;
+	font-size: 1.125rem;
+	line-height: 1.3333333;
 }
 </style>

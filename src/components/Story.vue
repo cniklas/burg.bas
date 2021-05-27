@@ -10,6 +10,8 @@
 					</template>
 				</template>
 			</template>
+
+			<slot />
 		</transition-group>
 	</article>
 </template>

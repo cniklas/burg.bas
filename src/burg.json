@@ -258,7 +258,7 @@
 			{ "key": "h", "text": "hoch", "action": "turm_og" },
 			{ "key": "l", "text": "links", "action": "lagerhaus_aus-turm-ug" }
 		],
-		"hint": "Benutze >hoch< bzw. >links<."
+		"hint": "Benutze [hoch] bzw. [links]."
 	},
 
 	{
@@ -446,7 +446,7 @@
 			{ "key": "k", "text": "kämpfe", "action": "lagerhaus_kampf_sieg" },
 			{ "key": "f", "text": "flieh", "action": "lagerhaus_kampf_tod" }
 		],
-		"hint": ">kämpfe< bzw. >flieh< eingeben."
+		"hint": "[kämpfe] bzw. [flieh] eingeben."
 	},
 
 	{
@@ -1078,7 +1078,7 @@
 			"<span class=green>GRATULATION!\nDU HAST DICH WACKER DURCH DIESES ABENTEUER GESCHLAGEN!</span>"
 		],
 		"commands": [
-			{ "key": "enter", "text": "", "action": "credits" }
+			{ "key": "enter", "text": "Ende", "action": "credits" }
 		]
 	},
 
@@ -1090,7 +1090,7 @@
 		"music": "t130ms<<l8cl16ccl8cecegeg>l2c",
 		"play": "freedom",
 		"commands": [
-			{ "key": "enter", "text": "", "action": "credits" }
+			{ "key": "enter", "text": "Ende", "action": "credits" }
 		]
 	},
 
@@ -1121,7 +1121,7 @@
 		"id": "credits",
 		"story": [
 			"<span class='text-prewrap'>---------------------------  E  N  D  E  ---------------------------</span>",
-			"Ein Spiel von KRISCHAN\nIdee: KRISCHAN mit hilfreicher Unterstützung von DEWITT\nText: KRISCHAN\nMusik: KRISCHAN (bis auf wenige Raubkopien)\nOriginally written in BASIC, rewritten in JS with Vue.js\n© Christian Niklas 1996, 2021"
+			"Ein Spiel von KRISCHAN\nIdee: KRISCHAN mit hilfreicher Unterstützung von DEWITT\nText: KRISCHAN\nMusik: KRISCHAN (bis auf wenige Raubkopien)\nOriginally written in BASIC, rewritten in JavaScript with Vue.js\n© Christian Niklas 1996, 2021"
 		]
 	}
 ]
