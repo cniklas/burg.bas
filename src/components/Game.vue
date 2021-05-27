@@ -48,7 +48,7 @@
 		<aside v-show="!isEndCredits" class="debug">
 			<div class="gold">Gold: {{ gold }}</div>
 			<div class="pink">Health: {{ health }}</div>
-			<div class="blue-dark flex justify-center gap-x-2.5"><span v-for="(item, i) in inventory" :key="`item-${i}`">{{ item }}</span></div>
+			<div class="flex justify-center gap-x-2.5"><span v-for="(item, i) in inventory" :key="`item-${i}`">{{ item }}</span></div>
 		</aside>
 	</div>
 </template>
@@ -311,7 +311,8 @@ onUnmounted(() => {
 }
 
 .debug {
-	@apply p-2.5 text-center border-2 border-dashed h-24;
+	@apply p-3 text-center h-24;
+	background-color: hsl(220, 36%, 11%);
 	font-family: 'Courier New', Courier, monospace;
 	font-size: 1.125rem;
 	line-height: 1.3333333;
