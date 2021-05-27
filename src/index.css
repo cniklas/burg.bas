@@ -60,8 +60,14 @@ p:empty {
 }
 
 .base-column {
-	@apply mx-auto px-2 md:px-0;
-	max-width: 720px;
+	@apply mx-auto pt-8 px-4 lg:px-8;
+	max-width: 44rem;
+}
+
+@screen lg {
+	.base-column {
+		max-width: 49rem;
+	}
 }
 
 .story {

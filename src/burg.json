@@ -1,14 +1,5 @@
 [
 	{
-		"id": "loading",
-		"story": [],
-		"commands": [
-			{ "key": "enter", "text": "Spiel starten", "action": "intro" }
-		],
-		"load_audio": "intro-2"
-	},
-
-	{
 		"id": "intro",
 		"story": [
 			"<span class='text-prewrap'>---------------------  D  I  E     B  U  R  G  ---------------------</span>"
@@ -1035,7 +1026,7 @@
 	},
 
 	{
-		"id": "thronsaal_kampf_tod",
+		"id": "//thronsaal_kampf_tod",
 		"story": [
 			"Du dachtest wohl, <span class=red>UBOLZIO</span> ließe sich so einfach vernichten?!? Das erweist sich als ein großer Irrtum, denn hast seine Fechtkünste gewaltig unterschätzt!",
 			"Er zerschlägt dir den Schild, dein Schwert zerbricht schließlich auch, und dann versetzt dir UBOLZIO den tödlichen Stoß …"
@@ -1046,7 +1037,7 @@
 	},
 
 	{
-		"id": "thronsaal_kampf_sieg",
+		"id": "//thronsaal_kampf_sieg",
 		"story": [
 			"<span class=red>UBOLZIO</span> führt sein Schwert mit ungeheurer Wucht und zerschlägt deinen Schild. Doch nach und nach werden seine Hiebe kraftloser. Du bringst ihn durch einen geschickten Schwertstreich zu Fall und stößt ihm das Schwert in die Brust.\nDa haucht UBOLZIO seine Seele aus …"
 		],

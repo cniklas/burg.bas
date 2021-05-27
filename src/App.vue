@@ -1,11 +1,11 @@
 <template>
-	<Intro v-if="showIntro" @start="startGame" />
-	<Game v-else :user-name="userName" />
+	<AppIntro v-if="showIntro" @start="startGame" />
+	<AppGame v-else :user-name="userName" />
 </template>
 
 <script setup>
-import Intro from './components/Intro.vue'
-import Game from './components/Game.vue'
+import AppIntro from './components/Intro.vue'
+import AppGame from './components/Game.vue'
 import { ref } from 'vue'
 
 const userName = ref('')

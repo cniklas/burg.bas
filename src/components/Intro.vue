@@ -1,5 +1,5 @@
 <template>
-	<div class="base-column pt-8">
+	<div class="base-column">
 		<h1 class="headline text-3xl text-center font-medium mb-8">Bist du bereit für ein waghalsiges Abenteuer in einer unbekannten Burg?</h1>
 
 		<section class="actions">
@@ -58,7 +58,7 @@ onUnmounted(() => {
 	color: hsl(172deg 88% 22%); /* ~ text-green-800 */
 }
 
-@screen md {
+@screen lg {
 	.input {
 		max-width: 50%;
 	}

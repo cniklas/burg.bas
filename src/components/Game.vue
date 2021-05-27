@@ -1,12 +1,12 @@
 <template>
-	<div class="base-column pt-8 flex flex-col justify-between gap-y-8 h-screen" :class="{'end-death': isEndDeath, 'end-freedom': isEndFreedom}">
+	<div class="base-column flex flex-col justify-between gap-y-8 h-screen" :class="{'game-won': gameWon, 'game-lost': gameLost}">
 		<main class="main flex-auto">
 			<div class="scene h-full flex flex-col justify-between">
-				<Story
+				<AppStory
 					:story="story"
 					:is-disabled="isDisabled"
 				>
-					<div v-if="isEndCredits" class="flex justify-center mt-12">
+					<div v-if="showCredits" class="hidden md:flex justify-center mt-12">
 <pre class="ascii-text">
 88                                                 88
 88                                                 88
@@ -20,10 +20,10 @@
                                      "Y8bbdP"
 </pre>
 					</div>
-				</Story>
+				</AppStory>
 
-				<Battle
-					v-if="showBattle && startFight"
+				<AppBattle
+					v-if="showBattle && startBattle"
 					class="flex-auto overflow-y-auto"
 					:user-name="userName"
 					:health="health"
@@ -32,33 +32,31 @@
 					@finish="finishBattle"
 				/>
 
-				<section v-show="!onHold" class="actions">
+				<section v-show="!onHold && !showCredits" class="actions">
 					<div v-show="nextButton" class="button-wrapper">
 						<button type="button" class="button" @click.stop="handleCommand(nextButton)">{{ nextButton?.text || 'weiter' }}</button>
 					</div>
 
 					<div v-show="hint && showHint" class="hint papayawhip">{{ hint }}</div>
-					<div v-show="showInput && !nextButton" class="input-wrapper">
+					<div v-show="showInput" class="input-wrapper">
 						<input type="text" v-model.trim="typed" ref="input" class="input" :placeholder="inputPlaceholder" spellcheck="false" @click.stop @keyup.enter="handleInput" />
 					</div>
 				</section>
 			</div>
 		</main>
 
-		<aside v-show="!isEndCredits" class="debug">
-			<div class="gold">Gold: {{ gold }}</div>
-			<div class="pink">Health: {{ health }}</div>
-			<div class="flex justify-center gap-x-2.5"><span v-for="(item, i) in inventory" :key="`item-${i}`">{{ item }}</span></div>
-		</aside>
+		<AppPanel v-show="!showCredits" />
 	</div>
 </template>
 
 <script setup>
 import burg from '../burg.json'
-import Story from './Story.vue'
-import Battle from './Battle.vue'
+import AppStory from './Story.vue'
+import AppBattle from './Battle.vue'
+import AppPanel from './Panel.vue'
 import { ref, computed, watch, onMounted, onUnmounted, defineProps, nextTick } from 'vue'
 import useHowler from '../useHowler'
+import useState from '../useState'
 import useCountAnimation from '../useCountAnimation'
 
 defineProps({
@@ -66,6 +64,7 @@ defineProps({
 })
 
 const { playlist, loadMusic, playMusic, fadeOutMusic } = useHowler
+const { gold, health, hasCondition, handleCondition, manageInventory, getArmed, finishBattle, resetState } = useState
 const { animateCount } = useCountAnimation()
 
 const input = ref(null)
@@ -74,9 +73,9 @@ const focusInput = () => {
 }
 
 const sceneId = ref('intro')
-const isEndDeath = computed(() => sceneId.value.endsWith('_tod') || sceneId.value.endsWith('_timeout') || sceneId.value === 'game-over')
-const isEndFreedom = computed(() => sceneId.value.endsWith('_ende') || sceneId.value.startsWith('congratulations'))
-const isEndCredits = computed(() => sceneId.value === 'credits')
+const gameWon = computed(() => hasCondition('battle-won') || sceneId.value.endsWith('_ende') || sceneId.value.startsWith('congratulations'))
+const gameLost = computed(() => sceneId.value === 'game-over' || scene.value.commands?.find(cmd => cmd.action === 'game-over' && !isDisabled(cmd)))
+const showCredits = computed(() => sceneId.value === 'credits')
 const scene = computed(() => burg.find(scene => scene.id === sceneId.value))
 const story = ref([])
 const onHold = ref(false)
@@ -115,7 +114,7 @@ const handleStory = async () => {
 	if (scene.value.health) {
 		reduceHealth(Math.abs(scene.value.health))
 	}
-	if (isEndDeath.value) {
+	if (gameLost.value) {
 		animateCount(health, health.value, false)
 	}
 
@@ -144,19 +143,17 @@ const handleStory = async () => {
 }
 watch(sceneId, handleStory, { immediate: true })
 
-const conditions = ref([])
-const hasCondition = term => conditions.value.includes(term)
-
-const typed = ref('')
-const inputPlaceholder = computed(() => sceneId.value === 'start' ? 'Fang an zu tippen' : '')
+const nextButton = computed(() => scene.value.commands?.find(cmd => cmd.key === 'enter' && !isDisabled(cmd)))
 const hint = ref('')
 const showHint = ref(false)
-const showInput = computed(() => !(!!scene.value.continue || ['thronsaal_kampf', 'credits'].includes(sceneId.value)))
-const nextButton = computed(() => scene.value.commands?.find(cmd => cmd.key === 'enter' && !isDisabled(cmd)))
+const showInput = computed(() => !(
+	!!scene.value.continue
+	|| nextButton.value
+	|| showBattle.value
+))
+const typed = ref('')
+const inputPlaceholder = computed(() => sceneId.value === 'start' ? 'Fang an zu tippen' : '')
 
-const gold = ref(0)
-
-const health = ref(100)
 const reduceHealth = points => {
   const min = Math.ceil(points / 2)
   const max = Math.floor(points)
@@ -171,44 +168,24 @@ const onHit = points => {
   animateCount(health, points, false, strikeInterval.value)
 }
 
-const inventory = ref([])
-const manageInventory = condition => {
-	switch (condition) {
-		case 'has-helmet': inventory.value.push('Helm', 'Umhang'); break;
-		case 'has-keys': inventory.value.push('Keule', 'Schlüssel'); break;
-		case 'has-sword': inventory.value.push('Schwert', 'Seil'); break;
-		case 'has-magic-wand': inventory.value.push('Stab'); break;
-		case 'discard-mace': inventory.value.splice(inventory.value.indexOf('Keule'), 1); break;
-		case 'get-armed': inventory.value.push('Schwert', 'Schild'); break;
-		case 'discard-magic-wand': inventory.value.splice(inventory.value.indexOf('Stab'), 1); break;
-	}
+const showBattle = computed(() => sceneId.value === 'thronsaal_kampf')
+const startBattle = ref(false)
+const finalBattle = () => {
+	scene.value.play_delay
+		? setTimeout(() => { startBattle.value = true }, scene.value.play_delay)
+		: startBattle.value = true
+}
+
+const nextScene = id => {
+	hint.value = ''
+	showHint.value = false
+	typed.value = ''
+	sceneId.value = id
 }
 
 const resetGame = () => {
-	conditions.value = []
-	inventory.value = []
-	gold.value = 0
-	health.value = 100
-}
-
-const getArmed = () => {
-	if (!hasCondition('has-sword')) {
-		if (hasCondition('has-keys')) {
-			manageInventory('discard-mace')
-		}
-		manageInventory('get-armed')
-	}
-}
-
-const showBattle = computed(() => sceneId.value === 'thronsaal_kampf')
-const startFight = ref(false)
-const finalBattle = () => {
-	scene.value.play_delay
-		? setTimeout(() => { startFight.value = true }, scene.value.play_delay)
-		: startFight.value = true
-}
-const finishBattle = (result) => {
-	conditions.value.push(`battle-${result}`)
+	startBattle.value = false
+	resetState()
 }
 
 let timeout = null
@@ -216,19 +193,13 @@ const handleAction = command => {
 	clearTimeout(timeout)
 	timeout = null
 
-	if (command.setCondition && !hasCondition(command.setCondition)) {
-		conditions.value.push(command.setCondition)
-		manageInventory(command.setCondition)
-	}
+	handleCondition(command.setCondition)
 
-	if (command.action === 'start') {
+	if (['start', 'credits'].includes(command.action)) {
 		resetGame()
 	}
 
-	showHint.value = false
-	hint.value = ''
-	typed.value = ''
-	sceneId.value = command.action
+	nextScene(command.action)
 }
 
 const handleMessage = command => {
@@ -294,27 +265,19 @@ onUnmounted(() => {
 
 <style lang="postcss" scoped>
 .base-column {
-	box-shadow: 0 0 0 2rem var(--bg-color);
+	box-shadow: 0 0 5.375rem var(--bg-color);
 	transition: box-shadow 480ms ease-out;
 }
 
-.base-column.end-death {
-	box-shadow: 0 0 0 2rem var(--bg-color), 0 0 5.375rem 2rem var(--red);
+.base-column.game-won {
+	box-shadow: 0 0 5.375rem var(--green);
 }
 
-.base-column.end-freedom {
-	box-shadow: 0 0 0 2rem var(--bg-color), 0 0 5.375rem 2rem var(--green);
+.base-column.game-lost {
+	box-shadow: 0 0 5.375rem var(--red);
 }
 
 .main {
-	max-height: calc(100% - 8rem); /* gap + .debug */
-}
-
-.debug {
-	@apply p-3 text-center h-24;
-	background-color: hsl(220, 36%, 11%);
-	font-family: 'Courier New', Courier, monospace;
-	font-size: 1.125rem;
-	line-height: 1.3333333;
+	max-height: calc(100% - 8rem); /* row-gap + .panel */
 }
 </style>

@@ -1,12 +1,12 @@
 <template>
-	<section class="battle" ref="panel">
+	<section class="battle" ref="container">
 		<ol ref="timeline">
 			<li v-for="(attack, i) in attacks" :key="i">
 				{{ attack.message }}
 			</li>
 		</ol>
 
-		<div v-show="battleResult" class="battle-result" v-html="battleResult" />
+		<div v-show="battleResult" class="battle-result">{{ battleResult }}</div>
 	</section>
 </template>
 
@@ -82,13 +82,13 @@ export default {
 
 	methods: {
 		_observe() {
-			const panel = this.$refs['panel']
+			const container = this.$refs['container']
 			const timeline = this.$refs['timeline']
 			const ro = new ResizeObserver(() => {
-				panel.scrollTop = panel.scrollHeight
+				container.scrollTop = container.scrollHeight
 			});
 
-			ro.observe(panel);
+			ro.observe(container);
 			ro.observe(timeline);
 		},
 
