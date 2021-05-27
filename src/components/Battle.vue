@@ -1,13 +1,12 @@
 <template>
-	<section class="battle">
-		<ol>
+	<section class="battle" ref="panel">
+		<ol ref="timeline">
 			<li v-for="(attack, i) in attacks" :key="i">
 				{{ attack.message }}
 			</li>
 		</ol>
 
 		<div v-show="battleResult" class="battle-result" v-html="battleResult" />
-		<div ref="scroll-to" />
 	</section>
 </template>
 
@@ -68,7 +67,31 @@ export default {
 		}
 	},
 
+	watch: {
+		// 'player.health': (val) => {},
+		// player: {
+		// 	handler(val) {},
+		// 	deep: true
+		// }
+		playerHealth(val, oldVal) {
+			if (val < this.player.originHealth) {
+				this.$emit('got-hit', oldVal - val)
+			}
+		}
+	},
+
 	methods: {
+		_observe() {
+			const panel = this.$refs['panel']
+			const timeline = this.$refs['timeline']
+			const ro = new ResizeObserver(() => {
+				panel.scrollTop = panel.scrollHeight
+			});
+
+			ro.observe(panel);
+			ro.observe(timeline);
+		},
+
 		battle() {
 			this.player.hit = false
 			// this.player.attack = Math.floor(Math.random() * 16) + 1 // 1 bis 16
@@ -85,10 +108,6 @@ export default {
 				this._randomMove(this.opponent, this.player, true)
 				this._randomMove(this.player, this.opponent)
 			}
-
-			requestAnimationFrame(() => {
-				this.$refs['scroll-to'].scrollIntoView()
-			})
 
 			if (!(this.player.health <= 0 || this.opponent.health <= 0)) {
 				setTimeout(this.battle, this.strikeInterval)
@@ -236,20 +255,8 @@ export default {
 	},
 
 	mounted() {
+		this._observe()
 		this.battle()
-	},
-
-	watch: {
-		// 'player.health': (val) => {},
-		// player: {
-		// 	handler(val) {},
-		// 	deep: true
-		// }
-		playerHealth(val, oldVal) {
-			if (val < this.player.originHealth) {
-				this.$emit('got-hit', oldVal - val)
-			}
-		}
 	}
 }
 </script>
