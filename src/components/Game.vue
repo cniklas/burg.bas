@@ -1,5 +1,5 @@
 <template>
-	<div class="base-column h-full flex flex-col justify-between gap-y-8" :class="{'game-won': gameWon, 'game-lost': gameLost}">
+	<div class="base-column flex flex-col justify-between gap-y-8" :class="{'game-won': gameWon, 'game-lost': gameLost}">
 		<main class="main flex-auto">
 			<div class="scene h-full flex flex-col justify-between">
 				<AppStory
