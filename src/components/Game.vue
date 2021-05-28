@@ -39,7 +39,7 @@
 
 					<div v-show="hint && showHint" class="hint papayawhip">{{ hint }}</div>
 					<div v-if="showInput" class="input-wrapper">
-						<input type="text" v-model.trim="typed" ref="input" class="input" :placeholder="inputPlaceholder" spellcheck="false" @click.stop @keyup.enter="handleInput" />
+						<input type="text" v-model.trim="typed" ref="input" class="input" placeholder="?" spellcheck="false" @click.stop @keyup.enter="handleInput" />
 					</div>
 				</section>
 			</div>
@@ -154,7 +154,6 @@ const showInput = computed(() => !(
 	|| showBattle.value
 ))
 const typed = ref('')
-const inputPlaceholder = computed(() => sceneId.value === 'start' ? 'Fang an zu tippen' : '')
 
 const reduceHealth = points => {
   const min = Math.ceil(points / 2)
