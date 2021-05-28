@@ -28,7 +28,7 @@ defineEmit([
 const { loadMusic } = useHowler
 
 const userName = ref('')
-const showButton = computed(() => userName.value.length >= 2)
+const showButton = computed(() => userName.value.length >= 3)
 
 let names = []
 const randomSplice = (store) => store.splice( Math.floor(Math.random() * store.length), 1 ).shift()

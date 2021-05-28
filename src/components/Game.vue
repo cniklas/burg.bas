@@ -1,5 +1,5 @@
 <template>
-	<div class="base-column flex flex-col justify-between gap-y-8 h-screen" :class="{'game-won': gameWon, 'game-lost': gameLost}">
+	<div class="base-column h-full flex flex-col justify-between gap-y-8" :class="{'game-won': gameWon, 'game-lost': gameLost}">
 		<main class="main flex-auto">
 			<div class="scene h-full flex flex-col justify-between">
 				<AppStory
@@ -33,12 +33,12 @@
 				/>
 
 				<section v-show="!onHold && !showCredits" class="actions">
-					<div v-show="nextButton" class="button-wrapper">
+					<div v-if="nextButton" class="button-wrapper">
 						<button type="button" class="button" @click.stop="handleCommand(nextButton)">{{ nextButton?.text || 'weiter' }}</button>
 					</div>
 
 					<div v-show="hint && showHint" class="hint papayawhip">{{ hint }}</div>
-					<div v-show="showInput" class="input-wrapper">
+					<div v-if="showInput" class="input-wrapper">
 						<input type="text" v-model.trim="typed" ref="input" class="input" :placeholder="inputPlaceholder" spellcheck="false" @click.stop @keyup.enter="handleInput" />
 					</div>
 				</section>
@@ -69,7 +69,7 @@ const { animateCount } = useCountAnimation()
 
 const input = ref(null)
 const focusInput = () => {
-	input.value.focus()
+	input.value?.focus()
 }
 
 const sceneId = ref('intro')
@@ -86,7 +86,6 @@ const handleStory = async () => {
 
 	// replace story
 	story.value = [...scene.value.story]
-	requestAnimationFrame(focusInput)
 
 	// set time for delayed story
 	if (scene.value.delayed) {
@@ -98,6 +97,9 @@ const handleStory = async () => {
 
 			requestAnimationFrame(focusInput)
 		}, scene.value.delayed.delay)
+	}
+	else {
+		requestAnimationFrame(focusInput)
 	}
 
 	// fade out music
@@ -254,7 +256,6 @@ const handleInput = () => {
 }
 
 onMounted(() => {
-	focusInput()
 	document.addEventListener('click', focusInput)
 })
 

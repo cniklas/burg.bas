@@ -38,6 +38,7 @@
 html {
 	background-color: var(--bg-color);
 	color: var(--text-color);
+	height: -webkit-fill-available;
 }
 
 body {
@@ -45,12 +46,19 @@ body {
 	font-family: Menlo, 'DejaVu Sans Mono', 'Lucida Console', monospace;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	height: 100vh;
+	height: -webkit-fill-available;
+	overflow-y: hidden;
+}
+
+#app {
+	@apply h-full;
 }
 
 pre:empty,
 div:empty,
 p:empty {
-	@apply m-0
+	@apply m-0;
 }
 
 .ascii-text {
@@ -116,7 +124,14 @@ p:empty {
 	transition: color 160ms ease, box-shadow 160ms ease;
 }
 
-.button:not(:disabled):hover {
+@media (hover: hover) {
+	.button:hover {
+		color: var(--button-color-hover);
+		box-shadow: 0 0 0px 1px var(--bg-color), 0 0 0px 2px currentColor;
+	}
+}
+
+.button:active {
 	color: var(--button-color-hover);
 	box-shadow: 0 0 0px 1px var(--bg-color), 0 0 0px 2px currentColor;
 }
