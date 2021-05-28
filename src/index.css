@@ -123,15 +123,14 @@ p:empty {
 	transition: color 160ms ease, box-shadow 160ms ease;
 }
 
-@media (hover: hover) {
-	.button:hover {
-		color: var(--button-color-hover);
-		box-shadow: 0 0 0px 1px var(--bg-color), 0 0 0px 2px currentColor;
-	}
+.button:hover {
+	color: var(--button-color-hover);
+	box-shadow: 0 0 0px 1px var(--bg-color), 0 0 0px 2px currentColor;
 }
 
 .input {
-	@apply w-full py-2 bg-transparent outline-none;
+	@apply w-full p-2 rounded outline-none;
+	background-color: hsl(230, 23%, 20%);
 	color: inherit;
 	font-size: 1.625rem;
 }

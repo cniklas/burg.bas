@@ -4,7 +4,7 @@
 
 		<section class="actions">
 			<div class="input-wrapper">
-				<input type="text" v-model.trim="userName" ref="input" class="input text-center" placeholder="Gib einen Namen ein oder drücke ENTER" spellcheck="false" @click.stop @keyup.enter="createName" />
+				<input type="text" v-model.trim="userName" ref="input" class="input text-center max-w-sm" placeholder="Gib einen Namen ein oder drücke ENTER" spellcheck="false" @click.stop @keyup.enter="createName" />
 			</div>
 
 			<transition name="fade" mode="in-out">
@@ -58,14 +58,8 @@ onUnmounted(() => {
 	color: hsl(172deg 88% 22%); /* ~ text-green-800 */
 }
 
-@screen lg {
-	.input {
-		max-width: 50%;
-	}
-}
-
 .input::placeholder {
-	font-size: 1rem; /* 16px */
+	font-size: 1rem;
 }
 
 .fade-enter-active,
