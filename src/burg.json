@@ -359,17 +359,16 @@
 			"story": [
 				"Gerade als du dir etwas zu essen nehmen willst, dringen plötzlich Gebrüll, schnelle Schritte und Waffengeklirr von unten aus der Wendeltreppe zu dir herauf! Schon wieder bist du bemerkt worden!",
 				[
-					{ "condition": "has-sword", "story": "Was nun? Stellst du dich den <span class=red>Wachen</span> mutig entgegen und versuchst, sie zu <span class=blue-light>erledigen</span>? Oder <span class=blue-light>fliehst</span> du lieber? <span class=papayawhip>[kämpfe]</span> bzw. <span class=papayawhip>[flieh]</span>" },
+					{ "condition": "has-sword", "story": "Was nun? Stellst du dich den <span class=red>Wachen</span> mutig entgegen und versuchst, sie zu <span class=blue-light>erledigen</span>? Oder <span class=blue-light>fliehst</span> du lieber? <span class=papayawhip>[kämpfen]</span> bzw. <span class=papayawhip>[fliehen]</span>" },
 					{ "condition": "has-keys", "story": "Da du nicht ausreichend bewaffnet bist, um es mit einer Schar <span class=red>Wachen</span> aufzunehmen, beschließt du zu fliehen.\nLäufst du zurück auf den <span class=blue-light>Burghof</span> oder willst du dich im <span class=blue-light>oberen Stockwerk</span> verstecken?" }
 				]
 			]
 		},
 		"commands": [
-			{ "condition": "has-sword", "key": "k", "text": "kämpfe", "action": "lagerhaus_kampf" },
-			{ "condition": "has-sword", "key": "f", "text": "flieh", "action": "lagerhaus_flucht" },
+			{ "condition": "has-sword", "key": "k", "text": "kämpfen", "action": "lagerhaus_kampf" },
+			{ "condition": "has-sword", "key": "f", "text": "fliehen", "action": "lagerhaus_flucht" },
 			{ "condition": "has-keys", "key": "h", "text": "hoch", "action": "lagerhaus_tod" },
-			{ "condition": "has-keys", "key": "z", "text": "zurück", "action": "stallungen_flucht" },
-			{ "condition": "has-keys", "key": "r", "text": "raus", "action": "stallungen_flucht" }
+			{ "condition": "has-keys", "key": "z", "text": ["zurück", "raus"], "action": "stallungen_flucht" }
 		],
 		"timeout": { "action": "lagerhaus_timeout" }
 	},
@@ -392,8 +391,7 @@
 		],
 		"commands": [
 			{ "key": "h", "text": "hoch", "action": "lagerhaus_flucht_tod" },
-			{ "key": "z", "text": "zurück", "action": "stallungen_flucht" },
-			{ "key": "r", "text": "raus", "action": "stallungen_flucht" }
+			{ "key": "z", "text": ["zurück", "raus"], "action": "stallungen_flucht" }
 		],
 		"timeout": { "action": "lagerhaus_timeout" }
 	},
@@ -434,10 +432,10 @@
 		},
 		"health": -8,
 		"commands": [
-			{ "key": "k", "text": "kämpfe", "action": "lagerhaus_kampf_sieg" },
-			{ "key": "f", "text": "flieh", "action": "lagerhaus_kampf_tod" }
+			{ "key": "k", "text": ["kämpfen", "weiter"], "action": "lagerhaus_kampf_sieg" },
+			{ "key": "f", "text": ["fliehen", "zurück"], "action": "lagerhaus_kampf_tod" }
 		],
-		"hint": "[kämpfe] bzw. [flieh] eingeben."
+		"hint": "[kämpfen] bzw. [fliehen] eingeben"
 	},
 
 	{
@@ -496,11 +494,11 @@
 			]
 		},
 		"commands": [
-			{ "key": "l", "text": "links", "setCondition": "visited-stallungen", "action": "stallungen" },
-			{ "key": "w", "text": "weiter", "action": "palas" },
-			{ "key": "r", "text": "rechts", "setCondition": "visited-lagerhaus", "action": "lagerhaus" },
-			{ "condition": "has-sword", "key": "h", "text": "hoch", "setCondition": "visited-wehrgang", "action": "wehrgang_has-sword" },
-			{ "condition": "has-keys", "key": "h", "text": "hoch", "setCondition": "visited-wehrgang", "action": "wehrgang_has-keys" }
+			{ "key": "l", "text": ["links", "Stallungen"], "setCondition": "visited-stallungen", "action": "stallungen" },
+			{ "key": "w", "text": ["weiter", "Palas"], "action": "palas" },
+			{ "key": "r", "text": ["rechts", "Lagerhaus"], "setCondition": "visited-lagerhaus", "action": "lagerhaus" },
+			{ "condition": "has-sword", "key": "h", "text": ["hoch", "Wehrgang"], "setCondition": "visited-wehrgang", "action": "wehrgang_has-sword" },
+			{ "condition": "has-keys", "key": "h", "text": ["hoch", "Wehrgang"], "setCondition": "visited-wehrgang", "action": "wehrgang_has-keys" }
 		],
 		"hint": "Laß den Blödsinn! Entscheide dich für eine Richtung."
 	},
@@ -511,7 +509,7 @@
 			"Du beschließt, so schnell wie möglich den Thronsaal zu finden, um UBOLZIOs Herrschaft ein für alle mal zu beenden.\nDarum gehst du vorsichtig zum <span class=blue-light>Palas</span>, der sich rechts von dir befindet."
 		],
 		"commands": [
-			{ "key": "r", "text": "rechts", "action": "palas" }
+			{ "key": "r", "text": ["rechts", "Palas"], "action": "palas" }
 		],
 		"hint": "Rechts ist der Palas, und dort musst du hin."
 	},
@@ -523,10 +521,10 @@
 			"In den <span class=blue-light>Palas</span>, der rechts von dir steht?\nOder in die <span class=blue-light>Stallungen</span>, die sich auf der gegenüberliegenden Seite des Burghofes befinden?\nWenn du lieber auf den <span class=blue-light>Wehrgang</span> steigen willst, gib <span class=papayawhip>>hoch<</span> ein."
 		],
 		"commands": [
-			{ "key": "w", "text": "weiter", "setCondition": "visited-stallungen", "action": "stallungen" },
-			{ "key": "r", "text": "rechts", "action": "palas" },
-			{ "condition": "has-sword", "key": "h", "text": "hoch", "setCondition": "visited-wehrgang", "action": "wehrgang_has-sword" },
-			{ "condition": "no-weapons", "key": "h", "text": "hoch", "action": "wehrgang_tod" }
+			{ "key": "w", "text": ["weiter", "Stallungen"], "setCondition": "visited-stallungen", "action": "stallungen" },
+			{ "key": "r", "text": ["rechts", "Palas"], "action": "palas" },
+			{ "condition": "has-sword", "key": "h", "text": ["hoch", "Wehrgang"], "setCondition": "visited-wehrgang", "action": "wehrgang_has-sword" },
+			{ "condition": "no-weapons", "key": "h", "text": ["hoch", "Wehrgang"], "action": "wehrgang_tod" }
 		],
 		"hint": "Kannst du dich bitte für eine Richtung entscheiden?"
 	},
@@ -538,11 +536,11 @@
 			"In den <span class=blue-light>Palas</span>, dann musst du nach links gehen.\nIns <span class=blue-light>Lagerhaus</span> auf der anderen Seite des Burghofes?\nOder willst du dich erst auf dem <span class=blue-light>Wehrgang</span> umschauen?"
 		],
 		"commands": [
-			{ "key": "l", "text": "links", "action": "palas" },
-			{ "notCondition": "visited-lagerhaus", "key": "w", "text": "weiter", "setCondition": "visited-lagerhaus", "action": "lagerhaus" },
-			{ "notCondition": "visited-wehrgang", "condition": "has-sword", "key": "h", "text": "hoch", "setCondition": "visited-wehrgang", "action": "wehrgang_has-sword" },
-			{ "notCondition": "visited-wehrgang", "condition": "has-keys", "key": "h", "text": "hoch", "setCondition": "visited-wehrgang", "action": "wehrgang_has-keys" },
-			{ "notCondition": "visited-wehrgang", "condition": "no-weapons", "key": "h", "text": "hoch", "action": "wehrgang_tod" }
+			{ "key": "l", "text": ["links", "Palas"], "action": "palas" },
+			{ "notCondition": "visited-lagerhaus", "key": "w", "text": ["weiter", "Lagerhaus"], "setCondition": "visited-lagerhaus", "action": "lagerhaus" },
+			{ "notCondition": "visited-wehrgang", "condition": "has-sword", "key": "h", "text": ["hoch", "Wehrgang"], "setCondition": "visited-wehrgang", "action": "wehrgang_has-sword" },
+			{ "notCondition": "visited-wehrgang", "condition": "has-keys", "key": "h", "text": ["hoch", "Wehrgang"], "setCondition": "visited-wehrgang", "action": "wehrgang_has-keys" },
+			{ "notCondition": "visited-wehrgang", "condition": "no-weapons", "key": "h", "text": ["hoch", "Wehrgang"], "action": "wehrgang_tod" }
 		],
 		"hint": "Wohin?"
 	},
@@ -554,10 +552,10 @@
 			"Nun entscheide, wo du als nächstes hingehen möchtest.\nBist du mutig und erkundest UBOLZIOs <span class=blue-light>Palas</span>? Oder willst du lieber hinauf auf den <span class=blue-light>Wehrgang</span>? <span class=papayawhip>[links]</span> bzw. <span class=papayawhip>[hoch]</span>"
 		],
 		"commands": [
-			{ "key": "l", "text": "links", "action": "palas" },
-			{ "notCondition": "visited-wehrgang", "condition": "has-sword", "key": "h", "text": "hoch", "setCondition": "visited-wehrgang", "action": "wehrgang_has-sword" },
-			{ "notCondition": "visited-wehrgang", "condition": "has-keys", "key": "h", "text": "hoch", "setCondition": "visited-wehrgang", "action": "wehrgang_has-keys" },
-			{ "notCondition": "visited-wehrgang", "condition": "no-weapons", "key": "h", "text": "hoch", "action": "wehrgang_tod" }
+			{ "key": "l", "text": ["links", "Palas"], "action": "palas" },
+			{ "notCondition": "visited-wehrgang", "condition": "has-sword", "key": "h", "text": ["hoch", "Wehrgang"], "setCondition": "visited-wehrgang", "action": "wehrgang_has-sword" },
+			{ "notCondition": "visited-wehrgang", "condition": "has-keys", "key": "h", "text": ["hoch", "Wehrgang"], "setCondition": "visited-wehrgang", "action": "wehrgang_has-keys" },
+			{ "notCondition": "visited-wehrgang", "condition": "no-weapons", "key": "h", "text": ["hoch", "Wehrgang"], "action": "wehrgang_tod" }
 		],
 		"hint": "Hast du denn immernoch nicht kapiert, wie’s geht?"
 	},
@@ -569,9 +567,9 @@
 			"Links sind die <span class=blue-light>Stallungen</span>.\nRechterhand befindet sich das <span class=blue-light>Lagerhaus</span>.\nWenn du in den <span class=blue-light>Palas</span> möchtest, musst du geradeaus über den Burghof gehen."
 		],
 		"commands": [
-			{ "notCondition": "visited-stallungen", "key": "l", "text": "links", "setCondition": "visited-stallungen", "action": "stallungen" },
-			{ "key": "w", "text": "weiter", "action": "palas" },
-			{ "notCondition": "visited-lagerhaus", "key": "r", "text": "rechts", "setCondition": "visited-lagerhaus", "action": "lagerhaus" }
+			{ "notCondition": "visited-stallungen", "key": "l", "text": ["links", "Stallungen"], "setCondition": "visited-stallungen", "action": "stallungen" },
+			{ "key": "w", "text": ["weiter", "Palas"], "action": "palas" },
+			{ "notCondition": "visited-lagerhaus", "key": "r", "text": ["rechts", "Lagerhaus"], "setCondition": "visited-lagerhaus", "action": "lagerhaus" }
 		],
 		"hint": "Eine klare, vernünftige Entscheidung, bitte."
 	},
@@ -583,9 +581,9 @@
 			"Nun musst du dich für eine neue Richtung entscheiden:\nLinks sind die <span class=blue-light>Stallungen</span>.\nRechterhand befindet sich das <span class=blue-light>Lagerhaus</span>.\nWenn du in den <span class=blue-light>Palas</span> möchtest, musst du geradeaus über den Burghof gehen."
 		],
 		"commands": [
-			{ "notCondition": "visited-stallungen", "key": "l", "text": "links", "setCondition": "visited-stallungen", "action": "stallungen" },
-			{ "key": "w", "text": "weiter", "action": "palas" },
-			{ "notCondition": "visited-lagerhaus", "key": "r", "text": "rechts", "setCondition": "visited-lagerhaus", "action": "lagerhaus" }
+			{ "notCondition": "visited-stallungen", "key": "l", "text": ["links", "Stallungen"], "setCondition": "visited-stallungen", "action": "stallungen" },
+			{ "key": "w", "text": ["weiter", "Palas"], "action": "palas" },
+			{ "notCondition": "visited-lagerhaus", "key": "r", "text": ["rechts", "Lagerhaus"], "setCondition": "visited-lagerhaus", "action": "lagerhaus" }
 		],
 		"hint": "Eine klare, vernünftige Entscheidung, bitte."
 	},
@@ -894,8 +892,7 @@
 		],
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "schatzkammer" },
-			{ "key": "z", "text": "zurück", "setCondition": "visited-schlafzimmer", "action": "vorzimmer_kein-drache" },
-			{ "key": "r", "text": "raus", "setCondition": "visited-schlafzimmer", "action": "vorzimmer_kein-drache" }
+			{ "key": "z", "text": ["zurück", "raus"], "setCondition": "visited-schlafzimmer", "action": "vorzimmer_kein-drache" }
 		]
 	},
 
@@ -1101,10 +1098,8 @@
 			"Willst du das Spiel noch einmal beginnen?"
 		],
 		"commands": [
-			{ "key": "j", "text": "j", "action": "start" },
-			{ "key": "j", "text": "ja", "action": "start" },
-			{ "key": "n", "text": "n", "action": "credits" },
-			{ "key": "n", "text": "nein", "action": "credits" }
+			{ "key": "j", "text": ["j", "ja"], "action": "start" },
+			{ "key": "n", "text": ["n", "nein"], "action": "credits" }
 		]
 	},
 

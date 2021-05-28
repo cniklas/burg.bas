@@ -34,10 +34,6 @@ const getArmed = () => {
 	}
 }
 
-const finishBattle = result => {
-	conditions.value.push(`battle-${result}`)
-}
-
 const resetState = () => {
 	gold.value = 0
 	health.value = 100
@@ -54,6 +50,5 @@ export default {
 	inventory,
 	manageInventory,
 	getArmed,
-	finishBattle,
 	resetState
 }

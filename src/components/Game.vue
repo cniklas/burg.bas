@@ -29,7 +29,7 @@
 					:health="health"
 					:strike-interval="strikeInterval"
 					@got-hit="onHit"
-					@finish="finishBattle"
+					@finish="onBattleFinished"
 				/>
 
 				<section v-show="!onHold && !showCredits" class="actions">
@@ -64,7 +64,7 @@ defineProps({
 })
 
 const { playlist, loadMusic, playMusic, fadeOutMusic } = useHowler
-const { gold, health, hasCondition, handleCondition, manageInventory, getArmed, finishBattle, resetState } = useState
+const { gold, health, hasCondition, handleCondition, manageInventory, getArmed, resetState } = useState
 const { animateCount } = useCountAnimation()
 
 const input = ref(null)
@@ -164,10 +164,6 @@ const reduceHealth = points => {
 		? setTimeout(animateCount, scene.value.delayed.delay, health, rnd, false)
 		: animateCount(health, rnd, false)
 }
-const strikeInterval = ref(1200)
-const onHit = points => {
-  animateCount(health, points, false, strikeInterval.value)
-}
 
 const showBattle = computed(() => sceneId.value === 'thronsaal_kampf')
 const startBattle = ref(false)
@@ -175,6 +171,14 @@ const finalBattle = () => {
 	scene.value.play_delay
 		? setTimeout(() => { startBattle.value = true }, scene.value.play_delay)
 		: startBattle.value = true
+}
+const strikeInterval = ref(1200)
+const onHit = points => {
+  animateCount(health, points, false, strikeInterval.value)
+}
+const onBattleFinished = result => {
+	fadeOutMusic()
+	handleCondition(`battle-${result}`)
 }
 
 const nextScene = id => {
@@ -243,7 +247,9 @@ const handleInput = () => {
 	}
 
 	const input = cleanInput(typed.value)
-	const command = scene.value.commands?.find(cmd => !isDisabled(cmd) && cmd.text.toLowerCase() === input)
+	const command = scene.value.commands?.find(cmd =>
+		!isDisabled(cmd) && (typeof cmd.text === 'string' ? cmd.text.toLowerCase() === input : cmd.text.find(text => text.toLowerCase() === input))
+	)
 
 	if (command === undefined) {
 		hint.value = scene.value.hint || ''
