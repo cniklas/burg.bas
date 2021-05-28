@@ -60,6 +60,7 @@ onUnmounted(() => {
 
 .input::placeholder {
 	font-size: 1rem;
+	line-height: 2.375rem;
 }
 
 .fade-enter-active,

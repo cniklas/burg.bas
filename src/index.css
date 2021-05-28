@@ -133,4 +133,5 @@ p:empty {
 	background-color: hsl(230, 23%, 20%);
 	color: inherit;
 	font-size: 1.625rem;
+	line-height: 2.375rem;
 }

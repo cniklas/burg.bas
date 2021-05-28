@@ -45,7 +45,7 @@ const resetState = () => {
 	conditions.value = []
 }
 
-const useState = {
+export default {
 	gold,
 	health,
 	conditions,
@@ -57,5 +57,3 @@ const useState = {
 	finishBattle,
 	resetState
 }
-
-export default useState
