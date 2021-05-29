@@ -482,6 +482,32 @@
 	},
 
 	{
+		"id": "burghof_has-magic-wand",
+		"story": [
+			"Du beschließt, so schnell wie möglich den Thronsaal zu finden, um UBOLZIOs Herrschaft ein für alle mal zu beenden.\nDarum gehst du vorsichtig zum <span class=blue-light>Palas</span>, der sich rechts von dir befindet."
+		],
+		"commands": [
+			{ "key": "r", "text": ["rechts", "Palas"], "action": "palas" }
+		],
+		"hint": "Rechts ist der Palas, und dort musst du hin."
+	},
+
+	{
+		"id": "burghof_no-magic-wand",
+		"story": [
+			"Nun entscheide, wohin du gehen willst.",
+			"In den <span class=blue-light>Palas</span>, der rechts von dir steht?\nOder in die <span class=blue-light>Stallungen</span>, die sich auf der gegenüberliegenden Seite des Burghofes befinden?\nWenn du lieber auf den <span class=blue-light>Wehrgang</span> steigen willst, gib <span class=papayawhip>[hoch]</span> ein."
+		],
+		"commands": [
+			{ "key": "w", "text": ["weiter", "Stallungen"], "setCondition": "visited-stallungen", "action": "stallungen" },
+			{ "key": "r", "text": ["rechts", "Palas"], "action": "palas" },
+			{ "condition": "has-sword", "key": "h", "text": ["hoch", "Wehrgang"], "setCondition": "visited-wehrgang", "action": "wehrgang_has-sword" },
+			{ "condition": "no-weapons", "key": "h", "text": ["hoch", "Wehrgang"], "action": "wehrgang_tod" }
+		],
+		"hint": "Kannst du dich bitte für eine Richtung entscheiden?"
+	},
+
+	{
 		"id": "burghof_has-sword-or-keys",
 		"story": [
 			"Nun stehst du im Freien. Zum Glück ist niemand in der Nähe.\nErstmal atmest du tief durch und genießt die frische Luft, die du während deines langen Kerkeraufenthaltes so vermisst hast."
@@ -501,32 +527,6 @@
 			{ "condition": "has-keys", "key": "h", "text": ["hoch", "Wehrgang"], "setCondition": "visited-wehrgang", "action": "wehrgang_has-keys" }
 		],
 		"hint": "Laß den Blödsinn! Entscheide dich für eine Richtung."
-	},
-
-	{
-		"id": "burghof_has-magic-wand",
-		"story": [
-			"Du beschließt, so schnell wie möglich den Thronsaal zu finden, um UBOLZIOs Herrschaft ein für alle mal zu beenden.\nDarum gehst du vorsichtig zum <span class=blue-light>Palas</span>, der sich rechts von dir befindet."
-		],
-		"commands": [
-			{ "key": "r", "text": ["rechts", "Palas"], "action": "palas" }
-		],
-		"hint": "Rechts ist der Palas, und dort musst du hin."
-	},
-
-	{
-		"id": "burghof_no-magic-wand",
-		"story": [
-			"Nun entscheide, wohin du gehen willst.",
-			"In den <span class=blue-light>Palas</span>, der rechts von dir steht?\nOder in die <span class=blue-light>Stallungen</span>, die sich auf der gegenüberliegenden Seite des Burghofes befinden?\nWenn du lieber auf den <span class=blue-light>Wehrgang</span> steigen willst, gib <span class=papayawhip>>hoch<</span> ein."
-		],
-		"commands": [
-			{ "key": "w", "text": ["weiter", "Stallungen"], "setCondition": "visited-stallungen", "action": "stallungen" },
-			{ "key": "r", "text": ["rechts", "Palas"], "action": "palas" },
-			{ "condition": "has-sword", "key": "h", "text": ["hoch", "Wehrgang"], "setCondition": "visited-wehrgang", "action": "wehrgang_has-sword" },
-			{ "condition": "no-weapons", "key": "h", "text": ["hoch", "Wehrgang"], "action": "wehrgang_tod" }
-		],
-		"hint": "Kannst du dich bitte für eine Richtung entscheiden?"
 	},
 
 	{
@@ -1013,7 +1013,7 @@
 			"Ein erbitterter Kampf entbrennt …"
 		],
 		"play": "battle",
-		"play_delay": 1000,
+		"play_delay": 2000,
 
 		"load_audio": "victory",
 		"commands": [

@@ -4,7 +4,7 @@
 			<div class="scene h-full flex flex-col justify-between">
 				<AppStory
 					:story="story"
-					:is-disabled="isDisabled"
+					:is-enabled="isEnabled"
 				>
 					<div v-if="showCredits" class="hidden md:flex justify-center mt-12">
 <pre class="ascii-text">
@@ -54,27 +54,20 @@ import burg from '../burg.json'
 import AppStory from './Story.vue'
 import AppBattle from './Battle.vue'
 import AppPanel from './Panel.vue'
-import { ref, computed, watch, onMounted, onUnmounted, defineProps, nextTick } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import useHowler from '../useHowler'
+import useInput from '../useInput'
 import useState from '../useState'
 import useCountAnimation from '../useCountAnimation'
 
-defineProps({
-	userName: String
-})
-
 const { playlist, loadMusic, playMusic, fadeOutMusic } = useHowler
-const { gold, health, hasCondition, handleCondition, manageInventory, getArmed, resetState } = useState
+const { userName, gold, health, hasCondition, isEnabled, handleCondition, manageInventory, getArmed, resetState } = useState
+const { input, focusInput, cleanInput } = useInput()
 const { animateCount } = useCountAnimation()
-
-const input = ref(null)
-const focusInput = () => {
-	input.value?.focus()
-}
 
 const sceneId = ref('intro')
 const gameWon = computed(() => hasCondition('battle-won') || sceneId.value.endsWith('_ende') || sceneId.value.startsWith('congratulations'))
-const gameLost = computed(() => sceneId.value === 'game-over' || scene.value.commands?.find(cmd => cmd.action === 'game-over' && !isDisabled(cmd)))
+const gameLost = computed(() => sceneId.value === 'game-over' || scene.value.commands?.find(cmd => cmd.action === 'game-over' && isEnabled(cmd)))
 const showCredits = computed(() => sceneId.value === 'credits')
 const scene = computed(() => burg.find(scene => scene.id === sceneId.value))
 const story = ref([])
@@ -122,7 +115,7 @@ const handleStory = async () => {
 
 	// continue
 	if (scene.value.continue) {
-		let delay = scene.value.continue.delay || 200
+		let delay = scene.value.continue.delay ?? 200
 		if (scene.value.play) {
 			delay = Math.ceil( (playlist.value.find(item => item.id === scene.value.play)?.audio?._duration ?? delay / 1000) * 1000 )
 		}
@@ -144,16 +137,6 @@ const handleStory = async () => {
 	}
 }
 watch(sceneId, handleStory, { immediate: true })
-
-const nextButton = computed(() => scene.value.commands?.find(cmd => cmd.key === 'enter' && !isDisabled(cmd)))
-const hint = ref('')
-const showHint = ref(false)
-const showInput = computed(() => !(
-	!!scene.value.continue
-	|| nextButton.value
-	|| showBattle.value
-))
-const typed = ref('')
 
 const reduceHealth = points => {
   const min = Math.ceil(points / 2)
@@ -216,31 +199,15 @@ const handleCommand = command => {
 	command.message ? handleMessage(command) : handleAction(command)
 }
 
-const isDisabled = ({ condition, notCondition }) => {
-	if (condition && notCondition) {
-		return !hasCondition(condition) || hasCondition(notCondition)
-	}
-	if (condition) {
-		return !hasCondition(condition)
-	}
-	if (notCondition) {
-		return hasCondition(notCondition)
-	}
-
-	return false
-}
-
-const cleanInput = string => {
-	const regex = /[!"#$%&\'()*+,\-./:;<=>?@[\\\]^_`{\|}~]/g;
-	return string
-		.replaceAll(regex, '')
-		.toLowerCase()
-		.replaceAll('geradeaus', 'weiter')
-		.split(' ')
-		.filter(word => word.length && !['der', 'die', 'das', 'den', 'dem', 'und', 'mit'].includes(word))
-		.join(' ')
-}
-
+const nextButton = computed(() => scene.value.commands?.find(cmd => cmd.key === 'enter' && isEnabled(cmd)))
+const hint = ref('')
+const showHint = ref(false)
+const typed = ref('')
+const showInput = computed(() => !(
+	!!scene.value.continue
+	|| nextButton.value
+	|| showBattle.value
+))
 const handleInput = () => {
 	if (scene.value.timeout && !timeout) {
 		timeout = setTimeout(handleAction, 7000, { action: scene.value.timeout.action })
@@ -248,11 +215,11 @@ const handleInput = () => {
 
 	const input = cleanInput(typed.value)
 	const command = scene.value.commands?.find(cmd =>
-		!isDisabled(cmd) && (typeof cmd.text === 'string' ? cmd.text.toLowerCase() === input : cmd.text.find(text => text.toLowerCase() === input))
+		isEnabled(cmd) && (typeof cmd.text === 'string' ? cmd.text.toLowerCase() === input : cmd.text.find(text => text.toLowerCase() === input))
 	)
 
 	if (command === undefined) {
-		hint.value = scene.value.hint || ''
+		hint.value = scene.value.hint ?? ''
 		showHint.value = true
 		return
 	}

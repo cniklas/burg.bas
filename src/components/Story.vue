@@ -6,7 +6,7 @@
 
 				<template v-else>
 					<template v-for="(paragraph, j) in section" :key="`pgr${j}`">
-						<p v-show="!isDisabled(paragraph)" class="whitespace-pre-line" v-html="paragraph.story" />
+						<p v-show="isEnabled(paragraph)" class="whitespace-pre-line" v-html="paragraph.story" />
 					</template>
 				</template>
 			</template>
@@ -21,7 +21,7 @@ import { defineProps } from 'vue'
 
 defineProps({
 	story: Array,
-	isDisabled: Function
+	isEnabled: Function
 })
 </script>
 

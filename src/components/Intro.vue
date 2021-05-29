@@ -9,7 +9,7 @@
 
 			<transition name="fade" mode="in-out">
 				<div v-show="showButton" class="button-wrapper">
-					<button type="button" class="button" @click.stop="$emit('start', userName)">Spiel starten</button>
+					<button type="button" class="button" @click.stop="$emit('start')">Spiel starten</button>
 				</div>
 			</transition>
 		</section>
@@ -18,20 +18,23 @@
 
 <script setup>
 import simCityNames from '../names.json'
-import { ref, computed, onMounted, onUnmounted, defineEmit } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import useHowler from '../useHowler'
-
-defineEmit([
-	'start'
-])
+import useInput from '../useInput'
+import useState from '../useState'
 
 const { loadMusic } = useHowler
+const { setName } = useState
+const { input, focusInput } = useInput()
 
 const userName = ref('')
 const showButton = computed(() => userName.value.length >= 3)
+watch(userName, val => {
+	setName(val)
+})
 
 let names = []
-const randomSplice = (store) => store.splice( Math.floor(Math.random() * store.length), 1 ).shift()
+const randomSplice = store => store.splice( Math.floor(Math.random() * store.length), 1 ).shift()
 const createName = () => {
 	if (!names.length) {
 		names = [...simCityNames]
@@ -39,10 +42,6 @@ const createName = () => {
 	userName.value = randomSplice(names)
 }
 
-const input = ref(null)
-const focusInput = () => {
-	input.value.focus()
-}
 onMounted(() => {
 	focusInput()
 	document.addEventListener('click', focusInput)

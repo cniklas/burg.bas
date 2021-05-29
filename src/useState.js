@@ -1,10 +1,28 @@
 import { ref } from 'vue'
 
+const userName = ref('')
+const setName = name => {
+	userName.value = name
+}
+
 const gold = ref(0)
 const health = ref(100)
 
 const conditions = ref([])
 const hasCondition = term => conditions.value.includes(term)
+const isEnabled = ({ condition, notCondition }) => {
+	if (condition && notCondition) {
+		return hasCondition(condition) && !hasCondition(notCondition)
+	}
+	if (condition) {
+		return hasCondition(condition)
+	}
+	if (notCondition) {
+		return !hasCondition(notCondition)
+	}
+
+	return true
+}
 const handleCondition = condition => {
 	if (condition && !hasCondition(condition)) {
 		conditions.value.push(condition)
@@ -42,10 +60,13 @@ const resetState = () => {
 }
 
 export default {
+	userName,
+	setName,
 	gold,
 	health,
 	conditions,
 	hasCondition,
+	isEnabled,
 	handleCondition,
 	inventory,
 	manageInventory,
