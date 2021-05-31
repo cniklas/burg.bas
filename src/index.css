@@ -19,6 +19,8 @@
 	--button-color-hover: hsl(182, 35%, 50%);
 	--headline-color:     hsl(172, 88%, 24%); /* ~ text-green-800 */
 	--global-line-height: 1.375; /* 'leading-snug' */
+
+	--modal-transition-duration: 320ms;
 }
 
 .white        { color: #fff; }
@@ -125,7 +127,7 @@ p:empty {
 	color: var(--button-color);
 	font-size: 1rem;
 	box-shadow: 0 0 0px 0px var(--bg-color), 0 0 0px 0px currentColor;
-	transition: color 160ms ease, box-shadow 160ms ease;
+	transition: color 160ms, box-shadow 160ms;
 }
 
 .button:hover {
