@@ -20,7 +20,7 @@
 	--headline-color:     hsl(172, 88%, 24%); /* ~ text-green-800 */
 	--global-line-height: 1.375; /* 'leading-snug' */
 
-	--modal-transition-duration: 320ms;
+	--transition-duration: 320ms;
 }
 
 .white        { color: #fff; }

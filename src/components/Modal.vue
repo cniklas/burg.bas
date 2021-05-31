@@ -15,7 +15,7 @@
 						Der Aufbau des Spiels ist noch derselbe wie damals; nur die Texte habe ich überarbeitet und aufgefrischt.
 					</p>
 					<p>
-						Die Musikstücke für das Intro und den Endkampf habe ich um mehr als die Hälfte gekürzt. Hier sind die Originale in voller Länge zu hören:
+						Die Tracks für das Intro und den Endkampf habe ich um mehr als die Hälfte gekürzt. Hier sind die Originalstücke in voller Länge zu hören:
 					</p>
 					<ul>
 						<li class="flex items-center">
@@ -25,15 +25,15 @@
 							<audio src="audio/intro-1.mp3" controls></audio> <span class="ml-4">alternatives Intro</span>
 						</li>
 						<li class="flex items-center">
-							<audio src="audio/battle-o.mp3" controls></audio> <span class="ml-4">Battle</span>
+							<audio src="audio/battle-o.mp3" controls></audio> <span class="ml-4">Kampf</span>
 						</li>
 					</ul>
 					<p>
-						Der ursprüngliche Endkampf war eine simple Wahrscheinlichkeitsrechnung, bei der der Spieler mit einer Chance von 2:3 gewonnen hat.<br>
+						Der ursprüngliche Endkampf war eine simple Wahrscheinlichkeitsrechnung, bei der der Spieler mit einer Chance von 1:1,5 gewonnen hat.<br>
 						Nun wird diese alles entscheidende Szene in Form eines etwas schrägen Protokolls wiedergegeben und die Aussicht auf Sieg oder Niederlage von vielen Zufällen abhängig gemacht.
 					</p>
 					<p>
-						Die verrückten Namensvorschläge für den Spieler stammen aus <a href="https://en.wikipedia.org/wiki/SimCity_2000" class="underline" rel="noopener">SimCity 2000</a>.
+						Die Namensvorschläge für den Spieler stammen aus <a href="https://en.wikipedia.org/wiki/SimCity_2000" class="underline" rel="noopener">SimCity 2000</a>.
 					</p>
 				</article>
 			</div>
@@ -45,9 +45,6 @@
 
 <script setup>
 import { ref } from 'vue'
-import useInput from '../useInput'
-
-const { input, focusInput } = useInput()
 
 const modal = ref(null)
 const isVisible= ref(false)
@@ -68,7 +65,7 @@ const toggleModal = () => {
 	line-height: calc(2rem - 4px);
 	box-shadow: none;
 	transform: translateX(calc(-512px - 50% + 2rem)); /* translateX(calc(-50vw - 50% + 2rem)) */
-	transition: color 160ms, transform var(--modal-transition-duration);
+	transition: color 160ms, transform var(--transition-duration);
 }
 
 .modal-button.is-active {
@@ -90,7 +87,7 @@ const toggleModal = () => {
 	max-width: 44rem;
 	max-height: 70%; /* 61.8% */
 	transform: scale(0.8);
-	transition: all var(--modal-transition-duration);
+	transition: all var(--transition-duration);
 }
 
 @screen lg {
@@ -107,7 +104,7 @@ const toggleModal = () => {
 .modal-overlay {
 	@apply fixed w-full h-full top-0 left-0 invisible opacity-0 z-30;
 	background-color: hsla(240, 21%, 7%, 80%);
-	transition: all var(--modal-transition-duration);
+	transition: all var(--transition-duration);
 }
 
 .is-visible + .modal-overlay {

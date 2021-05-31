@@ -26,13 +26,11 @@ defineProps({
 </script>
 
 <style>
-.story-fade-enter-active/* ,
-.story-fade-leave-active */ {
-	transition: opacity 320ms ease-in-out;
+.story-fade-enter-active {
+	transition: opacity var(--transition-duration) ease-in-out;
 }
 
-.story-fade-enter-from/* ,
-.story-fade-leave-to */ {
+.story-fade-enter-from {
 	opacity: 0;
 }
 </style>
