@@ -1,6 +1,6 @@
 <template>
 	<div class="base-column">
-		<h1 class="headline text-3xl text-center font-medium mb-8">Bist du bereit für ein waghalsiges Abenteuer in einer unbekannten Burg?</h1>
+		<h1 class="headline text-center mb-8">Bist du bereit für ein waghalsiges Abenteuer in einer unbekannten Burg?</h1>
 
 		<section class="actions">
 			<div class="input-wrapper">
@@ -53,10 +53,6 @@ onUnmounted(() => {
 </script>
 
 <style lang="postcss" scoped>
-.headline {
-	color: hsl(172deg 88% 22%); /* ~ text-green-800 */
-}
-
 .input::placeholder {
 	font-size: 1rem;
 	line-height: 2.375rem;

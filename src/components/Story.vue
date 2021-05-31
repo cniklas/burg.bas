@@ -1,5 +1,5 @@
 <template>
-	<article class="story">
+	<article class="story mb-8">
 		<transition-group name="story-fade" mode="out-in">
 			<template v-for="(section, i) in story" :key="`sct${i}`">
 				<p v-if="typeof section === 'string'" class="whitespace-pre-line" v-html="section" />
