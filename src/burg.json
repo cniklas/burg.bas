@@ -23,7 +23,7 @@
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "kerker_10" }
 		],
-		"hint": "Ich sagte: Öffne die Tür!",
+		"hint": "Öffne die Tür",
 		"load_audio": "defeat"
 	},
 
@@ -33,7 +33,7 @@
 			"Du trittst aus dem Kerker und stehst jetzt in einem düsteren Gang. Besonders viel kannst du nicht erkennen, doch du entdeckst schließlich eine <span class=blue-light>Treppe</span>, deren rutschige Stufen vermutlich hier heraus führen."
 		],
 		"commands": [
-			{ "key": "r", "text": "runter", "action": null, "message": "Die Treppe geht übrigens nach oben." },
+			{ "key": "r", "text": "runter", "action": null, "message": "Die Treppe führt nach oben" },
 			{ "key": "h", "text": "hoch", "action": "kerker_20" }
 		]
 	},
@@ -180,7 +180,7 @@
 			{ "condition": "has-helmet", "key": "n", "text": "nimm Schlüssel Keule", "setCondition": "has-keys", "action": "wachraum_10" },
 			{ "notCondition": "has-helmet", "key": "n", "text": "nimm Schwert Seil", "setCondition": "has-sword", "action": "wachraum_10" }
 		],
-		"hint": "Nimm die Sachen mit!"
+		"hint": "Nimm die Sachen mit"
 	},
 
 	{
@@ -192,7 +192,7 @@
 			{ "condition": "has-sword", "key": "o", "text": "öffne Tür", "setCondition": "has-sword-or-keys", "action": "wachraum_has-sword" },
 			{ "condition": "has-keys", "key": "o", "text": "öffne Tür", "setCondition": "has-sword-or-keys", "action": "wachraum_has-keys" }
 		],
-		"hint": "Versuche, die Tür zu öffnen."
+		"hint": "Versuche, die Tür zu öffnen"
 	},
 
 	{
@@ -201,10 +201,10 @@
 			"Womit?"
 		],
 		"commands": [
-			{ "key": "k", "text": "Schlüssel", "action": null, "message": "Du hast leider keinen Schlüssel." },
+			{ "key": "k", "text": "Schlüssel", "action": null, "message": "Du hast leider keinen Schlüssel" },
 			{ "key": "s", "text": "Schwert", "action": "wachraum_20" }
 		],
-		"hint": "Klappt nicht. Benutze etwas anderes."
+		"hint": "Klappt nicht. Benutze etwas anderes"
 	},
 
 	{
@@ -249,7 +249,7 @@
 			{ "key": "h", "text": "hoch", "action": "turm_og" },
 			{ "key": "l", "text": "links", "action": "lagerhaus_aus-turm-ug" }
 		],
-		"hint": "Benutze [hoch] bzw. [links]."
+		"hint": "Verwende [hoch] bzw. [links]"
 	},
 
 	{
@@ -324,7 +324,7 @@
 		"commands": [
 			{ "key": "r", "text": "runter", "setCondition": "has-magic-wand", "action": "burghof-switch" }
 		],
-		"hint": "Geh die Wendeltreppe hinunter."
+		"hint": "Geh die Wendeltreppe hinunter"
 	},
 
 	{
@@ -464,7 +464,7 @@
 		"commands": [
 			{ "key": "h", "text": "hoch", "action": "turm_og" }
 		],
-		"hint": "Geh hoch."
+		"hint": "Geh hoch"
 	},
 
 	{
@@ -489,7 +489,7 @@
 		"commands": [
 			{ "key": "r", "text": ["rechts", "Palas"], "action": "palas" }
 		],
-		"hint": "Rechts ist der Palas, und dort musst du hin."
+		"hint": "Rechts ist der Palas, und dort musst du hin"
 	},
 
 	{
@@ -526,7 +526,7 @@
 			{ "condition": "has-sword", "key": "h", "text": ["hoch", "Wehrgang"], "setCondition": "visited-wehrgang", "action": "wehrgang_has-sword" },
 			{ "condition": "has-keys", "key": "h", "text": ["hoch", "Wehrgang"], "setCondition": "visited-wehrgang", "action": "wehrgang_has-keys" }
 		],
-		"hint": "Laß den Blödsinn! Entscheide dich für eine Richtung."
+		"hint": "Laß den Blödsinn! Entscheide dich für eine Richtung"
 	},
 
 	{
@@ -802,7 +802,7 @@
 			{ "condition": "has-sword", "key": "w", "text": "weiter", "action": "gesinderaum_tuer" },
 			{ "key": "o", "text": "öffne Tür", "action": "waffenkammer" }
 		],
-		"hint": "Versuche, die erste Tür zu öffnen."
+		"hint": "Versuche, die erste Tür zu öffnen"
 	},
 
 	{
@@ -818,7 +818,7 @@
 			{ "key": "o", "text": "öffne Tür", "action": "gesinderaum" },
 			{ "key": "r", "text": "rechts", "action": "treppenhaus" }
 		],
-		"hint": "Versuche, die zweite Tür zu öffnen, oder folge dem Gang nach rechts."
+		"hint": "Versuche, die zweite Tür zu öffnen, oder folge dem Gang nach rechts"
 	},
 
 	{
@@ -830,7 +830,7 @@
 			{ "key": "o", "text": "öffne Tür", "action": "gesinderaum" },
 			{ "key": "r", "text": "rechts", "action": "treppenhaus" }
 		],
-		"hint": "Versuche, die zweite Tür zu öffnen, oder folge dem Gang nach rechts."
+		"hint": "Versuche, die zweite Tür zu öffnen, oder folge dem Gang nach rechts"
 	},
 
 	{
@@ -842,7 +842,7 @@
 		"commands": [
 			{ "key": "r", "text": "rechts", "action": "treppenhaus" }
 		],
-		"hint": "Folge dem Gang nach rechts."
+		"hint": "Folge dem Gang nach rechts"
 	},
 
 	{
@@ -876,8 +876,8 @@
 		],
 		"commands": [
 			{ "condition": "has-keys", "key": "o", "text": "öffne Tür", "action": "schlafzimmer" },
-			{ "condition": "has-sword", "key": "o", "text": "öffne Tür", "action": null, "message": "Diese Tür ist verschlossen." },
-			{ "condition": "no-weapons", "key": "o", "text": "öffne Tür", "action": null, "message": "Diese Tür ist verschlossen." },
+			{ "condition": "has-sword", "key": "o", "text": "öffne Tür", "action": null, "message": "Diese Tür ist verschlossen" },
+			{ "condition": "no-weapons", "key": "o", "text": "öffne Tür", "action": null, "message": "Diese Tür ist verschlossen" },
 			{ "condition": "has-magic-wand", "key": "w", "text": "weiter", "action": "vorzimmer_drache" },
 			{ "notCondition": "has-magic-wand", "key": "w", "text": "weiter", "setCondition": "not-visited-schlafzimmer", "action": "vorzimmer_kein-drache" }
 		],

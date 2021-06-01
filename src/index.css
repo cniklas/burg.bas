@@ -7,10 +7,7 @@
 	--blue-dark:    #067df7;
 	--gold:         #ffbd2e;
 	--green:        #5ce6cd;
-	/* --papayawhip:   papayawhip; */
-	/* --pink:         hotpink; */
 	--purple-light: #7775A7;
-	/* --purple-dark:  #bd10e0; */
 	--red:          #ff0080;
 
 	--text-color:   #cbd5e0;
@@ -31,7 +28,6 @@
 .papayawhip   { color: papayawhip; }
 .pink         { color: hotpink; }
 .purple-light { color: var(--purple-light); }
-/* .purple-dark  { color: var(--purple-dark); } */
 .red          { color: var(--red); }
 
 ::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -47,8 +43,7 @@ html {
 body {
 	@apply flex h-screen overflow-y-hidden;
 	height: -webkit-fill-available;
-	/* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
-	font-family: Menlo, 'DejaVu Sans Mono', 'Lucida Console', monospace;
+	font-family: Menlo, 'DejaVu Sans Mono', 'Lucida Console', monospace; /* -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }

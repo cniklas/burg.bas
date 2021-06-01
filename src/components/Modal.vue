@@ -44,16 +44,26 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 const modal = ref(null)
-const isVisible= ref(false)
+const isVisible = ref(false)
+watch(isVisible, val => {
+	val
+		? document.addEventListener('keyup', closeOnEsc)
+		: document.removeEventListener('keyup', closeOnEsc)
+})
 const toggleModal = () => {
 	if (!isVisible.value) {
 		modal.value?.scrollTo({ top: 0 })
 	}
 
 	isVisible.value = !isVisible.value
+}
+const closeOnEsc = e => {
+	if (e.keyCode === 27) {
+		isVisible.value = false
+	}
 }
 </script>
 
