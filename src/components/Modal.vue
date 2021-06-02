@@ -97,7 +97,8 @@ const closeOnEsc = e => {
 	max-width: 44rem;
 	max-height: 70%; /* 61.8% */
 	transform: scale(0.8);
-	transition: all var(--transition-duration);
+	transition-property: transform, opacity, visibility; /* 'visibility' is inherited and needs transition, too */
+	transition-duration: var(--transition-duration);
 }
 
 @screen lg {
@@ -112,9 +113,10 @@ const closeOnEsc = e => {
 }
 
 .modal-overlay {
-	@apply fixed w-full h-full top-0 left-0 invisible opacity-0 z-30;
+	@apply fixed w-full h-full top-0 left-0 opacity-0 invisible z-30;
 	background-color: hsla(240, 21%, 7%, 80%);
-	transition: all var(--transition-duration);
+	transition-property: background-color, opacity, visibility;
+	transition-duration: var(--transition-duration);
 }
 
 .is-visible + .modal-overlay {
