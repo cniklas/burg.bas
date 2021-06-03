@@ -17,9 +17,16 @@ export default function() {
 			.join(' ')
 	}
 
+	const button = ref(null)
+	const blurButton = () => {
+		button.value?.blur()
+	}
+
 	return {
 		input,
 		focusInput,
-		cleanInput
+		cleanInput,
+		button,
+		blurButton
 	}
 }

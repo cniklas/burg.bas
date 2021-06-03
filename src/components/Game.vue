@@ -34,7 +34,7 @@
 
 				<section v-show="!onHold && !showCredits" class="actions">
 					<div v-if="nextButton" class="button-wrapper">
-						<button type="button" class="button" @click.stop="handleCommand(nextButton)">{{ nextButton?.text || 'weiter' }}</button>
+						<button type="button" class="button" ref="button" @click.stop="handleCommand(nextButton); blurButton()">{{ nextButton?.text || 'weiter' }}</button>
 					</div>
 
 					<div v-show="hint && showHint" class="hint papayawhip">{{ hint }}</div>
@@ -62,7 +62,7 @@ import useCountAnimation from '../useCountAnimation'
 
 const { playlist, loadMusic, playMusic, fadeOutMusic } = useHowler
 const { userName, gold, health, hasCondition, isEnabled, handleCondition, manageInventory, getArmed, resetState } = useState
-const { input, focusInput, cleanInput } = useInput()
+const { input, focusInput, cleanInput, button, blurButton } = useInput()
 const { animateCount } = useCountAnimation()
 
 const sceneId = ref('intro')
@@ -190,13 +190,13 @@ const handleAction = command => {
 	nextScene(command.action)
 }
 
-const handleMessage = command => {
-	hint.value = command.message
+const handleMessage = message => {
+	hint.value = message
 	showHint.value = true
 }
 
 const handleCommand = command => {
-	command.message ? handleMessage(command) : handleAction(command)
+	command.message ? handleMessage(command.message) : handleAction(command)
 }
 
 const nextButton = computed(() => scene.value.commands?.find(cmd => cmd.key === 'enter' && isEnabled(cmd)))
@@ -213,9 +213,9 @@ const handleInput = () => {
 		timeout = setTimeout(handleAction, 7000, { action: scene.value.timeout.action })
 	}
 
-	const input = cleanInput(typed.value)
+	const inputString = cleanInput(typed.value)
 	const command = scene.value.commands?.find(cmd =>
-		isEnabled(cmd) && (typeof cmd.text === 'string' ? cmd.text.toLowerCase() === input : cmd.text.find(text => text.toLowerCase() === input))
+		isEnabled(cmd) && (typeof cmd.text === 'string' ? cmd.text.toLowerCase() === inputString : cmd.text.find(text => text.toLowerCase() === inputString))
 	)
 
 	if (command === undefined) {
