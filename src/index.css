@@ -88,6 +88,10 @@ p:empty {
 	@apply mb-0;
 }
 
+.text-prewrap {
+	@apply block whitespace-pre-wrap text-center;
+}
+
 .battle {
 	line-height: var(--global-line-height);
 	scroll-behavior: smooth;
