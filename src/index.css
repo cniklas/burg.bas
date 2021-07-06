@@ -41,15 +41,11 @@ html {
 }
 
 body {
-	@apply flex h-screen overflow-y-hidden;
+	height: 100vh;
 	height: -webkit-fill-available;
-	font-family: Menlo, 'DejaVu Sans Mono', 'Lucida Console', monospace; /* -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif */
+	font-family: Menlo, 'DejaVu Sans Mono', 'Lucida Console', monospace;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-}
-
-#app {
-	@apply flex flex-1;
 }
 
 pre:empty,
@@ -65,7 +61,6 @@ p:empty {
 }
 
 .base-column {
-	@apply flex-1 mx-auto pt-8 px-4 lg:px-8;
 	max-width: 44rem;
 }
 
@@ -76,7 +71,6 @@ p:empty {
 }
 
 .headline {
-	@apply text-3xl font-medium;
 	color: var(--headline-color);
 }
 
@@ -92,10 +86,6 @@ p:empty {
 	@apply mb-0;
 }
 
-.text-prewrap {
-	@apply block whitespace-pre-wrap text-center;
-}
-
 .battle {
 	line-height: var(--global-line-height);
 	scroll-behavior: smooth;
@@ -106,18 +96,7 @@ p:empty {
 	margin-top: calc(var(--global-line-height) * 1rem);
 }
 
-.actions {
-	@apply mt-8 text-center;
-}
-
-.hint,
-.button-wrapper,
-.input-wrapper {
-	@apply my-4;
-}
-
 .button {
-	@apply tracking-wider border border-current py-2 px-7 select-none focus:outline-none;
 	background-color: #1a202c;
 	color: var(--button-color);
 	font-size: 1rem;
@@ -131,7 +110,6 @@ p:empty {
 }
 
 .input {
-	@apply w-full p-2 rounded outline-none;
 	background-color: hsl(230, 23%, 20%);
 	color: inherit;
 	font-size: 1.625rem;

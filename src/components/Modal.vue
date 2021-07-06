@@ -1,10 +1,10 @@
 <template>
-	<button type="button" class="button modal-button" :class="{'is-active': isVisible}" @click.stop="toggleModal">{{ isVisible ? '×' : '?' }}</button>
+	<button type="button" class="button modal-button tracking-wider border-2 border-current select-none focus:outline-none fixed top-4 left-1/2 z-50 hidden lg:block w-8 h-8 rounded-full" :class="{'is-active': isVisible}" @click.stop="toggleModal">{{ isVisible ? '×' : '?' }}</button>
 
 	<Teleport to="body">
-		<section class="modal-wrapper" :class="{'is-visible': isVisible}" @click.stop>
-			<div class="modal" ref="modal">
-				<h2 class="headline text-center mb-6">Über dieses Spiel</h2>
+		<section class="modal-wrapper fixed flex justify-center items-center w-full h-full top-0 left-0 z-40" :class="[isVisible ? 'visible' : 'invisible']" @click.stop>
+			<div class="modal px-4 overflow-y-auto" :class="[isVisible ? 'opacity-100' : 'opacity-0']" ref="modal">
+				<h2 class="headline text-3xl font-medium text-center mb-6">Über dieses Spiel</h2>
 
 				<article class="story">
 					<p>
@@ -39,7 +39,7 @@
 			</div>
 		</section>
 
-		<div class="modal-overlay" />
+		<div class="modal-overlay fixed w-full h-full top-0 left-0 z-30" :class="[isVisible ? 'opacity-100 visible' : 'opacity-0 invisible']" />
 	</Teleport>
 </template>
 
@@ -69,7 +69,6 @@ const closeOnEsc = e => {
 
 <style lang="postcss" scoped>
 .modal-button {
-	@apply fixed top-4 left-1/2 z-50 hidden lg:block p-0 w-8 h-8 border-2 rounded-full;
 	font-family: 'Courier New', Courier, monospace;
 	font-size: 1.5rem;
 	line-height: calc(2rem - 4px);
@@ -83,17 +82,10 @@ const closeOnEsc = e => {
 }
 
 .modal-wrapper {
-	@apply fixed flex justify-center items-center w-full h-full top-0 left-0 invisible z-40;
 	backface-visibility: hidden;
 }
 
-.modal-wrapper.is-visible {
-	@apply visible;
-}
-
-
 .modal {
-	@apply px-4 opacity-0 overflow-y-auto;
 	max-width: 44rem;
 	max-height: 70%; /* 61.8% */
 	transform: scale(0.8);
@@ -107,20 +99,17 @@ const closeOnEsc = e => {
 	}
 }
 
-.is-visible .modal {
-	@apply opacity-100;
+.modal.opacity-100 {
 	transform: scale(1);
 }
 
 .modal-overlay {
-	@apply fixed w-full h-full top-0 left-0 opacity-0 invisible z-30;
 	background-color: hsla(240, 21%, 7%, 80%);
 	transition-property: background-color, opacity, visibility;
 	transition-duration: var(--transition-duration);
 }
 
-.is-visible + .modal-overlay {
-	@apply opacity-100 visible;
+.modal-overlay.visible {
 	background-color: var(--bg-color);
 }
 

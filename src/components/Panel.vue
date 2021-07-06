@@ -1,5 +1,5 @@
 <template>
-	<aside class="panel">
+	<aside class="panel p-3 text-center h-24">
 		<div class="gold">Gold: {{ gold }}</div>
 		<div class="pink">Health: {{ health }}</div>
 		<div class="flex justify-center gap-x-2.5"><span v-for="(item, i) in inventory" :key="`item-${i}`">{{ item }}</span></div>
@@ -12,9 +12,8 @@ import useState from '../useState'
 const { gold, health, inventory } = useState
 </script>
 
-<style lang="postcss">
+<style>
 .panel {
-	@apply p-3 text-center h-24;
 	background-color: hsl(240, 21%, 12%);
 	font-family: 'Courier New', Courier, monospace;
 	font-size: 1.125rem;

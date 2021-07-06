@@ -1,15 +1,15 @@
 <template>
-	<div class="base-column">
-		<h1 class="headline text-center mb-8">Bist du bereit für ein waghalsiges Abenteuer in einer unbekannten Burg?</h1>
+	<div class="base-column flex-1 mx-auto pt-8 px-4 lg:px-8">
+		<h1 class="headline text-3xl font-medium text-center mb-8">Bist du bereit für ein waghalsiges Abenteuer in einer unbekannten Burg?</h1>
 
-		<section class="actions">
-			<div class="input-wrapper">
-				<input type="text" v-model.trim="userName" ref="input" class="input text-center max-w-sm" placeholder="Gib einen Namen ein oder drücke ENTER" spellcheck="false" @click.stop @keyup.enter="createName">
+		<section class="mt-8 text-center">
+			<div class="input-wrapper my-4">
+				<input type="text" v-model.trim="userName" ref="input" class="input w-full p-2 rounded outline-none text-center max-w-sm" placeholder="Gib einen Namen ein oder drücke ENTER" spellcheck="false" @click.stop @keyup.enter="createName">
 			</div>
 
 			<transition name="fade" mode="in-out">
-				<div v-show="showButton" class="button-wrapper">
-					<button type="button" class="button" @click.stop="$emit('start')">Spiel starten</button>
+				<div v-show="showButton" class="button-wrapper my-4">
+					<button type="button" class="button inline-flex items-center tracking-wider border border-current py-2 px-7 select-none focus:outline-none" @click.stop="$emit('start')">Spiel starten</button>
 				</div>
 			</transition>
 		</section>
@@ -52,7 +52,7 @@ onUnmounted(() => {
 })
 </script>
 
-<style lang="postcss" scoped>
+<style scoped>
 .input::placeholder {
 	font-size: 1rem;
 	line-height: 2.375rem;
