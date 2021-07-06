@@ -1,5 +1,5 @@
 <template>
-	<div class="base-column flex flex-col justify-between gap-y-8" :class="{'game-won': gameWon, 'game-lost': gameLost}">
+	<div class="base-column flex-1 mx-auto pt-8 px-4 lg:px-8 flex flex-col justify-between gap-y-8" :class="{'game-won': gameWon, 'game-lost': gameLost}">
 		<main class="main flex-auto">
 			<div class="scene h-full flex flex-col justify-between">
 				<AppStory
@@ -32,14 +32,14 @@
 					@finish="onBattleFinished"
 				/>
 
-				<section v-show="!onHold && !showCredits" class="actions">
-					<div v-if="nextButton" class="button-wrapper">
-						<button type="button" class="button" ref="button" @click.stop="handleCommand(nextButton); blurButton()">{{ nextButton?.text || 'weiter' }}</button>
+				<section v-show="!onHold && !showCredits" class="actions mt-8 text-center">
+					<div v-if="nextButton" class="button-wrapper my-4">
+						<button type="button" class="button inline-flex items-center tracking-wider border border-current py-2 px-7 select-none focus:outline-none" ref="button" @click.stop="handleCommand(nextButton); blurButton()">{{ nextButton?.text || 'weiter' }}</button>
 					</div>
 
-					<div v-show="hint && showHint" class="hint papayawhip">{{ hint }}</div>
-					<div v-if="showInput" class="input-wrapper">
-						<input type="text" v-model.trim="typed" ref="input" class="input" placeholder="?" spellcheck="false" @click.stop @keyup.enter="handleInput">
+					<div v-show="hint && showHint" class="hint my-4 papayawhip">{{ hint }}</div>
+					<div v-if="showInput" class="input-wrapper my-4">
+						<input type="text" v-model.trim="typed" ref="input" class="input w-full p-2 rounded outline-none" placeholder="?" spellcheck="false" @click.stop @keyup.enter="handleInput">
 					</div>
 				</section>
 			</div>
@@ -236,7 +236,7 @@ onUnmounted(() => {
 })
 </script>
 
-<style lang="postcss" scoped>
+<style>
 .base-column {
 	box-shadow: 0 0 5.375rem var(--bg-color);
 	transition: box-shadow 480ms ease-out;

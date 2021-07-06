@@ -2,7 +2,7 @@
 	{
 		"id": "intro",
 		"story": [
-			"<span class='text-prewrap'>---------------------  D  I  E     B  U  R  G  ---------------------</span>"
+			"<span class='block whitespace-pre-wrap text-center'>---------------------  D  I  E     B  U  R  G  ---------------------</span>"
 		],
 		"play": "intro-2",
 		"continue": { "action": "start" }
@@ -1106,7 +1106,7 @@
 	{
 		"id": "credits",
 		"story": [
-			"<span class='text-prewrap'>---------------------------  E  N  D  E  ---------------------------</span>",
+			"<span class='block whitespace-pre-wrap text-center'>---------------------------  E  N  D  E  ---------------------------</span>",
 			"Ein Spiel von KRISCHAN\nIdee: KRISCHAN mit hilfreicher Unterstützung von DEWITT\nText: KRISCHAN\nMusik: KRISCHAN (bis auf wenige Raubkopien)\nOriginally written in BASIC, rewritten in JavaScript with Vue.js\n© Christian Niklas 1996, 2021"
 		]
 	}
