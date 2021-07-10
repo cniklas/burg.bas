@@ -15,13 +15,20 @@ const loadMusic = (id, autoplay = false) => {
 				onload: () => {
 					console.log('onload')
 				},
-				onplay: () => { console.log(`onplay "${id}"`) },
-				onend: () => { console.log(`onend "${id}"`) },
+				onplay: () => {
+					console.log(`onplay "${id}"`)
+				},
+				onend: () => {
+					console.log(`onend "${id}"`)
+				},
 				onfade: () => {
 					console.log('onfade (end)')
-					playlist.value.find(item => item.id === id).audio.stop().volume(1)
-				}
-			})
+					playlist.value
+						.find(item => item.id === id)
+						.audio.stop()
+						.volume(1)
+				},
+			}),
 		})
 	}
 }
@@ -46,5 +53,5 @@ export default {
 	playlist,
 	loadMusic,
 	playMusic,
-	fadeOutMusic
+	fadeOutMusic,
 }

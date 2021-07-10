@@ -2,7 +2,9 @@
 	<aside class="panel p-3 text-center h-24">
 		<div class="gold">Gold: {{ gold }}</div>
 		<div class="pink">Health: {{ health }}</div>
-		<div class="flex justify-center gap-x-2.5"><span v-for="(item, i) in inventory" :key="`item-${i}`">{{ item }}</span></div>
+		<div class="flex justify-center gap-x-2.5">
+			<span v-for="(item, i) in inventory" :key="`item-${i}`">{{ item }}</span>
+		</div>
 	</aside>
 </template>
 

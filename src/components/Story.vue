@@ -21,7 +21,7 @@ import { defineProps } from 'vue'
 
 defineProps({
 	story: Array,
-	isEnabled: Function
+	isEnabled: Function,
 })
 </script>
 

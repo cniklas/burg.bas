@@ -1,15 +1,42 @@
 <template>
 	<div class="base-column flex-1 mx-auto pt-8 px-4 lg:px-8">
-		<h1 class="headline text-3xl font-medium text-center mb-8">Bist du bereit für ein waghalsiges Abenteuer in einer unbekannten Burg?</h1>
+		<h1 class="headline text-3xl font-medium text-center mb-8">
+			Bist du bereit für ein waghalsiges Abenteuer in einer unbekannten Burg?
+		</h1>
 
 		<section class="mt-8 text-center">
 			<div class="input-wrapper my-4">
-				<input type="text" v-model.trim="userName" ref="input" class="input w-full p-2 rounded outline-none text-center max-w-sm" placeholder="Gib einen Namen ein oder drücke ENTER" spellcheck="false" @click.stop @keyup.enter="createName">
+				<input
+					ref="input"
+					v-model.trim="userName"
+					type="text"
+					class="input w-full p-2 rounded outline-none text-center max-w-sm"
+					placeholder="Gib einen Namen ein oder drücke ENTER"
+					spellcheck="false"
+					@click.stop
+					@keyup.enter="createName"
+				/>
 			</div>
 
 			<transition name="fade" mode="in-out">
 				<div v-show="showButton" class="button-wrapper my-4">
-					<button type="button" class="button inline-flex items-center tracking-wider border border-current py-2 px-7 select-none focus:outline-none" @click.stop="$emit('start')">Spiel starten</button>
+					<button
+						type="button"
+						class="
+							button
+							inline-flex
+							items-center
+							tracking-wider
+							border border-current
+							py-2
+							px-7
+							select-none
+							focus:outline-none
+						"
+						@click.stop="$emit('start')"
+					>
+						Spiel starten
+					</button>
 				</div>
 			</transition>
 		</section>
@@ -34,7 +61,7 @@ watch(userName, val => {
 })
 
 let names = []
-const randomSplice = store => store.splice( Math.floor(Math.random() * store.length), 1 ).shift()
+const randomSplice = store => store.splice(Math.floor(Math.random() * store.length), 1).shift()
 const createName = () => {
 	if (!names.length) {
 		names = [...simCityNames]

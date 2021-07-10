@@ -1,5 +1,5 @@
 <template>
-	<section class="battle" ref="container">
+	<section ref="container" class="battle">
 		<ol ref="timeline">
 			<li v-for="(attack, i) in attacks" :key="i">
 				{{ attack.message }}
@@ -17,24 +17,24 @@ const weapons = [
 	'einem Silberlöffel',
 	'einer Luftpumpe',
 	'einer Zahnbürste',
-	'einer Blockflöte'
+	'einer Blockflöte',
 ]
 
 export default {
 	props: {
 		userName: String,
 		health: Number,
-		strikeInterval: Number
+		strikeInterval: Number,
 	},
 	data() {
 		return {
 			attacks: [],
 			player: {
-				weapon: 'seinem Schwert'
+				weapon: 'seinem Schwert',
 			},
 			opponent: {
 				name: '🧟 UBOLZIO',
-				health: 75
+				health: 75,
 			},
 		}
 	},
@@ -47,24 +47,24 @@ export default {
 		battleResult() {
 			let message = ''
 			switch (true) {
-				case this.opponent.health <= 0 && this.player.health > 0 :
+				case this.opponent.health <= 0 && this.player.health > 0:
 					message = `${this.opponent.name} erleidet eine Herzattacke und stirbt. 💀`
 					this.$emit('finish', 'won')
 					break
 
-				case this.player.health <= 0 && this.opponent.health > 0 :
+				case this.player.health <= 0 && this.opponent.health > 0:
 					message = `${this.player.name} erliegt seinen Verletzungen und stirbt. 🚑`
 					this.$emit('finish', 'lost')
 					break
 
-				case this.player.health <= 0 && this.opponent.health <= 0 :
+				case this.player.health <= 0 && this.opponent.health <= 0:
 					message = `Beide Opponenten sind tödlich getroffen. 😱`
 					this.$emit('finish', 'lost')
 					break
 			}
 
 			return message
-		}
+		},
 	},
 
 	watch: {
@@ -77,7 +77,21 @@ export default {
 			if (val < this.player.originHealth) {
 				this.$emit('got-hit', oldVal - val)
 			}
+		},
+	},
+
+	created() {
+		this.player = {
+			...this.player,
+			name: `🦸🏼‍♂️ ${this.userName}`,
+			health: this.health,
+			originHealth: this.health,
 		}
+	},
+
+	mounted() {
+		this._observe()
+		this.battle()
 	},
 
 	methods: {
@@ -86,18 +100,18 @@ export default {
 			const timeline = this.$refs['timeline']
 			const ro = new ResizeObserver(() => {
 				container.scrollTop = container.scrollHeight
-			});
+			})
 
-			ro.observe(container);
-			ro.observe(timeline);
+			ro.observe(container)
+			ro.observe(timeline)
 		},
 
 		battle() {
 			this.player.hit = false
 			// this.player.attack = Math.floor(Math.random() * 16) + 1 // 1 bis 16
-			this.player.attack = (Math.floor(Math.random() * 12) + 1) + 4 // 5 bis 16
+			this.player.attack = Math.floor(Math.random() * 12) + 1 + 4 // 5 bis 16
 			this.opponent.hit = false
-			this.opponent.attack = (Math.floor(Math.random() * 12) + 1) + 4
+			this.opponent.attack = Math.floor(Math.random() * 12) + 1 + 4
 
 			// bestimmen, wer beginnt
 			if (Math.floor(Math.random() * 2) % 2) {
@@ -130,7 +144,7 @@ export default {
 
 			// const attackerLog = { name: attacker.name, currentHealth: attacker.health, attack: attacker.attack }
 			const message = this[moveType](dice, attacker, defender)
-			this.attacks.push({ message/* , attacker: { health: attacker.health, hit: attacker.hit, ...attackerLog } */ })
+			this.attacks.push({ message /* , attacker: { health: attacker.health, hit: attacker.hit, ...attackerLog } */ })
 		},
 
 		_attack(d20, attacker, defender) {
@@ -139,12 +153,14 @@ export default {
 				return `${attacker.name} haut daneben, verliert das Gleichgewicht und beschmutzt sich!`
 			}
 			else if (d20 >= 3 && d20 <= 19) {
-				const weapon = weapons[ Math.floor(Math.random() * weapons.length) ]
+				const weapon = weapons[Math.floor(Math.random() * weapons.length)]
 
 				defender.hit = true
 				defender.health -= attacker.attack
 				// this.attacks.push({ message: `${attacker.name} strikes ${defender.name} with ${attacker.weapon} for ${attacker.attack} damage.` })
-				return `${attacker.name} trifft ${defender.name} mit ${attacker.weapon || weapon}${attacker.attack > 10 ? ' an einer empfindlichen Stelle' : ''}. Schmerz-Level: ${attacker.attack}`
+				return `${attacker.name} trifft ${defender.name} mit ${attacker.weapon || weapon}${
+					attacker.attack > 10 ? ' an einer empfindlichen Stelle' : ''
+				}. Schmerz-Level: ${attacker.attack}`
 			}
 			else {
 				defender.hit = true
@@ -157,7 +173,9 @@ export default {
 		_block(d20, defender, attacker) {
 			if (d20 <= 2) {
 				// this.attacks.push({ message: `${defender.name} fails to block and takes ${defender.hit ? attacker.attack : 'zero'} damage.` })
-				return `${defender.name} versucht vergeblich den Schlag abzuwehren und ${defender.hit ? 'wird getroffen' : 'kommt mit einem blauen Auge davon'}.`
+				return `${defender.name} versucht vergeblich den Schlag abzuwehren und ${
+					defender.hit ? 'wird getroffen' : 'kommt mit einem blauen Auge davon'
+				}.`
 			}
 			else if (d20 >= 3 && d20 <= 18) {
 				// Treffer wird zurückgenommen
@@ -244,19 +262,5 @@ export default {
 			}
 		},
 	},
-
-	created() {
-		this.player = {
-			...this.player,
-			name: `🦸🏼‍♂️ ${this.userName}`,
-			health: this.health,
-			originHealth: this.health
-		}
-	},
-
-	mounted() {
-		this._observe()
-		this.battle()
-	}
 }
 </script>
