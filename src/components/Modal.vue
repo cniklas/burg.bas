@@ -61,7 +61,7 @@
 					</ul>
 					<p>
 						Der ursprüngliche Endkampf war eine simple Wahrscheinlichkeitsrechnung, bei der der Spieler mit einer Chance
-						von 1:1,5 gewonnen hat.<br />
+						von 2:1 gewonnen hat.<br />
 						Nun wird diese alles entscheidende Szene in Form eines etwas schrägen Protokolls wiedergegeben und die
 						Aussicht auf Sieg oder Niederlage von vielen Zufällen abhängig gemacht.
 					</p>
