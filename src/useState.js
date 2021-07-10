@@ -33,13 +33,27 @@ const handleCondition = condition => {
 const inventory = ref([])
 const manageInventory = condition => {
 	switch (condition) {
-		case 'has-helmet': inventory.value.push('Helm', 'Umhang'); break;
-		case 'has-keys': inventory.value.push('Keule', 'Schlüssel'); break;
-		case 'has-sword': inventory.value.push('Schwert', 'Seil'); break;
-		case 'has-magic-wand': inventory.value.push('Stab'); break;
-		case 'discard-mace': inventory.value.splice(inventory.value.indexOf('Keule'), 1); break;
-		case 'get-armed': inventory.value.push('Schwert', 'Schild'); break;
-		case 'discard-magic-wand': inventory.value.splice(inventory.value.indexOf('Stab'), 1); break;
+		case 'has-helmet':
+			inventory.value.push('Helm', 'Umhang')
+			break
+		case 'has-keys':
+			inventory.value.push('Keule', 'Schlüssel')
+			break
+		case 'has-sword':
+			inventory.value.push('Schwert', 'Seil')
+			break
+		case 'has-magic-wand':
+			inventory.value.push('Stab')
+			break
+		case 'discard-mace':
+			inventory.value.splice(inventory.value.indexOf('Keule'), 1)
+			break
+		case 'get-armed':
+			inventory.value.push('Schwert', 'Schild')
+			break
+		case 'discard-magic-wand':
+			inventory.value.splice(inventory.value.indexOf('Stab'), 1)
+			break
 	}
 }
 
@@ -71,5 +85,5 @@ export default {
 	inventory,
 	manageInventory,
 	getArmed,
-	resetState
+	resetState,
 }

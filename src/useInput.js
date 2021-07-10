@@ -1,13 +1,13 @@
 import { ref } from 'vue'
 
-export default function() {
+export default function () {
 	const input = ref(null)
 	const focusInput = () => {
 		input.value?.focus()
 	}
 
 	const cleanInput = string => {
-		const regex = /[!"#$%&\'()*+,\-./:;<=>?@[\\\]^_`{\|}~]/g;
+		const regex = /[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/g
 		return string
 			.replaceAll(regex, '')
 			.toLowerCase()
@@ -27,6 +27,6 @@ export default function() {
 		focusInput,
 		cleanInput,
 		button,
-		blurButton
+		blurButton,
 	}
 }
