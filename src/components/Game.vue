@@ -246,7 +246,7 @@ const handleCommand = command => {
 const nextButton = computed(() => scene.value.commands?.find(cmd => cmd.key === 'enter' && isEnabled(cmd)))
 const onClick = () => {
 	blurButton()
-	handleCommand(nextButton)
+	handleCommand(nextButton.value)
 }
 const hint = ref('')
 const showHint = ref(false)
