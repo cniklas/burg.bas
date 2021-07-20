@@ -1,5 +1,5 @@
 // https://jshakespeare.com/simple-count-up-number-animation-javascript-react/
-export default function () {
+export const useCountAnimation = () => {
 	// const _animationDuration = 2000
 	// Calculate how long each ‘frame’ should last if we want to update the animation 60 times per second
 	const _frameDuration = 1000 / 60
