@@ -46,12 +46,10 @@
 <script setup>
 import simCityNames from '../names.json'
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
-import useHowler from '../useHowler'
-import useInput from '../useInput'
-import useState from '../useState'
+import { loadMusic } from '../useHowler'
+import { useInput } from '../useInput'
+import { setName } from '../useState'
 
-const { loadMusic } = useHowler
-const { setName } = useState
 const { input, focusInput } = useInput()
 
 const userName = ref('')

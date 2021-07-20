@@ -73,7 +73,7 @@ const resetState = () => {
 	conditions.value = []
 }
 
-export default {
+export {
 	userName,
 	setName,
 	gold,

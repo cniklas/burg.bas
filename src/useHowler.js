@@ -49,9 +49,4 @@ const fadeOutMusic = () => {
 	}
 }
 
-export default {
-	playlist,
-	loadMusic,
-	playMusic,
-	fadeOutMusic,
-}
+export { playlist, loadMusic, playMusic, fadeOutMusic }

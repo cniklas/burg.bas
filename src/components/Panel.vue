@@ -9,9 +9,7 @@
 </template>
 
 <script setup>
-import useState from '../useState'
-
-const { gold, health, inventory } = useState
+import { gold, health, inventory } from '../useState'
 </script>
 
 <style>

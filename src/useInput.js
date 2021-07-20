@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 
-export default function () {
+export const useInput = () => {
 	const input = ref(null)
 	const focusInput = () => {
 		input.value?.focus()
