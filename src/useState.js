@@ -1,9 +1,6 @@
 import { ref } from 'vue'
 
 const userName = ref('')
-const setName = name => {
-	userName.value = name
-}
 
 const gold = ref(0)
 const health = ref(100)
@@ -75,7 +72,6 @@ const resetState = () => {
 
 export {
 	userName,
-	setName,
 	gold,
 	health,
 	conditions,
