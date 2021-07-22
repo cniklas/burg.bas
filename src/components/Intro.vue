@@ -45,18 +45,14 @@
 
 <script setup>
 import simCityNames from '../names.json'
-import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
+import { computed, onMounted, onUnmounted } from 'vue'
 import { loadMusic } from '../useHowler'
 import { useInput } from '../useInput'
-import { setName } from '../useState'
+import { userName } from '../useState'
 
 const { input, focusInput } = useInput()
 
-const userName = ref('')
 const showButton = computed(() => userName.value.length >= 3)
-watch(userName, val => {
-	setName(val)
-})
 
 let names = []
 const randomSplice = store => store.splice(Math.floor(Math.random() * store.length), 1).shift()

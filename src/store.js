@@ -75,13 +75,15 @@ const resetState = () => {
 	state.conditions = []
 }
 
-export default {
-	state: readonly(state),
-	setName,
-	hasCondition,
-	isEnabled,
-	handleCondition,
-	manageInventory,
-	getArmed,
-	resetState,
-}
+// export default {
+// 	state: readonly(state),
+// 	setName,
+// 	hasCondition,
+// 	isEnabled,
+// 	handleCondition,
+// 	manageInventory,
+// 	getArmed,
+// 	resetState,
+// }
+export const roState = readonly(state)
+export { setName, hasCondition, isEnabled, handleCondition, manageInventory, getArmed, resetState }
