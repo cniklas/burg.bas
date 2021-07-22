@@ -1,3 +1,6 @@
+/**
+ * Die State-Elemente sind mutierbar, weil sie direkt exportiert werden
+ */
 import { ref } from 'vue'
 
 const userName = ref('')
