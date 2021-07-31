@@ -5,9 +5,18 @@ module.exports = {
 	},
 	extends: [
 		// https://eslint.vuejs.org/rules/
-		'plugin:vue/vue3-essential', // 'plugin:vue/vue3-recommended' > 'plugin:vue/vue3-strongly-recommended' > 'plugin:vue/vue3-essential' > 'plugin:vue/base'
+		// vue3-recommended > vue3-strongly-recommended > vue3-essential > base
+		'plugin:vue/vue3-strongly-recommended',
 		'eslint:recommended',
 		// Add under other rules
 		'@vue/prettier',
 	],
+	rules: {
+		// override/add rules settings here, such as:
+		// 'vue/no-unused-vars': 'error'
+	},
+	globals: {
+		defineProps: 'readonly',
+		defineEmits: 'readonly',
+	},
 }
