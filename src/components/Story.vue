@@ -17,11 +17,15 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
-
 defineProps({
-	story: Array,
-	isEnabled: Function,
+	story: {
+		type: Array,
+		default: () => [],
+	},
+	// eslint-disable-next-line vue/require-default-prop
+	isEnabled: {
+		type: Function,
+	},
 })
 </script>
 

@@ -48,7 +48,9 @@ import simCityNames from '../names.json'
 import { computed, onMounted, onUnmounted } from 'vue'
 import { loadMusic } from '../useHowler'
 import { useInput } from '../useInput'
-import { userName } from '../useState'
+import { userName } from '../useStore'
+
+defineEmits(['start'])
 
 const { input, focusInput } = useInput()
 

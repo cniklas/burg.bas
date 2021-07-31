@@ -94,7 +94,7 @@ import {
 	manageInventory,
 	getArmed,
 	resetState,
-} from '../useState'
+} from '../useStore'
 import { useCountAnimation } from '../useCountAnimation'
 
 const { input, focusInput, cleanInput, button, blurButton } = useInput()
@@ -129,8 +129,7 @@ const handleStory = async () => {
 
 			requestAnimationFrame(focusInput)
 		}, scene.value.delayed.delay)
-	}
-	else {
+	} else {
 		requestAnimationFrame(focusInput)
 	}
 
