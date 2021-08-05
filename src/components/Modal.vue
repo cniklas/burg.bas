@@ -50,13 +50,13 @@
 					</p>
 					<ul>
 						<li class="flex items-center">
-							<audio src="audio/intro-2-o.mp3" controls></audio> <span class="ml-4">Intro</span>
+							<audio src="audio/intro-2-o.mp3" controls></audio> <span class="ml-4 white">Intro</span>
 						</li>
 						<li class="flex items-center">
-							<audio src="audio/intro-1.mp3" controls></audio> <span class="ml-4">alternatives Intro</span>
+							<audio src="audio/intro-1.mp3" controls></audio> <span class="ml-4 white">alternatives Intro</span>
 						</li>
 						<li class="flex items-center">
-							<audio src="audio/battle-o.mp3" controls></audio> <span class="ml-4">Kampf</span>
+							<audio src="audio/battle-o.mp3" controls></audio> <span class="ml-4 white">Kampf</span>
 						</li>
 					</ul>
 					<p>

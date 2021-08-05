@@ -300,7 +300,7 @@
 		"delayed": {
 			"delay": 4000,
 			"story": [
-				"Der Mann fragt dich: <span class=white>„Warum bist du zu mir gekommen?“</span>\nDu sagst: <span class=white>„Ich bin aus dem Kerker entflohen und suche einen Ausweg aus dieser schrecklichen Burg.“</span>\n<span class=white>„Niemand ist je aus der Burg UBOLZIOs entkommen, denn sie ist durch einen mächtigen Zauber geschützt“</span>, sagt der Mann.",
+				"Der Mann fragt dich: <span class=papayawhip>„Warum bist du zu mir gekommen?“</span>\nDu sagst: <span class=papayawhip>„Ich bin aus dem Kerker entflohen und suche einen Ausweg aus dieser schrecklichen Burg.“</span>\n<span class=papayawhip>„Niemand ist je aus der Burg UBOLZIOs entkommen, denn sie ist durch einen mächtigen Zauber geschützt“</span>, sagt der Mann.",
 				"Du bist sehr verzweifelt."
 			]
 		},
@@ -312,7 +312,7 @@
 	{
 		"id": "turm_og_21",
 		"story": [
-			"Der Mann sieht dir fest in Augen und sagt: <span class=white>„Es gibt nur einen einzigen Weg, den Zauber zu brechen:\nDu musst bis zum Thronsaal vordringen und UBOLZIO töten. Der Thronsaal wird von einem dreiköpfigen Drachen bewacht, dem weder Schwert noch Pfeil etwas anhaben können. Doch wenn du ihn mit diesem Stab berührst</span> – bei diesen Worten reicht er dir einen kleinen, weißen <span class=blue-dark>Stab</span> – <span class=white>muss er sogleich zu Staub zerfallen.“</span>",
+			"Der Mann sieht dir fest in Augen und sagt: <span class=papayawhip>„Es gibt nur einen einzigen Weg, den Zauber zu brechen:\nDu musst bis zum Thronsaal vordringen und UBOLZIO töten. Der Thronsaal wird von einem dreiköpfigen Drachen bewacht, dem weder Schwert noch Pfeil etwas anhaben können. Doch wenn du ihn mit diesem Stab berührst</span> – bei diesen Worten reicht er dir einen kleinen, weißen <span class=blue-dark>Stab</span> – <span class=papayawhip>muss er sogleich zu Staub zerfallen.“</span>",
 			"Du fasst wieder Mut."
 		],
 		"delayed": {
@@ -811,7 +811,7 @@
 			[
 				{ "condition": "has-sword", "story": "Die Tür ist mit einem schweren Schloss versehen, das du nicht aufbekommst.\n\nDu gehst weiter zur <span class=blue-light>zweiten Tür</span>." },
 				{ "condition": "has-keys", "story": "Die Tür ist mit einem schweren Schloss versehen. Du nimmst die Schlüssel aus der Tasche und probierst damit solange, bis du das Schloss aufbekommen hast. Du öffnest die Tür und stellst erfreut fest, dass du in die Waffenkammer gelangt bist!\n\nDu tauscht deine Keule gegen das beste <span class=blue-dark>Schwert</span> ein, das du finden kannst, und nimmst auch einen festen <span class=blue-dark>Schild</span> mit. Dann verlässt du diesen Raum und gehst zur <span class=blue-light>zweiten Tür</span>." },
-				{ "condition": "no-weapons", "story": "Zu deinem Glück (und UBOLZIOs Verhängnis) ist die Türe nicht verschlossen. Du öffnest sie und betrittst einen Raum der im Halbdunkel liegt. Erfreut stellst du fest, dass du in die Waffenkammer gelangt bist!\n\nUm nicht länger unbewaffnet umherzuschleichen, nimmst du das beste <span class=blue-dark>Schwert</span> und einen festen <span class=blue-dark>Schild</span> mit. Dann verlässt du diesen Raum und gehst zur <span class=blue-light>zweiten Tür</span>." }
+				{ "condition": "no-weapons", "story": "Zu deinem Glück ist die Tür nicht verschlossen.\nDu öffnest sie und betrittst einen Raum der im Halbdunkel liegt. Erfreut stellst du fest, dass du in die Waffenkammer gelangt bist!\n\nUm nicht länger unbewaffnet umherzuschleichen, nimmst du das beste <span class=blue-dark>Schwert</span> und einen festen <span class=blue-dark>Schild</span> mit. Dann verlässt du diesen Raum und gehst zur <span class=blue-light>zweiten Tür</span>." }
 			]
 		],
 		"commands": [
@@ -951,7 +951,7 @@
 		"delayed": {
 			"delay": 3000,
 			"story": [
-				"Der Drache bemerkt dich und richtet sich auf. Es ist ein ekelhaftes, schuppiges, schmutzigbraunes Ungetüm mit vier großen Pranken. Über den gesamten Rücken zieht sich ein Kamm spitzer Stacheln, ebenso über den Schwanz. Seine Augen sind gierig auf dich geheftet und aus seinen Mäulern trieft der Speichel, als er dich so verzagt da stehen sieht.",
+				"Der Drache bemerkt dich und richtet sich auf. Es ist ein ekelhaftes, schuppiges Ungetüm mit vier großen Pranken. Über den gesamten Rücken zieht sich ein Kamm spitzer Stacheln, ebenso über den Schwanz. Seine Augen sind gierig auf dich geheftet und aus seinen Mäulern trieft der Speichel, als er dich so verzagt da stehen sieht.",
 				"Du fragst dich, wie du es schaffen sollst, ihn mit dem Stab anzurühren, ohne vorher von ihm verschlungen zu werden."
 			]
 		},
