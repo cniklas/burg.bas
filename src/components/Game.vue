@@ -55,7 +55,7 @@
 						</button>
 					</div>
 
-					<div v-show="hint && showHint" class="hint my-4 papayawhip">{{ hint }}</div>
+					<div v-show="hint && showHint" class="hint my-4 white">{{ hint }}</div>
 					<div v-if="showInput" class="input-wrapper my-4">
 						<input
 							ref="input"
