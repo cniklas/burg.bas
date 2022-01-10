@@ -1,23 +1,7 @@
 <template>
 	<button
 		type="button"
-		class="
-			button
-			modal-button
-			tracking-wider
-			border-2 border-current
-			select-none
-			focus:outline-none
-			fixed
-			top-4
-			left-1/2
-			z-50
-			hidden
-			lg:block
-			w-8
-			h-8
-			rounded-full
-		"
+		class="button modal-button tracking-wider border-2 border-current select-none focus:outline-none fixed top-4 left-1/2 z-50 hidden lg:block w-8 h-8 rounded-full"
 		:class="{ 'is-active': isVisible }"
 		@click.stop="toggleModal"
 	>
