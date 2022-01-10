@@ -38,17 +38,7 @@
 						<button
 							ref="button"
 							type="button"
-							class="
-								button
-								inline-flex
-								items-center
-								tracking-wider
-								border border-current
-								py-2
-								px-7
-								select-none
-								focus:outline-none
-							"
+							class="button inline-flex items-center tracking-wider border border-current py-2 px-7 select-none focus:outline-none"
 							@click.stop="onClick"
 						>
 							{{ nextButton?.text || 'weiter' }}
