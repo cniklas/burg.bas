@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "howler": "^2.2.1",
-    "vue": "^3.2.27"
+    "vue": "^3.2.29"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.10.2",
