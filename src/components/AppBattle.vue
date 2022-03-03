@@ -11,16 +11,15 @@
 </template>
 
 <script>
-const weapons = [
-	'dem Zepter des Titanen',
-	'dem Schwert von Couronne',
-	'einem Silberlöffel',
-	'einer Luftpumpe',
-	'einer Zahnbürste',
-	'einer Blockflöte',
-]
-
 export default {
+	weapons: [
+		'dem Zepter des Titanen',
+		'dem Schwert von Couronne',
+		'einem Silberlöffel',
+		'einer Luftpumpe',
+		'einer Zahnbürste',
+		'einer Blockflöte',
+	],
 	emits: ['finish', 'got-hit'],
 	props: {
 		userName: {
@@ -161,7 +160,7 @@ export default {
 				// this.attacks.push({ message: `${attacker.name} misses, is knocked off balance, falls backward and soils himself!` })
 				return `${attacker.name} haut daneben, verliert das Gleichgewicht und beschmutzt sich!`
 			} else if (d20 >= 3 && d20 <= 19) {
-				const weapon = weapons[Math.floor(Math.random() * weapons.length)]
+				const weapon = this.$options.weapons[Math.floor(Math.random() * this.$options.weapons.length)]
 
 				defender.hit = true
 				defender.health -= attacker.attack
