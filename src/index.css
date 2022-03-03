@@ -64,10 +64,8 @@ p:empty {
 
 .base-column {
 	max-width: 44rem;
-}
 
-@screen lg {
-	.base-column {
+	@screen lg {
 		max-width: 49rem;
 	}
 }
@@ -78,14 +76,14 @@ p:empty {
 
 .story {
 	line-height: var(--global-line-height);
-}
 
-.story p {
-	margin-bottom: calc(var(--global-line-height) * 1rem);
-}
+	p {
+		margin-bottom: calc(var(--global-line-height) * 1rem);
+	}
 
-.story > :last-child {
-	@apply mb-0;
+	> :last-child {
+		@apply mb-0;
+	}
 }
 
 .text-prewrap {
@@ -108,11 +106,11 @@ p:empty {
 	font-size: 1rem;
 	box-shadow: 0 0 0px 0px var(--bg-color), 0 0 0px 0px currentColor;
 	transition: color 160ms, box-shadow 160ms;
-}
 
-.button:hover {
-	color: var(--button-color-hover);
-	box-shadow: 0 0 0px 1px var(--bg-color), 0 0 0px 2px currentColor;
+	&:hover {
+		color: var(--button-color-hover);
+		box-shadow: 0 0 0px 1px var(--bg-color), 0 0 0px 2px currentColor;
+	}
 }
 
 .input {

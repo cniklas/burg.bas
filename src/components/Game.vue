@@ -280,18 +280,18 @@ onUnmounted(() => {
 })
 </script>
 
-<style>
+<style lang="postcss">
 .base-column {
 	box-shadow: 0 0 5.375rem var(--bg-color);
 	transition: box-shadow 480ms ease-out;
-}
 
-.base-column.game-won {
-	box-shadow: 0 0 5.375rem var(--green);
-}
+	&.game-won {
+		box-shadow: 0 0 5.375rem var(--green);
+	}
 
-.base-column.game-lost {
-	box-shadow: 0 0 5.375rem var(--red);
+	&.game-lost {
+		box-shadow: 0 0 5.375rem var(--red);
+	}
 }
 
 .main {

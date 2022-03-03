@@ -94,10 +94,10 @@ const closeOnEsc = e => {
 	box-shadow: none;
 	transform: translateX(calc(-512px - 50% + 2rem)); /* translateX(calc(-50vw - 50% + 2rem)) */
 	transition: color 160ms, transform var(--transition-duration);
-}
 
-.modal-button.is-active {
-	transform: translateX(-50%);
+	&.is-active {
+		transform: translateX(-50%);
+	}
 }
 
 .modal-wrapper {
@@ -110,33 +110,33 @@ const closeOnEsc = e => {
 	transform: scale(0.8);
 	transition-property: transform, opacity, visibility; /* 'visibility' is inherited and needs transition, too */
 	transition-duration: var(--transition-duration);
-}
 
-@screen lg {
-	.modal {
+	@screen lg {
 		max-width: 47rem;
 	}
-}
 
-.modal.opacity-100 {
-	transform: scale(1);
+	&.opacity-100 {
+		transform: scale(1);
+	}
 }
 
 .modal-overlay {
 	background-color: hsla(240, 21%, 7%, 80%);
 	transition-property: background-color, opacity, visibility;
 	transition-duration: var(--transition-duration);
+
+	&.visible {
+		background-color: var(--bg-color);
+	}
 }
 
-.modal-overlay.visible {
-	background-color: var(--bg-color);
-}
+.story {
+	ul {
+		margin-bottom: calc(var(--global-line-height) * 1rem);
+	}
 
-.story ul {
-	margin-bottom: calc(var(--global-line-height) * 1rem);
-}
-
-.story li:nth-last-child(n + 2) {
-	margin-bottom: calc(var(--global-line-height) * 0.5rem);
+	li:nth-last-child(n + 2) {
+		margin-bottom: calc(var(--global-line-height) * 0.5rem);
+	}
 }
 </style>
