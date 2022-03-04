@@ -69,7 +69,7 @@
 <script setup>
 import burg from '../burg.json'
 import AppStory from './Story.vue'
-import AppBattle from './AppBattle.vue'
+import AppBattle from './Battle.vue'
 import AppPanel from './Panel.vue'
 import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import { playlist, loadMusic, playMusic, fadeOutMusic } from '../useHowler'

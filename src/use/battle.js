@@ -1,35 +1,8 @@
-<template>
-	<section ref="container" class="battle">
-		<ol ref="timeline">
-			<li v-for="(attack, i) in attacks" :key="i">
-				{{ attack.message }}
-			</li>
-		</ol>
+import { reactive } from 'vue'
 
-		<div v-show="battleResult" class="battle-result">{{ battleResult }}</div>
-	</section>
-</template>
+const attacks = reactive([])
 
-<script setup>
-import { ref, reactive, computed, watch, onMounted } from 'vue'
-
-const emit = defineEmits(['finish', 'got-hit'])
-const props = defineProps({
-	userName: {
-		type: String,
-		default: '',
-	},
-	health: {
-		type: Number,
-		default: 100,
-	},
-	strikeInterval: {
-		type: Number,
-		default: 1200,
-	},
-})
-
-const weapons = [
+const _weapons = [
 	'dem Zepter des Titanen',
 	'dem Schwert von Couronne',
 	'einem Silberlöffel',
@@ -37,70 +10,12 @@ const weapons = [
 	'einer Zahnbürste',
 	'einer Blockflöte',
 ]
-const opponent = reactive({
-	name: '🧟 UBOLZIO',
-	health: 75,
-	attack: 0,
-	hit: false,
-})
-
-const player = reactive({
-	name: `🦸🏼‍♂️ ${props.userName}`,
-	health: props.health,
-	originHealth: props.health,
-	attack: 0,
-	hit: false,
-	weapon: 'seinem Schwert',
-})
-watch(
-	() => player.health,
-	(val, oldVal) => {
-		if (val < player.originHealth) {
-			emit('got-hit', oldVal - val)
-		}
-	}
-)
-
-const attacks = reactive([])
-const battleResult = computed(() => {
-	let message = ''
-	switch (true) {
-		case opponent.health <= 0 && player.health > 0:
-			message = `${opponent.name} erleidet eine Herzattacke und stirbt. 💀`
-			emit('finish', 'won')
-			break
-
-		case player.health <= 0 && opponent.health > 0:
-			message = `${player.name} erliegt seinen Verletzungen und stirbt. 🚑`
-			emit('finish', 'lost')
-			break
-
-		case player.health <= 0 && opponent.health <= 0:
-			message = `Beide Opponenten sind tödlich getroffen. 😱`
-			emit('finish', 'lost')
-			break
-	}
-
-	return message
-})
-
-const container = ref(null)
-const timeline = ref(null)
-const _observe = () => {
-	const ro = new ResizeObserver(() => {
-		container.value.scrollTop = container.value.scrollHeight
-	})
-
-	ro.observe(container.value)
-	ro.observe(timeline.value)
-}
-onMounted(_observe)
 
 const _attack = (d20, attacker, defender) => {
 	if (d20 <= 2) {
 		return `${attacker.name} haut daneben, verliert das Gleichgewicht und beschmutzt sich!`
 	} else if (d20 >= 3 && d20 <= 19) {
-		const weapon = weapons[Math.floor(Math.random() * weapons.length)]
+		const weapon = _weapons[Math.floor(Math.random() * _weapons.length)]
 
 		defender.hit = true
 		defender.health -= attacker.attack
@@ -174,13 +89,13 @@ const _spell = (d100, attacker, defender) => {
 }
 
 const _actions = [_attack, _block, _spell]
-const _randomAction = (attacker, defender, isAttack = false) => {
+const randomAction = (attacker, defender, isAttack = false) => {
 	const i = Math.floor(Math.random() * _actions.length)
 	const action = _actions[i]
 
 	// der "Anhieb" des Angreifers kann nicht Verteidigung sein → wiederholen
 	if (isAttack && action === _block) {
-		return _randomAction(attacker, defender, isAttack)
+		return randomAction(attacker, defender, isAttack)
 	}
 
 	const d20 = Math.floor(Math.random() * 20) + 1
@@ -192,25 +107,7 @@ const _randomAction = (attacker, defender, isAttack = false) => {
 	attacks.push({ message /* , attacker: { health: attacker.health, hit: attacker.hit, ...attackerLog } */ })
 }
 
-const battle = () => {
-	player.hit = false
-	// player.attack = Math.floor(Math.random() * 16) + 1 // 1 bis 16
-	player.attack = Math.floor(Math.random() * 12) + 1 + 4 // 5 bis 16
-	opponent.hit = false
-	opponent.attack = Math.floor(Math.random() * 12) + 1 + 4
-
-	// bestimmen, wer beginnt
-	if (Math.floor(Math.random() * 2) % 2) {
-		_randomAction(player, opponent, true)
-		_randomAction(opponent, player)
-	} else {
-		_randomAction(opponent, player, true)
-		_randomAction(player, opponent)
-	}
-
-	if (!(player.health <= 0 || opponent.health <= 0)) {
-		setTimeout(battle, props.strikeInterval)
-	}
-}
-onMounted(battle)
-</script>
+export const useBattle = () => ({
+	attacks,
+	randomAction,
+})
