@@ -109,7 +109,7 @@ const _startObserver = () => {
 			container.value.scrollTop = container.value.scrollHeight
 		})
 
-		observer.observe(container.value)
+		// observer.observe(container.value)
 		observer.observe(timeline.value)
 	}
 }

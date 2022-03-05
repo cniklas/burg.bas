@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-import { gold, health, inventory } from '../useStore'
+import { gold, health, inventory } from '../use/store'
 </script>
 
 <style>

@@ -67,13 +67,13 @@
 </template>
 
 <script setup>
-import burg from '../burg.json'
+import burg from '../data/burg.json'
 import AppStory from './Story.vue'
 import AppBattle from './Battle.vue'
 import AppPanel from './Panel.vue'
 import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue'
-import { playlist, loadMusic, playMusic, fadeOutMusic } from '../useHowler'
-import { useInput } from '../useInput'
+import { playlist, loadMusic, playMusic, fadeOutMusic } from '../use/howler'
+import { useInput } from '../use/input'
 import {
 	userName,
 	gold,
@@ -84,11 +84,11 @@ import {
 	manageInventory,
 	getArmed,
 	resetState,
-} from '../useStore'
-import { useCountAnimation } from '../useCountAnimation'
+} from '../use/store'
+import { useCountUpAnimation } from '../use/countUpAnimation'
 
 const { input, focusInput, cleanInput, button, blurButton } = useInput()
-const { animateCount } = useCountAnimation()
+const { animateNumber } = useCountUpAnimation()
 
 const sceneId = ref('intro')
 const gameWon = computed(
@@ -138,7 +138,7 @@ const handleStory = async () => {
 		reduceHealth(Math.abs(scene.value.health))
 	}
 	if (gameLost.value) {
-		animateCount(health, health.value, false)
+		animateNumber(health, health.value, false)
 	}
 
 	// continue
@@ -164,7 +164,7 @@ const handleStory = async () => {
 			getArmed()
 			break
 		case 'schatzkammer_ende':
-			animateCount(gold, 100)
+			animateNumber(gold, 100)
 			break
 		case 'vorzimmer_drache_sieg':
 			setTimeout(manageInventory, scene.value.delayed.delay, 'discard-magic-wand')
@@ -182,8 +182,8 @@ const reduceHealth = points => {
 
 	const rnd = Math.floor(Math.random() * (max - min + 1)) + min
 	sceneId.value === 'lagerhaus_kampf'
-		? setTimeout(animateCount, scene.value.delayed.delay, health, rnd, false)
-		: animateCount(health, rnd, false)
+		? setTimeout(animateNumber, scene.value.delayed.delay, health, rnd, false)
+		: animateNumber(health, rnd, false)
 }
 
 const showBattle = computed(() => sceneId.value === 'thronsaal_kampf')
@@ -197,7 +197,7 @@ const finalBattle = () => {
 }
 const strikeInterval = ref(1200)
 const onHit = points => {
-	animateCount(health, points, false, strikeInterval.value)
+	animateNumber(health, points, false, strikeInterval.value)
 }
 const onBattleFinished = result => {
 	fadeOutMusic()

@@ -34,11 +34,11 @@
 </template>
 
 <script setup>
-import simCityNames from '../names.json'
+import simCityNames from '../data/names.json'
 import { computed, onMounted, onUnmounted } from 'vue'
-import { loadMusic } from '../useHowler'
-import { useInput } from '../useInput'
-import { userName } from '../useStore'
+import { loadMusic } from '../use/howler'
+import { useInput } from '../use/input'
+import { userName } from '../use/store'
 
 defineEmits(['start'])
 
