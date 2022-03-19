@@ -1,12 +1,12 @@
 <template>
 	<div
-		class="base-column flex-1 mx-auto pt-8 px-4 lg:px-8 flex flex-col justify-between gap-y-8"
+		class="base-column mx-auto flex flex-1 flex-col justify-between gap-y-8 px-4 pt-8 lg:px-8"
 		:class="{ 'game-won': gameWon, 'game-lost': gameLost }"
 	>
 		<main class="main flex-auto">
-			<div class="scene h-full flex flex-col justify-between">
+			<div class="scene flex h-full flex-col justify-between">
 				<AppStory :story="story" :is-enabled="isEnabled">
-					<div v-if="showCredits" class="hidden md:flex justify-center mt-12">
+					<div v-if="showCredits" class="mt-12 hidden justify-center md:flex">
 						<pre class="ascii-text">
 88                                                 88
 88                                                 88
@@ -38,20 +38,20 @@
 						<button
 							ref="button"
 							type="button"
-							class="button inline-flex items-center tracking-wider border border-current py-2 px-7 select-none focus:outline-none"
+							class="button inline-flex select-none items-center border border-current py-2 px-7 tracking-wider focus:outline-none"
 							@click.stop="onClick"
 						>
 							{{ nextButton?.text || 'weiter' }}
 						</button>
 					</div>
 
-					<div v-show="hint && showHint" class="hint my-4 white">{{ hint }}</div>
+					<div v-show="hint && showHint" class="hint white my-4">{{ hint }}</div>
 					<div v-if="showInput" class="input-wrapper my-4">
 						<input
 							ref="input"
 							v-model.trim="typed"
 							type="text"
-							class="input w-full p-2 rounded outline-none"
+							class="input w-full rounded p-2 outline-none"
 							placeholder="?"
 							spellcheck="false"
 							@click.stop

@@ -1,6 +1,6 @@
 <template>
-	<div class="base-column flex-1 mx-auto pt-8 px-4 lg:px-8">
-		<h1 class="headline text-3xl font-medium text-center mb-8">
+	<div class="base-column mx-auto flex-1 px-4 pt-8 lg:px-8">
+		<h1 class="headline mb-8 text-center text-3xl font-medium">
 			Bist du bereit für ein waghalsiges Abenteuer in einer unbekannten Burg?
 		</h1>
 
@@ -10,7 +10,7 @@
 					ref="input"
 					v-model.trim="userName"
 					type="text"
-					class="input w-full p-2 rounded outline-none text-center max-w-sm"
+					class="input w-full max-w-sm rounded p-2 text-center outline-none"
 					placeholder="Gib einen Namen ein oder drücke ENTER"
 					spellcheck="false"
 					@click.stop
@@ -22,7 +22,7 @@
 				<div v-show="showButton" class="button-wrapper my-4">
 					<button
 						type="button"
-						class="button inline-flex items-center tracking-wider border border-current py-2 px-7 select-none focus:outline-none"
+						class="button inline-flex select-none items-center border border-current py-2 px-7 tracking-wider focus:outline-none"
 						@click.stop="$emit('start')"
 					>
 						Spiel starten

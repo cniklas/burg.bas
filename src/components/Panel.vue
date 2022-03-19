@@ -1,5 +1,5 @@
 <template>
-	<aside class="panel p-3 text-center h-24">
+	<aside class="panel h-24 p-3 text-center">
 		<div class="gold">Gold: {{ gold }}</div>
 		<div class="pink">Health: {{ health }}</div>
 		<div class="flex justify-center gap-x-2.5">

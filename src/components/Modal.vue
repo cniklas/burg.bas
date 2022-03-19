@@ -1,7 +1,7 @@
 <template>
 	<button
 		type="button"
-		class="button modal-button tracking-wider border-2 border-current select-none focus:outline-none fixed top-4 left-1/2 z-50 hidden lg:block w-8 h-8 rounded-full"
+		class="button modal-button fixed top-4 left-1/2 z-50 hidden h-8 w-8 select-none rounded-full border-2 border-current tracking-wider focus:outline-none lg:block"
 		:class="{ 'is-active': isVisible }"
 		@click.stop="toggleModal"
 	>
@@ -10,12 +10,12 @@
 
 	<Teleport to="body">
 		<section
-			class="modal-wrapper fixed flex justify-center items-center w-full h-full top-0 left-0 z-40"
-			:class="[isVisible ? 'visible' : 'invisible']"
+			class="modal-wrapper fixed top-0 left-0 z-40 flex h-full w-full items-center justify-center"
+			:class="isVisible ? 'visible' : 'invisible'"
 			@click.stop
 		>
-			<div ref="modal" class="modal px-4 overflow-y-auto" :class="[isVisible ? 'opacity-100' : 'opacity-0']">
-				<h2 class="headline text-3xl font-medium text-center mb-6">Über dieses Spiel</h2>
+			<div ref="modal" class="modal overflow-y-auto px-4" :class="isVisible ? 'opacity-100' : 'opacity-0'">
+				<h2 class="headline mb-6 text-center text-3xl font-medium">Über dieses Spiel</h2>
 
 				<article class="story">
 					<p>
@@ -34,13 +34,13 @@
 					</p>
 					<ul>
 						<li class="flex items-center">
-							<audio src="audio/intro-2-o.mp3" controls></audio> <span class="ml-4 white">Intro</span>
+							<audio src="audio/intro-2-o.mp3" controls></audio> <span class="white ml-4">Intro</span>
 						</li>
 						<li class="flex items-center">
-							<audio src="audio/intro-1.mp3" controls></audio> <span class="ml-4 white">alternatives Intro</span>
+							<audio src="audio/intro-1.mp3" controls></audio> <span class="white ml-4">alternatives Intro</span>
 						</li>
 						<li class="flex items-center">
-							<audio src="audio/battle-o.mp3" controls></audio> <span class="ml-4 white">Kampf</span>
+							<audio src="audio/battle-o.mp3" controls></audio> <span class="white ml-4">Kampf</span>
 						</li>
 					</ul>
 					<p>
@@ -58,8 +58,8 @@
 		</section>
 
 		<div
-			class="modal-overlay fixed w-full h-full top-0 left-0 z-30"
-			:class="[isVisible ? 'opacity-100 visible' : 'opacity-0 invisible']"
+			class="modal-overlay fixed top-0 left-0 z-30 h-full w-full"
+			:class="isVisible ? 'visible opacity-100' : 'invisible opacity-0'"
 		/>
 	</Teleport>
 </template>
