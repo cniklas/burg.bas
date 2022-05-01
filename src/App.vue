@@ -5,9 +5,9 @@
 </template>
 
 <script setup>
-import AppModal from './components/Modal.vue'
-import AppIntro from './components/Intro.vue'
-import AppGame from './components/Game.vue'
+import AppModal from './components/AppModal.vue'
+import AppIntro from './components/AppIntro.vue'
+import AppGame from './components/AppGame.vue'
 import { ref } from 'vue'
 
 const showIntro = ref(true)
