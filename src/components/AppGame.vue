@@ -1,71 +1,3 @@
-<template>
-	<div
-		class="base-column mx-auto flex flex-1 flex-col justify-between gap-y-8 px-4 pt-8 lg:px-8"
-		:class="{ 'game-won': gameWon, 'game-lost': gameLost }"
-	>
-		<main class="main flex-auto">
-			<div class="scene flex h-full flex-col justify-between">
-				<AppStory :story="story" :is-enabled="isEnabled">
-					<div v-if="showCredits" class="mt-12 hidden justify-center md:flex">
-						<pre class="ascii-text">
-88                                                 88
-88                                                 88
-88                                                 88
-88,dPPYba,  88       88 8b,dPPYba,  ,adPPYb,d8     88,dPPYba,  ,adPPYYba, ,adPPYba,
-88P'    "8a 88       88 88P'   "Y8 a8"    `Y88     88P'    "8a ""     `Y8 I8[    ""
-88       d8 88       88 88         8b       88     88       d8 ,adPPPPP88  `"Y8ba,
-88b,   ,a8" "8a,   ,a88 88         "8a,   ,d88 888 88b,   ,a8" 88,    ,88 aa    ]8I
-8Y"Ybbd8"'   `"YbbdP'Y8 88          `"YbbdP"Y8 888 8Y"Ybbd8"'  `"8bbdP"Y8 `"YbbdP"'
-                                    aa,    ,88
-                                     "Y8bbdP"
-</pre
-						>
-					</div>
-				</AppStory>
-
-				<AppBattle
-					v-if="showBattle && startBattle"
-					class="flex-auto overflow-y-auto"
-					:user-name="userName"
-					:health="health"
-					:strike-interval="strikeInterval"
-					@got-hit="onHit"
-					@finish="onBattleFinished"
-				/>
-
-				<section v-show="!onHold && !showCredits" class="actions mt-8 text-center">
-					<div v-if="nextButton" class="button-wrapper my-4">
-						<button
-							ref="button"
-							type="button"
-							class="button inline-flex select-none items-center border border-current py-2 px-7 tracking-wider focus:outline-none"
-							@click.stop="onClick"
-						>
-							{{ nextButton?.text || 'weiter' }}
-						</button>
-					</div>
-
-					<div v-show="hint && showHint" class="hint white my-4">{{ hint }}</div>
-					<div v-if="showInput" class="input-wrapper my-4">
-						<input
-							ref="input"
-							v-model.trim="typed"
-							type="text"
-							class="input w-full rounded p-2 outline-none"
-							placeholder="?"
-							spellcheck="false"
-							@click.stop
-							@keyup.enter="handleInput"
-						/>
-					</div>
-				</section>
-			</div>
-		</main>
-
-		<AppPanel v-show="!showCredits" />
-	</div>
-</template>
-
 <script setup>
 import burg from '../data/burg.json'
 import AppStory from './AppStory.vue'
@@ -279,6 +211,74 @@ onUnmounted(() => {
 	document.removeEventListener('click', focusInput)
 })
 </script>
+
+<template>
+	<div
+		class="base-column mx-auto flex flex-1 flex-col justify-between gap-y-8 px-4 pt-8 lg:px-8"
+		:class="{ 'game-won': gameWon, 'game-lost': gameLost }"
+	>
+		<main class="main flex-auto">
+			<div class="scene flex h-full flex-col justify-between">
+				<AppStory :story="story" :is-enabled="isEnabled">
+					<div v-if="showCredits" class="mt-12 hidden justify-center md:flex">
+						<pre class="ascii-text">
+88                                                 88
+88                                                 88
+88                                                 88
+88,dPPYba,  88       88 8b,dPPYba,  ,adPPYb,d8     88,dPPYba,  ,adPPYYba, ,adPPYba,
+88P'    "8a 88       88 88P'   "Y8 a8"    `Y88     88P'    "8a ""     `Y8 I8[    ""
+88       d8 88       88 88         8b       88     88       d8 ,adPPPPP88  `"Y8ba,
+88b,   ,a8" "8a,   ,a88 88         "8a,   ,d88 888 88b,   ,a8" 88,    ,88 aa    ]8I
+8Y"Ybbd8"'   `"YbbdP'Y8 88          `"YbbdP"Y8 888 8Y"Ybbd8"'  `"8bbdP"Y8 `"YbbdP"'
+                                    aa,    ,88
+                                     "Y8bbdP"
+</pre
+						>
+					</div>
+				</AppStory>
+
+				<AppBattle
+					v-if="showBattle && startBattle"
+					class="flex-auto overflow-y-auto"
+					:user-name="userName"
+					:health="health"
+					:strike-interval="strikeInterval"
+					@got-hit="onHit"
+					@finish="onBattleFinished"
+				/>
+
+				<section v-show="!onHold && !showCredits" class="actions mt-8 text-center">
+					<div v-if="nextButton" class="my-4">
+						<button
+							ref="button"
+							type="button"
+							class="button inline-flex select-none items-center border border-current px-7 py-2 tracking-wider focus:outline-none"
+							@click.stop="onClick"
+						>
+							{{ nextButton?.text || 'weiter' }}
+						</button>
+					</div>
+
+					<div v-show="hint && showHint" class="hint white my-4">{{ hint }}</div>
+					<div v-if="showInput" class="my-4">
+						<input
+							ref="input"
+							v-model.trim="typed"
+							type="text"
+							class="input w-full rounded p-2 outline-none"
+							placeholder="?"
+							spellcheck="false"
+							@click.stop
+							@keyup.enter="handleInput"
+						/>
+					</div>
+				</section>
+			</div>
+		</main>
+
+		<AppPanel v-show="!showCredits" />
+	</div>
+</template>
 
 <style lang="postcss">
 .base-column {

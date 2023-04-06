@@ -1,33 +1,19 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
-	--blue-light:   #89d3fd;
-	--blue-dark:    #067df7;
-	--gold:         #ffbd2e;
 	--green:        #5ce6cd;
-	--purple-light: #7775A7;
 	--red:          #ff0080;
-
-	--text-color:   #cbd5e0;
 	--bg-color:     hsl(240, 21%, 7%);
-	--button-color:       hsl(182, 25%, 50%); /* cadetblue */
-	--button-color-hover: hsl(182, 35%, 50%);
-	--headline-color:     hsl(172, 88%, 24%); /* ~ text-green-800 */
 	--global-line-height: 1.375; /* 'leading-snug' */
-
 	--transition-duration: 320ms;
 }
 
 .white        { color: #fff; }
-.blue-light   { color: var(--blue-light); }
-.blue-dark    { color: var(--blue-dark); }
-.gold         { color: var(--gold); }
+.blue-light   { color: #89d3fd; }
+.blue-dark    { color: #067df7; }
+.gold         { color: #ffbd2e; }
 .green        { color: var(--green); }
 .papayawhip   { color: papayawhip; }
 .pink         { color: hotpink; }
-.purple-light { color: var(--purple-light); }
+.purple-light { color: #7775a7; }
 .red          { color: var(--red); }
 
 ::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -38,7 +24,7 @@ html {
 	scrollbar-width: thin;
 	scrollbar-color: hsl(218, 13%, 64%) hsla(218, 40%, 50%, 0.08);
 	background-color: var(--bg-color);
-	color: var(--text-color);
+	color: #cbd5e0;
 	height: -webkit-fill-available;
 }
 
@@ -50,7 +36,6 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-pre:empty,
 div:empty,
 p:empty {
 	@apply m-0;
@@ -71,14 +56,19 @@ p:empty {
 }
 
 .headline {
-	color: var(--headline-color);
+	color: hsl(172, 88%, 24%);
 }
 
 .story {
-	line-height: var(--global-line-height);
+	@apply leading-snug;
 
-	p {
+	p,
+	ul {
 		margin-bottom: calc(var(--global-line-height) * 1rem);
+	}
+
+	li:nth-last-child(n + 2) {
+		margin-bottom: calc(var(--global-line-height) * 0.5rem);
 	}
 
 	> :last-child {
@@ -91,31 +81,29 @@ p:empty {
 }
 
 .battle {
-	line-height: var(--global-line-height);
-	scroll-behavior: smooth;
+	@apply scroll-smooth leading-snug;
 }
 
-.battle li:nth-child(2n+3),
+.battle-strike:nth-child(2n + 3),
 .battle-result {
 	margin-top: calc(var(--global-line-height) * 1rem);
 }
 
 .button {
 	background-color: #1a202c;
-	color: var(--button-color);
-	font-size: 1rem;
+	color: hsl(182, 25%, 50%); /* cadetblue */
 	box-shadow: 0 0 0px 0px var(--bg-color), 0 0 0px 0px currentColor;
 	transition: color 160ms, box-shadow 160ms;
 
+	&:focus-visible,
 	&:hover {
-		color: var(--button-color-hover);
+		color: hsl(182, 35%, 50%);
 		box-shadow: 0 0 0px 1px var(--bg-color), 0 0 0px 2px currentColor;
 	}
 }
 
 .input {
 	background-color: hsl(230, 23%, 20%);
-	color: inherit;
 	font-size: 1.625rem;
 	line-height: 2.375rem;
 }

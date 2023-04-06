@@ -1,7 +1,29 @@
+<script setup>
+import { ref, watch } from 'vue'
+
+const modal = ref(null)
+const isVisible = ref(false)
+watch(isVisible, val => {
+	val ? document.addEventListener('keyup', closeOnEsc) : document.removeEventListener('keyup', closeOnEsc)
+})
+const toggleModal = () => {
+	if (!isVisible.value) {
+		modal.value?.scrollTo({ top: 0 })
+	}
+
+	isVisible.value = !isVisible.value
+}
+const closeOnEsc = e => {
+	if (e.keyCode === 27) {
+		isVisible.value = false
+	}
+}
+</script>
+
 <template>
 	<button
 		type="button"
-		class="button modal-button fixed top-4 left-1/2 z-50 hidden h-8 w-8 select-none rounded-full border-2 border-current tracking-wider focus:outline-none lg:block"
+		class="button modal-button fixed left-1/2 top-4 z-50 hidden h-8 w-8 select-none rounded-full border-2 border-current tracking-wider focus:outline-none lg:block"
 		:class="{ 'is-active': isVisible }"
 		@click.stop="toggleModal"
 	>
@@ -10,7 +32,7 @@
 
 	<Teleport to="body">
 		<section
-			class="modal-wrapper fixed top-0 left-0 z-40 flex h-full w-full items-center justify-center"
+			class="backface-hidden fixed left-0 top-0 z-40 flex h-full w-full items-center justify-center"
 			:class="isVisible ? 'visible' : 'invisible'"
 			@click.stop
 		>
@@ -58,33 +80,11 @@
 		</section>
 
 		<div
-			class="modal-overlay fixed top-0 left-0 z-30 h-full w-full"
+			class="modal-overlay fixed left-0 top-0 z-30 h-full w-full"
 			:class="isVisible ? 'visible opacity-100' : 'invisible opacity-0'"
 		/>
 	</Teleport>
 </template>
-
-<script setup>
-import { ref, watch } from 'vue'
-
-const modal = ref(null)
-const isVisible = ref(false)
-watch(isVisible, val => {
-	val ? document.addEventListener('keyup', closeOnEsc) : document.removeEventListener('keyup', closeOnEsc)
-})
-const toggleModal = () => {
-	if (!isVisible.value) {
-		modal.value?.scrollTo({ top: 0 })
-	}
-
-	isVisible.value = !isVisible.value
-}
-const closeOnEsc = e => {
-	if (e.keyCode === 27) {
-		isVisible.value = false
-	}
-}
-</script>
 
 <style lang="postcss" scoped>
 .modal-button {
@@ -98,10 +98,6 @@ const closeOnEsc = e => {
 	&.is-active {
 		transform: translateX(-50%);
 	}
-}
-
-.modal-wrapper {
-	backface-visibility: hidden;
 }
 
 .modal {
@@ -127,16 +123,6 @@ const closeOnEsc = e => {
 
 	&.visible {
 		background-color: var(--bg-color);
-	}
-}
-
-.story {
-	ul {
-		margin-bottom: calc(var(--global-line-height) * 1rem);
-	}
-
-	li:nth-last-child(n + 2) {
-		margin-bottom: calc(var(--global-line-height) * 0.5rem);
 	}
 }
 </style>

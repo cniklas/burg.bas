@@ -1,3 +1,7 @@
+<script setup>
+import { gold, health, inventory } from '../use/store'
+</script>
+
 <template>
 	<aside class="panel h-24 p-3 text-center">
 		<div class="gold">Gold: {{ gold }}</div>
@@ -7,10 +11,6 @@
 		</div>
 	</aside>
 </template>
-
-<script setup>
-import { gold, health, inventory } from '../use/store'
-</script>
 
 <style>
 .panel {

@@ -1,6 +1,6 @@
 {
   "name": "burg",
-  "version": "1.5.1",
+  "version": "1.7.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/cniklas/burg.bas.git"
@@ -19,17 +19,17 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.4",
     "@vue/eslint-config-prettier": "^7.1.0",
-    "autoprefixer": "^10.4.14",
     "eslint": "^8.37.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.10.0",
-    "postcss": "^8.4.21",
+    "postcss-nested": "^6.0.1",
     "prettier": "^2.8.4",
     "prettier-plugin-tailwindcss": "^0.2.6",
-    "tailwindcss": "^3.3.1",
     "vite": "^2.9.13",
-    "vite-plugin-eslint": "^1.8.1"
+    "vite-plugin-eslint": "^1.8.1",
+    "vite-plugin-windicss": "^1.8.10",
+    "windicss": "^3.5.6"
   },
   "prettier": {
     "printWidth": 120,

@@ -1,3 +1,16 @@
+<script setup>
+defineProps({
+	story: {
+		type: Array,
+		default: () => [],
+	},
+	// eslint-disable-next-line vue/require-default-prop
+	isEnabled: {
+		type: Function,
+	},
+})
+</script>
+
 <template>
 	<article class="story mb-8">
 		<transition-group name="story-fade" mode="out-in">
@@ -15,19 +28,6 @@
 		</transition-group>
 	</article>
 </template>
-
-<script setup>
-defineProps({
-	story: {
-		type: Array,
-		default: () => [],
-	},
-	// eslint-disable-next-line vue/require-default-prop
-	isEnabled: {
-		type: Function,
-	},
-})
-</script>
 
 <style>
 .story-fade-enter-active {

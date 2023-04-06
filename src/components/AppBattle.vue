@@ -1,15 +1,3 @@
-<template>
-	<section ref="container" class="battle">
-		<ol ref="timeline">
-			<li v-for="(attack, i) in attacks" :key="i">
-				{{ attack.message }}
-			</li>
-		</ol>
-
-		<div v-show="battleResult" class="battle-result">{{ battleResult }}</div>
-	</section>
-</template>
-
 <script setup>
 import { ref, reactive, computed, watch, onMounted, onBeforeUnmount } from 'vue'
 import { useBattle } from '../use/battle'
@@ -114,10 +102,20 @@ const _startObserver = () => {
 	}
 }
 const _stopObserver = () => {
-	if (observer) {
-		observer.disconnect()
-	}
+	observer?.disconnect?.()
 }
 onMounted(_startObserver)
 onBeforeUnmount(_stopObserver)
 </script>
+
+<template>
+	<section ref="container" class="battle">
+		<ol ref="timeline">
+			<li v-for="(attack, i) in attacks" :key="i" class="battle-strike">
+				{{ attack.message }}
+			</li>
+		</ol>
+
+		<div v-show="battleResult" class="battle-result">{{ battleResult }}</div>
+	</section>
+</template>
