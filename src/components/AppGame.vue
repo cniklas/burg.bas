@@ -206,7 +206,7 @@ onUnmounted(() => {
 	>
 		<main class="main flex-auto">
 			<div class="flex h-full flex-col justify-between">
-				<AppStory :story="story" :is-enabled="isEnabled">
+				<AppStory :story="story">
 					<div v-if="showCredits" class="mt-12 hidden justify-center md:flex">
 						<pre class="ascii-text">
 88                                                 88
