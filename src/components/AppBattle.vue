@@ -1,24 +1,15 @@
 <script setup>
 import { ref, reactive, computed, watch, onMounted, onBeforeUnmount } from 'vue'
 import { useBattle } from '../use/battle'
+import { useStore } from '../use/store'
+import { animateNumber } from '../use/countUpAnimation'
 
-const { attacks, randomAction } = useBattle()
+const { attackLog, resetAttackLog, randomAction } = useBattle()
+const { state, setHealth } = useStore()
 
-const emit = defineEmits(['finish', 'got-hit'])
-const props = defineProps({
-	userName: {
-		type: String,
-		default: '',
-	},
-	health: {
-		type: Number,
-		default: 100,
-	},
-	strikeInterval: {
-		type: Number,
-		default: 1200,
-	},
-})
+const emit = defineEmits(['finish'])
+
+const strikeInterval = 1200
 
 const _opponent = reactive({
 	name: '🧟 UBOLZIO',
@@ -28,9 +19,9 @@ const _opponent = reactive({
 })
 
 const _player = reactive({
-	name: `🦸🏼‍♂️ ${props.userName}`,
-	health: props.health,
-	originHealth: props.health,
+	name: `🦸🏼‍♂️ ${state.userName}`,
+	health: state.health,
+	originHealth: state.health,
 	attack: 0,
 	hit: false,
 	weapon: 'seinem Schwert',
@@ -39,7 +30,7 @@ watch(
 	() => _player.health,
 	(val, oldVal) => {
 		if (val < _player.originHealth) {
-			emit('got-hit', oldVal - val)
+			animateNumber(state.health, oldVal - val, setHealth, false, strikeInterval)
 		}
 	}
 )
@@ -83,7 +74,7 @@ const _battle = () => {
 	}
 
 	if (!(_player.health <= 0 || _opponent.health <= 0)) {
-		setTimeout(_battle, props.strikeInterval)
+		setTimeout(_battle, strikeInterval)
 	}
 }
 onMounted(_battle)
@@ -97,7 +88,6 @@ const _startObserver = () => {
 			container.value.scrollTop = container.value.scrollHeight
 		})
 
-		// observer.observe(container.value)
 		observer.observe(timeline.value)
 	}
 }
@@ -105,17 +95,27 @@ const _stopObserver = () => {
 	observer?.disconnect?.()
 }
 onMounted(_startObserver)
-onBeforeUnmount(_stopObserver)
+onBeforeUnmount(() => {
+	_stopObserver()
+	resetAttackLog()
+})
 </script>
 
 <template>
-	<section ref="container" class="battle">
+	<section ref="container" class="scroll-smooth leading-snug">
 		<ol ref="timeline">
-			<li v-for="(attack, i) in attacks" :key="i" class="battle-strike">
-				{{ attack.message }}
+			<li v-for="(message, i) in attackLog" :key="i" class="battle-strike">
+				{{ message }}
 			</li>
 		</ol>
 
 		<div v-show="battleResult" class="battle-result">{{ battleResult }}</div>
 	</section>
 </template>
+
+<style>
+.battle-strike:nth-child(2n + 3),
+.battle-result {
+	margin-top: calc(var(--global-line-height) * 1rem);
+}
+</style>

@@ -6,21 +6,12 @@ import AppPanel from './AppPanel.vue'
 import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import { playlist, loadMusic, playMusic, fadeOutMusic } from '../use/howler'
 import { useInput } from '../use/input'
-import {
-	userName,
-	gold,
-	health,
-	hasCondition,
-	isEnabled,
-	handleCondition,
-	manageInventory,
-	getArmed,
-	resetState,
-} from '../use/store'
-import { useCountUpAnimation } from '../use/countUpAnimation'
+import { useStore } from '../use/store'
+import { animateNumber } from '../use/countUpAnimation'
 
 const { input, focusInput, cleanInput, button, blurButton } = useInput()
-const { animateNumber } = useCountUpAnimation()
+const { state, setGold, setHealth, hasCondition, isEnabled, handleCondition, manageInventory, getArmed, resetState } =
+	useStore()
 
 const sceneId = ref('intro')
 const gameWon = computed(
@@ -70,7 +61,7 @@ const handleStory = async () => {
 		reduceHealth(Math.abs(scene.value.health))
 	}
 	if (gameLost.value) {
-		animateNumber(health, health.value, false)
+		animateNumber(state.health, state.health, setHealth)
 	}
 
 	// continue
@@ -96,7 +87,7 @@ const handleStory = async () => {
 			getArmed()
 			break
 		case 'schatzkammer_ende':
-			animateNumber(gold, 100)
+			animateNumber(state.gold, 100, setGold, true)
 			break
 		case 'vorzimmer_drache_sieg':
 			setTimeout(manageInventory, scene.value.delayed.delay, 'discard-magic-wand')
@@ -114,8 +105,8 @@ const reduceHealth = points => {
 
 	const rnd = Math.floor(Math.random() * (max - min + 1)) + min
 	sceneId.value === 'lagerhaus_kampf'
-		? setTimeout(animateNumber, scene.value.delayed.delay, health, rnd, false)
-		: animateNumber(health, rnd, false)
+		? setTimeout(animateNumber, scene.value.delayed.delay, state.health, rnd, setHealth)
+		: animateNumber(state.health, rnd, setHealth)
 }
 
 const showBattle = computed(() => sceneId.value === 'thronsaal_kampf')
@@ -126,10 +117,6 @@ const finalBattle = () => {
 				startBattle.value = true
 		  }, scene.value.play_delay)
 		: (startBattle.value = true)
-}
-const strikeInterval = ref(1200)
-const onHit = points => {
-	animateNumber(health, points, false, strikeInterval.value)
 }
 const onBattleFinished = result => {
 	fadeOutMusic()
@@ -218,7 +205,7 @@ onUnmounted(() => {
 		:class="{ 'game-won': gameWon, 'game-lost': gameLost }"
 	>
 		<main class="main flex-auto">
-			<div class="scene flex h-full flex-col justify-between">
+			<div class="flex h-full flex-col justify-between">
 				<AppStory :story="story" :is-enabled="isEnabled">
 					<div v-if="showCredits" class="mt-12 hidden justify-center md:flex">
 						<pre class="ascii-text">
@@ -237,17 +224,9 @@ onUnmounted(() => {
 					</div>
 				</AppStory>
 
-				<AppBattle
-					v-if="showBattle && startBattle"
-					class="flex-auto overflow-y-auto"
-					:user-name="userName"
-					:health="health"
-					:strike-interval="strikeInterval"
-					@got-hit="onHit"
-					@finish="onBattleFinished"
-				/>
+				<AppBattle v-if="showBattle && startBattle" class="flex-auto overflow-y-auto" @finish="onBattleFinished" />
 
-				<section v-show="!onHold && !showCredits" class="actions mt-8 text-center">
+				<section v-show="!onHold && !showCredits" class="mt-8 text-center">
 					<div v-if="nextButton" class="my-4">
 						<button
 							ref="button"
@@ -296,5 +275,11 @@ onUnmounted(() => {
 
 .main {
 	max-height: calc(100% - 8rem); /* row-gap + .panel */
+}
+
+.ascii-text {
+	font-family: 'Courier New', Courier, monospace;
+	font-size: 0.75rem;
+	line-height: 1;
 }
 </style>

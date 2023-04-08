@@ -36,7 +36,7 @@ const closeOnEsc = e => {
 			:class="isVisible ? 'visible' : 'invisible'"
 			@click.stop
 		>
-			<div ref="modal" class="modal overflow-y-auto px-4" :class="isVisible ? 'opacity-100' : 'opacity-0'">
+			<div ref="modal" class="modal overflow-y-auto px-4" :class="{ 'is-visible': isVisible }">
 				<h2 class="headline mb-6 text-center text-3xl font-medium">Über dieses Spiel</h2>
 
 				<article class="story">
@@ -79,20 +79,17 @@ const closeOnEsc = e => {
 			</div>
 		</section>
 
-		<div
-			class="modal-overlay fixed left-0 top-0 z-30 h-full w-full"
-			:class="isVisible ? 'visible opacity-100' : 'invisible opacity-0'"
-		/>
+		<div class="modal-overlay fixed left-0 top-0 z-30 h-full w-full" :class="{ 'is-visible': isVisible }" />
 	</Teleport>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="postcss">
 .modal-button {
 	font-family: 'Courier New', Courier, monospace;
 	font-size: 1.5rem;
 	line-height: calc(2rem - 4px);
 	box-shadow: none;
-	transform: translateX(calc(-512px - 50% + 2rem)); /* translateX(calc(-50vw - 50% + 2rem)) */
+	transform: translateX(calc(-512px - 50% + 2rem));
 	transition: color 160ms, transform var(--transition-duration);
 
 	&.is-active {
@@ -101,8 +98,9 @@ const closeOnEsc = e => {
 }
 
 .modal {
+	@apply opacity-0;
 	max-width: 44rem;
-	max-height: 70%; /* 61.8% */
+	max-height: 70%;
 	transform: scale(0.8);
 	transition-property: transform, opacity, visibility; /* 'visibility' is inherited and needs transition, too */
 	transition-duration: var(--transition-duration);
@@ -111,17 +109,20 @@ const closeOnEsc = e => {
 		max-width: 47rem;
 	}
 
-	&.opacity-100 {
+	&.is-visible {
+		@apply opacity-100;
 		transform: scale(1);
 	}
 }
 
 .modal-overlay {
+	@apply invisible opacity-0;
 	background-color: hsla(240, 21%, 7%, 80%);
 	transition-property: background-color, opacity, visibility;
 	transition-duration: var(--transition-duration);
 
-	&.visible {
+	&.is-visible {
+		@apply visible opacity-100;
 		background-color: var(--bg-color);
 	}
 }

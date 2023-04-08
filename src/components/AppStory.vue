@@ -29,12 +29,16 @@ defineProps({
 	</article>
 </template>
 
-<style>
+<style lang="postcss">
 .story-fade-enter-active {
 	transition: opacity var(--transition-duration) ease-in-out;
 }
 
 .story-fade-enter-from {
 	opacity: 0;
+}
+
+.text-prewrap {
+	@apply block whitespace-pre-wrap text-center;
 }
 </style>

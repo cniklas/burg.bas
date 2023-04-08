@@ -1,15 +1,24 @@
-/**
- * Die State-Elemente sind mutierbar, weil sie direkt exportiert werden
- */
-import { ref } from 'vue'
+import { reactive, readonly } from 'vue'
 
-const userName = ref('')
+const state = reactive({
+	userName: '',
+	gold: 0,
+	health: 100,
+	inventory: [],
+	conditions: [],
+})
 
-const gold = ref(0)
-const health = ref(100)
+const setUserName = val => {
+	state.userName = val
+}
+const setGold = val => {
+	state.gold = val
+}
+const setHealth = val => {
+	state.health = val
+}
 
-const conditions = ref([])
-const hasCondition = term => conditions.value.includes(term)
+const hasCondition = term => state.conditions.includes(term)
 const isEnabled = ({ condition, notCondition }) => {
 	if (condition && notCondition) {
 		return hasCondition(condition) && !hasCondition(notCondition)
@@ -25,64 +34,60 @@ const isEnabled = ({ condition, notCondition }) => {
 }
 const handleCondition = condition => {
 	if (condition && !hasCondition(condition)) {
-		conditions.value.push(condition)
+		state.conditions.push(condition)
 		manageInventory(condition)
 	}
 }
 
-const inventory = ref([])
 const manageInventory = condition => {
 	switch (condition) {
 		case 'has-helmet':
-			inventory.value.push('Helm', 'Umhang')
+			state.inventory.push('Helm', 'Umhang')
 			break
 		case 'has-keys':
-			inventory.value.push('Keule', 'Schlüssel')
+			state.inventory.push('Keule', 'Schlüssel')
 			break
 		case 'has-sword':
-			inventory.value.push('Schwert', 'Seil')
+			state.inventory.push('Schwert', 'Seil')
 			break
 		case 'has-magic-wand':
-			inventory.value.push('Stab')
+			state.inventory.push('Stab')
 			break
 		case 'discard-mace':
-			inventory.value.splice(inventory.value.indexOf('Keule'), 1)
+			state.inventory.splice(state.inventory.indexOf('Keule'), 1)
 			break
 		case 'get-armed':
-			inventory.value.push('Schwert', 'Schild')
+			state.inventory.push('Schwert', 'Schild')
 			break
 		case 'discard-magic-wand':
-			inventory.value.splice(inventory.value.indexOf('Stab'), 1)
+			state.inventory.splice(state.inventory.indexOf('Stab'), 1)
 			break
 	}
 }
 
 const getArmed = () => {
-	if (!hasCondition('has-sword')) {
-		if (hasCondition('has-keys')) {
-			manageInventory('discard-mace')
-		}
-		manageInventory('get-armed')
-	}
+	if (hasCondition('has-sword')) return
+
+	if (hasCondition('has-keys')) manageInventory('discard-mace')
+	manageInventory('get-armed')
 }
 
 const resetState = () => {
-	gold.value = 0
-	health.value = 100
-	inventory.value = []
-	conditions.value = []
+	state.gold = 0
+	state.health = 100
+	state.inventory = []
+	state.conditions = []
 }
 
-export {
-	userName,
-	gold,
-	health,
-	conditions,
+export const useStore = () => ({
+	state: readonly(state),
+	setUserName,
+	setGold,
+	setHealth,
 	hasCondition,
 	isEnabled,
 	handleCondition,
-	inventory,
 	manageInventory,
 	getArmed,
 	resetState,
-}
+})

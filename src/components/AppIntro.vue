@@ -1,13 +1,17 @@
 <script setup>
 import simCityNames from '../data/names.json'
-import { computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { loadMusic } from '../use/howler'
 import { useInput } from '../use/input'
-import { userName } from '../use/store'
+import { useStore } from '../use/store'
 
 defineEmits(['start'])
 
 const { input, focusInput } = useInput()
+
+const userName = ref('')
+const { setUserName } = useStore()
+watch(userName, setUserName)
 
 const showButton = computed(() => userName.value.length >= 3)
 

@@ -41,12 +41,6 @@ p:empty {
 	@apply m-0;
 }
 
-.ascii-text {
-	font-family: 'Courier New', Courier, monospace;
-	font-size: 0.75rem;
-	line-height: 1;
-}
-
 .base-column {
 	max-width: 44rem;
 
@@ -74,19 +68,6 @@ p:empty {
 	> :last-child {
 		@apply mb-0;
 	}
-}
-
-.text-prewrap {
-	@apply block whitespace-pre-wrap text-center;
-}
-
-.battle {
-	@apply scroll-smooth leading-snug;
-}
-
-.battle-strike:nth-child(2n + 3),
-.battle-result {
-	margin-top: calc(var(--global-line-height) * 1rem);
 }
 
 .button {

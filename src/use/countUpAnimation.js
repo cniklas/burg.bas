@@ -1,18 +1,15 @@
 // https://jshakespeare.com/simple-count-up-number-animation-javascript-react/
 
-// const _animationDuration = 2000
-// Calculate how long each ‘frame’ should last if we want to update the animation 60 times per second
+// calculate how long each ‘frame’ should last if we want to update the animation 60 times per second
 const _frameDuration = 1000 / 60
-// Use that to calculate how many frames we need to complete the animation
-// const _totalFrames = Math.round(_animationDuration / _frameDuration)
-// An ease-out function that slows the count as it progresses
+// an ease-out function that slows the count as it progresses
 const _easeOutQuad = t => t * (2 - t)
 
-const animateNumber = (el, changeBy, add = true, animationDuration = 2000) => {
+const animateNumber = (oldValue, changeBy, cb = null, add = false, animationDuration = 2000) => {
+	// use that to calculate how many frames we need to complete the animation
 	const _totalFrames = Math.round(animationDuration / _frameDuration)
 
-	const oldValue = el.value
-	let number = el.value
+	let number = oldValue
 	let frame = 0
 
 	// beim Runterzählen bei 0 stoppen
@@ -20,28 +17,26 @@ const animateNumber = (el, changeBy, add = true, animationDuration = 2000) => {
 		changeBy = oldValue
 	}
 
-	// Start the animation running 60 times per second
+	// start the animation running 60 times per second
 	const counter = setInterval(() => {
 		frame++
-		// Calculate our progress as a value between 0 and 1
-		// Pass that value to our easing function to get our progress on a curve
+		// calculate our progress as a value between 0 and 1
+		// pass that value to our easing function to get our progress on a curve
 		const progress = _easeOutQuad(frame / _totalFrames)
 		// Use the progress value to calculate the current count
 		const currentCount = Math.round(changeBy * progress)
 
-		// If the current count has changed, update the element
+		// if the current count has changed, update the element
 		if (number !== currentCount) {
 			number = currentCount
-			el.value = add ? oldValue + number : oldValue - number
+			cb?.(add ? oldValue + number : oldValue - number)
 		}
 
-		// If we’ve reached our last frame, stop the animation
+		// if we’ve reached our last frame, stop the animation
 		if (frame === _totalFrames) {
 			clearInterval(counter)
 		}
 	}, _frameDuration)
 }
 
-export const useCountUpAnimation = () => ({
-	animateNumber,
-})
+export { animateNumber }

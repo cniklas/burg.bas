@@ -1,6 +1,9 @@
 import { reactive } from 'vue'
 
-const attacks = reactive([])
+const attackLog = reactive([])
+const resetAttackLog = () => {
+	attackLog.length = 0
+}
 
 const _weapons = [
 	'dem Zepter des Titanen',
@@ -102,12 +105,14 @@ const randomAction = (attacker, defender, isAttack = false) => {
 	const d100 = Math.floor(Math.random() * 100) + 1
 	const dice = action === _spell ? d100 : d20
 
-	// const attackerLog = { name: attacker.name, currentHealth: attacker.health, attack: attacker.attack }
-	const message = action(dice, attacker, defender)
-	attacks.push({ message /* , attacker: { health: attacker.health, hit: attacker.hit, ...attackerLog } */ })
+	// const attackerState = { name: attacker.name, currentHealth: attacker.health, attack: attacker.attack }
+	const result = action(dice, attacker, defender)
+	// attackLog.push({ result, attacker: { health: attacker.health, hit: attacker.hit, ...attackerState } })
+	attackLog.push(result)
 }
 
 export const useBattle = () => ({
-	attacks,
+	attackLog,
+	resetAttackLog,
 	randomAction,
 })
