@@ -23,7 +23,7 @@ const closeOnEsc = e => {
 <template>
 	<button
 		type="button"
-		class="button modal-button fixed left-1/2 top-4 z-50 hidden h-8 w-8 select-none rounded-full border-2 border-current tracking-wider focus:outline-none lg:block"
+		class="button modal-button fixed left-1/2 top-4 z-50 hidden h-8 w-8 select-none items-center justify-center rounded-full border-2 border-current tracking-wider focus:outline-none lg:inline-flex"
 		:class="{ 'is-active': isVisible }"
 		@click.stop="toggleModal"
 	>
@@ -87,7 +87,6 @@ const closeOnEsc = e => {
 .modal-button {
 	font-family: 'Courier New', Courier, monospace;
 	font-size: 1.5rem;
-	line-height: calc(2rem - 4px);
 	box-shadow: none;
 	transform: translateX(calc(-512px - 50% + 2rem));
 	transition: color 160ms, transform var(--transition-duration);

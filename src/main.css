@@ -76,15 +76,21 @@ p:empty {
 	box-shadow: 0 0 0px 0px var(--bg-color), 0 0 0px 0px currentColor;
 	transition: color 160ms, box-shadow 160ms;
 
-	&:focus-visible,
-	&:hover {
+	&:focus-visible {
 		color: hsl(182, 35%, 50%);
 		box-shadow: 0 0 0px 1px var(--bg-color), 0 0 0px 2px currentColor;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		&:hover {
+			color: hsl(182, 35%, 50%);
+			box-shadow: 0 0 0px 1px var(--bg-color), 0 0 0px 2px currentColor;
+		}
 	}
 }
 
 .input {
+	@apply h-13;
 	background-color: hsl(230, 23%, 20%);
-	font-size: 1.625rem;
-	line-height: 2.375rem;
+	font-size: 1.5rem;
 }

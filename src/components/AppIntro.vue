@@ -36,7 +36,7 @@ onUnmounted(() => {
 
 <template>
 	<div class="base-column mx-auto flex-1 px-4 pt-8 lg:px-8">
-		<h1 class="headline mb-8 text-center text-3xl font-medium">
+		<h1 class="headline mb-8 text-3xl font-medium md:text-center">
 			Bist du bereit für ein waghalsiges Abenteuer in einer unbekannten Burg?
 		</h1>
 
@@ -46,7 +46,7 @@ onUnmounted(() => {
 					ref="input"
 					v-model.trim="userName"
 					type="text"
-					class="input w-full max-w-sm rounded p-2 text-center outline-none"
+					class="input w-full max-w-sm rounded px-2 outline-none md:text-center"
 					placeholder="Gib einen Namen ein oder drücke ENTER"
 					spellcheck="false"
 					@click.stop
@@ -72,7 +72,6 @@ onUnmounted(() => {
 <style scoped>
 .input::placeholder {
 	font-size: 1rem;
-	line-height: 2.375rem;
 }
 
 .fade-enter-active,
