@@ -95,6 +95,9 @@ const handleStory = async () => {
 		case 'thronsaal_kampf':
 			finalBattle()
 			break
+		case 'thronsaal_ende':
+			animateNumber(state.gold, 1000, setGold, true)
+			break
 	}
 }
 watch(sceneId, handleStory, { immediate: true })
@@ -206,7 +209,7 @@ onUnmounted(() => {
 	>
 		<main class="main flex-auto">
 			<div class="flex h-full flex-col justify-between">
-				<AppStory :story="story">
+				<AppStory :story="story" class="<md:overflow-y-auto" :class="{ '<md:hidden': showBattle && startBattle }">
 					<div v-if="showCredits" class="mt-12 hidden justify-center md:flex">
 						<pre class="ascii-text">
 88                                                 88
@@ -224,10 +227,14 @@ onUnmounted(() => {
 					</div>
 				</AppStory>
 
-				<AppBattle v-if="showBattle && startBattle" class="flex-auto overflow-y-auto" @finish="onBattleFinished" />
+				<AppBattle
+					v-if="showBattle && startBattle"
+					class="flex-auto overflow-y-auto md:mt-8"
+					@finish="onBattleFinished"
+				/>
 
-				<section v-show="!onHold && !showCredits" class="mt-8 text-center">
-					<div v-if="nextButton" class="my-4">
+				<section v-show="!onHold && !showCredits" class="mt-8 md:text-center">
+					<div v-if="nextButton" class="my-4 text-center">
 						<button
 							ref="button"
 							type="button"
