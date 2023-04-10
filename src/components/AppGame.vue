@@ -9,7 +9,7 @@ import { useInput } from '../use/input'
 import { useStore } from '../use/store'
 import { animateNumber } from '../use/countUpAnimation'
 
-const { input, focusInput, cleanInput, button, blurButton } = useInput()
+const { isTouch, input, focusInput, cleanInput, button, blurButton } = useInput()
 const { state, setGold, setHealth, hasCondition, isEnabled, handleCondition, manageInventory, getArmed, resetState } =
 	useStore()
 
@@ -170,7 +170,10 @@ const hint = ref('')
 const showHint = ref(false)
 const typed = ref('')
 const showInput = computed(() => !(!!scene.value.continue || nextButton.value || showBattle.value))
+const touchButton = ref(null)
 const handleInput = () => {
+	touchButton.value?.blur?.()
+
 	if (scene.value.timeout && !timeout) {
 		timeout = setTimeout(handleAction, 7000, { action: scene.value.timeout.action })
 	}
@@ -234,7 +237,7 @@ onUnmounted(() => {
 				/>
 
 				<section v-show="!onHold && !showCredits" class="mt-8 md:text-center">
-					<div v-if="nextButton" class="my-4 text-center">
+					<div v-if="nextButton" class="text-center">
 						<button
 							ref="button"
 							type="button"
@@ -245,18 +248,27 @@ onUnmounted(() => {
 						</button>
 					</div>
 
-					<div v-show="hint && showHint" class="hint white my-4">{{ hint }}</div>
-					<div v-if="showInput" class="my-4">
+					<div v-show="hint && showHint" class="hint white mb-4">{{ hint }}</div>
+					<div v-if="showInput" class="flex gap-x-4">
 						<input
 							ref="input"
 							v-model.trim="typed"
 							type="text"
-							class="input w-full rounded p-2 outline-none"
+							class="input w-full rounded px-2 outline-none"
 							placeholder="?"
 							spellcheck="false"
 							@click.stop
 							@keyup.enter="handleInput"
 						/>
+						<button
+							v-if="isTouch"
+							ref="touchButton"
+							type="button"
+							class="button inline-flex w-11 flex-shrink-0 select-none items-center justify-center border border-current tracking-wider focus:outline-none sm:w-12"
+							@click="handleInput"
+						>
+							Go
+						</button>
 					</div>
 				</section>
 			</div>

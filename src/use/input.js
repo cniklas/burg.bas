@@ -1,7 +1,10 @@
 import { ref } from 'vue'
 
+const isTouch = !window.matchMedia('(hover: hover) and (pointer: fine)').matches
+
 const input = ref(null)
 const focusInput = () => {
+	if (isTouch) return
 	input.value?.focus()
 }
 
@@ -22,6 +25,7 @@ const blurButton = () => {
 }
 
 export const useInput = () => ({
+	isTouch,
 	input,
 	focusInput,
 	cleanInput,
