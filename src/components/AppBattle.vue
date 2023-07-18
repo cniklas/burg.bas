@@ -92,7 +92,7 @@ const _startObserver = () => {
 	}
 }
 const _stopObserver = () => {
-	observer?.disconnect?.()
+	observer?.disconnect()
 }
 onMounted(_startObserver)
 onBeforeUnmount(() => {

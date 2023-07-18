@@ -25,15 +25,19 @@ html {
 	scrollbar-color: hsl(218, 13%, 64%) hsla(218, 40%, 50%, 0.08);
 	background-color: var(--bg-color);
 	color: #cbd5e0;
-	height: -webkit-fill-available;
 }
 
 body {
 	height: 100vh;
-	height: -webkit-fill-available;
+	height: 100dvh;
 	font-family: Menlo, 'DejaVu Sans Mono', 'Lucida Console', monospace;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+/* https://unocss.dev/guide/style-reset#tailwind */
+button {
+	background-color: unset;
 }
 
 div:empty,
@@ -43,8 +47,10 @@ p:empty {
 
 .base-column {
 	max-width: 44rem;
+}
 
-	@screen lg {
+@screen lg {
+	.base-column {
 		max-width: 49rem;
 	}
 }

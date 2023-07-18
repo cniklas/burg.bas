@@ -172,7 +172,7 @@ const typed = ref('')
 const showInput = computed(() => !(!!scene.value.continue || nextButton.value || showBattle.value))
 const touchButton = ref(null)
 const handleInput = () => {
-	touchButton.value?.blur?.()
+	touchButton.value?.blur()
 
 	if (scene.value.timeout && !timeout) {
 		timeout = setTimeout(handleAction, 7000, { action: scene.value.timeout.action })
@@ -264,7 +264,7 @@ onUnmounted(() => {
 							v-if="isTouch"
 							ref="touchButton"
 							type="button"
-							class="button inline-flex w-11 flex-shrink-0 select-none items-center justify-center border border-current tracking-wider focus:outline-none sm:w-12"
+							class="button inline-flex w-11 shrink-0 select-none items-center justify-center border border-current tracking-wider focus:outline-none sm:w-12"
 							@click="handleInput"
 						>
 							Go

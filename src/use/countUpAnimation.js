@@ -5,7 +5,7 @@ const _frameDuration = 1000 / 60
 // an ease-out function that slows the count as it progresses
 const _easeOutQuad = t => t * (2 - t)
 
-const animateNumber = (oldValue, changeBy, cb = null, add = false, animationDuration = 2000) => {
+const animateNumber = (oldValue, changeBy, cb, add = false, animationDuration = 2000) => {
 	// use that to calculate how many frames we need to complete the animation
 	const _totalFrames = Math.round(animationDuration / _frameDuration)
 
