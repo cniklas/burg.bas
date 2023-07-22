@@ -1,24 +1,51 @@
 :root {
-	--green:        #5ce6cd;
-	--red:          #ff0080;
-	--bg-color:     hsl(240, 21%, 7%);
+	--green: #5ce6cd;
+	--red: #ff0080;
+	--bg-color: hsl(240, 21%, 7%);
 	--global-line-height: 1.375; /* 'leading-snug' */
 	--transition-duration: 320ms;
 }
 
-.white        { color: #fff; }
-.blue-light   { color: #89d3fd; }
-.blue-dark    { color: #067df7; }
-.gold         { color: #ffbd2e; }
-.green        { color: var(--green); }
-.papayawhip   { color: papayawhip; }
-.pink         { color: hotpink; }
-.purple-light { color: #7775a7; }
-.red          { color: var(--red); }
+.white {
+	color: #fff;
+}
+.blue-light {
+	color: #89d3fd;
+}
+.blue-dark {
+	color: #067df7;
+}
+.gold {
+	color: #ffbd2e;
+}
+.green {
+	color: var(--green);
+}
+.papayawhip {
+	color: papayawhip;
+}
+.pink {
+	color: hotpink;
+}
+.purple-light {
+	color: #7775a7;
+}
+.red {
+	color: var(--red);
+}
 
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background-color: hsla(218, 40%, 50%, 0.08); border-radius: 3px; }
-::-webkit-scrollbar-thumb { background-color: hsl(218, 13%, 64%); border-radius: 3px; }
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+::-webkit-scrollbar-track {
+	background-color: hsla(218, 40%, 50%, 0.08);
+	border-radius: 3px;
+}
+::-webkit-scrollbar-thumb {
+	background-color: hsl(218, 13%, 64%);
+	border-radius: 3px;
+}
 
 html {
 	scrollbar-width: thin;
@@ -40,17 +67,14 @@ button {
 	background-color: unset;
 }
 
-div:empty,
-p:empty {
+:is(div:empty, p:empty) {
 	@apply m-0;
 }
 
 .base-column {
 	max-width: 44rem;
-}
 
-@screen lg {
-	.base-column {
+	@media (min-width: 64em) {
 		max-width: 49rem;
 	}
 }
@@ -62,12 +86,11 @@ p:empty {
 .story {
 	@apply leading-snug;
 
-	p,
-	ul {
+	:is(& p, & ul) {
 		margin-bottom: calc(var(--global-line-height) * 1rem);
 	}
 
-	li:nth-last-child(n + 2) {
+	& li:nth-last-child(n + 2) {
 		margin-bottom: calc(var(--global-line-height) * 0.5rem);
 	}
 

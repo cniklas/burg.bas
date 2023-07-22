@@ -114,8 +114,7 @@ onBeforeUnmount(() => {
 </template>
 
 <style>
-.battle-strike:nth-child(2n + 3),
-.battle-result {
+:is(.battle-strike:nth-child(2n + 3), .battle-result) {
 	margin-top: calc(var(--global-line-height) * 1rem);
 }
 </style>

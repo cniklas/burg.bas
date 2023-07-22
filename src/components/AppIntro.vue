@@ -74,13 +74,11 @@ onUnmounted(() => {
 	font-size: 1rem;
 }
 
-.fade-enter-active,
-.fade-leave-active {
+:is(.fade-enter-active, .fade-leave-active) {
 	transition: opacity var(--transition-duration) ease-in-out;
 }
 
-.fade-enter-from,
-.fade-leave-to {
+:is(.fade-enter-from, .fade-leave-to) {
 	opacity: 0;
 }
 </style>

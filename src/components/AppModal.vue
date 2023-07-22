@@ -104,15 +104,13 @@ const closeOnEsc = e => {
 	transition-property: transform, opacity, visibility; /* 'visibility' is inherited and needs transition, too */
 	transition-duration: var(--transition-duration);
 
+	@media (min-width: 64em) {
+		max-width: 47rem;
+	}
+
 	&.is-visible {
 		@apply opacity-100;
 		transform: scale(1);
-	}
-}
-
-@screen lg {
-	.modal {
-		max-width: 47rem;
 	}
 }
 

@@ -278,7 +278,7 @@ onUnmounted(() => {
 	</div>
 </template>
 
-<style lang="postcss">
+<style>
 .base-column {
 	box-shadow: 0 0 5.375rem var(--bg-color);
 	transition: box-shadow 480ms ease-out;
