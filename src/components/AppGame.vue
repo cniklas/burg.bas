@@ -1,9 +1,8 @@
 <script setup>
 import burg from '../data/burg.json'
 import AppStory from './AppStory.vue'
-import AppBattle from './AppBattle.vue'
 import AppPanel from './AppPanel.vue'
-import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted, nextTick, defineAsyncComponent } from 'vue'
 import { playlist, loadMusic, playMusic, fadeOutMusic } from '../use/howler'
 import { useInput } from '../use/input'
 import { useStore } from '../use/store'
@@ -112,6 +111,7 @@ const reduceHealth = points => {
 		: animateNumber(state.health, rnd, setHealth)
 }
 
+const AppBattle = defineAsyncComponent(() => import('./AppBattle.vue'))
 const showBattle = computed(() => sceneId.value === 'thronsaal_kampf')
 const startBattle = ref(false)
 const finalBattle = () => {
