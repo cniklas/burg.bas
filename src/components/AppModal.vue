@@ -2,21 +2,21 @@
 import { ref, watch } from 'vue'
 
 const modal = ref(null)
+const loadAudio = ref(false)
 const isVisible = ref(false)
 watch(isVisible, val => {
 	val ? document.addEventListener('keyup', closeOnEsc) : document.removeEventListener('keyup', closeOnEsc)
 })
 const toggleModal = () => {
 	if (!isVisible.value) {
+		loadAudio.value = true
 		modal.value?.scrollTo({ top: 0 })
 	}
 
 	isVisible.value = !isVisible.value
 }
 const closeOnEsc = e => {
-	if (e.keyCode === 27) {
-		isVisible.value = false
-	}
+	if (e.keyCode === 27) isVisible.value = false
 }
 </script>
 
@@ -39,7 +39,7 @@ const closeOnEsc = e => {
 			<div ref="modal" class="modal overflow-y-auto px-4" :class="{ 'is-visible': isVisible }">
 				<h2 class="headline mb-6 text-center text-3xl font-medium">Über dieses Spiel</h2>
 
-				<article class="story">
+				<div class="story">
 					<p>
 						„Die Burg“ ist ein Textadventure Game à la
 						<a href="https://www.c64-wiki.de/wiki/Zauberschlo%C3%9F" class="underline" rel="noopener">Zauberschloß</a>.
@@ -56,13 +56,16 @@ const closeOnEsc = e => {
 					</p>
 					<ul>
 						<li class="flex items-center">
-							<audio src="audio/intro-2-o.mp3" controls></audio> <span class="white ml-4">Intro</span>
+							<audio :src="loadAudio ? 'audio/intro-2-o.mp3' : null" controls></audio>
+							<span class="white ml-4">Intro</span>
 						</li>
 						<li class="flex items-center">
-							<audio src="audio/intro-1.mp3" controls></audio> <span class="white ml-4">alternatives Intro</span>
+							<audio :src="loadAudio ? 'audio/intro-1.mp3' : null" controls></audio>
+							<span class="white ml-4">alternatives Intro</span>
 						</li>
 						<li class="flex items-center">
-							<audio src="audio/battle-o.mp3" controls></audio> <span class="white ml-4">Kampf</span>
+							<audio :src="loadAudio ? 'audio/battle-o.mp3' : null" controls></audio>
+							<span class="white ml-4">Kampf</span>
 						</li>
 					</ul>
 					<p>
@@ -75,7 +78,7 @@ const closeOnEsc = e => {
 						Die Namensvorschläge für den Spieler stammen aus
 						<a href="https://en.wikipedia.org/wiki/SimCity_2000" class="underline" rel="noopener">SimCity 2000</a>.
 					</p>
-				</article>
+				</div>
 			</div>
 		</section>
 

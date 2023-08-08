@@ -11,7 +11,7 @@ defineProps({
 </script>
 
 <template>
-	<article class="story">
+	<div class="story">
 		<transition-group name="story-fade">
 			<template v-for="(section, i) in story" :key="`sct${i}`">
 				<p v-if="typeof section === 'string'" class="whitespace-pre-line" v-html="section" />
@@ -25,7 +25,7 @@ defineProps({
 
 			<slot />
 		</transition-group>
-	</article>
+	</div>
 </template>
 
 <style lang="postcss">
