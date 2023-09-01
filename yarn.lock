@@ -329,11 +329,6 @@
     "@unocss/core" "0.55.4"
     unconfig "^0.3.10"
 
-"@unocss/core@0.54.1":
-  version "0.54.1"
-  resolved "https://registry.yarnpkg.com/@unocss/core/-/core-0.54.1.tgz#9b4f8ad6a7812cd89a32b97bff0cafc4ab1b5078"
-  integrity sha512-lbwvGD91liMNEZs3jwXxLrIHIn/J4dkJpeKdosRdm1xObqrkg0+Zx1fVn6X+GOX74yvjQlzbu/ODZEXFQC3mGw==
-
 "@unocss/core@0.55.4":
   version "0.55.4"
   resolved "https://registry.yarnpkg.com/@unocss/core/-/core-0.55.4.tgz#d05a858d0e31438266e2c2eb9f2fe21b4ca163d3"
@@ -466,20 +461,12 @@
   dependencies:
     "@unocss/core" "0.55.4"
 
-"@unocss/transformer-directives@0.55.4":
+"@unocss/transformer-directives@0.55.4", "@unocss/transformer-directives@^0.55.4":
   version "0.55.4"
   resolved "https://registry.yarnpkg.com/@unocss/transformer-directives/-/transformer-directives-0.55.4.tgz#8d863464c6ce35ebdb7aa44a9735a91cd66d257c"
   integrity sha512-Eim06MC5p4uwgEEPrz5JhqSO8TTrp1nW7henwxpqyCxAIbPblMpbdraQm1agXsn0MXMGQuYylqH1N6Ng5D7cAw==
   dependencies:
     "@unocss/core" "0.55.4"
-    css-tree "^2.3.1"
-
-"@unocss/transformer-directives@^0.54.1":
-  version "0.54.1"
-  resolved "https://registry.yarnpkg.com/@unocss/transformer-directives/-/transformer-directives-0.54.1.tgz#c321300cce40b6ee83c9682dd31d9f5601fa0d65"
-  integrity sha512-nNltKSo5dTKcjgehPV0o6hD3dJzCixnmsaLNwTtB3w7GUsESn4tl4JnDv0PCPbiuVmZFwLZlFA4aYOfZ/AzLsQ==
-  dependencies:
-    "@unocss/core" "0.54.1"
     css-tree "^2.3.1"
 
 "@unocss/transformer-variant-group@0.55.4":
