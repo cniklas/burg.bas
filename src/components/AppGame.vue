@@ -14,10 +14,11 @@ const { state, setGold, setHealth, hasCondition, isEnabled, handleCondition, man
 
 const sceneId = ref('intro')
 const gameWon = computed(
-	() => hasCondition('battle-won') || sceneId.value.endsWith('_ende') || sceneId.value.startsWith('congratulations')
+	() => hasCondition('battle-won') || sceneId.value.endsWith('_ende') || sceneId.value.startsWith('congratulations'),
 )
 const gameLost = computed(
-	() => sceneId.value === 'game-over' || scene.value.commands?.find(cmd => cmd.action === 'game-over' && isEnabled(cmd))
+	() =>
+		sceneId.value === 'game-over' || scene.value.commands?.find(cmd => cmd.action === 'game-over' && isEnabled(cmd)),
 )
 const showCredits = computed(() => sceneId.value === 'credits')
 const scene = computed(() => burg.find(scene => scene.id === sceneId.value))
@@ -68,7 +69,7 @@ const handleStory = async () => {
 		let delay = scene.value.continue.delay ?? 200
 		if (scene.value.play) {
 			delay = Math.ceil(
-				(playlist.value.find(item => item.id === scene.value.play)?.audio?._duration ?? delay / 1000) * 1000
+				(playlist.value.find(item => item.id === scene.value.play)?.audio?._duration ?? delay / 1000) * 1000,
 			)
 		}
 
@@ -184,7 +185,7 @@ const handleInput = () => {
 			isEnabled(cmd) &&
 			(typeof cmd.text === 'string'
 				? cmd.text.toLowerCase() === inputString
-				: cmd.text.find(text => text.toLowerCase() === inputString))
+				: cmd.text.find(text => text.toLowerCase() === inputString)),
 	)
 
 	if (command === undefined) {

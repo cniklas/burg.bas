@@ -32,7 +32,7 @@ watch(
 		if (val < _player.originHealth) {
 			animateNumber(state.health, oldVal - val, setHealth, false, strikeInterval)
 		}
-	}
+	},
 )
 
 const battleResult = computed(() => {
