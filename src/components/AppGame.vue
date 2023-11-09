@@ -258,6 +258,7 @@ onUnmounted(() => {
 							class="input w-full rounded px-2 outline-none"
 							placeholder="?"
 							spellcheck="false"
+							enterkeyhint="send"
 							@click.stop
 							@keyup.enter="handleInput"
 						/>

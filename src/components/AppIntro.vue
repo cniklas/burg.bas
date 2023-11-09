@@ -49,6 +49,7 @@ onUnmounted(() => {
 					class="input w-full max-w-sm rounded px-2 outline-none md:text-center"
 					placeholder="Gib einen Namen ein oder drücke ENTER"
 					spellcheck="false"
+					enterkeyhint="next"
 					@click.stop
 					@keyup.enter="createName"
 				/>
