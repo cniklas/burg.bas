@@ -237,7 +237,7 @@ onUnmounted(() => {
 					@finish="onBattleFinished"
 				/>
 
-				<section v-show="!onHold && !showCredits" class="mt-8 md:text-center">
+				<div v-show="!onHold && !showCredits" class="mt-8 md:text-center">
 					<div v-if="nextButton" class="text-center">
 						<button
 							ref="button"
@@ -272,7 +272,7 @@ onUnmounted(() => {
 							Go
 						</button>
 					</div>
-				</section>
+				</div>
 			</div>
 		</main>
 

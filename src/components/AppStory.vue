@@ -28,7 +28,7 @@ defineProps({
 	</div>
 </template>
 
-<style lang="postcss">
+<style>
 .story-fade-enter-active {
 	transition: opacity var(--transition-duration) ease-in-out;
 }
@@ -38,6 +38,8 @@ defineProps({
 }
 
 .text-prewrap {
-	@apply block whitespace-pre-wrap text-center;
+	display: block;
+	white-space: pre-wrap;
+	text-align: center;
 }
 </style>

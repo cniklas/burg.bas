@@ -102,7 +102,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-	<section ref="container" class="scroll-smooth leading-snug">
+	<div ref="container" class="scroll-smooth leading-snug">
 		<ol ref="timeline">
 			<li v-for="(message, i) in attackLog" :key="i" class="battle-strike">
 				{{ message }}
@@ -110,7 +110,7 @@ onBeforeUnmount(() => {
 		</ol>
 
 		<div v-show="battleResult" class="battle-result">{{ battleResult }}</div>
-	</section>
+	</div>
 </template>
 
 <style>

@@ -40,7 +40,7 @@ onUnmounted(() => {
 			Bist du bereit für ein waghalsiges Abenteuer in einer unbekannten Burg?
 		</h1>
 
-		<section class="mt-8 text-center">
+		<div class="mt-8 text-center">
 			<div class="my-4">
 				<input
 					ref="input"
@@ -66,7 +66,7 @@ onUnmounted(() => {
 					</button>
 				</div>
 			</transition>
-		</section>
+		</div>
 	</div>
 </template>
 

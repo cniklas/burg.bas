@@ -31,7 +31,7 @@ const closeOnEsc = e => {
 	</button>
 
 	<Teleport to="body">
-		<section
+		<div
 			class="backface-hidden fixed left-0 top-0 z-40 flex h-full w-full items-center justify-center"
 			:class="isVisible ? 'visible' : 'invisible'"
 			@click.stop
@@ -80,19 +80,21 @@ const closeOnEsc = e => {
 					</p>
 				</div>
 			</div>
-		</section>
+		</div>
 
 		<div class="modal-overlay fixed left-0 top-0 z-30 h-full w-full" :class="{ 'is-visible': isVisible }" />
 	</Teleport>
 </template>
 
-<style lang="postcss">
+<style>
 .modal-button {
 	font-family: 'Courier New', Courier, monospace;
 	font-size: 1.5rem;
 	box-shadow: none;
 	transform: translateX(calc(-512px - 50% + 2rem));
-	transition: color 160ms, transform var(--transition-duration);
+	transition:
+		color 160ms,
+		transform var(--transition-duration);
 
 	&.is-active {
 		transform: translateX(-50%);
@@ -100,7 +102,7 @@ const closeOnEsc = e => {
 }
 
 .modal {
-	@apply opacity-0;
+	opacity: 0;
 	max-width: 44rem;
 	max-height: 70%;
 	transform: scale(0.8);
@@ -112,19 +114,21 @@ const closeOnEsc = e => {
 	}
 
 	&.is-visible {
-		@apply opacity-100;
+		opacity: unset;
 		transform: scale(1);
 	}
 }
 
 .modal-overlay {
-	@apply invisible opacity-0;
+	visibility: hidden;
+	opacity: 0;
 	background-color: hsla(240, 21%, 7%, 80%);
 	transition-property: background-color, opacity, visibility;
 	transition-duration: var(--transition-duration);
 
 	&.is-visible {
-		@apply visible opacity-100;
+		visibility: unset;
+		opacity: unset;
 		background-color: var(--bg-color);
 	}
 }
