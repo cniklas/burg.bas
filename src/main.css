@@ -68,7 +68,7 @@ button {
 .story {
 	line-height: var(--global-line-height);
 
-	:is(& p, & ul) {
+	:is(p, ul) {
 		margin-bottom: calc(var(--global-line-height) * 1rem);
 	}
 
