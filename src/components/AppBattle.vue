@@ -1,24 +1,24 @@
-<script setup>
+<script setup lang="ts">
 import { ref, reactive, computed, watch, onMounted, onBeforeUnmount } from 'vue'
-import { useBattle } from '../use/battle'
-import { useStore } from '../use/store'
-import { animateNumber } from '../use/countUpAnimation'
+import { useBattle, type Player, type Opponent } from '@/use/battle'
+import { useStore } from '@/use/store'
+import { animateNumber } from '@/use/countUpAnimation'
 
 const { attackLog, resetAttackLog, randomAction } = useBattle()
 const { state, setHealth } = useStore()
 
-const emit = defineEmits(['finish'])
+const emit = defineEmits<{ (event: 'finished', result: string): void }>()
 
 const strikeInterval = 1200
 
-const _opponent = reactive({
+const _opponent: Opponent = reactive({
 	name: '🧟 UBOLZIO',
 	health: 75,
 	attack: 0,
 	hit: false,
 })
 
-const _player = reactive({
+const _player: Player = reactive({
 	name: `🦸🏼‍♂️ ${state.userName}`,
 	health: state.health,
 	originHealth: state.health,
@@ -40,17 +40,17 @@ const battleResult = computed(() => {
 	switch (true) {
 		case _opponent.health <= 0 && _player.health > 0:
 			message = `${_opponent.name} erleidet eine Herzattacke und stirbt. 💀`
-			emit('finish', 'won')
+			emit('finished', 'won')
 			break
 
 		case _player.health <= 0 && _opponent.health > 0:
 			message = `${_player.name} erliegt seinen Verletzungen und stirbt. 🚑`
-			emit('finish', 'lost')
+			emit('finished', 'lost')
 			break
 
 		case _player.health <= 0 && _opponent.health <= 0:
 			message = `Beide Opponenten sind tödlich getroffen. 😱`
-			emit('finish', 'lost')
+			emit('finished', 'lost')
 			break
 	}
 
@@ -77,24 +77,27 @@ const _battle = () => {
 		setTimeout(_battle, strikeInterval)
 	}
 }
-onMounted(_battle)
+onMounted(() => {
+	_battle()
+})
 
-const container = ref(null)
-const timeline = ref(null)
-let observer = null
+const timelineEl = ref<HTMLOListElement | null>(null)
+const scrollHelperEl = ref<HTMLDivElement | null>(null)
+let observer: ResizeObserver | null = null
 const _startObserver = () => {
-	if ('ResizeObserver' in window) {
-		observer = new ResizeObserver(() => {
-			container.value.scrollTop = container.value.scrollHeight
-		})
+	if (!(timelineEl.value && 'ResizeObserver' in window)) return
 
-		observer.observe(timeline.value)
-	}
+	observer = new ResizeObserver(() => {
+		scrollHelperEl.value?.scrollIntoView({ block: 'end' })
+	})
+	observer.observe(timelineEl.value)
 }
 const _stopObserver = () => {
 	observer?.disconnect()
 }
-onMounted(_startObserver)
+onMounted(() => {
+	_startObserver()
+})
 onBeforeUnmount(() => {
 	_stopObserver()
 	resetAttackLog()
@@ -102,14 +105,15 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-	<div ref="container" class="scroll-smooth leading-snug">
-		<ol ref="timeline">
+	<div class="scroll-smooth leading-snug">
+		<ol ref="timelineEl">
 			<li v-for="(message, i) in attackLog" :key="i" class="battle-strike">
 				{{ message }}
 			</li>
 		</ol>
 
 		<div v-show="battleResult" class="battle-result">{{ battleResult }}</div>
+		<div ref="scrollHelperEl"></div>
 	</div>
 </template>
 

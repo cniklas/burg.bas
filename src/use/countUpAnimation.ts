@@ -3,9 +3,9 @@
 // calculate how long each ‘frame’ should last if we want to update the animation 60 times per second
 const _frameDuration = 1000 / 60
 // an ease-out function that slows the count as it progresses
-const _easeOutQuad = t => t * (2 - t)
+const _easeOutQuad = (t: number) => t * (2 - t)
 
-const animateNumber = (oldValue, changeBy, cb, add = false, animationDuration = 2000) => {
+const animateNumber = (oldValue: number, changeBy: number, cb?: Function, add = false, animationDuration = 2000) => {
 	// use that to calculate how many frames we need to complete the animation
 	const _totalFrames = Math.round(animationDuration / _frameDuration)
 

@@ -1,14 +1,15 @@
-<script setup>
-import burg from '../data/burg.json'
+<script setup lang="ts">
+import burg from '@/data/burg.json'
+import type { Scene, Story, Command } from '@/types/Scene.type'
 import AppStory from './AppStory.vue'
 import AppPanel from './AppPanel.vue'
 import { ref, computed, watch, onMounted, onUnmounted, nextTick, defineAsyncComponent } from 'vue'
-import { playlist, loadMusic, playMusic, fadeOutMusic } from '../use/howler'
-import { useInput } from '../use/input'
-import { useStore } from '../use/store'
-import { animateNumber } from '../use/countUpAnimation'
+import { playlist, loadMusic, playMusic, fadeOutMusic } from '@/use/howler'
+import { useInput } from '@/use/input'
+import { useStore } from '@/use/store'
+import { animateNumber } from '@/use/countUpAnimation'
 
-const { isTouch, input, focusInput, cleanInput, button, blurButton } = useInput()
+const { isTouch, inputEl, focusInput, cleanInput, buttonEl, blurButton } = useInput()
 const { state, setGold, setHealth, hasCondition, isEnabled, handleCondition, manageInventory, getArmed, resetState } =
 	useStore()
 
@@ -18,13 +19,15 @@ const gameWon = computed(
 )
 const gameLost = computed(
 	() =>
-		sceneId.value === 'game-over' || scene.value.commands?.find(cmd => cmd.action === 'game-over' && isEnabled(cmd)),
+		sceneId.value === 'game-over' || scene.value?.commands?.find(cmd => cmd.action === 'game-over' && isEnabled(cmd)),
 )
 const showCredits = computed(() => sceneId.value === 'credits')
-const scene = computed(() => burg.find(scene => scene.id === sceneId.value))
-const story = ref([])
+const scene = computed<Scene | undefined>(() => burg.find(scene => scene.id === sceneId.value))
+const story = ref<Story>([])
 const onHold = ref(false)
 const handleStory = async () => {
+	if (!scene.value) return
+
 	// für Transition
 	story.value = []
 	await nextTick()
@@ -38,7 +41,7 @@ const handleStory = async () => {
 
 		setTimeout(() => {
 			onHold.value = false
-			story.value = [...story.value, ...scene.value.delayed.story]
+			story.value = [...story.value, ...(scene.value?.delayed?.story ?? [])]
 
 			requestAnimationFrame(focusInput)
 		}, scene.value.delayed.delay)
@@ -69,7 +72,7 @@ const handleStory = async () => {
 		let delay = scene.value.continue.delay ?? 200
 		if (scene.value.play) {
 			delay = Math.ceil(
-				(playlist.value.find(item => item.id === scene.value.play)?.audio?._duration ?? delay / 1000) * 1000,
+				(playlist.value.find(item => item.id === scene.value?.play)?.audio?.duration() ?? delay / 1000) * 1000,
 			)
 		}
 
@@ -90,7 +93,7 @@ const handleStory = async () => {
 			animateNumber(state.gold, 100, setGold, true)
 			break
 		case 'vorzimmer_drache_sieg':
-			setTimeout(manageInventory, scene.value.delayed.delay, 'discard-magic-wand')
+			setTimeout(manageInventory, scene.value.delayed?.delay, 'discard-magic-wand')
 			break
 		case 'thronsaal_kampf':
 			finalBattle()
@@ -102,13 +105,13 @@ const handleStory = async () => {
 }
 watch(sceneId, handleStory, { immediate: true })
 
-const reduceHealth = points => {
+const reduceHealth = (points: number) => {
 	const min = Math.ceil(points / 2)
 	const max = Math.floor(points)
 
 	const rnd = Math.floor(Math.random() * (max - min + 1)) + min
 	sceneId.value === 'lagerhaus_kampf'
-		? setTimeout(animateNumber, scene.value.delayed.delay, state.health, rnd, setHealth)
+		? setTimeout(animateNumber, scene.value?.delayed?.delay, state.health, rnd, setHealth)
 		: animateNumber(state.health, rnd, setHealth)
 }
 
@@ -116,21 +119,21 @@ const AppBattle = defineAsyncComponent(() => import('./AppBattle.vue'))
 const showBattle = computed(() => sceneId.value === 'thronsaal_kampf')
 const startBattle = ref(false)
 const finalBattle = () => {
-	scene.value.play_delay
+	scene.value?.play_delay
 		? setTimeout(() => {
 				startBattle.value = true
-		  }, scene.value.play_delay)
+			}, scene.value.play_delay)
 		: (startBattle.value = true)
 }
-const onBattleFinished = result => {
+const onBattleFinished = (result: string) => {
 	fadeOutMusic()
 	handleCondition(`battle-${result}`)
 }
 
-const nextScene = id => {
+const nextScene = (id: string) => {
 	hint.value = ''
 	showHint.value = false
-	typed.value = ''
+	inputRef.value = ''
 	sceneId.value = id
 }
 
@@ -139,10 +142,12 @@ const resetGame = () => {
 	resetState()
 }
 
-let timeout = null
-const handleAction = command => {
-	clearTimeout(timeout)
-	timeout = null
+let _timeout: number | undefined
+const handleAction = (command: Command) => {
+	if (!command.action) return
+
+	clearTimeout(_timeout)
+	_timeout = undefined
 
 	handleCondition(command.setCondition)
 
@@ -153,34 +158,36 @@ const handleAction = command => {
 	nextScene(command.action)
 }
 
-const handleMessage = message => {
+const handleMessage = (message: string) => {
 	hint.value = message
 	showHint.value = true
 }
 
-const handleCommand = command => {
+const handleCommand = (command: Command) => {
 	command.message ? handleMessage(command.message) : handleAction(command)
 }
 
-const nextButton = computed(() => scene.value.commands?.find(cmd => cmd.key === 'enter' && isEnabled(cmd)))
+const nextButton = computed(() => scene.value?.commands?.find(cmd => cmd.key === 'enter' && isEnabled(cmd)))
 const onClick = () => {
+	if (!nextButton.value) return
+
 	blurButton()
 	handleCommand(nextButton.value)
 }
 const hint = ref('')
 const showHint = ref(false)
-const typed = ref('')
-const showInput = computed(() => !(!!scene.value.continue || nextButton.value || showBattle.value))
-const touchButton = ref(null)
+const inputRef = ref('')
+const showInput = computed(() => !(!!scene.value?.continue || nextButton.value || showBattle.value))
+const touchButtonEl = ref<HTMLButtonElement | null>(null)
 const handleInput = () => {
-	touchButton.value?.blur()
+	touchButtonEl.value?.blur()
 
-	if (scene.value.timeout && !timeout) {
-		timeout = setTimeout(handleAction, 7000, { action: scene.value.timeout.action })
+	if (scene.value?.timeout && !_timeout) {
+		_timeout = setTimeout(handleAction, 7000, { action: scene.value.timeout.action })
 	}
 
-	const inputString = cleanInput(typed.value)
-	const command = scene.value.commands?.find(
+	const inputString = cleanInput(inputRef.value)
+	const command = scene.value?.commands?.find(
 		cmd =>
 			isEnabled(cmd) &&
 			(typeof cmd.text === 'string'
@@ -189,7 +196,7 @@ const handleInput = () => {
 	)
 
 	if (command === undefined) {
-		hint.value = scene.value.hint ?? ''
+		hint.value = scene.value?.hint ?? ''
 		showHint.value = true
 		return
 	}
@@ -234,13 +241,13 @@ onUnmounted(() => {
 				<AppBattle
 					v-if="showBattle && startBattle"
 					class="flex-auto overflow-y-auto md:mt-8"
-					@finish="onBattleFinished"
+					@finished.once="onBattleFinished"
 				/>
 
 				<div v-show="!onHold && !showCredits" class="mt-8 md:text-center">
 					<div v-if="nextButton" class="text-center">
 						<button
-							ref="button"
+							ref="buttonEl"
 							type="button"
 							class="button inline-flex select-none items-center border border-current px-7 py-2 tracking-wider focus:outline-none"
 							@click.stop="onClick"
@@ -252,8 +259,8 @@ onUnmounted(() => {
 					<div v-show="hint && showHint" class="hint white mb-4">{{ hint }}</div>
 					<div v-if="showInput" class="flex gap-x-4">
 						<input
-							ref="input"
-							v-model.trim="typed"
+							ref="inputEl"
+							v-model.trim="inputRef"
 							type="text"
 							class="input w-full rounded px-2 outline-none"
 							placeholder="?"
@@ -264,7 +271,7 @@ onUnmounted(() => {
 						/>
 						<button
 							v-if="isTouch"
-							ref="touchButton"
+							ref="touchButtonEl"
 							type="button"
 							class="button inline-flex w-11 shrink-0 select-none items-center justify-center border border-current tracking-wider focus:outline-none sm:w-12"
 							@click="handleInput"

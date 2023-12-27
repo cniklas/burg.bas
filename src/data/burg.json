@@ -1,9 +1,7 @@
 [
 	{
 		"id": "intro",
-		"story": [
-			"<span class='text-prewrap'>---------------------  D  I  E     B  U  R  G  ---------------------</span>"
-		],
+		"story": ["<span class='text-prewrap'>---------------------  D  I  E     B  U  R  G  ---------------------</span>"],
 		"play": "intro-2",
 		"continue": { "action": "start" }
 	},
@@ -20,9 +18,7 @@
 				"Doch heute ist es dir endlich gelungen, das verflixte Türschloss mit einer schäbigen Nagelfeile aufzubekommen. Jetzt öffne die <span class=blue-light>Kerkertür</span> …"
 			]
 		},
-		"commands": [
-			{ "key": "o", "text": "öffne Tür", "action": "kerker_10" }
-		],
+		"commands": [{ "key": "o", "text": "öffne Tür", "action": "kerker_10" }],
 		"hint": "Öffne die Tür",
 		"load_audio": "defeat"
 	},
@@ -75,9 +71,7 @@
 		],
 		"delayed": {
 			"delay": 2000,
-			"story": [
-				"Du wirfst den Wisch ärgerlich weg und beschließt zu gehen."
-			]
+			"story": ["Du wirfst den Wisch ärgerlich weg und beschließt zu gehen."]
 		},
 		"commands": [
 			{ "key": "l", "text": "links", "action": "turm_ug" },
@@ -93,9 +87,7 @@
 		],
 		"delayed": {
 			"delay": 2000,
-			"story": [
-				"Du wirfst den Wisch ärgerlich weg und beschließt zu gehen."
-			]
+			"story": ["Du wirfst den Wisch ärgerlich weg und beschließt zu gehen."]
 		},
 		"commands": [
 			{ "key": "l", "text": "links", "action": "kerker_30" },
@@ -110,9 +102,7 @@
 			"Du hast kaum ein paar Schritte gemacht, als du plötzlich auf eine verborgene Falltür trittst!",
 			"Schmerzhaft landest du etliche Meter tiefer und stellst fest, dass es aus diesem Loch keinen Ausweg gibt …"
 		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "game-over" }
-		]
+		"commands": [{ "key": "enter", "text": "", "action": "game-over" }]
 	},
 
 	{
@@ -136,9 +126,7 @@
 
 	{
 		"id": "kerker_31",
-		"story": [
-			"Du schnappst dir Helm und Umhang. Jetzt aber nichts wie weg!"
-		],
+		"story": ["Du schnappst dir Helm und Umhang. Jetzt aber nichts wie weg!"],
 		"commands": [
 			{ "key": "h", "text": "hoch", "action": "wachraum" },
 			{ "key": "z", "text": "zurück", "action": "kerkerwache_tod" }
@@ -151,9 +139,7 @@
 		"story": [
 			"Du hastest zurück – und läufst den <span class=red>Wächtern</span> direkt in die Arme. Jetzt ist alles zu spät …"
 		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "game-over" }
-		]
+		"commands": [{ "key": "enter", "text": "", "action": "game-over" }]
 	},
 
 	{
@@ -161,9 +147,7 @@
 		"story": [
 			"In diesem Augenblick haben dich die Wachen erreicht und überwältigen dich im Nu. Warum hast du so lange gezögert …?"
 		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "game-over" }
-		]
+		"commands": [{ "key": "enter", "text": "", "action": "game-over" }]
 	},
 
 	{
@@ -172,13 +156,31 @@
 			"Schnell erklimmst du die Leiter und verschwindest durch das Schlupfloch in der Decke. Sicherheitshalber ziehst du auch noch die Leiter ein. Jetzt bist du erstmal außer Gefahr.",
 			"Du schaust dich um: Du befindest dich anscheinend in der Kemenate der Burgwachen. Ihr ganzer Krempel liegt hier verstreut herum, unter anderem:",
 			[
-				{ "condition": "has-helmet", "story": "ein paar <span class=blue-dark>Schlüssel</span> und eine <span class=blue-dark>Keule</span>" },
-				{ "notCondition": "has-helmet", "story": "ein <span class=blue-dark>Schwert</span> und ein <span class=blue-dark>Seil</span>" }
+				{
+					"condition": "has-helmet",
+					"story": "ein paar <span class=blue-dark>Schlüssel</span> und eine <span class=blue-dark>Keule</span>"
+				},
+				{
+					"notCondition": "has-helmet",
+					"story": "ein <span class=blue-dark>Schwert</span> und ein <span class=blue-dark>Seil</span>"
+				}
 			]
 		],
 		"commands": [
-			{ "condition": "has-helmet", "key": "n", "text": "nimm Schlüssel Keule", "setCondition": "has-keys", "action": "wachraum_10" },
-			{ "notCondition": "has-helmet", "key": "n", "text": "nimm Schwert Seil", "setCondition": "has-sword", "action": "wachraum_10" }
+			{
+				"condition": "has-helmet",
+				"key": "n",
+				"text": "nimm Schlüssel Keule",
+				"setCondition": "has-keys",
+				"action": "wachraum_10"
+			},
+			{
+				"notCondition": "has-helmet",
+				"key": "n",
+				"text": "nimm Schwert Seil",
+				"setCondition": "has-sword",
+				"action": "wachraum_10"
+			}
 		],
 		"hint": "Nimm die Sachen mit"
 	},
@@ -189,17 +191,27 @@
 			"Nachdem du die Sachen genommen hast, suchst du nach einem Ausgang.\nDu entdeckst eine <span class=blue-light>Tür</span>, die allerdings verschlossen ist."
 		],
 		"commands": [
-			{ "condition": "has-sword", "key": "o", "text": "öffne Tür", "setCondition": "has-sword-or-keys", "action": "wachraum_has-sword" },
-			{ "condition": "has-keys", "key": "o", "text": "öffne Tür", "setCondition": "has-sword-or-keys", "action": "wachraum_has-keys" }
+			{
+				"condition": "has-sword",
+				"key": "o",
+				"text": "öffne Tür",
+				"setCondition": "has-sword-or-keys",
+				"action": "wachraum_has-sword"
+			},
+			{
+				"condition": "has-keys",
+				"key": "o",
+				"text": "öffne Tür",
+				"setCondition": "has-sword-or-keys",
+				"action": "wachraum_has-keys"
+			}
 		],
 		"hint": "Versuche, die Tür zu öffnen"
 	},
 
 	{
 		"id": "wachraum_has-sword",
-		"story": [
-			"Womit?"
-		],
+		"story": ["Womit?"],
 		"commands": [
 			{ "key": "k", "text": "Schlüssel", "action": null, "message": "Du hast leider keinen Schlüssel" },
 			{ "key": "s", "text": "Schwert", "action": "wachraum_20" }
@@ -209,12 +221,8 @@
 
 	{
 		"id": "wachraum_20",
-		"story": [
-			"Du machst aus der Tür Kleinholz und verlässt diesen Raum."
-		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "burghof_has-sword-or-keys" }
-		]
+		"story": ["Du machst aus der Tür Kleinholz und verlässt diesen Raum."],
+		"commands": [{ "key": "enter", "text": "", "action": "burghof_has-sword-or-keys" }]
 	},
 
 	{
@@ -222,9 +230,7 @@
 		"story": [
 			"Da du jetzt die Schlüssel besitzt, ist es für dich ein Leichtes, die Tür zu öffnen. Du verlässt den Raum."
 		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "burghof_has-sword-or-keys" }
-		]
+		"commands": [{ "key": "enter", "text": "", "action": "burghof_has-sword-or-keys" }]
 	},
 
 	{
@@ -269,8 +275,14 @@
 		"story": [
 			"Du willst die Tür öffnen, aber sie ist verschlossen.\nFolgendes kannst du jetzt machen:",
 			[
-				{ "condition": "has-sword", "story": "1. Du gehst wieder.\n2. Du benutzt wiedermal dein Schwert. <span class=papayawhip>'Schwert'</span>\n3. Du klopfst an und wartest, ob vielleicht jemand öffnet. <span class=papayawhip>'klopfe an'</span>" },
-				{ "condition": "no-weapons", "story": "1. Du gehst wieder.\n2. Du klopfst an und wartest, ob vielleicht jemand öffnet. <span class=papayawhip>'klopfe an'</span>" }
+				{
+					"condition": "has-sword",
+					"story": "1. Du gehst wieder.\n2. Du benutzt wiedermal dein Schwert. <span class=papayawhip>'Schwert'</span>\n3. Du klopfst an und wartest, ob vielleicht jemand öffnet. <span class=papayawhip>'klopfe an'</span>"
+				},
+				{
+					"condition": "no-weapons",
+					"story": "1. Du gehst wieder.\n2. Du klopfst an und wartest, ob vielleicht jemand öffnet. <span class=papayawhip>'klopfe an'</span>"
+				}
 			]
 		],
 		"commands": [
@@ -286,9 +298,7 @@
 			"Du schlägst mit deiner Waffe ein paar mal auf das Holz ein. Doch mit einem Mal wird die Tür geöffnet und ein <span class=red>Zauberer</span> steht vor dir!",
 			"Dass es ein Zauberer ist, bemerkst du erst, als er dich schon in eine Kröte verwandelt hat zur Strafe dafür, dass du seine Tür beschädigt hast …"
 		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "game-over" }
-		]
+		"commands": [{ "key": "enter", "text": "", "action": "game-over" }]
 	},
 
 	{
@@ -304,9 +314,7 @@
 				"Du bist sehr verzweifelt."
 			]
 		},
-		"commands": [
-			{ "key": "enter", "text": "", "action": "turm_og_21" }
-		]
+		"commands": [{ "key": "enter", "text": "", "action": "turm_og_21" }]
 	},
 
 	{
@@ -317,13 +325,9 @@
 		],
 		"delayed": {
 			"delay": 6000,
-			"story": [
-				"Du bedankst dich herzlich bei dem Alten, verabschiedest dich und verlässt diesen Raum."
-			]
+			"story": ["Du bedankst dich herzlich bei dem Alten, verabschiedest dich und verlässt diesen Raum."]
 		},
-		"commands": [
-			{ "key": "r", "text": "runter", "setCondition": "has-magic-wand", "action": "burghof-switch" }
-		],
+		"commands": [{ "key": "r", "text": "runter", "setCondition": "has-magic-wand", "action": "burghof-switch" }],
 		"hint": "Geh die Wendeltreppe hinunter"
 	},
 
@@ -359,8 +363,14 @@
 			"story": [
 				"Gerade als du dir etwas zu essen nehmen willst, dringen plötzlich Gebrüll, schnelle Schritte und Waffengeklirr von unten aus der Wendeltreppe zu dir herauf! Schon wieder bist du bemerkt worden!",
 				[
-					{ "condition": "has-sword", "story": "Was nun? Stellst du dich den <span class=red>Wachen</span> mutig entgegen und versuchst, sie zu <span class=blue-light>erledigen</span>? Oder <span class=blue-light>fliehst</span> du lieber? <span class=papayawhip>'kämpfen'</span> bzw. <span class=papayawhip>'fliehen'</span>" },
-					{ "condition": "has-keys", "story": "Da du nicht ausreichend bewaffnet bist, um es mit einer Schar <span class=red>Wachen</span> aufzunehmen, beschließt du zu fliehen.\nLäufst du zurück auf den <span class=blue-light>Burghof</span> oder willst du dich im <span class=blue-light>oberen Stockwerk</span> verstecken?" }
+					{
+						"condition": "has-sword",
+						"story": "Was nun? Stellst du dich den <span class=red>Wachen</span> mutig entgegen und versuchst, sie zu <span class=blue-light>erledigen</span>? Oder <span class=blue-light>fliehst</span> du lieber? <span class=papayawhip>'kämpfen'</span> bzw. <span class=papayawhip>'fliehen'</span>"
+					},
+					{
+						"condition": "has-keys",
+						"story": "Da du nicht ausreichend bewaffnet bist, um es mit einer Schar <span class=red>Wachen</span> aufzunehmen, beschließt du zu fliehen.\nLäufst du zurück auf den <span class=blue-light>Burghof</span> oder willst du dich im <span class=blue-light>oberen Stockwerk</span> verstecken?"
+					}
 				]
 			]
 		},
@@ -379,9 +389,7 @@
 			"Du hetzt die Treppe hinauf und versteckst dich dort so gut es geht zwischen Fässern mit Pökelfleisch und Mehlsäcken. Doch die Wachen sind nicht so leicht zu überlisten und suchen das ganze Lagerhaus nach dir ab.",
 			"Es ist nur eine Frage der Zeit, bis sie dich gefunden haben …"
 		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "game-over" }
-		]
+		"commands": [{ "key": "enter", "text": "", "action": "game-over" }]
 	},
 
 	{
@@ -402,9 +410,7 @@
 			"Du hetzt die Treppe hinauf und versteckst dich dort so gut es geht zwischen Fässern mit Pökelfleisch und Mehlsäcken. Doch die Wachen sind nicht so leicht zu überlisten und suchen das ganze Lagerhaus nach dir ab.",
 			"Du sitzt in der Falle, und da wird dir auch dein Schwert nicht viel nützen …"
 		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "game-over" }
-		]
+		"commands": [{ "key": "enter", "text": "", "action": "game-over" }]
 	},
 
 	{
@@ -412,9 +418,7 @@
 		"story": [
 			"In diesem Augenblick haben dich die Wachen erreicht und überwältigen dich im Nu. Warum hast du so lange gezögert …?"
 		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "game-over" }
-		]
+		"commands": [{ "key": "enter", "text": "", "action": "game-over" }]
 	},
 
 	{
@@ -444,9 +448,7 @@
 			"Das war leider ein großer Fehler, genauer gesagt dein letzter!",
 			"Du drehst dich um und versuchst zu entkommen, und so kannst du nicht sehen, wie einer der Schergen seine Armbrust anlegt, auf dich zielt und abdrückt …"
 		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "game-over" }
-		]
+		"commands": [{ "key": "enter", "text": "", "action": "game-over" }]
 	},
 
 	{
@@ -461,9 +463,7 @@
 			]
 		},
 		"health": -16,
-		"commands": [
-			{ "key": "h", "text": "hoch", "action": "turm_og" }
-		],
+		"commands": [{ "key": "h", "text": "hoch", "action": "turm_og" }],
 		"hint": "Geh hoch"
 	},
 
@@ -471,13 +471,25 @@
 		"id": "burghof-switch",
 		"story": [
 			[
-				{ "condition": "has-sword", "story": "Du läufst die Wendeltreppe hinunter, gehst durch das Lagerhaus hindurch und trittst auf den Burghof." },
-				{ "condition": "no-weapons", "story": "Du läufst die Wendeltreppe hinunter und betrittst eine große Halle.\nHier gibt es eine Vielzahl an Lebensmitteln, aber auch Boote, behauene Steine, aufgestapelte Holzbohlen, Werkzeuge verschiedenster Art, Stoffballen, Tierhäute und noch einiges andere mehr. Allem Anschein nach befindest du dich in einem Lagerhaus.\n\nDa dir keine der Sachen brauchbar erscheint, gehst du hinaus auf den Burghof." }
+				{
+					"condition": "has-sword",
+					"story": "Du läufst die Wendeltreppe hinunter, gehst durch das Lagerhaus hindurch und trittst auf den Burghof."
+				},
+				{
+					"condition": "no-weapons",
+					"story": "Du läufst die Wendeltreppe hinunter und betrittst eine große Halle.\nHier gibt es eine Vielzahl an Lebensmitteln, aber auch Boote, behauene Steine, aufgestapelte Holzbohlen, Werkzeuge verschiedenster Art, Stoffballen, Tierhäute und noch einiges andere mehr. Allem Anschein nach befindest du dich in einem Lagerhaus.\n\nDa dir keine der Sachen brauchbar erscheint, gehst du hinaus auf den Burghof."
+				}
 			]
 		],
 		"commands": [
 			{ "condition": "has-magic-wand", "key": "enter", "text": "", "action": "burghof_has-magic-wand" },
-			{ "notCondition": "has-magic-wand", "key": "enter", "text": "", "setCondition": "visited-lagerhaus", "action": "burghof_no-magic-wand" }
+			{
+				"notCondition": "has-magic-wand",
+				"key": "enter",
+				"text": "",
+				"setCondition": "visited-lagerhaus",
+				"action": "burghof_no-magic-wand"
+			}
 		]
 	},
 
@@ -486,9 +498,7 @@
 		"story": [
 			"Du beschließt, so schnell wie möglich den Thronsaal zu finden, um UBOLZIOs Herrschaft ein für alle mal zu beenden.\nDarum gehst du vorsichtig zum <span class=blue-light>Palas</span>, der sich rechts von dir befindet."
 		],
-		"commands": [
-			{ "key": "r", "text": ["rechts", "Palas"], "action": "palas" }
-		],
+		"commands": [{ "key": "r", "text": ["rechts", "Palas"], "action": "palas" }],
 		"hint": "Rechts ist der Palas, und dort musst du hin"
 	},
 
@@ -501,7 +511,13 @@
 		"commands": [
 			{ "key": "w", "text": ["weiter", "Stallungen"], "setCondition": "visited-stallungen", "action": "stallungen" },
 			{ "key": "r", "text": ["rechts", "Palas"], "action": "palas" },
-			{ "condition": "has-sword", "key": "h", "text": ["hoch", "Wehrgang"], "setCondition": "visited-wehrgang", "action": "wehrgang_has-sword" },
+			{
+				"condition": "has-sword",
+				"key": "h",
+				"text": ["hoch", "Wehrgang"],
+				"setCondition": "visited-wehrgang",
+				"action": "wehrgang_has-sword"
+			},
 			{ "condition": "no-weapons", "key": "h", "text": ["hoch", "Wehrgang"], "action": "wehrgang_tod" }
 		],
 		"hint": "Kannst du dich bitte für eine Richtung entscheiden?"
@@ -523,8 +539,20 @@
 			{ "key": "l", "text": ["links", "Stallungen"], "setCondition": "visited-stallungen", "action": "stallungen" },
 			{ "key": "w", "text": ["weiter", "Palas"], "action": "palas" },
 			{ "key": "r", "text": ["rechts", "Lagerhaus"], "setCondition": "visited-lagerhaus", "action": "lagerhaus" },
-			{ "condition": "has-sword", "key": "h", "text": ["hoch", "Wehrgang"], "setCondition": "visited-wehrgang", "action": "wehrgang_has-sword" },
-			{ "condition": "has-keys", "key": "h", "text": ["hoch", "Wehrgang"], "setCondition": "visited-wehrgang", "action": "wehrgang_has-keys" }
+			{
+				"condition": "has-sword",
+				"key": "h",
+				"text": ["hoch", "Wehrgang"],
+				"setCondition": "visited-wehrgang",
+				"action": "wehrgang_has-sword"
+			},
+			{
+				"condition": "has-keys",
+				"key": "h",
+				"text": ["hoch", "Wehrgang"],
+				"setCondition": "visited-wehrgang",
+				"action": "wehrgang_has-keys"
+			}
 		],
 		"hint": "Laß den Blödsinn! Entscheide dich für eine Richtung"
 	},
@@ -537,10 +565,36 @@
 		],
 		"commands": [
 			{ "key": "l", "text": ["links", "Palas"], "action": "palas" },
-			{ "notCondition": "visited-lagerhaus", "key": "w", "text": ["weiter", "Lagerhaus"], "setCondition": "visited-lagerhaus", "action": "lagerhaus" },
-			{ "notCondition": "visited-wehrgang", "condition": "has-sword", "key": "h", "text": ["hoch", "Wehrgang"], "setCondition": "visited-wehrgang", "action": "wehrgang_has-sword" },
-			{ "notCondition": "visited-wehrgang", "condition": "has-keys", "key": "h", "text": ["hoch", "Wehrgang"], "setCondition": "visited-wehrgang", "action": "wehrgang_has-keys" },
-			{ "notCondition": "visited-wehrgang", "condition": "no-weapons", "key": "h", "text": ["hoch", "Wehrgang"], "action": "wehrgang_tod" }
+			{
+				"notCondition": "visited-lagerhaus",
+				"key": "w",
+				"text": ["weiter", "Lagerhaus"],
+				"setCondition": "visited-lagerhaus",
+				"action": "lagerhaus"
+			},
+			{
+				"notCondition": "visited-wehrgang",
+				"condition": "has-sword",
+				"key": "h",
+				"text": ["hoch", "Wehrgang"],
+				"setCondition": "visited-wehrgang",
+				"action": "wehrgang_has-sword"
+			},
+			{
+				"notCondition": "visited-wehrgang",
+				"condition": "has-keys",
+				"key": "h",
+				"text": ["hoch", "Wehrgang"],
+				"setCondition": "visited-wehrgang",
+				"action": "wehrgang_has-keys"
+			},
+			{
+				"notCondition": "visited-wehrgang",
+				"condition": "no-weapons",
+				"key": "h",
+				"text": ["hoch", "Wehrgang"],
+				"action": "wehrgang_tod"
+			}
 		],
 		"hint": "Wohin?"
 	},
@@ -553,9 +607,29 @@
 		],
 		"commands": [
 			{ "key": "l", "text": ["links", "Palas"], "action": "palas" },
-			{ "notCondition": "visited-wehrgang", "condition": "has-sword", "key": "h", "text": ["hoch", "Wehrgang"], "setCondition": "visited-wehrgang", "action": "wehrgang_has-sword" },
-			{ "notCondition": "visited-wehrgang", "condition": "has-keys", "key": "h", "text": ["hoch", "Wehrgang"], "setCondition": "visited-wehrgang", "action": "wehrgang_has-keys" },
-			{ "notCondition": "visited-wehrgang", "condition": "no-weapons", "key": "h", "text": ["hoch", "Wehrgang"], "action": "wehrgang_tod" }
+			{
+				"notCondition": "visited-wehrgang",
+				"condition": "has-sword",
+				"key": "h",
+				"text": ["hoch", "Wehrgang"],
+				"setCondition": "visited-wehrgang",
+				"action": "wehrgang_has-sword"
+			},
+			{
+				"notCondition": "visited-wehrgang",
+				"condition": "has-keys",
+				"key": "h",
+				"text": ["hoch", "Wehrgang"],
+				"setCondition": "visited-wehrgang",
+				"action": "wehrgang_has-keys"
+			},
+			{
+				"notCondition": "visited-wehrgang",
+				"condition": "no-weapons",
+				"key": "h",
+				"text": ["hoch", "Wehrgang"],
+				"action": "wehrgang_tod"
+			}
 		],
 		"hint": "Hast du denn immernoch nicht kapiert, wie’s geht?"
 	},
@@ -567,9 +641,21 @@
 			"Links sind die <span class=blue-light>Stallungen</span>.\nRechterhand befindet sich das <span class=blue-light>Lagerhaus</span>.\nWenn du in den <span class=blue-light>Palas</span> möchtest, musst du geradeaus über den Burghof gehen."
 		],
 		"commands": [
-			{ "notCondition": "visited-stallungen", "key": "l", "text": ["links", "Stallungen"], "setCondition": "visited-stallungen", "action": "stallungen" },
+			{
+				"notCondition": "visited-stallungen",
+				"key": "l",
+				"text": ["links", "Stallungen"],
+				"setCondition": "visited-stallungen",
+				"action": "stallungen"
+			},
 			{ "key": "w", "text": ["weiter", "Palas"], "action": "palas" },
-			{ "notCondition": "visited-lagerhaus", "key": "r", "text": ["rechts", "Lagerhaus"], "setCondition": "visited-lagerhaus", "action": "lagerhaus" }
+			{
+				"notCondition": "visited-lagerhaus",
+				"key": "r",
+				"text": ["rechts", "Lagerhaus"],
+				"setCondition": "visited-lagerhaus",
+				"action": "lagerhaus"
+			}
 		],
 		"hint": "Eine klare, vernünftige Entscheidung, bitte."
 	},
@@ -581,9 +667,21 @@
 			"Nun musst du dich für eine neue Richtung entscheiden:\nLinks sind die <span class=blue-light>Stallungen</span>.\nRechterhand befindet sich das <span class=blue-light>Lagerhaus</span>.\nWenn du in den <span class=blue-light>Palas</span> möchtest, musst du geradeaus über den Burghof gehen."
 		],
 		"commands": [
-			{ "notCondition": "visited-stallungen", "key": "l", "text": ["links", "Stallungen"], "setCondition": "visited-stallungen", "action": "stallungen" },
+			{
+				"notCondition": "visited-stallungen",
+				"key": "l",
+				"text": ["links", "Stallungen"],
+				"setCondition": "visited-stallungen",
+				"action": "stallungen"
+			},
 			{ "key": "w", "text": ["weiter", "Palas"], "action": "palas" },
-			{ "notCondition": "visited-lagerhaus", "key": "r", "text": ["rechts", "Lagerhaus"], "setCondition": "visited-lagerhaus", "action": "lagerhaus" }
+			{
+				"notCondition": "visited-lagerhaus",
+				"key": "r",
+				"text": ["rechts", "Lagerhaus"],
+				"setCondition": "visited-lagerhaus",
+				"action": "lagerhaus"
+			}
 		],
 		"hint": "Eine klare, vernünftige Entscheidung, bitte."
 	},
@@ -594,23 +692,25 @@
 			"Du läufst hinüber zu den Stallungen, öffnest das Tor und gehst hinein. Außer Pferdeboxen mit vielen Pferden drin und einem Berg von aufgehäuftem Heu kannst du hier nichts Besonderes entdecken. Was sollte es in einem Pferdestall auch Außergewöhnliches geben?",
 			"Du drehst dich um und gehst auf den Burghof zurück."
 		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "burghof_aus-stallungen" }
-		]
+		"commands": [{ "key": "enter", "text": "", "action": "burghof_aus-stallungen" }]
 	},
 
 	{
 		"id": "stallungen_flucht",
 		"story": [
 			[
-				{ "condition": "has-sword-or-keys", "story": "Das Obergeschoss erscheint dir nicht als sicher genug, darum läufst du schnell zurück auf den Burghof. Hastig siehst du dich nach einem Versteck vor deinen Verfolgern um. Da erblickst du die Stallungen." },
-				{ "condition": "no-weapons", "story": "Schnell bist du beim Tor, welches glücklicherweise nicht verschlossen ist, öffnest es und läufst hinaus auf den Burghof. Hastig siehst du dich nach einem Versteck vor deinen Verfolgern um. Da fallen dir die Stallungen ins Auge." }
+				{
+					"condition": "has-sword-or-keys",
+					"story": "Das Obergeschoss erscheint dir nicht als sicher genug, darum läufst du schnell zurück auf den Burghof. Hastig siehst du dich nach einem Versteck vor deinen Verfolgern um. Da erblickst du die Stallungen."
+				},
+				{
+					"condition": "no-weapons",
+					"story": "Schnell bist du beim Tor, welches glücklicherweise nicht verschlossen ist, öffnest es und läufst hinaus auf den Burghof. Hastig siehst du dich nach einem Versteck vor deinen Verfolgern um. Da fallen dir die Stallungen ins Auge."
+				}
 			],
 			"Ohne noch länger zu zögern, flüchtest du hinein und kriechst in einen aufgetürmten Berg von Heu. Wenige Augenblicke später hörst du, wie die <span class=red>Meute</span> auf den Burghof stürmt."
 		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "burghof_aus-stallungen-flucht" }
-		]
+		"commands": [{ "key": "enter", "text": "", "action": "burghof_aus-stallungen-flucht" }]
 	},
 
 	{
@@ -619,9 +719,7 @@
 			"Völlig unbewaffnet auf den Wehrgang zu steigen, war eine schlechte Idee! Hier oben laufen einige <span class=red>Wachposten</span> herum, und als sie dich entdecken, legen sie sofort ihre Armbrüste an und schießen auf dich.",
 			"Du wirst gleich mehrfach getroffen und stirbst …"
 		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "game-over" }
-		]
+		"commands": [{ "key": "enter", "text": "", "action": "game-over" }]
 	},
 
 	{
@@ -630,9 +728,7 @@
 			"Du steigst die Stufen zum Wehrgang hinauf. Als du oben bist, bemerkst du, dass hier auch einige <span class=red>Wachposten</span> patrouillieren. Du packst dein Schwert fester und stürzt auf den ersten los.",
 			"Zunächst sind die Wachen völlig überrascht. Doch dann fassen sie sich und gehen zum Gegenangriff über."
 		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "wehrgang_has-sword_10" }
-		]
+		"commands": [{ "key": "enter", "text": "", "action": "wehrgang_has-sword_10" }]
 	},
 
 	{
@@ -640,7 +736,6 @@
 		"story": [
 			"Es kommt zu einem langen, harten Kampf, der dir viele Wunden einbringt, obgleich du die meisten Hiebe deiner Gegner parieren kannst.",
 			"Irgendwann endet das blutige Gefecht.\nDu lässt das Schwert ermattet sinken und lehnst dich erschöpft gegen eine Zinne."
-
 		],
 		"delayed": {
 			"delay": 6000,
@@ -662,9 +757,7 @@
 			"Du steigst die Stufen zum Wehrgang hinauf. Als du oben bist, bemerkst du, dass hier auch einige <span class=red>Wachposten</span> patrouillieren.",
 			"Du holst Helm und Umhang hervor, die du aus dem Kerker mitgenommen hast, kleidest dich damit ein und siehst nun ebenso aus wie die Schergen UBOLZIOs. Auf diese Weise vermummt betrittst du den Wehrgang und läufst mutig auf die Wachen zu."
 		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "wehrgang_has-keys_10" }
-		]
+		"commands": [{ "key": "enter", "text": "", "action": "wehrgang_has-keys_10" }]
 	},
 
 	{
@@ -720,9 +813,7 @@
 		"story": [
 			"Natürlich erklärst du dich bereit, mit ihr gemeinsam zu fliehen, denn auch dein Wunsch ist es, diese Burg so rasch wie möglich zu verlassen. Doch ebenso klar ist, dass ihr es nicht schaffen werdet, durch das Burgtor zu entkommen, ohne von den Wachen entdeckt und getötet zu werden.\nDeshalb musst du über einen anderen Fluchtweg nachsinnen."
 		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "wehrgang_verlies_has-sword_ende" }
-		],
+		"commands": [{ "key": "enter", "text": "", "action": "wehrgang_verlies_has-sword_ende" }],
 		"load_audio": "freedom"
 	},
 
@@ -732,9 +823,7 @@
 			"Da fällt dir ein, dass du ein langes Seil mitgenommen hast.",
 			"Zusammen mit dem Mädchen verlässt du den Turm und bindest das Seil draußen mit dem einen Ende fest um eine Zinne. Das andere Ende wirfst du die Schildmauer hinunter. Ihr lasst euch daran hinab und seid frei …"
 		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "congratulations-mit-musik" }
-		]
+		"commands": [{ "key": "enter", "text": "", "action": "congratulations-mit-musik" }]
 	},
 
 	{
@@ -764,9 +853,7 @@
 			"Natürlich erklärst du dich bereit, mit ihr gemeinsam zu fliehen, denn auch dein Wunsch ist es, diese Burg so rasch wie möglich zu verlassen.",
 			"Du gehst zum Eingang des Turms und rufst einen der Wachposten herbei. Als er hereinkommt, ziehst du ihm deine Keule über den Schädel. Dann zerrst du den bewusstlosen Mann in das Turmgemach, nimmst ihm den Helm und den Umhang ab und gibst beides dem Mädchen. Sie zieht sich die Sachen zur Tarnung über, und ihr verlaßt den Turm."
 		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "wehrgang_verlies_has-keys_ende" }
-		],
+		"commands": [{ "key": "enter", "text": "", "action": "wehrgang_verlies_has-keys_ende" }],
 		"load_audio": "freedom"
 	},
 
@@ -776,9 +863,7 @@
 			"Mit klopfendem Herzen geht ihr an den <span class=red>Wachen</span> auf dem Wehrgang vorbei. Ihr erreicht unbehelligt den Burghof und geht von dort aus in die Stallungen, wo ihr zwei Pferde sattelt. Ihr führt sie auf den Hof, sitzt auf und reitet zum Burgtor.\nBarsch befiehlst du den Wächtern, das Tor zu öffnen. Sie schöpfen keinen Verdacht und lassen euch passieren.",
 			"Ihr treibt eure Pferde an und verschwindet für immer aus dieser dunklen Burg …"
 		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "congratulations-mit-musik" }
-		]
+		"commands": [{ "key": "enter", "text": "", "action": "congratulations-mit-musik" }]
 	},
 
 	{
@@ -787,9 +872,7 @@
 			"Um deine eigene Flucht nicht zu gefährden, schlägst du ihre Bitte ab, sie mitzunehmen. Außerdem vermutest du eine List UBOLZIOs dahinter. Darum sperrst das Mädchen wieder zurück in ihr Turmgemach und legst den Türriegel fest davor. Dann nimmst du deine Sachen, gehst hinaus aus dem Turm und willst dich davonmachen.",
 			"Doch deine Feigheit und Unbarmherzigkeit bleiben nicht ungestraft: Vom Rand des Turmes löst sich ein großer Stein, stürzt hinunter und erschlägt dich …"
 		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "game-over" }
-		]
+		"commands": [{ "key": "enter", "text": "", "action": "game-over" }]
 	},
 
 	{
@@ -809,9 +892,18 @@
 		"id": "waffenkammer",
 		"story": [
 			[
-				{ "condition": "has-sword", "story": "Die Tür ist mit einem schweren Schloss versehen, das du nicht aufbekommst.\n\nDu gehst weiter zur <span class=blue-light>zweiten Tür</span>." },
-				{ "condition": "has-keys", "story": "Die Tür ist mit einem schweren Schloss versehen. Du nimmst die Schlüssel aus der Tasche und probierst damit solange, bis du das Schloss aufbekommen hast. Du öffnest die Tür und stellst erfreut fest, dass du in die Waffenkammer gelangt bist!\n\nDu tauscht deine Keule gegen das beste <span class=blue-dark>Schwert</span> ein, das du finden kannst, und nimmst auch einen festen <span class=blue-dark>Schild</span> mit. Dann verlässt du diesen Raum und gehst zur <span class=blue-light>zweiten Tür</span>." },
-				{ "condition": "no-weapons", "story": "Zu deinem Glück ist die Tür nicht verschlossen.\nDu öffnest sie und betrittst einen Raum der im Halbdunkel liegt. Erfreut stellst du fest, dass du in die Waffenkammer gelangt bist!\n\nUm nicht länger unbewaffnet umherzuschleichen, nimmst du das beste <span class=blue-dark>Schwert</span> und einen festen <span class=blue-dark>Schild</span> mit. Dann verlässt du diesen Raum und gehst zur <span class=blue-light>zweiten Tür</span>." }
+				{
+					"condition": "has-sword",
+					"story": "Die Tür ist mit einem schweren Schloss versehen, das du nicht aufbekommst.\n\nDu gehst weiter zur <span class=blue-light>zweiten Tür</span>."
+				},
+				{
+					"condition": "has-keys",
+					"story": "Die Tür ist mit einem schweren Schloss versehen. Du nimmst die Schlüssel aus der Tasche und probierst damit solange, bis du das Schloss aufbekommen hast. Du öffnest die Tür und stellst erfreut fest, dass du in die Waffenkammer gelangt bist!\n\nDu tauscht deine Keule gegen das beste <span class=blue-dark>Schwert</span> ein, das du finden kannst, und nimmst auch einen festen <span class=blue-dark>Schild</span> mit. Dann verlässt du diesen Raum und gehst zur <span class=blue-light>zweiten Tür</span>."
+				},
+				{
+					"condition": "no-weapons",
+					"story": "Zu deinem Glück ist die Tür nicht verschlossen.\nDu öffnest sie und betrittst einen Raum der im Halbdunkel liegt. Erfreut stellst du fest, dass du in die Waffenkammer gelangt bist!\n\nUm nicht länger unbewaffnet umherzuschleichen, nimmst du das beste <span class=blue-dark>Schwert</span> und einen festen <span class=blue-dark>Schild</span> mit. Dann verlässt du diesen Raum und gehst zur <span class=blue-light>zweiten Tür</span>."
+				}
 			]
 		],
 		"commands": [
@@ -823,9 +915,7 @@
 
 	{
 		"id": "gesinderaum_tuer",
-		"story": [
-			"Du gehst weiter zur <span class=blue-light>zweiten Tür</span>."
-		],
+		"story": ["Du gehst weiter zur <span class=blue-light>zweiten Tür</span>."],
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "gesinderaum" },
 			{ "key": "r", "text": "rechts", "action": "treppenhaus" }
@@ -839,9 +929,7 @@
 			"Die Tür lässt sich öffnen, und du schaust in den Raum hinein.\nEs befinden sich ein Kamin darin, ein Tisch mit einfachem Essgeschirr, einige Kleidertruhen und eine Waschgelegenheit. Es gibt zwei Fenster, wovon eines geöffnet ist. An den Wänden stehen Holzbänke, auf die Decken ausgebreitet sind. Es ist der Wohnraum des Burggesindes.",
 			"Du klappst die Tür zu."
 		],
-		"commands": [
-			{ "key": "r", "text": "rechts", "action": "treppenhaus" }
-		],
+		"commands": [{ "key": "r", "text": "rechts", "action": "treppenhaus" }],
 		"hint": "Folge dem Gang nach rechts"
 	},
 
@@ -863,9 +951,7 @@
 			"Deine Neugier siegt über den Verstand: Du öffnest die Tür vorsichtig eine Hand breit und äugst in den Raum hinein: Es ist die Küche, in der ein emsiges Treiben herrscht. Wahrscheinlich hat UBOLZIO für heute ein großes Gelage angesagt.\nDas gesamte <span class=red>Gesinde</span> ist hier am Schuften und dabei so beschäftigt, dass du gar nicht bemerkt wirst. Einige stehen an einem gewaltigen Herd und beaufsichtigen sämtliche Speisen, die dort vor sich hin kochen und braten. Andere nehmen Fasane und Rebhühner aus oder schneiden das Gemüse; wieder andere waschen Teller, Platten und Pokale, Messer, Löffel und Spieße ab.",
 			"Du schließt die Tür wieder und gehst die <span class=blue-light>große Treppe</span> hinauf."
 		],
-		"commands": [
-			{ "key": "h", "text": "hoch", "action": "palas_og" }
-		]
+		"commands": [{ "key": "h", "text": "hoch", "action": "palas_og" }]
 	},
 
 	{
@@ -876,10 +962,28 @@
 		],
 		"commands": [
 			{ "condition": "has-keys", "key": "o", "text": "öffne Tür", "action": "schlafzimmer" },
-			{ "condition": "has-sword", "key": "o", "text": "öffne Tür", "action": null, "message": "Diese Tür ist verschlossen" },
-			{ "condition": "no-weapons", "key": "o", "text": "öffne Tür", "action": null, "message": "Diese Tür ist verschlossen" },
+			{
+				"condition": "has-sword",
+				"key": "o",
+				"text": "öffne Tür",
+				"action": null,
+				"message": "Diese Tür ist verschlossen"
+			},
+			{
+				"condition": "no-weapons",
+				"key": "o",
+				"text": "öffne Tür",
+				"action": null,
+				"message": "Diese Tür ist verschlossen"
+			},
 			{ "condition": "has-magic-wand", "key": "w", "text": "weiter", "action": "vorzimmer_drache" },
-			{ "notCondition": "has-magic-wand", "key": "w", "text": "weiter", "setCondition": "not-visited-schlafzimmer", "action": "vorzimmer_kein-drache" }
+			{
+				"notCondition": "has-magic-wand",
+				"key": "w",
+				"text": "weiter",
+				"setCondition": "not-visited-schlafzimmer",
+				"action": "vorzimmer_kein-drache"
+			}
 		],
 		"load_audio": "suspense"
 	},
@@ -892,7 +996,12 @@
 		],
 		"commands": [
 			{ "key": "o", "text": "öffne Tür", "action": "schatzkammer" },
-			{ "key": "z", "text": ["zurück", "raus"], "setCondition": "visited-schlafzimmer", "action": "vorzimmer_kein-drache" }
+			{
+				"key": "z",
+				"text": ["zurück", "raus"],
+				"setCondition": "visited-schlafzimmer",
+				"action": "vorzimmer_kein-drache"
+			}
 		]
 	},
 
@@ -902,9 +1011,7 @@
 			"Diese Tür ist mit mehreren Schlössern gesichert, doch du findest ohne Mühe die passenden Schlüssel dazu. Als du die Tür öffnest, bist du augenblicklich überwältigt!",
 			"Du stehst in einer kleinen Kammer, die gefüllt ist mit Reichtümern. Da sind große Truhen, aus denen die Gold- und Silbermünzen hervorquellen. Mit Perlen und Edelsteinen besetzte Pokale türmen sich neben kostbaren Vasen, golddurchwirkte Stoffe häufen sich neben Kästen voller Schmuck und Geschmeide. Köstlichste Goldschmiedearbeiten sind hier ebenso zu finden wie reich verzierte Waffen."
 		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "schatzkammer_ende" }
-		],
+		"commands": [{ "key": "enter", "text": "", "action": "schatzkammer_ende" }],
 		"load_audio": "freedom"
 	},
 
@@ -914,17 +1021,21 @@
 			"Schnell hast du einen Plan gefasst. Du nimmst einen Sack und stopfst so viele Reichtümer hinein, wie nur geht. Anschließend hüllst du dich in Helm und Umhang, die du aus dem Kerker mitgenommen hast.",
 			"So verlässt du ohne Schwierigkeiten die Burg UBOLZIOs mit reicher Beute und feierst die wieder gewonnene Freiheit mit dem Kauf deines ersten Lamborghini …"
 		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "congratulations-mit-musik" }
-		]
+		"commands": [{ "key": "enter", "text": "", "action": "congratulations-mit-musik" }]
 	},
 
 	{
 		"id": "vorzimmer_kein-drache",
 		"story": [
 			[
-				{ "condition": "visited-schlafzimmer", "story": "Du bist nicht an weiteren Gemächern interessiert und verlässt deshalb diesen Raum.\nDu folgst dem Gang bis ans Ende und betrittst schließlich den Vorraum zum Thronsaal. Auch dieser Bereich ist prachtvoll ausgestattet. Alles dient nur dazu, UBOLZIO und seine Herrschaft zu lobpreisen." },
-				{ "condition": "not-visited-schlafzimmer", "story": "Du folgst dem Gang bis ans Ende und betrittst schließlich den Vorraum zum Thronsaal. Auch dieser Bereich ist prachtvoll ausgestattet. Alles dient nur dazu, UBOLZIO und seine Herrschaft zu lobpreisen." }
+				{
+					"condition": "visited-schlafzimmer",
+					"story": "Du bist nicht an weiteren Gemächern interessiert und verlässt deshalb diesen Raum.\nDu folgst dem Gang bis ans Ende und betrittst schließlich den Vorraum zum Thronsaal. Auch dieser Bereich ist prachtvoll ausgestattet. Alles dient nur dazu, UBOLZIO und seine Herrschaft zu lobpreisen."
+				},
+				{
+					"condition": "not-visited-schlafzimmer",
+					"story": "Du folgst dem Gang bis ans Ende und betrittst schließlich den Vorraum zum Thronsaal. Auch dieser Bereich ist prachtvoll ausgestattet. Alles dient nur dazu, UBOLZIO und seine Herrschaft zu lobpreisen."
+				}
 			]
 		],
 		"delayed": {
@@ -936,9 +1047,7 @@
 		"music": "<<<<t180mnl2cl4cdl6e-dc>l4c.<l8cl2c",
 		"play": "suspense",
 		"play_delay": 3000,
-		"commands": [
-			{ "key": "o", "text": "öffne Tür", "action": "thronsaal" }
-		],
+		"commands": [{ "key": "o", "text": "öffne Tür", "action": "thronsaal" }],
 		"hint": "Du zitterst wohl schon vor Angst!"
 	},
 
@@ -946,7 +1055,6 @@
 		"id": "vorzimmer_drache",
 		"story": [
 			"Du folgst dem Gang bis ans Ende und betrittst schließlich den Vorraum zum Thronsaal. Vor der großen Tür, die dort hineinführt, liegt – ein <span class=red>dreiköpfiger Drache</span>! Genau so, wie es dir der alte Mann aus dem Turmzimmer gesagt hatte."
-
 		],
 		"delayed": {
 			"delay": 3000,
@@ -955,9 +1063,7 @@
 				"Du fragst dich, wie du es schaffen sollst, ihn mit dem Stab anzurühren, ohne vorher von ihm verschlungen zu werden."
 			]
 		},
-		"commands": [
-			{ "key": "enter", "text": "", "action": "vorzimmer_drache_kampf" }
-		],
+		"commands": [{ "key": "enter", "text": "", "action": "vorzimmer_drache_kampf" }],
 		"load_audio": "dragon"
 	},
 
@@ -968,9 +1074,7 @@
 		],
 		"music": "<<<t125msl16cccccccccd-cd-ee-d-e-l4c",
 		"play": "dragon",
-		"commands": [
-			{ "key": "enter", "text": "", "action": "vorzimmer_drache_sieg" }
-		]
+		"commands": [{ "key": "enter", "text": "", "action": "vorzimmer_drache_sieg" }]
 	},
 
 	{
@@ -988,9 +1092,7 @@
 		"play": "suspense",
 		"play_delay": 3000,
 		"health": -8,
-		"commands": [
-			{ "key": "o", "text": "öffne Tür", "action": "thronsaal" }
-		],
+		"commands": [{ "key": "o", "text": "öffne Tür", "action": "thronsaal" }],
 		"hint": "Du zitterst wohl schon vor Angst!"
 	},
 
@@ -1000,9 +1102,7 @@
 			"Du öffnest die Tür mit einem Ruck und stürmst mit gezücktem Schwert hinein.",
 			"Drinnen umfängt dich ungemeiner Prunk und Reichtum. An den Wänden hängen kostbare Teppiche und goldbestickte Fahnen. Der Boden ist mit zahlreichen Mosaiken geziert. Hohe, bunte Glasfenster tauchen den Raum in ein mystisches Licht. Hinter dem mächtigen Thron, der mit kunstvollen Schnitzereien versehen ist, erstreckt sich eine lange Reihe von glänzenden Rüstungen."
 		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "thronsaal_kampf" }
-		],
+		"commands": [{ "key": "enter", "text": "", "action": "thronsaal_kampf" }],
 		"load_audio": "battle"
 	},
 
@@ -1028,9 +1128,7 @@
 			"Du dachtest wohl, <span class=red>UBOLZIO</span> ließe sich so einfach vernichten?!? Das erweist sich als ein großer Irrtum, denn hast seine Fechtkünste gewaltig unterschätzt!",
 			"Er zerschlägt dir den Schild, dein Schwert zerbricht schließlich auch, und dann versetzt dir UBOLZIO den tödlichen Stoß …"
 		],
-		"commands": [
-			{ "key": "enter", "text": "", "action": "game-over" }
-		]
+		"commands": [{ "key": "enter", "text": "", "action": "game-over" }]
 	},
 
 	{
@@ -1040,13 +1138,9 @@
 		],
 		"delayed": {
 			"delay": 4000,
-			"story": [
-				"DU HAST IHN BEZWUNGEN!"
-			]
+			"story": ["DU HAST IHN BEZWUNGEN!"]
 		},
-		"commands": [
-			{ "key": "enter", "text": "", "action": "thronsaal_ende" }
-		],
+		"commands": [{ "key": "enter", "text": "", "action": "thronsaal_ende" }],
 		"load_audio": "victory"
 	},
 
@@ -1062,31 +1156,21 @@
 
 	{
 		"id": "congratulations",
-		"story": [
-			"<span class=green>GRATULATION!\nDU HAST DICH WACKER DURCH DIESES ABENTEUER GESCHLAGEN!</span>"
-		],
-		"commands": [
-			{ "key": "enter", "text": "Ende", "action": "credits" }
-		]
+		"story": ["<span class=green>GRATULATION!\nDU HAST DICH WACKER DURCH DIESES ABENTEUER GESCHLAGEN!</span>"],
+		"commands": [{ "key": "enter", "text": "Ende", "action": "credits" }]
 	},
 
 	{
 		"id": "congratulations-mit-musik",
-		"story": [
-			"<span class=green>GRATULATION!\nDU HAST DICH WACKER DURCH DIESES ABENTEUER GESCHLAGEN!</span>"
-		],
+		"story": ["<span class=green>GRATULATION!\nDU HAST DICH WACKER DURCH DIESES ABENTEUER GESCHLAGEN!</span>"],
 		"music": "t130ms<<l8cl16ccl8cecegeg>l2c",
 		"play": "freedom",
-		"commands": [
-			{ "key": "enter", "text": "Ende", "action": "credits" }
-		]
+		"commands": [{ "key": "enter", "text": "Ende", "action": "credits" }]
 	},
 
 	{
 		"id": "game-over",
-		"story": [
-			"<span class=red>DAS WAR’S FÜR DICH!</span>"
-		],
+		"story": ["<span class=red>DAS WAR’S FÜR DICH!</span>"],
 		"music": "<<<<t117mnl2dl4d.l8dl2dmll4fmsemlemsdmldmnc#l2d",
 		"play": "defeat",
 		"continue": { "action": "restart-or-exit" }
@@ -1094,9 +1178,7 @@
 
 	{
 		"id": "restart-or-exit",
-		"story": [
-			"Willst du das Spiel noch einmal beginnen?"
-		],
+		"story": ["Willst du das Spiel noch einmal beginnen?"],
 		"commands": [
 			{ "key": "j", "text": ["j", "ja"], "action": "start" },
 			{ "key": "n", "text": ["n", "nein"], "action": "credits" }

@@ -1,10 +1,10 @@
 import { ref } from 'vue'
 import { Howl } from 'howler'
 
-let _music = null
-const playlist = ref([])
+let _music: Howl | undefined
+const playlist = ref(<{ id: string; audio: Howl }[]>[])
 
-const loadMusic = (id, autoplay = false) => {
+const loadMusic = (id: string, autoplay = false) => {
 	console.log(autoplay ? 'load + play' : 'preload', `"${id}"`)
 	if (!playlist.value.find(item => item.id === id)) {
 		playlist.value.push({
@@ -22,23 +22,19 @@ const loadMusic = (id, autoplay = false) => {
 					console.log(`onend "${id}"`)
 				},
 				onfade: () => {
-					console.log('onfade (end)')
+					console.log(`onfade (end) "${id}"`)
 					playlist.value
 						.find(item => item.id === id)
-						.audio.stop()
-						.volume(1)
+						?.audio.stop()
+						?.volume(1)
 				},
 			}),
 		})
 	}
 }
 
-const playMusic = id => {
-	// if (_music && _music.playing()) {
-	// 	_music.stop().volume(1)
-	// }
-
-	_music = playlist.value.find(item => item.id === id)?.audio ?? null
+const playMusic = (id: string) => {
+	_music = playlist.value.find(item => item.id === id)?.audio
 	_music?.play()
 }
 

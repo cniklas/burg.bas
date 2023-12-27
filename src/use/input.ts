@@ -2,33 +2,33 @@ import { ref } from 'vue'
 
 const isTouch = !window.matchMedia('(hover: hover) and (pointer: fine)').matches
 
-const input = ref(null)
+const inputEl = ref<HTMLInputElement | null>(null)
 const focusInput = () => {
 	if (isTouch) return
-	input.value?.focus()
+	inputEl.value?.focus()
 }
 
-const cleanInput = string => {
+const cleanInput = (input: string): string => {
 	const regex = /[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/g
-	return string
+	return input
 		.replaceAll(regex, '')
 		.toLowerCase()
 		.replaceAll('geradeaus', 'weiter')
 		.split(' ')
-		.filter(word => word.length && !['der', 'die', 'das', 'den', 'dem', 'und', 'mit'].includes(word))
+		.filter((word: string) => word.length && !['der', 'die', 'das', 'den', 'dem', 'und', 'mit'].includes(word))
 		.join(' ')
 }
 
-const button = ref(null)
+const buttonEl = ref<HTMLButtonElement | null>(null)
 const blurButton = () => {
-	button.value?.blur()
+	buttonEl.value?.blur()
 }
 
 export const useInput = () => ({
 	isTouch,
-	input,
+	inputEl,
 	focusInput,
 	cleanInput,
-	button,
+	buttonEl,
 	blurButton,
 })

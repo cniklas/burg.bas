@@ -1,13 +1,11 @@
-<script setup>
-import { useStore } from '../use/store'
+<script setup lang="ts">
+import { useStore } from '@/use/store'
+import type { Story } from '@/types/Scene.type'
 const { isEnabled } = useStore()
 
-defineProps({
-	story: {
-		type: Array,
-		default: () => [],
-	},
-})
+defineProps<{
+	story: Story
+}>()
 </script>
 
 <template>

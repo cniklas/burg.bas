@@ -1,22 +1,22 @@
-<script setup>
+<script setup lang="ts">
 import { ref, watch } from 'vue'
 
-const modal = ref(null)
+const modalEl = ref<HTMLDivElement | null>(null)
 const loadAudio = ref(false)
 const isVisible = ref(false)
 watch(isVisible, val => {
-	val ? document.addEventListener('keyup', closeOnEsc) : document.removeEventListener('keyup', closeOnEsc)
+	val ? document.addEventListener('keyup', closeOnEscape) : document.removeEventListener('keyup', closeOnEscape)
 })
 const toggleModal = () => {
 	if (!isVisible.value) {
 		loadAudio.value = true
-		modal.value?.scrollTo({ top: 0 })
+		modalEl.value?.scrollTo({ top: 0 })
 	}
 
 	isVisible.value = !isVisible.value
 }
-const closeOnEsc = e => {
-	if (e.keyCode === 27) isVisible.value = false
+const closeOnEscape = ({ key }: KeyboardEvent) => {
+	if (key === 'Escape') isVisible.value = false
 }
 </script>
 
@@ -36,7 +36,7 @@ const closeOnEsc = e => {
 			:class="isVisible ? 'visible' : 'invisible'"
 			@click.stop
 		>
-			<div ref="modal" class="modal overflow-y-auto px-4" :class="{ 'is-visible': isVisible }">
+			<div ref="modalEl" class="modal overflow-y-auto px-4" :class="{ 'is-visible': isVisible }">
 				<h2 class="headline mb-6 text-center text-3xl font-medium">Über dieses Spiel</h2>
 
 				<div class="story">
@@ -56,15 +56,15 @@ const closeOnEsc = e => {
 					</p>
 					<ul>
 						<li class="flex items-center">
-							<audio :src="loadAudio ? 'audio/intro-2-o.mp3' : null" controls></audio>
+							<audio :src="loadAudio ? 'audio/intro-2-o.mp3' : undefined" controls></audio>
 							<span class="white ml-4">Intro</span>
 						</li>
 						<li class="flex items-center">
-							<audio :src="loadAudio ? 'audio/intro-1.mp3' : null" controls></audio>
+							<audio :src="loadAudio ? 'audio/intro-1.mp3' : undefined" controls></audio>
 							<span class="white ml-4">alternatives Intro</span>
 						</li>
 						<li class="flex items-center">
-							<audio :src="loadAudio ? 'audio/battle-o.mp3' : null" controls></audio>
+							<audio :src="loadAudio ? 'audio/battle-o.mp3' : undefined" controls></audio>
 							<span class="white ml-4">Kampf</span>
 						</li>
 					</ul>

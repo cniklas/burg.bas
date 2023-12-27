@@ -1,6 +1,13 @@
 import { reactive, readonly } from 'vue'
 
-const state = reactive({
+interface State {
+	userName: string
+	gold: number
+	health: number
+	inventory: string[]
+	conditions: string[]
+}
+const state: State = reactive({
 	userName: '',
 	gold: 0,
 	health: 100,
@@ -8,18 +15,18 @@ const state = reactive({
 	conditions: [],
 })
 
-const setUserName = val => {
+const setUserName = (val: string) => {
 	state.userName = val
 }
-const setGold = val => {
+const setGold = (val: number) => {
 	state.gold = val
 }
-const setHealth = val => {
+const setHealth = (val: number) => {
 	state.health = val
 }
 
-const hasCondition = term => state.conditions.includes(term)
-const isEnabled = ({ condition, notCondition }) => {
+const hasCondition = (term: string) => state.conditions.includes(term)
+const isEnabled = ({ condition, notCondition }: { condition?: string; notCondition?: string }) => {
 	if (condition && notCondition) {
 		return hasCondition(condition) && !hasCondition(notCondition)
 	}
@@ -32,14 +39,14 @@ const isEnabled = ({ condition, notCondition }) => {
 
 	return true
 }
-const handleCondition = condition => {
+const handleCondition = (condition?: string) => {
 	if (condition && !hasCondition(condition)) {
 		state.conditions.push(condition)
 		manageInventory(condition)
 	}
 }
 
-const manageInventory = condition => {
+const manageInventory = (condition: string) => {
 	switch (condition) {
 		case 'has-helmet':
 			state.inventory.push('Helm', 'Umhang')

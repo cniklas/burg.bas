@@ -1,5 +1,5 @@
-<script setup>
-import { useStore } from '../use/store'
+<script setup lang="ts">
+import { useStore } from '@/use/store'
 const { state } = useStore()
 </script>
 

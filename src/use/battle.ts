@@ -1,8 +1,24 @@
-import { reactive } from 'vue'
+import { ref } from 'vue'
 
-const attackLog = reactive([])
+const attackLog = ref<string[]>([])
 const resetAttackLog = () => {
-	attackLog.length = 0
+	attackLog.value.length = 0
+}
+
+export type Player = {
+	name: string
+	health: number
+	originHealth: number
+	attack: number
+	hit: boolean
+	weapon: string
+}
+export type Opponent = {
+	name: string
+	health: number
+	attack: number
+	hit: boolean
+	weapon?: string
 }
 
 const _weapons = [
@@ -14,7 +30,7 @@ const _weapons = [
 	'einer Blockflöte',
 ]
 
-const _attack = (d20, attacker, defender) => {
+const _attack = (d20: number, attacker: Player | Opponent, defender: Player | Opponent) => {
 	if (d20 <= 2) {
 		return `${attacker.name} haut daneben, verliert das Gleichgewicht und beschmutzt sich!`
 	} else if (d20 >= 3 && d20 <= 19) {
@@ -22,7 +38,7 @@ const _attack = (d20, attacker, defender) => {
 
 		defender.hit = true
 		defender.health -= attacker.attack
-		return `${attacker.name} trifft ${defender.name} mit ${attacker.weapon || weapon}${
+		return `${attacker.name} trifft ${defender.name} mit ${attacker.weapon ?? weapon}${
 			attacker.attack > 10 ? ' an einer empfindlichen Stelle' : ''
 		}. Schmerz-Level: ${attacker.attack}`
 	} else {
@@ -32,7 +48,7 @@ const _attack = (d20, attacker, defender) => {
 	}
 }
 
-const _block = (d20, defender, attacker) => {
+const _block = (d20: number, defender: Player | Opponent, attacker: Player | Opponent) => {
 	if (d20 <= 2) {
 		return `${defender.name} versucht vergeblich den Schlag abzuwehren und ${
 			defender.hit ? 'wird getroffen' : 'kommt mit einem blauen Auge davon'
@@ -53,7 +69,7 @@ const _block = (d20, defender, attacker) => {
 	}
 }
 
-const _spell = (d100, attacker, defender) => {
+const _spell = (d100: number, attacker: Player | Opponent, defender: Player | Opponent) => {
 	if (d100 <= 8) {
 		defender.health -= attacker.attack
 		return `${attacker.name} wendet Polymorphie an, verwandelt sich in ein Schaf und beißt ${defender.name}. Schmerz-Level: ${attacker.attack}`
@@ -92,7 +108,7 @@ const _spell = (d100, attacker, defender) => {
 }
 
 const _actions = [_attack, _block, _spell]
-const randomAction = (attacker, defender, isAttack = false) => {
+const randomAction = (attacker: Player | Opponent, defender: Player | Opponent, isAttack = false): void => {
 	const i = Math.floor(Math.random() * _actions.length)
 	const action = _actions[i]
 
@@ -107,8 +123,8 @@ const randomAction = (attacker, defender, isAttack = false) => {
 
 	// const attackerState = { name: attacker.name, currentHealth: attacker.health, attack: attacker.attack }
 	const result = action(dice, attacker, defender)
-	// attackLog.push({ result, attacker: { health: attacker.health, hit: attacker.hit, ...attackerState } })
-	attackLog.push(result)
+	// attackLog.value.push({ result, attacker: { health: attacker.health, hit: attacker.hit, ...attackerState } })
+	attackLog.value.push(result)
 }
 
 export const useBattle = () => ({

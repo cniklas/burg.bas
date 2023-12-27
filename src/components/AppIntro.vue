@@ -1,13 +1,13 @@
-<script setup>
-import simCityNames from '../data/names.json'
+<script setup lang="ts">
+import simCityNames from '@/data/names.json'
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
-import { loadMusic } from '../use/howler'
-import { useInput } from '../use/input'
-import { useStore } from '../use/store'
+import { loadMusic } from '@/use/howler'
+import { useInput } from '@/use/input'
+import { useStore } from '@/use/store'
 
-defineEmits(['start'])
+defineEmits<{ (event: 'start'): void }>()
 
-const { input, focusInput } = useInput()
+const { inputEl, focusInput } = useInput()
 
 const userName = ref('')
 const { setUserName } = useStore()
@@ -15,13 +15,11 @@ watch(userName, setUserName)
 
 const showButton = computed(() => userName.value.length >= 3)
 
-let names = []
-const randomSplice = store => store.splice(Math.floor(Math.random() * store.length), 1).shift()
+let names: string[] = []
+const randomSplice = (store: string[]) => store.splice(Math.floor(Math.random() * store.length), 1).shift()
 const createName = () => {
-	if (!names.length) {
-		names = [...simCityNames]
-	}
-	userName.value = randomSplice(names)
+	if (!names.length) names = [...simCityNames]
+	userName.value = randomSplice(names) as string
 }
 
 onMounted(() => {
@@ -43,7 +41,7 @@ onUnmounted(() => {
 		<div class="mt-8 text-center">
 			<div class="my-4">
 				<input
-					ref="input"
+					ref="inputEl"
 					v-model.trim="userName"
 					type="text"
 					class="input w-full max-w-sm rounded px-2 outline-none md:text-center"
