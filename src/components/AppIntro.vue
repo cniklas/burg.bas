@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import simCityNames from '@/data/names.json'
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
+import simCityNames from '@/data/names.json'
 import { loadMusic } from '@/use/howler'
 import { useInput } from '@/use/input'
 import { useStore } from '@/use/store'

@@ -1,15 +1,15 @@
 <script setup lang="ts">
+import { ref, computed, watch, onMounted, onUnmounted, nextTick, defineAsyncComponent } from 'vue'
 import burg from '@/data/burg.json'
 import type { Scene, Story, Command } from '@/types/Scene.type'
 import AppStory from './AppStory.vue'
 import AppPanel from './AppPanel.vue'
-import { ref, computed, watch, onMounted, onUnmounted, nextTick, defineAsyncComponent } from 'vue'
 import { playlist, loadMusic, playMusic, fadeOutMusic } from '@/use/howler'
 import { useInput } from '@/use/input'
 import { useStore } from '@/use/store'
 import { animateNumber } from '@/use/countUpAnimation'
 
-const { isTouch, inputEl, focusInput, cleanInput, buttonEl, blurButton } = useInput()
+const { inputEl, focusInput, cleanInput, buttonEl, blurButton } = useInput()
 const { state, setGold, setHealth, hasCondition, isEnabled, handleCondition, manageInventory, getArmed, resetState } =
 	useStore()
 
@@ -178,10 +178,7 @@ const hint = ref('')
 const showHint = ref(false)
 const inputRef = ref('')
 const showInput = computed(() => !(!!scene.value?.continue || nextButton.value || showBattle.value))
-const touchButtonEl = ref<HTMLButtonElement | null>(null)
 const handleInput = () => {
-	touchButtonEl.value?.blur()
-
 	if (scene.value?.timeout && !_timeout) {
 		_timeout = setTimeout(handleAction, 7000, { action: scene.value.timeout.action })
 	}
@@ -257,28 +254,18 @@ onUnmounted(() => {
 					</div>
 
 					<div v-show="hint && showHint" class="hint white mb-4">{{ hint }}</div>
-					<div v-if="showInput" class="flex gap-x-4">
-						<input
-							ref="inputEl"
-							v-model.trim="inputRef"
-							type="text"
-							class="input w-full rounded px-2 outline-none"
-							placeholder="?"
-							spellcheck="false"
-							enterkeyhint="send"
-							@click.stop
-							@keyup.enter="handleInput"
-						/>
-						<button
-							v-if="isTouch"
-							ref="touchButtonEl"
-							type="button"
-							class="button inline-flex w-11 shrink-0 select-none items-center justify-center border border-current tracking-wider focus:outline-none sm:w-12"
-							@click="handleInput"
-						>
-							Go
-						</button>
-					</div>
+					<input
+						v-if="showInput"
+						ref="inputEl"
+						v-model.trim="inputRef"
+						type="text"
+						class="input w-full rounded px-2 outline-none"
+						placeholder="?"
+						spellcheck="false"
+						enterkeyhint="send"
+						@click.stop
+						@keyup.enter="handleInput"
+					/>
 				</div>
 			</div>
 		</main>

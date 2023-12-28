@@ -4,10 +4,11 @@ const { state } = useStore()
 </script>
 
 <template>
-	<aside class="panel h-24 p-3 text-lg leading-6 md:text-center">
+	<aside class="panel h-24 p-3 text-lg/6">
 		<div class="gold">Gold: {{ state.gold }}</div>
-		<div class="pink">Health: {{ state.health }}</div>
-		<div class="flex gap-x-2.5 md:justify-center">
+		<div class="pink">Lebensenergie: {{ state.health }}</div>
+		<div class="flex gap-x-2.5">
+			<span class="<sm:hidden">Ausrüstung:</span>
 			<span v-for="(item, i) in state.inventory" :key="`item-${i}`">{{ item }}</span>
 		</div>
 	</aside>

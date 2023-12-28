@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useStore } from '@/use/store'
 import type { Story } from '@/types/Scene.type'
+import { useStore } from '@/use/store'
 const { isEnabled } = useStore()
 
 defineProps<{
