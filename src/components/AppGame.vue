@@ -217,7 +217,7 @@ onUnmounted(() => {
 	>
 		<main class="main flex-auto">
 			<div class="flex h-full flex-col justify-between">
-				<AppStory :story="story" class="<md:overflow-y-auto" :class="{ '<md:hidden': showBattle && startBattle }">
+				<AppStory :story class="<md:overflow-y-auto" :class="{ '<md:hidden': showBattle && startBattle }">
 					<div v-if="showCredits" class="mt-12 hidden justify-center md:flex">
 						<pre class="ascii-text">
 88                                                 88
