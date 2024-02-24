@@ -42,9 +42,9 @@ const closeOnEscape = ({ key }: KeyboardEvent) => {
 				<div class="story">
 					<p>
 						„Die Burg“ ist ein Textadventure Game à la
-						<a href="https://www.c64-wiki.de/wiki/Zauberschlo%C3%9F" class="underline" rel="noopener">Zauberschloß</a>.
-						Ich habe es 1996 als 17jähriger programmiert, nachdem mich mein jüngerer Bruder mit
-						<a href="https://de.wikipedia.org/wiki/BASIC" class="underline" rel="noopener">BASIC</a> angesteckt hatte.
+						<a href="https://www.c64-wiki.de/wiki/Zauberschlo%C3%9F" rel="noopener">Zauberschloß</a>. Ich habe es 1996
+						als 17jähriger programmiert, nachdem mich mein jüngerer Bruder mit
+						<a href="https://de.wikipedia.org/wiki/BASIC" rel="noopener">BASIC</a> angesteckt hatte.
 					</p>
 					<p>
 						2021 habe ich das komplette Spiel in JavaScript nachgebaut, so dass es nun im Browser gespielt werden kann.
@@ -76,7 +76,7 @@ const closeOnEscape = ({ key }: KeyboardEvent) => {
 					</p>
 					<p>
 						Die Namensvorschläge für den Spieler stammen aus
-						<a href="https://en.wikipedia.org/wiki/SimCity_2000" class="underline" rel="noopener">SimCity 2000</a>.
+						<a href="https://en.wikipedia.org/wiki/SimCity_2000" rel="noopener">SimCity 2000</a>.
 					</p>
 				</div>
 			</div>
@@ -122,7 +122,7 @@ const closeOnEscape = ({ key }: KeyboardEvent) => {
 .modal-overlay {
 	visibility: hidden;
 	opacity: 0;
-	background-color: hsla(240, 21%, 7%, 80%);
+	background-color: oklch(16.81% 0.016 284.6 / 80%);
 	transition-property: background-color, opacity, visibility;
 	transition-duration: var(--transition-duration);
 

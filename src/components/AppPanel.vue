@@ -16,7 +16,7 @@ const { state } = useStore()
 
 <style>
 .panel {
-	background-color: hsl(240, 21%, 12%);
+	background-color: oklch(21.62% 0.025 284.1);
 	font-family: 'Courier New', Courier, monospace;
 }
 </style>

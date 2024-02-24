@@ -1,19 +1,19 @@
 :root {
-	--green: #5ce6cd;
-	--red: #ff0080;
-	--bg-color: hsl(240, 21%, 7%);
+	--green: oklch(84.28% 0.125 179.06);
+	--red: oklch(64.53% 0.26 2.47);
+	--bg-color: oklch(16.81% 0.016 284.6);
 	--global-line-height: 1.375; /* 'leading-snug' */
 	--transition-duration: 320ms;
 }
 
 .white { color: #fff; }
-.blue-light { color: #89d3fd; }
-.blue-dark { color: #067df7; }
-.gold { color: #ffbd2e; }
+.blue-light { color: oklch(83.36% 0.094 234.41); }
+.blue-dark { color: oklch(60.35% 0.204 256.03); }
+.gold { color: oklch(83.77% 0.16182547085096866 81.06463340843906); }
 .green { color: var(--green); }
-.papayawhip { color: papayawhip; }
-.pink { color: hotpink; }
-.purple-light { color: #7775a7; }
+.papayawhip { color: oklch(95.81% 0.038 80.03); }
+.pink { color: oklch(72.83% 0.197 351.99); }
+.purple-light { color: oklch(58.39% 0.076 285.62); }
 .red { color: var(--red); }
 
 ::-webkit-scrollbar {
@@ -21,19 +21,19 @@
 	height: 6px;
 }
 ::-webkit-scrollbar-track {
-	background-color: hsla(218, 40%, 50%, 0.08);
+	background-color: oklch(55.37% 0.11 260.75 / 8%);
 	border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb {
-	background-color: hsl(218, 13%, 64%);
+	background-color: oklch(70.37% 0.024 261.47);
 	border-radius: 3px;
 }
 
 html {
 	scrollbar-width: thin;
-	scrollbar-color: hsl(218, 13%, 64%) hsla(218, 40%, 50%, 0.08);
+	scrollbar-color: oklch(70.37% 0.024 261.47) oklch(55.37% 0.11 260.75 / 8%);
 	background-color: var(--bg-color);
-	color: #cbd5e0;
+	color: oklch(86.87% 0.019 250.61);
 }
 
 body {
@@ -49,6 +49,10 @@ button {
 	background-color: unset;
 }
 
+:any-link {
+	text-decoration-line: underline;
+}
+
 :is(div:empty, p:empty) {
 	margin: unset;
 }
@@ -62,7 +66,7 @@ button {
 }
 
 .headline {
-	color: hsl(172, 88%, 24%);
+	color: oklch(49.87% 0.089 179.95);
 }
 
 .story {
@@ -82,19 +86,19 @@ button {
 }
 
 .button {
-	background-color: #1a202c;
-	color: hsl(182, 25%, 50%); /* cadetblue */
+	background-color: oklch(24.33% 0.025 263.95);
+	color: oklch(65.6% 0.064 198.53);
 	box-shadow: 0 0 0px 0px var(--bg-color), 0 0 0px 0px currentColor;
 	transition: color 160ms, box-shadow 160ms;
 
 	&:focus-visible {
-		color: hsl(182, 35%, 50%);
+		color: oklch(68.33% 0.083 198.4);
 		box-shadow: 0 0 0px 1px var(--bg-color), 0 0 0px 2px currentColor;
 	}
 
 	@media (hover: hover) and (pointer: fine) {
 		&:hover {
-			color: hsl(182, 35%, 50%);
+			color: oklch(68.33% 0.083 198.4);
 			box-shadow: 0 0 0px 1px var(--bg-color), 0 0 0px 2px currentColor;
 		}
 	}
@@ -102,6 +106,6 @@ button {
 
 .input {
 	height: 3.25rem;
-	background-color: hsl(230, 23%, 20%);
+	background-color: oklch(29.51% 0.036 275.25);
 	font-size: 1.5rem;
 }
