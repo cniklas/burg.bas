@@ -44,6 +44,12 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+ol,
+ul,
+menu {
+	list-style-type: '';
+}
+
 /* https://unocss.dev/guide/style-reset#tailwind */
 button {
 	background-color: unset;
