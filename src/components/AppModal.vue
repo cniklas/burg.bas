@@ -1,23 +1,21 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 
 const modalEl = ref<HTMLDivElement | null>(null)
 const loadAudio = ref(false)
 const isVisible = ref(false)
-watch(isVisible, val => {
-	val ? document.addEventListener('keyup', closeOnEscape) : document.removeEventListener('keyup', closeOnEscape)
+watch(isVisible, async val => {
+	if (!val) return
+	loadAudio.value = true
+	modalEl.value?.scrollTo({ top: 0 })
 })
-const toggleModal = () => {
-	if (!isVisible.value) {
-		loadAudio.value = true
-		modalEl.value?.scrollTo({ top: 0 })
-	}
 
-	isVisible.value = !isVisible.value
-}
 const closeOnEscape = ({ key }: KeyboardEvent) => {
 	if (key === 'Escape') isVisible.value = false
 }
+onMounted(() => {
+	document.addEventListener('keyup', closeOnEscape)
+})
 </script>
 
 <template>
@@ -25,7 +23,7 @@ const closeOnEscape = ({ key }: KeyboardEvent) => {
 		type="button"
 		class="button modal-button fixed left-1/2 top-4 z-50 hidden h-8 w-8 select-none items-center justify-center rounded-full border-2 border-current tracking-wider focus:outline-none lg:inline-flex"
 		:class="{ 'is-active': isVisible }"
-		@click.stop="toggleModal"
+		@click.stop="isVisible = !isVisible"
 	>
 		{{ isVisible ? '×' : '?' }}
 	</button>
