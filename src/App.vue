@@ -9,10 +9,15 @@ const showIntro = ref(true)
 const onStart = () => {
 	showIntro.value = false
 }
+
+const isInert = ref(false)
+const onToggleModal = (isOpen: boolean) => {
+	isInert.value = isOpen
+}
 </script>
 
 <template>
-	<AppModal />
-	<AppIntro v-if="showIntro" @start="onStart" />
-	<AppGame v-else />
+	<AppModal @toggle="onToggleModal" />
+	<AppIntro v-if="showIntro" @start="onStart" :inert="isInert" />
+	<AppGame v-else :inert="isInert" />
 </template>
