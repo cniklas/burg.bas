@@ -35,7 +35,7 @@
     "eslint-plugin-vue": "^9.22.0",
     "npm-run-all2": "^6.1.2",
     "prettier": "^3.2.5",
-    "prettier-plugin-tailwindcss": "^0.5.10",
+    "prettier-plugin-tailwindcss": "^0.6.1",
     "typescript": "~5.4.5",
     "unocss": "^0.60.3",
     "vite": "^5.2.10",
