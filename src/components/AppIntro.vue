@@ -44,7 +44,7 @@ onUnmounted(() => {
 					ref="inputEl"
 					v-model.trim="userName"
 					type="text"
-					class="input w-full max-w-sm rounded px-2 outline-none md:text-center"
+					class="input w-full max-w-sm rounded px-2 md:text-center"
 					placeholder="Gib einen Namen ein oder drücke ENTER"
 					spellcheck="false"
 					enterkeyhint="next"
@@ -57,7 +57,7 @@ onUnmounted(() => {
 				<div v-show="showButton" class="my-4">
 					<button
 						type="button"
-						class="button inline-flex select-none items-center border border-current px-7 py-2 tracking-wider focus:outline-none"
+						class="button inline-flex select-none items-center border border-current px-7 py-2 tracking-wider"
 						@click.stop="$emit('start')"
 					>
 						Spiel starten

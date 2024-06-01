@@ -53,6 +53,12 @@ button {
 	text-decoration-line: underline;
 }
 
+:focus-visible,
+:where(button):active {
+	outline: 2px solid currentColor;
+	outline-offset: 2px;
+}
+
 :is(div:empty, p:empty) {
 	margin: unset;
 }
@@ -88,18 +94,15 @@ button {
 .button {
 	background-color: oklch(24.33% 0.025 263.95);
 	color: oklch(65.6% 0.064 198.53);
-	box-shadow: 0 0 0px 0px var(--bg-color), 0 0 0px 0px currentColor;
-	transition: color 160ms, box-shadow 160ms;
+	transition: color 160ms;
 
 	&:focus-visible {
 		color: oklch(68.33% 0.083 198.4);
-		box-shadow: 0 0 0px 1px var(--bg-color), 0 0 0px 2px currentColor;
 	}
 
 	@media (hover: hover) and (pointer: fine) {
 		&:hover {
 			color: oklch(68.33% 0.083 198.4);
-			box-shadow: 0 0 0px 1px var(--bg-color), 0 0 0px 2px currentColor;
 		}
 	}
 }

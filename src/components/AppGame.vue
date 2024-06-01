@@ -246,7 +246,7 @@ onUnmounted(() => {
 						<button
 							ref="buttonEl"
 							type="button"
-							class="button inline-flex select-none items-center border border-current px-7 py-2 tracking-wider focus:outline-none"
+							class="button inline-flex select-none items-center border border-current px-7 py-2 tracking-wider"
 							@click.stop="onClick"
 						>
 							{{ nextButton?.text || 'weiter' }}
@@ -259,7 +259,7 @@ onUnmounted(() => {
 						ref="inputEl"
 						v-model.trim="inputRef"
 						type="text"
-						class="input w-full rounded px-2 outline-none"
+						class="input w-full rounded px-2"
 						placeholder="?"
 						spellcheck="false"
 						enterkeyhint="send"
@@ -276,15 +276,16 @@ onUnmounted(() => {
 
 <style>
 .base-column {
-	box-shadow: 0 0 5.375rem var(--bg-color);
+	--bg-shadow: var(--bg-color);
+	box-shadow: 0 0 5.375rem var(--bg-shadow);
 	transition: box-shadow 480ms ease-out;
 
 	&.game-won {
-		box-shadow: 0 0 5.375rem var(--green);
+		--bg-shadow: var(--green);
 	}
 
 	&.game-lost {
-		box-shadow: 0 0 5.375rem var(--red);
+		--bg-shadow: var(--red);
 	}
 }
 

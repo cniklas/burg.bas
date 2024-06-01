@@ -25,7 +25,7 @@ onMounted(() => {
 <template>
 	<button
 		type="button"
-		class="button modal-button fixed left-1/2 top-4 z-50 hidden h-8 w-8 select-none items-center justify-center rounded-full border-2 border-current tracking-wider focus:outline-none lg:inline-flex"
+		class="button modal-button fixed left-1/2 top-4 z-50 hidden h-8 w-8 select-none items-center justify-center rounded-full border-2 border-current tracking-wider lg:inline-flex"
 		:class="{ 'is-active': isOpen }"
 		@click.stop="isOpen = !isOpen"
 	>
