@@ -22,7 +22,7 @@
     "vue": "^3.4.31"
   },
   "devDependencies": {
-    "@rushstack/eslint-patch": "^1.10.2",
+    "@rushstack/eslint-patch": "^1.10.3",
     "@tsconfig/node18": "^18.2.4",
     "@types/howler": "^2.2.11",
     "@types/node": "^20.14.9",
