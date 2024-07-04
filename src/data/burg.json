@@ -1189,7 +1189,7 @@
 		"id": "credits",
 		"story": [
 			"<span class='text-prewrap'>---------------------------  E  N  D  E  ---------------------------</span>",
-			"Ein Spiel von Krischan\nIdee: Krischan, mit Unterstützung von Dewitt\nText: Krischan\nMusik: abgeschrieben bei Bach, Schumann, Chopin, Castle Adventure und Wolfi\nOriginally written in BASIC, rewritten in JavaScript with Vue.js\n© Christian Niklas 1996, 2021"
+			"Ein Spiel von Krischan\nIdee: Krischan, mit Unterstützung von Dewitt\nText: Krischan\nMusik: abgeschrieben bei Bach, Schumann, Chopin, Castle Adventure und Wolfi\nUrsprünglich in BASIC geschrieben, neu programmiert in JavaScript mit Vue\nQuellcode: <a href='https://github.com/cniklas/burg.bas' rel='noopener'>GitHub</a>\n© Christian Niklas 1996, 2021"
 		]
 	}
 ]
