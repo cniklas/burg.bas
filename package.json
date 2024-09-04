@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "howler": "^2.2.4",
-    "vue": "^3.4.38"
+    "vue": "^3.5.0"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.10.4",
