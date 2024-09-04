@@ -81,8 +81,8 @@ onMounted(() => {
 	_battle()
 })
 
-const timelineEl = useTemplateRef<HTMLOListElement | null>('timeline')
-const scrollHelperEl = useTemplateRef<HTMLDivElement | null>('scrollHelper')
+const timelineEl = useTemplateRef<HTMLOListElement | null>('timelineEl')
+const scrollHelperEl = useTemplateRef<HTMLDivElement | null>('scrollHelperEl')
 let observer: ResizeObserver | null = null
 const _startObserver = () => {
 	if (!(timelineEl.value && 'ResizeObserver' in window)) return
@@ -106,14 +106,14 @@ onBeforeUnmount(() => {
 
 <template>
 	<div class="scroll-smooth leading-snug">
-		<ol ref="timeline">
+		<ol ref="timelineEl">
 			<li v-for="(message, i) in attackLog" :key="i" class="battle-strike">
 				{{ message }}
 			</li>
 		</ol>
 
 		<div v-show="battleResult" class="battle-result">{{ battleResult }}</div>
-		<div ref="scrollHelper"></div>
+		<div ref="scrollHelperEl"></div>
 	</div>
 </template>
 
