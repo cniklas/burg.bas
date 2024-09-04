@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref, watch, onMounted } from 'vue'
+import { ref, useTemplateRef, watch, onMounted } from 'vue'
 
 const emit = defineEmits<{ (event: 'toggle', isOpen: boolean): void }>()
 
-const modalEl = ref<HTMLDivElement | null>(null)
+const modalEl = useTemplateRef<HTMLDivElement | null>('modal')
 const loadAudio = ref(false)
 const isOpen = ref(false)
 watch(isOpen, _isOpen => {
@@ -37,7 +37,7 @@ onMounted(() => {
 		:class="isOpen ? 'visible' : 'invisible'"
 		@click.stop
 	>
-		<div ref="modalEl" class="modal overflow-y-auto px-4" :class="{ 'is-visible': isOpen }">
+		<div ref="modal" class="modal overflow-y-auto px-4" :class="{ 'is-visible': isOpen }">
 			<h2 class="headline mb-6 text-center text-3xl font-medium">Über dieses Spiel</h2>
 
 			<div class="story">

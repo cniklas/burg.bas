@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive, computed, watch, onMounted, onBeforeUnmount } from 'vue'
+import { useTemplateRef, reactive, computed, watch, onMounted, onBeforeUnmount } from 'vue'
 import { useBattle, type Player, type Opponent } from '@/use/battle'
 import { useStore } from '@/use/store'
 import { animateNumber } from '@/use/countUpAnimation'
@@ -81,8 +81,8 @@ onMounted(() => {
 	_battle()
 })
 
-const timelineEl = ref<HTMLOListElement | null>(null)
-const scrollHelperEl = ref<HTMLDivElement | null>(null)
+const timelineEl = useTemplateRef<HTMLOListElement | null>('timeline')
+const scrollHelperEl = useTemplateRef<HTMLDivElement | null>('scrollHelper')
 let observer: ResizeObserver | null = null
 const _startObserver = () => {
 	if (!(timelineEl.value && 'ResizeObserver' in window)) return
@@ -106,14 +106,14 @@ onBeforeUnmount(() => {
 
 <template>
 	<div class="scroll-smooth leading-snug">
-		<ol ref="timelineEl">
+		<ol ref="timeline">
 			<li v-for="(message, i) in attackLog" :key="i" class="battle-strike">
 				{{ message }}
 			</li>
 		</ol>
 
 		<div v-show="battleResult" class="battle-result">{{ battleResult }}</div>
-		<div ref="scrollHelperEl"></div>
+		<div ref="scrollHelper"></div>
 	</div>
 </template>
 
