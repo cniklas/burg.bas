@@ -112,7 +112,7 @@ onBeforeUnmount(() => {
 			</li>
 		</ol>
 
-		<div v-show="battleResult" class="battle-result">{{ battleResult }}</div>
+		<div v-if="battleResult" class="battle-result">{{ battleResult }}</div>
 		<div ref="scrollHelperEl"></div>
 	</div>
 </template>

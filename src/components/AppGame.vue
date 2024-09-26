@@ -270,7 +270,7 @@ onUnmounted(() => {
 			</div>
 		</main>
 
-		<AppPanel v-show="!showCredits" />
+		<AppPanel v-if="!showCredits" />
 	</div>
 </template>
 
