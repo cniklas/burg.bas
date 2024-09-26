@@ -5,7 +5,7 @@ import { loadMusic } from '@/use/howler'
 import { useInput } from '@/use/input'
 import { useStore } from '@/use/store'
 
-defineEmits<{ (event: 'start'): void }>()
+defineEmits<{ start: [] }>()
 
 const { inputEl, focusInput } = useInput()
 

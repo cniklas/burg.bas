@@ -7,7 +7,7 @@ import { animateNumber } from '@/use/countUpAnimation'
 const { attackLog, resetAttackLog, randomAction } = useBattle()
 const { state, setHealth } = useStore()
 
-const emit = defineEmits<{ (event: 'finished', result: string): void }>()
+const emit = defineEmits<{ finished: [result: string] }>()
 
 const strikeInterval = 1200
 

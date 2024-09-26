@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, useTemplateRef, watch, onMounted } from 'vue'
 
-const emit = defineEmits<{ (event: 'toggle', isOpen: boolean): void }>()
+const emit = defineEmits<{ toggle: [isOpen: boolean] }>()
 
 const modalEl = useTemplateRef<HTMLDivElement | null>('modalEl')
 const loadAudio = ref(false)
