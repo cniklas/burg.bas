@@ -54,9 +54,8 @@ const handleStory = async () => {
 
 	// play music
 	if (scene.value.play) {
-		scene.value.play_delay
-			? setTimeout(playMusic, scene.value.play_delay, scene.value.play)
-			: playMusic(scene.value.play)
+		if (scene.value.play_delay) setTimeout(playMusic, scene.value.play_delay, scene.value.play)
+		else playMusic(scene.value.play)
 	}
 
 	// reduce health
@@ -108,22 +107,22 @@ watch(sceneId, handleStory, { immediate: true })
 const reduceHealth = (points: number) => {
 	const min = Math.ceil(points / 2)
 	const max = Math.floor(points)
-
 	const rnd = Math.floor(Math.random() * (max - min + 1)) + min
-	sceneId.value === 'lagerhaus_kampf'
-		? setTimeout(animateNumber, scene.value?.delayed?.delay, state.health, rnd, setHealth)
-		: animateNumber(state.health, rnd, setHealth)
+
+	if (sceneId.value === 'lagerhaus_kampf')
+		setTimeout(animateNumber, scene.value?.delayed?.delay, state.health, rnd, setHealth)
+	else animateNumber(state.health, rnd, setHealth)
 }
 
 const AppBattle = defineAsyncComponent(() => import('./AppBattle.vue'))
 const showBattle = computed(() => sceneId.value === 'thronsaal_kampf')
 const startBattle = ref(false)
 const finalBattle = () => {
-	scene.value?.play_delay
-		? setTimeout(() => {
-				startBattle.value = true
-			}, scene.value.play_delay)
-		: (startBattle.value = true)
+	if (scene.value?.play_delay)
+		setTimeout(() => {
+			startBattle.value = true
+		}, scene.value.play_delay)
+	else startBattle.value = true
 }
 const onBattleFinished = (result: string) => {
 	fadeOutMusic()
@@ -164,7 +163,8 @@ const handleMessage = (message: string) => {
 }
 
 const handleCommand = (command: Command) => {
-	command.message ? handleMessage(command.message) : handleAction(command)
+	if (command.message) handleMessage(command.message)
+	else handleAction(command)
 }
 
 const nextButton = computed(() => scene.value?.commands?.find(cmd => cmd.key === 'enter' && isEnabled(cmd)))
