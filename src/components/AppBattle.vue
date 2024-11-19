@@ -81,8 +81,8 @@ onMounted(() => {
 	_battle()
 })
 
-const timelineEl = useTemplateRef<HTMLOListElement | null>('timelineEl')
-const scrollHelperEl = useTemplateRef<HTMLDivElement | null>('scrollHelperEl')
+const timelineEl = useTemplateRef('timelineEl')
+const scrollHelperEl = useTemplateRef('scrollHelperEl')
 let observer: ResizeObserver | null = null
 const _startObserver = () => {
 	if (!(timelineEl.value && 'ResizeObserver' in window)) return
