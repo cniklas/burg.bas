@@ -25,7 +25,7 @@ onMounted(() => {
 <template>
 	<button
 		type="button"
-		class="button modal-button fixed left-1/2 top-4 z-50 hidden h-8 w-8 select-none items-center justify-center rounded-full border-2 border-current tracking-wider lg:inline-flex"
+		class="button modal-button fixed left-1/2 top-4 z-50 hidden size-8 select-none items-center justify-center rounded-full border-2 border-current tracking-wider lg:inline-flex"
 		:class="{ 'is-active': isOpen }"
 		@click.stop="isOpen = !isOpen"
 	>
@@ -33,7 +33,7 @@ onMounted(() => {
 	</button>
 
 	<div
-		class="backface-hidden fixed left-0 top-0 z-40 flex h-full w-full items-center justify-center"
+		class="backface-hidden fixed left-0 top-0 z-40 flex size-full items-center justify-center"
 		:class="isOpen ? 'visible' : 'invisible'"
 		@click.stop
 	>
@@ -83,7 +83,7 @@ onMounted(() => {
 		</div>
 	</div>
 
-	<div class="modal-overlay fixed left-0 top-0 z-30 h-full w-full" :class="{ 'is-visible': isOpen }" />
+	<div class="modal-overlay fixed left-0 top-0 z-30 size-full" :class="{ 'is-visible': isOpen }" />
 </template>
 
 <style>
