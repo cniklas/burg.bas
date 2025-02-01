@@ -24,7 +24,7 @@
   "devDependencies": {
     "@tsconfig/node20": "^20.1.4",
     "@types/howler": "^2.2.12",
-    "@types/node": "^22.10.3",
+    "@types/node": "^22.13.0",
     "@unocss/reset": "^65.4.3",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/eslint-config-prettier": "^10.2.0",
