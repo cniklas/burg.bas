@@ -2,7 +2,7 @@ import { useTemplateRef } from 'vue'
 
 const isTouch = !window.matchMedia('(hover: hover) and (pointer: fine)').matches
 
-const inputEl = useTemplateRef<HTMLInputElement | null>('inputEl')
+const inputEl = useTemplateRef<HTMLInputElement>('inputEl')
 const focusInput = () => {
 	if (isTouch) return
 	inputEl.value?.focus()
@@ -19,7 +19,7 @@ const cleanInput = (input: string): string => {
 		.join(' ')
 }
 
-const buttonEl = useTemplateRef<HTMLButtonElement | null>('buttonEl')
+const buttonEl = useTemplateRef<HTMLButtonElement>('buttonEl')
 const blurButton = () => {
 	buttonEl.value?.blur()
 }
