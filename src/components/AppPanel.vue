@@ -5,12 +5,14 @@ const { state } = useStore()
 
 <template>
 	<aside class="panel h-24 p-3 text-lg/6">
-		<div class="gold">Gold: {{ state.gold }}</div>
-		<div class="pink">Lebensenergie: {{ state.health }}</div>
-		<div class="flex gap-x-2.5">
-			<span class="<sm:hidden">Ausrüstung:</span>
-			<span v-for="(item, i) in state.inventory" :key="`item-${i}`">{{ item }}</span>
-		</div>
+		<dl class="inline-list">
+			<dt class="gold">Gold</dt>
+			<dd class="gold">{{ state.gold }}</dd>
+			<dt class="pink">Lebensenergie</dt>
+			<dd class="pink">{{ state.health }}</dd>
+			<dt class="<sm:!hidden">Ausrüstung</dt>
+			<dd>{{ state.inventory.join(' ') }}</dd>
+		</dl>
 	</aside>
 </template>
 
@@ -18,5 +20,25 @@ const { state } = useStore()
 .panel {
 	background-color: oklch(21.62% 0.025 284.1);
 	font-family: 'Courier New', Courier, monospace;
+}
+
+.inline-list {
+	dt,
+	dd {
+		display: inline;
+	}
+
+	dt::after {
+		content: ':';
+	}
+
+	dd::before {
+		content: '\0020';
+	}
+
+	dd::after {
+		content: '\a';
+		white-space: pre;
+	}
 }
 </style>
