@@ -10,7 +10,7 @@ defineProps<{
 
 <template>
 	<div class="story">
-		<transition-group name="story-fade">
+		<TransitionGroup name="story-fade">
 			<template v-for="(section, i) in story" :key="`sct${i}`">
 				<p v-if="typeof section === 'string'" class="whitespace-pre-line" v-html="section" />
 
@@ -22,7 +22,7 @@ defineProps<{
 			</template>
 
 			<slot />
-		</transition-group>
+		</TransitionGroup>
 	</div>
 </template>
 

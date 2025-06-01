@@ -2,18 +2,28 @@
 	--green: oklch(84.28% 0.125 179.06);
 	--red: oklch(64.53% 0.26 2.47);
 	--bg-color: oklch(16.81% 0.016 284.6);
+	--input-bg-color: oklch(29.51% 0.036 275.25);
 	--global-line-height: 1.375; /* 'leading-snug' */
 	--transition-duration: 320ms;
 }
 
+/* prettier-ignore */
 .white { color: #fff; }
+/* prettier-ignore */
 .blue-light { color: oklch(83.36% 0.094 234.41); }
+/* prettier-ignore */
 .blue-dark { color: oklch(60.35% 0.204 256.03); }
+/* prettier-ignore */
 .gold { color: oklch(83.77% 0.16182547085096866 81.06463340843906); }
+/* prettier-ignore */
 .green { color: var(--green); }
+/* prettier-ignore */
 .papayawhip { color: oklch(95.81% 0.038 80.03); }
+/* prettier-ignore */
 .pink { color: oklch(72.83% 0.197 351.99); }
+/* prettier-ignore */
 .purple-light { color: oklch(58.39% 0.076 285.62); }
+/* prettier-ignore */
 .red { color: var(--red); }
 
 ::-webkit-scrollbar {
@@ -109,6 +119,6 @@ button {
 
 .input {
 	height: 3.25rem;
-	background-color: oklch(29.51% 0.036 275.25);
+	background-color: var(--input-bg-color);
 	font-size: 1.5rem;
 }

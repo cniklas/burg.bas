@@ -38,32 +38,39 @@ onUnmounted(() => {
 			Bist du bereit für ein waghalsiges Abenteuer in einer unbekannten Burg?
 		</h1>
 
-		<div class="mt-8 text-center">
-			<div class="my-4">
+		<div class="text-center">
+			<div class="mx-auto grid max-w-sm">
+				<label
+					class="col-start-1 row-start-1 content-center rounded bg-[--input-bg-color] text-gray-400"
+					for="username"
+				>
+					Gib einen Namen ein oder drücke ENTER
+				</label>
 				<input
 					ref="inputEl"
 					v-model.trim="userName"
 					type="text"
-					class="input w-full max-w-sm rounded px-2 md:text-center"
-					placeholder="Gib einen Namen ein oder drücke ENTER"
+					id="username"
+					class="input col-start-1 row-start-1 rounded px-2 md:text-center"
+					:class="{ '!bg-transparent': !userName.length }"
 					spellcheck="false"
+					autocomplete="off"
 					enterkeyhint="next"
 					@click.stop
 					@keyup.enter="createName"
 				/>
 			</div>
 
-			<transition name="fade" mode="in-out">
-				<div v-show="showButton" class="my-4">
-					<button
-						type="button"
-						class="button inline-flex select-none items-center border border-current px-7 py-2 tracking-wider"
-						@click.stop="$emit('start')"
-					>
-						Spiel starten
-					</button>
-				</div>
-			</transition>
+			<Transition name="fade" mode="in-out">
+				<button
+					v-show="showButton"
+					type="button"
+					class="button mt-4 select-none border border-current px-7 py-2 tracking-wider"
+					@click.stop="$emit('start')"
+				>
+					Spiel starten
+				</button>
+			</Transition>
 		</div>
 	</div>
 </template>

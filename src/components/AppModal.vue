@@ -25,8 +25,9 @@ onMounted(() => {
 <template>
 	<button
 		type="button"
-		class="button modal-button fixed left-1/2 top-4 z-50 hidden size-8 select-none items-center justify-center rounded-full border-2 border-current tracking-wider lg:inline-flex"
+		class="button modal-button fixed left-1/2 top-4 z-50 hidden size-8 select-none place-content-center rounded-full border-2 border-current lg:grid"
 		:class="{ 'is-active': isOpen }"
+		aria-label="Über dieses Spiel"
 		@click.stop="isOpen = !isOpen"
 	>
 		{{ isOpen ? '×' : '?' }}
