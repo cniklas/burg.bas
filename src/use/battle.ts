@@ -110,7 +110,7 @@ const _spell = (d100: number, attacker: Player | Opponent, defender: Player | Op
 const _actions = [_attack, _block, _spell]
 const randomAction = (attacker: Player | Opponent, defender: Player | Opponent, isAttack = false): void => {
 	const i = Math.floor(Math.random() * _actions.length)
-	const action = _actions[i]
+	const action = _actions.at(i)!
 
 	// der "Anhieb" des Angreifers kann nicht Verteidigung sein → wiederholen
 	if (isAttack && action === _block) {
