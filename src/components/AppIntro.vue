@@ -19,7 +19,7 @@ let names: string[] = []
 const randomSplice = (store: string[]) => store.splice(Math.floor(Math.random() * store.length), 1).shift()
 const createName = () => {
 	if (!names.length) names = [...simCityNames]
-	userName.value = randomSplice(names) as string
+	userName.value = randomSplice(names)!
 }
 
 onMounted(() => {
