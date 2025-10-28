@@ -11,7 +11,7 @@ watch(isOpen, _isOpen => {
 
 	if (!_isOpen) return
 	loadAudio.value = true
-	modalEl.value?.scrollTo({ top: 0 })
+	modalEl.value!.scrollTo({ top: 0 })
 })
 
 const closeOnEscape = ({ key }: KeyboardEvent) => {

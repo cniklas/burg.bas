@@ -88,7 +88,7 @@ const _startObserver = () => {
 	if (!(timelineEl.value && 'ResizeObserver' in window)) return
 
 	observer = new ResizeObserver(() => {
-		scrollHelperEl.value?.scrollIntoView({ block: 'end' })
+		scrollHelperEl.value!.scrollIntoView({ block: 'end' })
 	})
 	observer.observe(timelineEl.value)
 }
