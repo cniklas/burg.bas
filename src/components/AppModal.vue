@@ -58,15 +58,15 @@ onMounted(() => {
 				</p>
 				<ul>
 					<li class="flex items-center">
-						<audio :src="loadAudio ? 'audio/intro-2-o.mp3' : undefined" controls></audio>
+						<audio :src="loadAudio ? 'audio/intro-2-o.mp3' : undefined" controls controlslist="nodownload" preload="metadata"></audio>
 						<span class="white ml-4">Intro</span>
 					</li>
 					<li class="flex items-center">
-						<audio :src="loadAudio ? 'audio/intro-1.mp3' : undefined" controls></audio>
+						<audio :src="loadAudio ? 'audio/intro-1.mp3' : undefined" controls controlslist="nodownload" preload="metadata"></audio>
 						<span class="white ml-4">alternatives Intro</span>
 					</li>
 					<li class="flex items-center">
-						<audio :src="loadAudio ? 'audio/battle-o.mp3' : undefined" controls></audio>
+						<audio :src="loadAudio ? 'audio/battle-o.mp3' : undefined" controls controlslist="nodownload" preload="metadata"></audio>
 						<span class="white ml-4">Kampf</span>
 					</li>
 				</ul>
