@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "howler": "^2.2.4",
-    "unocss": "^66.5.12",
+    "unocss": "^66.6.2",
     "vue": "^3.5.29"
   },
   "devDependencies": {
