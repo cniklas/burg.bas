@@ -8,6 +8,7 @@ const focusInput = () => {
 	inputEl.value?.focus()
 }
 
+const ignoreList = new Set(['der', 'die', 'das', 'den', 'dem', 'und', 'mit'])
 const cleanInput = (input: string): string => {
 	const regex = /[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/g
 	return input
@@ -15,7 +16,7 @@ const cleanInput = (input: string): string => {
 		.toLowerCase()
 		.replaceAll('geradeaus', 'weiter')
 		.split(' ')
-		.filter((word: string) => word.length && !['der', 'die', 'das', 'den', 'dem', 'und', 'mit'].includes(word))
+		.filter((word: string) => word.length && !ignoreList.has(word))
 		.join(' ')
 }
 
