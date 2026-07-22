@@ -1,6 +1,6 @@
 {
   "name": "burg",
-  "version": "2.21.1",
+  "version": "2.22.0",
   "type": "module",
   "repository": {
     "type": "git",
@@ -19,26 +19,26 @@
   },
   "dependencies": {
     "howler": "^2.2.4",
-    "vue": "^3.5.39"
+    "vue": "^3.5.40"
   },
   "devDependencies": {
     "@tsconfig/node24": "^24.0.4",
-    "@types/howler": "^2.2.12",
-    "@types/node": "^25.6.0",
-    "@unocss/reset": "^66.6.7",
-    "@vitejs/plugin-vue": "^6.0.5",
-    "@vue/eslint-config-typescript": "^14.7.0",
+    "@types/howler": "^2.2.13",
+    "@types/node": "^25.9.5",
+    "@unocss/reset": "^66.7.5",
+    "@vitejs/plugin-vue": "^6.0.8",
+    "@vue/eslint-config-typescript": "^14.9.0",
     "@vue/tsconfig": "^0.9.1",
-    "eslint": "^10.2.1",
+    "eslint": "^10.7.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-vue": "^10.8.0",
-    "npm-run-all2": "^8.0.4",
+    "eslint-plugin-vue": "^10.9.2",
+    "npm-run-all2": "^9.0.2",
     "prettier": "3.8.3",
-    "prettier-plugin-tailwindcss": "^0.8.0",
-    "typescript": "~6.0.2",
-    "unocss": "^66.6.2",
-    "vite": "^8.0.16",
-    "vue-tsc": "^3.2.6"
+    "prettier-plugin-tailwindcss": "^0.8.1",
+    "typescript": "~6.0.3",
+    "unocss": "^66.7.5",
+    "vite": "^8.1.5",
+    "vue-tsc": "^3.3.7"
   },
   "engines": {
     "node": ">=22.12.0"
